@@ -1,0 +1,12 @@
+# Silicon Org LangGraph-native runtime dependency shortcut.
+#
+# This file is for the local MIT-licensed LangGraph OSS runtime only.
+# pyproject.toml is the authoritative project dependency manifest.
+# Do not configure LangGraph Platform, LangSmith, LangChain hosted tracing, or
+# remote LangGraph API credentials for Silicon Org runtime execution.
+#
+# runtime/langgraph_native.py fails closed if hosted-service environment
+# variables such as LANGSMITH_API_KEY, LANGCHAIN_TRACING_V2, or LANGGRAPH_API_KEY
+# are set.
+
+langgraph==0.6.11

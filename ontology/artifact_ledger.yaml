@@ -1,0 +1,246 @@
+# Artifact Ledger Schema
+#
+# Every artifact produced during a task execution is stored here.
+# An artifact is any non-trivial output: code, spec, analysis,
+# test suite, review report, design document.
+#
+# Storage layout per task:
+#   traces/<task_id>/
+#     manifest.yaml                         — task index (this schema, TaskManifest)
+#     state.yaml                            — live Task Graph State
+#     events.yaml                           — append-only event stream
+#     artifacts/<node>-<type>-v<n>.<ext>   — artifact content
+#     artifacts/<node>-<type>-v<n>.provenance.yaml — artifact metadata
+#     handoffs/<from>→<to>-<ts>.yaml       — handoff records
+#
+# All timestamps: ISO 8601 UTC.
+# All refs: relative paths within the task directory.
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 1. TaskManifest  (manifest.yaml)
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# Top-level index. Written by Encoder at task start, updated on completion.
+
+TaskManifest:
+  task_id: string                    # uuid
+  timestamp_start: iso8601
+  timestamp_end: iso8601 | null      # null until task settles
+
+  task_summary: string               # one sentence: what was the task
+  task_type: string                  # bug_fix | feature | refactor | architecture | design | ops | mixed
+
+  entry_nodes: [string]              # Layer 1 nodes activated by Encoder
+  terminal_nodes: [string]           # nodes with no further triggers (Decoder collected from these)
+
+  outcome:
+    status: success | partial | failed
+    decoder_notes: string            # Decoder's synthesis summary
+    quality_signal:
+      source: delivery-prover | runtime_decoder_unverified | runtime_decoder | human | test_suite | downstream_acceptance | null
+      value: float | null            # [0.0, 1.0]
+      detail: string | null
+
+  # Index of all artifacts produced in this task
+  artifact_index:
+    - artifact_id: string            # e.g. "senior-engineer-code-v2"
+      ref: string                    # path supplied to `ledger artifact`
+      path: string                   # same value as ref; retained for older trace readers
+      provenance_ref: string         # path: artifacts/senior-engineer-code-v2.provenance.yaml
+      producer: string               # role
+      type: code | test | spec | analysis | review | design | schema | document
+      version: integer
+      status: draft | under_review | approved | superseded | rejected
+
+  # Audit trail: ordered list of all handoff records
+  handoff_trail:
+    - ref: string                    # path: handoffs/senior-engineer→code-reviewer-20240115T143000Z.yaml
+      from: string
+      to: string
+      timestamp: iso8601
+      artifact_refs: [string]
+      context_block_digest: string
+
+  # Index of validated context compression reports produced by nodes.
+  context_report_index:
+    - role: string
+      ref: string
+      digest: string
+      status: valid
+
+  # Cross-task learning proposal index lives at traces/index_learning_proposals.yaml.
+  # It is not part of one manifest because proposals compare behavior across
+  # tasks. Accepted proposals may materialize as temporary Policy overlays,
+  # but they still require explicit review before becoming active.
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 2. ArtifactProvenance  (<node>-<type>-v<n>.provenance.yaml)
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# Sidecar for every artifact. The current ledger writes the minimum durable
+# facts needed to audit ownership and status; richer context lives in the
+# Context Compression Report and handoff context_block.
+
+ArtifactProvenance:
+  artifact_id: string                # matches artifact_index entry
+  task_id: string
+  version: integer                   # 1 = first; increments on revision
+  producer: string                   # node role
+  timestamp: iso8601
+  input_artifacts: [string]
+  quality_checks: [string]
+  status: draft | under_review | approved | superseded | rejected
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 3. HandoffRecord  (handoffs/<from>→<to>-<timestamp>.yaml)
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# Written by every node at the moment it triggers a successor.
+# This is the auditable "commit message" for the handoff.
+# The Decoder reads all handoff records to reconstruct the decision trail.
+
+HandoffRecord:
+  timestamp: iso8601
+
+  from: string                       # source node role
+  to: string                         # target node role
+  relation_type: string              # which relation type was used for this handoff
+  focus: string                      # short receiver-facing focus summary
+
+  # Artifacts being handed off
+  artifact_refs: [string]
+
+  # The two-part downstream payload. The receiver must get both the direct
+  # deliverable and the compressed context chain used to produce it.
+  deliverable:
+    producer: string
+    artifact_refs: [string]
+    artifacts:
+      - artifact_id: string
+        producer: string
+        type: string
+        version: integer
+        status: draft | under_review | approved | superseded | rejected
+        content_ref: string
+
+  context_block:
+    schema: silicon_org.context_chain.v1
+    task_id: string
+    from: string
+    to: string
+    relation_type: string
+    focus: string
+    source:
+      producer_role: string
+      context_compression_report_ref: string
+      input_handoffs:
+        - ref: string
+          context_digest: string
+      input_artifacts:
+        - artifact_id: string
+          used: boolean
+          why: string
+    compressed_context:
+      decisions:
+        - statement: string
+          source: string
+          impact: string
+      constraints:
+        - statement: string
+          source: string
+          impact: string
+      assumptions:
+        - statement: string
+          source: string
+          risk: string
+      open_questions:
+        - statement: string
+          source: string
+          owner: string | null
+    omitted_context:
+      - source: string
+        reason: string
+    compression_rationale:
+      method: string
+      loss_notes: [string]
+    quality_checks:
+      - name: string
+        passed: true
+    producer_output_artifact_refs: [string]
+    inherited_artifact_refs: [string]
+    previous_blocks:
+      - ref: string
+        from: string
+        to: string
+        relation_type: string
+        focus: string
+        context_digest: string
+        deliverable_artifact_refs: [string]
+    context_digest: string            # sha256 of this compressed block
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 4. EventStream  (events.yaml)
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# Append-only. Every state change in the task appended as an event.
+# The TaskManifest and ArtifactProvenance are derived views of this stream.
+
+EventStream:
+  task_id: string
+  events:
+    - event_id: string
+      timestamp: iso8601
+      event_type: >
+        task_started | node_activated | node_completed | node_blocked |
+        node_failed | node_skipped | artifact_created | artifact_updated |
+        artifact_approved | artifact_rejected | context_report_registered |
+        activation_decision | runtime_fallback | handoff_recorded |
+        loop_iteration | join_resolved | task_settled | task_completed
+      payload:
+        node: string | null
+        artifact_id: string | null
+        from: string | null
+        to: string | null
+        detail: string | null
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Naming conventions
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# artifact_id:   <role>-<type>-v<n>
+#   examples:    senior-engineer-code-v1
+#                tdd-test-v1
+#                code-reviewer-review-v2
+#                ui-design-system-spec-v1
+#                architect-analysis-v1
+#
+# handoff file:  <from>→<to>-<YYYYMMDDTHHmmssZ>.yaml
+#   examples:    senior-engineer→code-reviewer-20240115T143000Z.yaml
+#                architect→api-designer-20240115T110000Z.yaml
+#
+# artifact file: <artifact_id>.<ext>
+#   ext by type: code→.ts/.py/.go  test→.test.ts  spec→.md  analysis→.md
+#                review→.md  design→.md  schema→.yaml  document→.md
+#
+# ─────────────────────────────────────────────────────────────────────────────
+# Audit queries this enables
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# "Why was this design decision made?"
+#   → read the producer artifact and its registered Context Compression Report
+#
+# "What changed between code-v1 and code-v2?"
+#   → diff artifacts/senior-engineer-code-v1.ts and v2.ts
+#   → read the revision artifact and its registered Context Compression Report
+#
+# "What did the security review find?"
+#   → read artifacts/security-engineer-review-v1.md
+#
+# "Which version of code did the tests actually pass against?"
+#   → read the tdd artifact's Context Compression Report input_scope
+#
+# "How many review iterations did this task take?"
+#   → count events where event_type = loop_iteration, node = code-reviewer
+#
+# "What open questions were unresolved at handoff?"
+#   → read all handoff_records, collect context_block.compressed_context.open_questions

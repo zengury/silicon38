@@ -1,0 +1,54 @@
+__pycache__/
+*.py[cod]
+.idea/
+.vscode/
+.DS_Store
+*.log
+.pytest_cache/
+.agent_runtime/
+*.egg-info/
+build/
+!roboonto/roboonto/build/
+!roboonto/roboonto/build/**
+roboonto/roboonto/build/**/__pycache__/
+dist/
+.venv/
+.agent_runtime_test/
+models/
+*.png
+*.tar.gz
+*.bak
+
+# Track B runtime artifacts (per-run, not source)
+.halfcheetah_data/
+
+# Local pi config (per-machine, not source)
+.pi/
+
+# Local Silicon Org model routing (per-user, not source)
+org/models.local.yaml
+org/.env.local
+
+# Desktop runtime config (per-machine, not source)
+.desktop_runtime/
+
+# Traces from task runs (sensitive / project-specific, not for public repo)
+traces/
+
+# Devlogs (development history, not for public repo)
+devlog/
+DEVLOG-*.md
+
+# Task artifacts (project-specific, not for public repo)
+artifacts/
+
+# Robot specific config (per-project, not source)
+pi/
+.pi/
+
+# Local/generated strategy search runs
+.snakes_runs/
+
+
+# Node modules (should never be committed)
+node_modules/

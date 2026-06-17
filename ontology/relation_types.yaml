@@ -1,0 +1,162 @@
+# Relation Type Definitions
+#
+# Each relation type has its own dimensional weight space.
+# Weight is not a scalar — it is a vector whose dimensions have
+# distinct semantics, measurement methods, and update mechanisms.
+#
+# update_source:
+#   auto    — derived from execution trace logs without external signal
+#   measure — requires a specific measurement procedure (e.g. ablation)
+#   fixed   — set at harness definition time, not updated at runtime
+
+relation_types:
+
+  triggers:
+    description: >
+      Completion of the source node activates the target node.
+      The edge carries the source's output as the target's input.
+    dimensions:
+      probability:
+        description: Likelihood that completion of source fires this trigger
+        range: [0.0, 1.0]
+        default: 0.90
+        measure: activations / eligible_completions
+        update_source: auto
+        update_rule: exponential_moving_average(window=50)
+      latency:
+        description: Timing of activation relative to source completion
+        range: [immediate, deferred, conditional]
+        default: immediate
+        measure: observed_timing_from_trace
+        update_source: auto
+
+  may_trigger:
+    description: >
+      Conditional activation. Source fires target only when specific
+      findings or conditions are present in source output.
+    dimensions:
+      probability:
+        description: Empirical rate of condition being met and trigger firing
+        range: [0.0, 1.0]
+        default: 0.40
+        measure: conditional_activations / eligible_completions
+        update_source: auto
+        update_rule: exponential_moving_average(window=50)
+      condition:
+        description: The specific finding or state that activates the trigger
+        range: string
+        default: null
+        measure: defined_at_relation_instantiation
+        update_source: fixed
+
+  constrains:
+    description: >
+      Source node's decisions reduce the design space available to target.
+      Target may deviate, but must document and justify the override.
+    dimensions:
+      strength:
+        description: >
+          Degree to which source limits target's options.
+          0 = suggestion only. 1 = no deviation possible.
+        range: [0.0, 1.0]
+        default: 0.80
+        measure: 1.0 - (override_count / total_invocations)
+        update_source: auto
+        update_rule: exponential_moving_average(window=30)
+      rigidity:
+        description: Whether overrides require justification or are blocked
+        range: [soft, hard]
+        default: soft
+        measure: defined_in_harness
+        update_source: fixed
+
+  evaluates:
+    description: >
+      Source node reviews and judges target node's output.
+      May produce approval, change requests, or blocking rejection.
+    dimensions:
+      strictness:
+        description: >
+          How demanding the evaluation criteria are.
+          Reflects empirical rejection rate calibrated against defect escape rate.
+        range: [0.0, 1.0]
+        default: 0.80
+        measure: rejection_count / total_evaluations
+        update_source: auto
+        update_rule: >
+          target: calibrate strictness so rejection_rate tracks defect_escape_rate.
+          if defect_escape_rate rises, increase strictness. if rejection_rate
+          far exceeds defect_escape_rate, evaluation is over-strict.
+        note: defect_escape_rate requires external signal (human or test suite)
+      blocking:
+        description: Whether a rejection halts the pipeline or is advisory
+        range: [advisory, required]
+        default: required
+        measure: defined_in_harness
+        update_source: fixed
+
+  supports:
+    description: >
+      Source provides context, information, or prior output that target
+      depends on to perform well. Support may be required or optional.
+    dimensions:
+      necessity:
+        description: >
+          Quality loss in target when source output is absent.
+          0 = target performs identically without. 1 = target cannot proceed.
+        range: [0.0, 1.0]
+        default: 0.50
+        measure: quality(target_with_support) - quality(target_without_support)
+        update_source: measure
+        update_rule: ablation_experiment
+        note: requires running target twice with and without source output
+      substitutability:
+        description: >
+          Whether other nodes could provide equivalent support.
+          0 = unique (only this source provides this). 1 = any node could substitute.
+        range: [0.0, 1.0]
+        default: 0.30
+        measure: count(nodes_with_equivalent_output) / total_nodes
+        update_source: measure
+
+  complements:
+    description: >
+      Source and target produce better combined output than either alone.
+      Relationship is bidirectional in effect, though may be directional in data flow.
+    dimensions:
+      synergy:
+        description: >
+          How much better the combined output is versus the better individual output.
+          0 = no benefit from combining. 1 = combined is dramatically superior.
+        range: [0.0, 1.0]
+        default: 0.50
+        measure: quality(A+B) - max(quality(A), quality(B))
+        update_source: measure
+        note: requires quality scoring; accumulates over task history
+      overlap:
+        description: >
+          Content similarity between outputs. Low overlap = good complement.
+          High overlap = redundant pairing.
+        range: [0.0, 1.0]
+        default: 0.25
+        measure: semantic_similarity(output_A, output_B)
+        update_source: auto
+        update_rule: cosine_similarity_of_output_embeddings
+
+  augments:
+    description: >
+      Source adds to target's existing output without replacing it.
+      Different from supports (which provides input); augments adds to output.
+    dimensions:
+      necessity:
+        description: Quality loss in final output when augmentation is skipped
+        range: [0.0, 1.0]
+        default: 0.40
+        measure: quality(augmented) - quality(unaugmented)
+        update_source: measure
+      depth:
+        description: How substantially source transforms target's output
+        range: [0.0, 1.0]
+        default: 0.50
+        measure: diff_size(augmented, original) / output_size
+        update_source: auto

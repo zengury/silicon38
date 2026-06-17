@@ -1,0 +1,337 @@
+# Agent Node Registry
+#
+# Three-layer structure:
+#   layer 1 — Intake & Understanding
+#   layer 2 — Execution
+#   layer 3 — Quality & Output
+#
+# Concrete model IDs are intentionally not stored on nodes. Users may run
+# Silicon Org with different providers or local models. Model guidance is
+# capability-based in org/MODELS.md, and the Runtime's current/default model is
+# used unless the user configures optional overrides.
+
+nodes:
+
+  # ── Layer 1: Intake & Understanding ───────────────────────────────────────
+
+  - role: triage
+    title: Triage Analyst
+    layer: 1
+    domain: intake
+    harness_ref: org/registry/triage.md
+    skill_ref: .agents/skills/triage
+    skill_source: mattpocock/skills
+
+  - role: zoom-out
+    title: Context Mapper
+    layer: 1
+    domain: comprehension
+    harness_ref: org/registry/zoom-out.md
+    skill_ref: .agents/skills/codebase-onboarding
+    skill_source: alirezarezvani/claude-skills
+
+  - role: caveman
+    title: First Principles Analyst
+    layer: 1
+    domain: simplification
+    harness_ref: org/registry/caveman.md
+    skill_ref: .agents/skills/caveman
+    skill_source: JuliusBrussee/caveman
+
+  - role: grill-with-docs
+    title: Documentation Analyst
+    layer: 1
+    domain: research
+    harness_ref: org/registry/grill-with-docs.md
+    skill_ref: .agents/skills/grill-with-docs
+    skill_source: mattpocock/skills
+
+  - role: to-prd
+    title: Product Requirements Analyst
+    layer: 1
+    domain: product
+    harness_ref: org/registry/to-prd.md
+    skill_ref: .agents/skills/to-prd
+    skill_source: mattpocock/skills
+
+  - role: to-issues
+    title: Issue Decomposition Specialist
+    layer: 1
+    domain: planning
+    harness_ref: org/registry/to-issues.md
+    skill_ref: .agents/skills/to-issues
+    skill_source: mattpocock/skills
+
+  - role: scope-prosecutor
+    title: Scope Prosecutor
+    layer: 1
+    domain: product-scope
+    harness_ref: org/registry/scope-prosecutor.md
+    skill_ref: .agents/skills/scope-prosecutor
+    skill_source: garrytan/gstack
+
+  - role: product-vision-anchor
+    title: Product Vision Anchor
+    layer: 1
+    domain: product-vision
+    harness_ref: org/registry/product-vision-anchor.md
+    skill_ref: .agents/skills/product-vision-anchor
+    skill_source: ipavelm/ultimate-product-discovery-skill
+
+  - role: prototype
+    title: Prototype Engineer
+    layer: 1
+    domain: exploration
+    carries_soul: true
+    harness_ref: org/registry/prototype.md
+    skill_ref: .agents/skills/prototype
+    skill_source: mattpocock/skills
+
+  # ── Layer 2: Execution ─────────────────────────────────────────────────────
+
+  - role: architect
+    title: Systems Architect
+    layer: 2
+    domain: architecture
+    carries_soul: true
+    harness_ref: org/registry/architect.md
+    skill_ref: .agents/skills/senior-architect
+    skill_source: alirezarezvani/claude-skills
+
+  - role: api-designer
+    title: API Designer
+    layer: 2
+    domain: interface design
+    harness_ref: org/registry/api-designer.md
+    skill_ref: .agents/skills/senior-backend
+    skill_source: alirezarezvani/claude-skills
+
+  - role: database-engineer
+    title: Database Engineer
+    layer: 2
+    domain: data
+    harness_ref: org/registry/database-engineer.md
+    skill_ref: .agents/skills/database-designer
+    skill_source: alirezarezvani/claude-skills
+
+  - role: senior-engineer
+    title: Senior Engineer
+    layer: 2
+    domain: implementation
+    harness_ref: org/registry/senior-engineer.md
+    skill_ref: .agents/skills/senior-backend
+    skill_source: alirezarezvani/claude-skills
+
+  - role: tdd
+    title: Test Engineer (TDD)
+    layer: 2
+    domain: testing
+    harness_ref: org/registry/tdd.md
+    skill_ref: .agents/skills/tdd
+    skill_source: mattpocock/skills
+
+  - role: diagnose
+    title: Diagnostic Engineer
+    layer: 2
+    domain: debugging
+    harness_ref: org/registry/diagnose.md
+    skill_ref: .agents/skills/diagnose
+    skill_source: mattpocock/skills
+
+  - role: refactor-specialist
+    title: Refactor Specialist
+    layer: 2
+    domain: code health
+    harness_ref: org/registry/refactor-specialist.md
+    skill_ref: .agents/skills/review-and-simplify-changes
+    skill_source: Dimillian/Skills
+
+  - role: improve-codebase-architecture
+    title: Architecture Improvement Specialist
+    layer: 2
+    domain: architecture
+    harness_ref: org/registry/improve-codebase-architecture.md
+    skill_ref: .agents/skills/improve-codebase-architecture
+    skill_source: mattpocock/skills
+
+  - role: devops-engineer
+    title: DevOps Engineer
+    layer: 2
+    domain: infrastructure
+    harness_ref: org/registry/devops-engineer.md
+    skill_ref: .agents/skills/ci-cd-pipeline-builder
+    skill_source: alirezarezvani/claude-skills
+
+  - role: observability-engineer
+    title: Observability Engineer
+    layer: 2
+    domain: monitoring
+    harness_ref: org/registry/observability-engineer.md
+    skill_ref: .agents/skills/observability-designer
+    skill_source: alirezarezvani/claude-skills
+
+  - role: performance-engineer
+    title: Performance Engineer
+    layer: 2
+    domain: performance
+    harness_ref: org/registry/performance-engineer.md
+    skill_ref: .agents/skills/performance-profiler
+    skill_source: alirezarezvani/claude-skills
+
+  - role: security-engineer
+    title: Security Engineer
+    layer: 2
+    domain: security
+    harness_ref: org/registry/security-engineer.md
+    skill_ref: .agents/skills/senior-security
+    skill_source: alirezarezvani/claude-skills
+
+  # ── Layer 2: Design & Experience ──────────────────────────────────────────
+
+  - role: ux-researcher-designer
+    title: UX Researcher & Designer
+    layer: 2
+    domain: user experience
+    carries_soul: true
+    harness_ref: org/registry/ux-researcher-designer.md
+    skill_ref: .agents/skills/ux-researcher-designer
+    skill_source: alirezarezvani/claude-skills
+
+  - role: ui-design-system
+    title: UI Design System Engineer
+    layer: 2
+    domain: design systems
+    carries_soul: true
+    harness_ref: org/registry/ui-design-system.md
+    skill_ref: .agents/skills/ui-design-system
+    skill_source: alirezarezvani/claude-skills
+
+  - role: apple-hig-expert
+    title: Apple HIG Expert
+    layer: 2
+    domain: platform design
+    harness_ref: org/registry/apple-hig-expert.md
+    skill_ref: .agents/skills/apple-hig-expert
+    skill_source: alirezarezvani/claude-skills
+
+  - role: senior-frontend
+    title: Senior Frontend Engineer
+    layer: 2
+    domain: frontend
+    carries_soul: true
+    harness_ref: org/registry/senior-frontend.md
+    skill_ref: .agents/skills/senior-frontend
+    skill_source: alirezarezvani/claude-skills
+
+  - role: epic-design
+    title: Cinematic Experience Designer
+    layer: 2
+    domain: immersive design
+    carries_soul: true
+    harness_ref: org/registry/epic-design.md
+    skill_ref: .agents/skills/epic-design
+    skill_source: alirezarezvani/claude-skills
+
+  # ── Layer 2: Organizational Development ─────────────────────────────────
+
+  - role: skill-scout
+    title: Skill Scout
+    layer: 2
+    domain: org-dev
+    meta: true
+    harness_ref: org/registry/skill-scout.md
+    skill_ref: .agents/skills/skill-scout
+    skill_source: local/silicon-org
+
+  - role: hrbp
+    title: HRBP — Talent Evaluation
+    layer: 2
+    domain: org-dev
+    meta: true
+    harness_ref: org/registry/hrbp.md
+    skill_ref: .agents/skills/hrbp
+    skill_source: zengury/hr-assistant
+
+  # ── Layer 3: Quality & Output ──────────────────────────────────────────────
+
+  - role: delivery-prover
+    title: Delivery Prover
+    layer: 3
+    domain: quality
+    harness_ref: org/registry/delivery-prover.md
+    skill_ref: .agents/skills/playwright-skill
+    skill_source: lackeyjb/playwright-skill
+
+  - role: customer-success
+    title: Customer Success Manager
+    layer: 2
+    domain: customer
+    harness_ref: org/registry/customer-success.md
+    skill_ref: .agents/skills/customer-success-manager
+    skill_source: alirezarezvani/claude-skills
+
+  - role: graph-topologist
+    title: Graph Topologist
+    layer: 3
+    domain: learning
+    meta: true
+    harness_ref: org/registry/graph-topologist.md
+    skill_ref: .agents/skills/graph-topologist
+    skill_source: local/silicon-org
+
+  - role: code-reviewer
+    title: Code Reviewer
+    layer: 3
+    domain: quality
+    harness_ref: org/registry/code-reviewer.md
+    skill_ref: .agents/skills/code-reviewer
+    skill_source: alirezarezvani/claude-skills
+
+  - role: grill-me
+    title: Critical Challenger
+    layer: 3
+    domain: challenge
+    carries_soul: true
+    harness_ref: org/registry/grill-me.md
+    skill_ref: .agents/skills/challenge
+    skill_source: alirezarezvani/claude-skills
+
+  - role: product-critic
+    title: Product Critic
+    layer: 3
+    domain: product-quality
+    harness_ref: org/registry/product-critic.md
+    skill_ref: .agents/skills/product-critic
+    skill_source: garrytan/gstack
+
+  - role: dependency-auditor
+    title: Dependency Auditor
+    layer: 3
+    domain: supply chain
+    harness_ref: org/registry/dependency-auditor.md
+    skill_ref: .agents/skills/dependency-auditor
+    skill_source: alirezarezvani/claude-skills
+
+  - role: technical-writer
+    title: Technical Writer
+    layer: 3
+    domain: documentation
+    harness_ref: org/registry/technical-writer.md
+    skill_ref: .agents/skills/content-research-writer
+    skill_source: ComposioHQ/awesome-codex-skills
+
+  - role: release-manager
+    title: Release Manager
+    layer: 3
+    domain: release
+    harness_ref: org/registry/release-manager.md
+    skill_ref: .agents/skills/release-manager
+    skill_source: alirezarezvani/claude-skills
+
+  - role: handoff
+    title: Context Transfer Specialist
+    layer: 3
+    domain: continuity
+    harness_ref: org/registry/handoff.md
+    skill_ref: .agents/skills/handoff
+    skill_source: alirezarezvani/claude-skills

@@ -1,0 +1,69 @@
+version: 1
+description: "Regression test cases for the Encoder inference engine. Grows with every discovered misclassification."
+cases:
+  - description: "需要从零构建一个mobile app，他的名字叫bookshelf"
+    expected: "feature"
+    source: "bookshelf_task"
+    added: "2026-06-07"
+
+  - description: "fix bug in login flow where users cannot reset password"
+    expected: "bug_fix"
+    source: "manual"
+    added: "2026-06-07"
+
+  - description: "refactor the auth module to use dependency injection"
+    expected: "refactor"
+    source: "manual"
+    added: "2026-06-07"
+
+  - description: "design system architecture for a real-time chat platform"
+    expected: "architecture"
+    source: "manual"
+    added: "2026-06-07"
+
+  - description: "create UI design system with component library"
+    expected: "design"
+    source: "manual"
+    added: "2026-06-07"
+
+  - description: "setup CI/CD pipeline with GitHub Actions and deploy to AWS"
+    expected: "ops"
+    source: "manual"
+    added: "2026-06-07"
+
+  - description: "write API documentation for the v2 endpoints"
+    expected: "docs"
+    source: "manual"
+    added: "2026-06-07"
+
+  - description: "security audit of payment processing flow"
+    expected: "security_audit"
+    source: "manual"
+    added: "2026-06-07"
+
+  - description: "prepare v2.1 release with changelog and version bump"
+    expected: "release"
+    source: "manual"
+    added: "2026-06-07"
+
+  - description: "random unclear task without any specific keywords"
+    expected: null
+    source: "manual"
+    added: "2026-06-07"
+
+  - description: "build a brand new landing page with animations"
+    expected: "feature"
+    source: "manual"
+    added: "2026-06-07"
+
+  - description: "performance optimization for database queries"
+    expected: null
+    source: "manual"
+    added: "2026-06-07"
+    note: "performance is not yet a first-class task type — may need new pattern or type"
+
+  - description: "migrate database from MySQL to PostgreSQL"
+    expected: null
+    source: "manual"
+    added: "2026-06-07"
+    note: "database migration is not yet a first-class task type"

@@ -1,0 +1,580 @@
+# Silicon Org LangGraph-native harness profiles.
+#
+# Every ontology node is mapped here. The runtime must fail closed if a node in
+# ontology/nodes.yaml has no profile, or if a profile names a role that is not in
+# ontology/nodes.yaml.
+#
+# Concrete model IDs are intentionally absent. `model_profile` describes the
+# capability class; provider/model selection stays in org/MODELS.md or optional
+# user-local model config.
+
+schema: silicon_org.langgraph_harness_profiles.v1
+execution_model:
+  langgraph_node: run_role_node
+  routing_owner: silicon_policy
+  relation_weight_owner: silicon_graph
+  fact_owner: silicon_ledger
+  context_owner: context_block_protocol
+
+defaults:
+  checkpoint:
+    durability: sync
+    idempotency_required: true
+  ledger_commit:
+    transactional: true
+    required_events:
+      - node_activated
+      - artifact_registered
+      - context_report_registered
+      - node_completed
+  context_contract:
+    required: true
+    source_validation: strict
+    digest_chain: required
+  failure_policy:
+    on_missing_harness: fail_closed
+    on_missing_context_report: fail_closed
+    on_invalid_handoff: fail_closed
+
+profiles:
+  triage:
+    purpose: Classify task type, boundaries, done condition, risks, and first legal graph pressures.
+    model_profile: fast_reasoning
+    tool_groups: [repo_read, ledger_read]
+    write_scope: trace_artifact_only
+    can_modify_product_code: false
+    resource_budget: {max_runtime_minutes: 8, max_artifacts: 1}
+    required_inputs: [task_description, context_block]
+    optional_inputs: [recent_trace_summary, user_constraints]
+    output_artifacts: [{type: analysis, required: true}]
+    context_focus: [task_type, deliverable, constraints, done_condition, candidate_pressure]
+    activation_notes: entry_only
+    completion_gates: [scope_boundary_present, done_condition_present]
+
+  zoom-out:
+    purpose: Map unfamiliar code or context before downstream planning or architecture.
+    model_profile: broad_context_reasoning
+    tool_groups: [repo_read, ledger_read]
+    write_scope: trace_artifact_only
+    can_modify_product_code: false
+    resource_budget: {max_runtime_minutes: 15, max_artifacts: 1}
+    required_inputs: [task_description, context_block]
+    optional_inputs: [repository_map, prior_artifacts]
+    output_artifacts: [{type: context-map, required: true}]
+    context_focus: [system_boundaries, ownership, relevant_files, unknowns]
+    activation_notes: entry_or_policy_triggered
+    completion_gates: [relevant_area_identified, unknowns_named]
+
+  caveman:
+    purpose: Strip the task to first principles, minimum viable shape, and unjustified complexity.
+    model_profile: fast_critical_reasoning
+    tool_groups: [repo_read, ledger_read]
+    write_scope: trace_artifact_only
+    can_modify_product_code: false
+    resource_budget: {max_runtime_minutes: 8, max_artifacts: 1}
+    required_inputs: [task_description, context_block]
+    optional_inputs: [triage_artifact]
+    output_artifacts: [{type: analysis, required: true}]
+    context_focus: [essential_outcome, cuts, complexity_warnings]
+    activation_notes: entry_or_policy_triggered
+    completion_gates: [minimum_viable_version_named, complexity_tradeoff_named]
+
+  grill-with-docs:
+    purpose: Challenge assumptions against project documentation and update documented decisions when needed.
+    model_profile: documentation_grounded_reasoning
+    tool_groups: [repo_read, docs_read, ledger_read]
+    write_scope: docs_and_trace_artifacts
+    can_modify_product_code: false
+    resource_budget: {max_runtime_minutes: 20, max_artifacts: 1}
+    required_inputs: [task_description, context_block]
+    optional_inputs: [docs_index, prior_artifacts]
+    output_artifacts: [{type: doc-review, required: true}]
+    context_focus: [documented_terms, contradictions, missing_decisions]
+    activation_notes: entry_or_policy_triggered
+    completion_gates: [doc_sources_cited, contradictions_named]
+
+  to-prd:
+    purpose: Convert task understanding into product requirements, scope, priority, and acceptance criteria.
+    model_profile: product_reasoning
+    tool_groups: [repo_read, ledger_read, issue_tracker_optional]
+    write_scope: trace_artifact_only
+    can_modify_product_code: false
+    resource_budget: {max_runtime_minutes: 15, max_artifacts: 1}
+    required_inputs: [task_description, upstream_context_block]
+    optional_inputs: [triage_artifact, caveman_artifact, ux_artifact]
+    output_artifacts: [{type: prd, required: true}]
+    context_focus: [users, requirements, priorities, acceptance_criteria, out_of_scope]
+    activation_notes: policy_triggered
+    completion_gates: [p0_scope_present, acceptance_criteria_present]
+
+  to-issues:
+    purpose: Decompose approved requirements or plans into independently executable implementation issues.
+    model_profile: planning_reasoning
+    tool_groups: [repo_read, ledger_read, issue_tracker_optional]
+    write_scope: trace_artifact_only
+    can_modify_product_code: false
+    resource_budget: {max_runtime_minutes: 15, max_artifacts: 1}
+    required_inputs: [prd_or_plan_artifact, upstream_context_block]
+    optional_inputs: [architecture_artifact, prototype_artifact]
+    output_artifacts: [{type: decomposition, required: true}]
+    context_focus: [vertical_slices, dependencies, sequencing, testable_acceptance]
+    activation_notes: policy_triggered
+    completion_gates: [independent_issues_present, dependencies_named]
+
+  prototype:
+    purpose: Build or specify a throwaway proof that reduces uncertainty before production work.
+    model_profile: creative_implementation
+    tool_groups: [repo_read, repo_write_scoped, shell_safe, browser_optional, ledger_read]
+    write_scope: prototype_paths_and_trace_artifacts
+    can_modify_product_code: scoped
+    carries_soul: true
+    resource_budget: {max_runtime_minutes: 30, max_artifacts: 2}
+    required_inputs: [task_description, upstream_context_block]
+    optional_inputs: [triage_artifact, ux_artifact, architecture_artifact]
+    output_artifacts: [{type: plan, required: false}, {type: prototype, required: false}]
+    context_focus: [uncertainty_reduced, demo_path, constraints, next_build_signal]
+    activation_notes: policy_triggered
+    completion_gates: [uncertainty_answered, throwaway_boundary_named]
+
+  architect:
+    purpose: Define system shape, boundaries, runtime/data contracts, and technical tradeoffs.
+    model_profile: high_reasoning_architecture
+    tool_groups: [repo_read, docs_read, ledger_read]
+    write_scope: trace_artifact_and_docs_optional
+    can_modify_product_code: false
+    carries_soul: true
+    resource_budget: {max_runtime_minutes: 25, max_artifacts: 1}
+    required_inputs: [upstream_context_block, task_description]
+    optional_inputs: [prd_artifact, prototype_artifact, zoom_out_artifact]
+    output_artifacts: [{type: architecture, required: true}]
+    context_focus: [boundaries, data_flow, contracts, risks, rejected_options]
+    activation_notes: policy_triggered
+    completion_gates: [decision_record_present, tradeoffs_present, downstream_constraints_named]
+
+  api-designer:
+    purpose: Define API surfaces, request/response contracts, error semantics, and compatibility rules.
+    model_profile: interface_design
+    tool_groups: [repo_read, docs_read, ledger_read]
+    write_scope: trace_artifact_and_api_docs_optional
+    can_modify_product_code: false
+    resource_budget: {max_runtime_minutes: 20, max_artifacts: 1}
+    required_inputs: [architecture_or_prd_artifact, upstream_context_block]
+    optional_inputs: [frontend_needs, backend_constraints]
+    output_artifacts: [{type: contract, required: true}]
+    context_focus: [endpoints, schemas, error_codes, versioning, client_contracts]
+    activation_notes: policy_triggered
+    completion_gates: [schema_examples_present, error_contract_present]
+
+  database-engineer:
+    purpose: Design schemas, migrations, query paths, retention, and data integrity constraints.
+    model_profile: data_modeling
+    tool_groups: [repo_read, db_schema_read, shell_safe, ledger_read]
+    write_scope: trace_artifact_and_migrations_scoped
+    can_modify_product_code: scoped
+    resource_budget: {max_runtime_minutes: 25, max_artifacts: 1}
+    required_inputs: [architecture_artifact, upstream_context_block]
+    optional_inputs: [api_contract, performance_constraints]
+    output_artifacts: [{type: data-design, required: true}]
+    context_focus: [schema, migrations, indexes, retention, integrity]
+    activation_notes: policy_triggered
+    completion_gates: [migration_strategy_present, rollback_or_safety_named]
+
+  senior-engineer:
+    purpose: Implement backend/core product behavior within architecture and issue constraints.
+    model_profile: implementation
+    tool_groups: [repo_read, repo_write_scoped, shell_safe, tests, ledger_read]
+    write_scope: product_code_scoped
+    can_modify_product_code: true
+    resource_budget: {max_runtime_minutes: 45, max_artifacts: 2}
+    required_inputs: [implementation_scope, upstream_context_block]
+    optional_inputs: [architecture_artifact, issue_decomposition, api_contract]
+    output_artifacts: [{type: implementation, required: true}]
+    context_focus: [files_changed, behavior_changed, tests_run, risks]
+    activation_notes: policy_triggered
+    completion_gates: [code_compiles_or_reason, tests_or_smoke_recorded]
+
+  tdd:
+    purpose: Prove behavior through tests, regression checks, and red-green-refactor discipline.
+    model_profile: test_reasoning
+    tool_groups: [repo_read, repo_write_tests_scoped, shell_safe, tests, ledger_read]
+    write_scope: tests_and_trace_artifacts
+    can_modify_product_code: scoped_for_testability_only
+    resource_budget: {max_runtime_minutes: 30, max_artifacts: 1}
+    required_inputs: [producer_artifact, upstream_context_block]
+    optional_inputs: [bug_reproduction, api_contract]
+    output_artifacts: [{type: evaluation, required: true}]
+    context_focus: [commands_run, pass_fail, coverage_gaps, regressions]
+    activation_notes: policy_or_required_evaluator
+    completion_gates: [commands_recorded, verdict_present]
+
+  diagnose:
+    purpose: Reproduce, isolate, instrument, and explain bugs or performance regressions.
+    model_profile: diagnostic_reasoning
+    tool_groups: [repo_read, shell_safe, tests, logs_optional, ledger_read]
+    write_scope: trace_artifact_and_minimal_instrumentation_scoped
+    can_modify_product_code: scoped
+    resource_budget: {max_runtime_minutes: 35, max_artifacts: 1}
+    required_inputs: [symptom_or_failure, upstream_context_block]
+    optional_inputs: [logs, failing_tests, user_repro]
+    output_artifacts: [{type: diagnosis, required: true}]
+    context_focus: [reproduction, hypothesis, evidence, root_cause, fix_direction]
+    activation_notes: entry_or_policy_triggered
+    completion_gates: [reproduction_or_blocker_present, evidence_named]
+
+  refactor-specialist:
+    purpose: Improve structure without changing behavior.
+    model_profile: code_quality_refactoring
+    tool_groups: [repo_read, repo_write_scoped, shell_safe, tests, ledger_read]
+    write_scope: product_code_scoped
+    can_modify_product_code: true
+    resource_budget: {max_runtime_minutes: 35, max_artifacts: 1}
+    required_inputs: [refactor_scope, upstream_context_block]
+    optional_inputs: [tests, architecture_artifact]
+    output_artifacts: [{type: refactor, required: true}]
+    context_focus: [behavior_preservation, modules_changed, tests_run, rollback_risk]
+    activation_notes: policy_triggered
+    completion_gates: [behavior_preservation_evidence, scope_limited]
+
+  improve-codebase-architecture:
+    purpose: Identify and implement or specify deeper architectural improvements in existing code.
+    model_profile: high_reasoning_architecture
+    tool_groups: [repo_read, docs_read, repo_write_scoped, tests, ledger_read]
+    write_scope: architecture_docs_and_scoped_code
+    can_modify_product_code: scoped
+    resource_budget: {max_runtime_minutes: 40, max_artifacts: 1}
+    required_inputs: [architecture_problem, upstream_context_block]
+    optional_inputs: [zoom_out_artifact, code_review_findings]
+    output_artifacts: [{type: architecture-improvement, required: true}]
+    context_focus: [deep_modules, coupling, migration_path, tests]
+    activation_notes: policy_triggered
+    completion_gates: [problem_framed, migration_or_patch_present]
+
+  devops-engineer:
+    purpose: Design and implement CI/CD, deployment, environment, and operational delivery paths.
+    model_profile: ops_engineering
+    tool_groups: [repo_read, repo_write_ops_scoped, shell_safe, ci_optional, ledger_read]
+    write_scope: ops_configs_and_trace_artifacts
+    can_modify_product_code: scoped
+    resource_budget: {max_runtime_minutes: 35, max_artifacts: 1}
+    required_inputs: [deployment_or_ci_scope, upstream_context_block]
+    optional_inputs: [architecture_artifact, security_constraints]
+    output_artifacts: [{type: ops-plan, required: true}]
+    context_focus: [pipeline, environments, secrets_boundary, rollback, verification]
+    activation_notes: policy_triggered
+    completion_gates: [environment_boundary_named, verification_path_present]
+
+  observability-engineer:
+    purpose: Design logs, metrics, traces, alerts, and operational visibility.
+    model_profile: observability_design
+    tool_groups: [repo_read, repo_write_observability_scoped, shell_safe, ledger_read]
+    write_scope: observability_configs_and_trace_artifacts
+    can_modify_product_code: scoped
+    resource_budget: {max_runtime_minutes: 30, max_artifacts: 1}
+    required_inputs: [service_or_flow_scope, upstream_context_block]
+    optional_inputs: [architecture_artifact, incident_risks]
+    output_artifacts: [{type: observability, required: true}]
+    context_focus: [signals, dashboards, alerts, slo, noise_risk]
+    activation_notes: policy_triggered
+    completion_gates: [signals_named, alert_thresholds_or_non_alert_reason]
+
+  performance-engineer:
+    purpose: Measure and improve latency, throughput, memory, bundle, or resource performance.
+    model_profile: performance_reasoning
+    tool_groups: [repo_read, shell_safe, profiling_optional, tests, ledger_read]
+    write_scope: trace_artifact_and_scoped_optimizations
+    can_modify_product_code: scoped
+    resource_budget: {max_runtime_minutes: 35, max_artifacts: 1}
+    required_inputs: [performance_scope, upstream_context_block]
+    optional_inputs: [baseline_metrics, architecture_artifact]
+    output_artifacts: [{type: performance, required: true}]
+    context_focus: [baseline, bottleneck, measurement, optimization, residual_risk]
+    activation_notes: policy_triggered
+    completion_gates: [measurement_before_after_or_blocker]
+
+  security-engineer:
+    purpose: Threat model and review security, privacy, auth, data exposure, and supply chain risk.
+    model_profile: security_high_reasoning
+    tool_groups: [repo_read, shell_safe, dependency_scan_optional, ledger_read]
+    write_scope: trace_artifact_and_scoped_security_patches
+    can_modify_product_code: scoped
+    resource_budget: {max_runtime_minutes: 35, max_artifacts: 1}
+    required_inputs: [producer_artifact_or_design, upstream_context_block]
+    optional_inputs: [api_contract, deployment_context]
+    output_artifacts: [{type: evaluation, required: true}]
+    context_focus: [threats, blocking_findings, advisory_findings, remediation]
+    activation_notes: policy_or_required_evaluator
+    completion_gates: [blocking_vs_advisory_classified, exploitability_named]
+
+  ux-researcher-designer:
+    purpose: Define user, journey, interaction model, UX risks, and validation approach.
+    model_profile: ux_research_design
+    tool_groups: [repo_read, docs_read, browser_optional, ledger_read]
+    write_scope: trace_artifact_and_design_docs_optional
+    can_modify_product_code: false
+    carries_soul: true
+    resource_budget: {max_runtime_minutes: 25, max_artifacts: 1}
+    required_inputs: [task_description, upstream_context_block]
+    optional_inputs: [prd_artifact, prototype_artifact]
+    output_artifacts: [{type: ux-spec, required: true}]
+    context_focus: [persona, workflow, interaction_model, usability_risks]
+    activation_notes: policy_triggered
+    completion_gates: [primary_workflow_present, usability_risks_named]
+
+  ui-design-system:
+    purpose: Define tokens, components, states, accessibility, and implementation handoff for UI work.
+    model_profile: design_system
+    tool_groups: [repo_read, docs_read, browser_optional, ledger_read]
+    write_scope: trace_artifact_and_design_assets_optional
+    can_modify_product_code: scoped
+    carries_soul: true
+    resource_budget: {max_runtime_minutes: 30, max_artifacts: 1}
+    required_inputs: [ux_or_frontend_scope, upstream_context_block]
+    optional_inputs: [brand_constraints, existing_components]
+    output_artifacts: [{type: spec, required: true}]
+    context_focus: [tokens, components, states, accessibility, responsive_rules]
+    activation_notes: policy_triggered
+    completion_gates: [component_states_present, accessibility_notes_present]
+
+  apple-hig-expert:
+    purpose: Review Apple-platform experiences against current HIG and accessibility norms.
+    model_profile: platform_design_review
+    tool_groups: [repo_read, docs_read, browser_optional, ledger_read]
+    write_scope: trace_artifact_only
+    can_modify_product_code: false
+    resource_budget: {max_runtime_minutes: 20, max_artifacts: 1}
+    required_inputs: [apple_platform_ui_scope, upstream_context_block]
+    optional_inputs: [screenshots, design_system_artifact]
+    output_artifacts: [{type: platform-review, required: true}]
+    context_focus: [platform_fit, accessibility, interaction_patterns, violations]
+    activation_notes: policy_triggered
+    completion_gates: [platform_applicability_confirmed, findings_classified]
+
+  senior-frontend:
+    purpose: Implement frontend UI behavior, visual assets, accessibility, responsiveness, and browser verification.
+    model_profile: frontend_implementation
+    tool_groups: [repo_read, repo_write_frontend_scoped, shell_safe, browser, tests, ledger_read]
+    write_scope: frontend_code_scoped
+    can_modify_product_code: true
+    carries_soul: true
+    resource_budget: {max_runtime_minutes: 45, max_artifacts: 2}
+    required_inputs: [frontend_scope, upstream_context_block]
+    optional_inputs: [ux_artifact, design_system_artifact, api_contract, prototype_artifact]
+    output_artifacts: [{type: implementation, required: true}]
+    context_focus: [files_changed, user_flow, visual_fit, browser_proof, accessibility]
+    activation_notes: policy_triggered
+    completion_gates: [browser_or_screenshot_proof, responsive_or_scope_reason]
+
+  epic-design:
+    purpose: Create cinematic or immersive interaction design where the domain warrants it.
+    model_profile: immersive_design
+    tool_groups: [repo_read, repo_write_frontend_scoped, browser, assets_optional, ledger_read]
+    write_scope: frontend_experience_scoped
+    can_modify_product_code: scoped
+    carries_soul: true
+    resource_budget: {max_runtime_minutes: 40, max_artifacts: 1}
+    required_inputs: [experience_scope, upstream_context_block]
+    optional_inputs: [ux_artifact, visual_assets]
+    output_artifacts: [{type: experience-design, required: true}]
+    context_focus: [scene, motion, asset_strategy, performance_risk]
+    activation_notes: policy_triggered
+    completion_gates: [immersive_value_justified, performance_risk_named]
+
+  skill-scout:
+    purpose: Discover, benchmark, and recommend skills for Silicon Org nodes.
+    model_profile: org_development
+    tool_groups: [repo_read, skill_read, ledger_read]
+    write_scope: trace_artifact_and_skill_docs_optional
+    can_modify_product_code: false
+    meta: true
+    resource_budget: {max_runtime_minutes: 25, max_artifacts: 1}
+    required_inputs: [org_skill_gap, upstream_context_block]
+    optional_inputs: [past_traces, node_registry]
+    output_artifacts: [{type: skill-assessment, required: true}]
+    context_focus: [candidate_skills, benchmark_results, fit_by_role]
+    activation_notes: post_delivery_or_org_dev
+    completion_gates: [evidence_for_recommendations]
+
+  hrbp:
+    purpose: Evaluate role fit, benchmark quality, and organizational staffing choices.
+    model_profile: talent_evaluation
+    tool_groups: [repo_read, docs_read, ledger_read]
+    write_scope: trace_artifact_only
+    can_modify_product_code: false
+    meta: true
+    resource_budget: {max_runtime_minutes: 25, max_artifacts: 1}
+    required_inputs: [role_or_skill_assessment_scope, upstream_context_block]
+    optional_inputs: [skill_scout_artifact, trace_metrics]
+    output_artifacts: [{type: talent-evaluation, required: true}]
+    context_focus: [role_fit, evaluation_criteria, risks, recommendation]
+    activation_notes: post_delivery_or_org_dev
+    completion_gates: [criteria_present, evidence_present]
+
+  delivery-prover:
+    purpose: Prove that the delivered artifact actually runs and satisfies the claim.
+    model_profile: verification
+    tool_groups: [repo_read, shell_safe, browser, tests, ledger_read]
+    write_scope: trace_artifact_and_test_outputs
+    can_modify_product_code: false
+    resource_budget: {max_runtime_minutes: 35, max_artifacts: 1}
+    required_inputs: [delivery_candidate, upstream_context_block]
+    optional_inputs: [test_commands, demo_url, acceptance_criteria]
+    output_artifacts: [{type: proof, required: true}]
+    context_focus: [commands_run, observed_behavior, pass_fail, residual_risk]
+    activation_notes: required_before_success_delivery_when_runnable
+    completion_gates: [evidence_captured, verdict_present]
+
+  customer-success:
+    purpose: Translate delivered product into customer rollout, adoption, ROI, and onboarding guidance.
+    model_profile: customer_outcome
+    tool_groups: [repo_read, docs_read, ledger_read]
+    write_scope: docs_and_trace_artifacts
+    can_modify_product_code: false
+    resource_budget: {max_runtime_minutes: 25, max_artifacts: 1}
+    required_inputs: [delivered_feature_or_plan, upstream_context_block]
+    optional_inputs: [prd_artifact, user_persona]
+    output_artifacts: [{type: customer-plan, required: true}]
+    context_focus: [business_outcome, onboarding, success_metrics, risks]
+    activation_notes: policy_triggered
+    completion_gates: [customer_value_named, adoption_metrics_present]
+
+  graph-topologist:
+    purpose: Review completed traces and produce structural learning about graph, routing, nodes, and weights.
+    model_profile: high_reasoning_learning
+    tool_groups: [repo_read, ledger_read, trace_read]
+    write_scope: trace_artifact_and_learning_proposals
+    can_modify_product_code: false
+    meta: true
+    resource_budget: {max_runtime_minutes: 35, max_artifacts: 1}
+    required_inputs: [completed_trace, delivery_outcome]
+    optional_inputs: [runtime_fallbacks, evaluator_findings, weight_indices]
+    output_artifacts: [{type: topology-review, required: true}]
+    context_focus: [missed_edges, overused_edges, dead_nodes, fallback_patterns, proposal]
+    activation_notes: mandatory_post_delivery
+    completion_gates: [trace_evidence_present, proposals_or_noop_reason]
+
+  code-reviewer:
+    purpose: Review code changes for bugs, regressions, maintainability, and missing tests.
+    model_profile: code_review_high_reasoning
+    tool_groups: [repo_read, shell_safe, tests_optional, ledger_read]
+    write_scope: trace_artifact_only
+    can_modify_product_code: false
+    resource_budget: {max_runtime_minutes: 30, max_artifacts: 1}
+    required_inputs: [producer_artifact, upstream_context_block]
+    optional_inputs: [diff, test_results, api_contract]
+    output_artifacts: [{type: review, required: true}]
+    context_focus: [findings, severity, file_refs, required_changes]
+    activation_notes: policy_or_required_evaluator
+    completion_gates: [findings_first, severity_ordered, no_unsubstantiated_blocks]
+
+  grill-me:
+    purpose: Adversarially stress-test plans, designs, and decisions for hidden failure modes.
+    model_profile: adversarial_high_reasoning
+    tool_groups: [repo_read, docs_read, ledger_read]
+    write_scope: trace_artifact_only
+    can_modify_product_code: false
+    carries_soul: true
+    resource_budget: {max_runtime_minutes: 25, max_artifacts: 1}
+    required_inputs: [artifact_to_challenge, upstream_context_block]
+    optional_inputs: [constraints, historical_failures]
+    output_artifacts: [{type: review, required: true}]
+    context_focus: [assumptions, failure_modes, tradeoffs, blocking_risks]
+    activation_notes: policy_or_evaluator
+    completion_gates: [risks_ranked, blocking_status_present]
+
+  dependency-auditor:
+    purpose: Review third-party dependencies, licenses, CVEs, transitive risk, and upgrade plans.
+    model_profile: supply_chain_review
+    tool_groups: [repo_read, shell_safe, dependency_scan_optional, ledger_read]
+    write_scope: trace_artifact_and_dependency_files_scoped
+    can_modify_product_code: scoped
+    resource_budget: {max_runtime_minutes: 30, max_artifacts: 1}
+    required_inputs: [dependency_scope, upstream_context_block]
+    optional_inputs: [package_files, security_findings]
+    output_artifacts: [{type: dependency-audit, required: true}]
+    context_focus: [vulnerabilities, licenses, upgrade_path, residual_risk]
+    activation_notes: policy_triggered
+    completion_gates: [dependency_sources_named, risk_classification_present]
+
+  technical-writer:
+    purpose: Write accurate maintainer/user documentation from implemented behavior and verified facts.
+    model_profile: technical_writing
+    tool_groups: [repo_read, docs_write_scoped, ledger_read]
+    write_scope: docs_and_trace_artifacts
+    can_modify_product_code: false
+    resource_budget: {max_runtime_minutes: 25, max_artifacts: 1}
+    required_inputs: [implemented_behavior_or_plan, upstream_context_block]
+    optional_inputs: [delivery_proof, api_contract, release_notes]
+    output_artifacts: [{type: doc, required: true}]
+    context_focus: [runbook, api_routes, behavior, caveats, verification]
+    activation_notes: policy_triggered
+    completion_gates: [docs_match_behavior, commands_or_examples_verified]
+
+  release-manager:
+    purpose: Prepare release plan, changelog, versioning, rollout, and rollback coordination.
+    model_profile: release_management
+    tool_groups: [repo_read, docs_write_scoped, shell_safe, ledger_read]
+    write_scope: release_docs_and_configs_scoped
+    can_modify_product_code: scoped
+    resource_budget: {max_runtime_minutes: 25, max_artifacts: 1}
+    required_inputs: [delivery_artifacts, upstream_context_block]
+    optional_inputs: [test_results, customer_success_plan]
+    output_artifacts: [{type: release-plan, required: true}]
+    context_focus: [version, changelog, rollout, rollback, approvals]
+    activation_notes: policy_triggered
+    completion_gates: [rollback_named, release_scope_clear]
+
+  handoff:
+    purpose: Produce continuity transfer for another session, node, or human maintainer.
+    model_profile: continuity
+    tool_groups: [repo_read, ledger_read, docs_write_scoped]
+    write_scope: handoff_docs_and_trace_artifacts
+    can_modify_product_code: false
+    resource_budget: {max_runtime_minutes: 20, max_artifacts: 1}
+    required_inputs: [trace_or_session_context, upstream_context_block]
+    optional_inputs: [open_questions, unresolved_candidates]
+    output_artifacts: [{type: handoff, required: true}]
+    context_focus: [current_state, decisions, unresolved_work, next_actions]
+    activation_notes: policy_triggered_when_context_transfer_needed
+    completion_gates: [next_actor_can_resume, secrets_not_exposed]
+
+  scope-prosecutor:
+    purpose: Blind-prosecute every feature requirement; classify KEEP/CUT/DEFER; name the irreducible core.
+    model_profile: fast_critical_reasoning
+    tool_groups: []
+    write_scope: trace_artifact_only
+    can_modify_product_code: false
+    resource_budget: {max_runtime_minutes: 10, max_artifacts: 1}
+    required_inputs: [raw_requirements, upstream_context_block]
+    optional_inputs: []
+    output_artifacts: [{type: scope-verdict, required: true}]
+    context_focus: [feature_verdicts, core_statement, cuts, deferrals]
+    activation_notes: entry_only_blind
+    completion_gates: [every_feature_has_verdict, core_statement_present]
+
+  product-vision-anchor:
+    purpose: Synthesize PRD + scope verdict into a falsifiable JTBD+Dunford vision statement that constrains all downstream design.
+    model_profile: high_reasoning_architecture
+    tool_groups: []
+    write_scope: trace_artifact_only
+    can_modify_product_code: false
+    resource_budget: {max_runtime_minutes: 15, max_artifacts: 1}
+    required_inputs: [to_prd_output, scope_prosecutor_verdict, upstream_context_block]
+    optional_inputs: []
+    output_artifacts: [{type: product-vision-statement, required: true}]
+    context_focus: [target_user, primary_job, emotional_promise, beating_alternative, out_of_scope]
+    activation_notes: policy_triggered_wave2
+    completion_gates: [vision_falsifiable, out_of_scope_defined]
+
+  product-critic:
+    purpose: Blind product-quality evaluation; 5-test framework (vision coherence, memorability, differentiation, sacrifice, taste) → STRONG/COMPETENT/MEDIOCRE/DIRECTIONLESS verdict.
+    model_profile: adversarial_high_reasoning
+    tool_groups: [repo_read]
+    write_scope: trace_artifact_only
+    can_modify_product_code: false
+    resource_budget: {max_runtime_minutes: 20, max_artifacts: 1}
+    required_inputs: [architecture_or_design_artifact, vision_statement, upstream_context_block]
+    optional_inputs: []
+    output_artifacts: [{type: product-critique, required: true}]
+    context_focus: [vision_coherence, memorability, differentiation, sacrifice, taste, verdict]
+    activation_notes: policy_triggered_deferred
+    completion_gates: [verdict_rendered, all_five_tests_completed]
