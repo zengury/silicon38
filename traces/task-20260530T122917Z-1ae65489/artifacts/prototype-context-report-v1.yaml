@@ -1,0 +1,101 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/ux-researcher-designer→prototype-20260530-125107.yaml
+      context_digest: d2dfade5901f5201f3e1e1e823bcd97e57ea3f9c8f938c002cfdc4c69554b62a
+  retained_context:
+    decisions:
+    - statement: Modular monolith with clear layer boundaries
+      source: architect
+      impact: Shared package must not create a distributed system
+    - statement: Extract shared frontend components
+      source: architect
+      impact: Directly validates feasibility of this decision
+    - statement: Standardize API versioning under /api/v1/
+      source: architect
+      impact: Shared HTTP client already configured for this
+    - statement: Accordion panels for progressive disclosure in robot creation form
+      source: prototype
+      impact: Design direction for senior-engineer implementation
+    - statement: 'Shared package extraction order: types → composables → simple components
+        → complex'
+      source: prototype
+      impact: Implementation roadmap for refactor
+    constraints:
+    - statement: Backend must remain a single deployable unit
+      source: architect
+      impact: Shared package is frontend-only; no backend changes needed
+    - statement: Two frontends (admin and portal) will remain separate
+      source: ux-researcher-designer
+      impact: Shared package bridges them but they maintain distinct layouts
+    - statement: Admin uses UnoCSS, portal uses scoped SCSS
+      source: prototype (observed)
+      impact: Shared components must be styling-strategy-agnostic
+    assumptions:
+    - statement: Team size is small (<10 developers)
+      source: architect
+      risk: Shared package overhead justified for small team
+    - statement: Domain boundaries are still evolving
+      source: architect
+      risk: Shared types may need frequent updates
+    - statement: Rapid iteration is prioritized
+      source: architect
+      risk: Prototype findings must be captured quickly before context decays
+    - statement: Operators will prefer grouped fields over flat forms
+      source: prototype (assumption to validate)
+      risk: Needs usability testing to confirm
+    open_questions:
+    - statement: How should the robot config drawer be redesigned?
+      source: prototype
+      owner: ux-researcher-designer
+    - statement: What is the styling strategy for shared components?
+      source: prototype
+      owner: architect
+    - statement: Should we use a generic form-renderer or explicit form markup?
+      source: prototype
+      owner: senior-engineer
+    - statement: What is the exact database schema?
+      source: architect
+      owner: runtime
+    - statement: How do robots communicate (MQTT topics, WebSocket messages)?
+      source: architect
+      owner: runtime
+  omitted_context:
+  - source: Detailed implementation of individual backend modules
+    reason: background_only
+  - source: Docker compose and deployment configurations
+    reason: background_only
+  - source: Historical artifact versions (v1-v7) from previous planning cycles
+    reason: background_only
+  - source: Portal page-specific components (HeroSection, FeatureCard, etc.)
+    reason: background_only
+  compression_rationale:
+    method: 'Selective retention: kept architectural decisions and constraints that
+      impact the prototype''s form-design question; kept UX personas and risks from
+      the UX spec; omitted implementation details of modules not touched by this prototype.
+      The compression prioritizes context that downstream nodes (architect, senior-engineer)
+      need to implement the accordion form and shared package.'
+    loss_notes:
+    - Omitted portal-specific component details — not needed for admin form refactor
+    - Omitted backend API implementation details — prototype uses mock data
+    - Omitted Docker/deployment config — prototype is dev-only
+    - Omitted complete admin sidebar and navigation structure — only robot page was
+      prototyped
+  quality_checks:
+  - name: Question specifically answered with evidence
+    passed: true
+  - name: Three radically different variants built and switchable
+    passed: true
+  - name: Every shortcut labeled as hardcoded/prototype-only
+    passed: true
+  - name: What-this-does-not-tell-us section present
+    passed: true
+  - name: Throwaway boundary named
+    passed: true
+  - name: Recommended next step is actionable
+    passed: true
+  - name: State surfaced after every action
+    passed: true
+  - name: Prototype runs end-to-end on demo path
+    passed: true

@@ -1,0 +1,170 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/devops-engineer→release-manager-20260530-124146.yaml
+      context_digest: 1a77d32fcce7d236e137dd146b76209d486267f8b40fc6eccddfe482ae6cf124
+  retained_context:
+    decisions:
+    - statement: Release version is 3.1.0 (MINOR) — new modular monolith infrastructure
+        + CI/CD governance. Zero breaking changes.
+      source: release-manager analysis
+      impact: APP_VERSION updated to 3.1.0. Downstream sees no API changes. CI gains
+        module governance and snapshot recovery.
+    - statement: Modular monolith infrastructure complete and import-clean — 18 new
+        files across core/, infrastructure/, ports/, di/, application/, common/
+      source: senior-engineer v6 verification
+      impact: All imports resolve. Ruff passes. DI container and password hashing
+        verified. Backend now has layered architecture with defined boundaries.
+    - statement: Module boundary governance via import-linter (7 contracts, advisory
+        mode during refactoring)
+      source: devops-engineer v8
+      impact: CI job runs on every backend change. continue-on-error while LEGACY_IMPORTS_ALLOWED
+        != false. Migration tracking counts legacy imports.
+    - statement: Snapshot-based DB recovery added to deploy pipeline (30-day artifact
+        retention)
+      source: devops-engineer v8
+      impact: Every deployment creates gzipped snapshot. Enables point-in-time recovery
+        for any deployment within 30 days.
+    - statement: config/setting.py deprecated — all new code must use core.config
+      source: senior-engineer v6 + release-manager formalization
+      impact: Gradual migration tracked by CI. Legacy imports continue to work. No
+        code changes required in this release.
+    - statement: No new runtime dependencies — infrastructure uses existing packages
+        only (sqlmodel, fastapi, loguru, starlette)
+      source: release-manager verification
+      impact: No requirements.txt changes. No new vulnerability surface. import-linter
+        is CI-only.
+    constraints:
+    - statement: Must maintain full backward compatibility with v3.0.x
+      source: SemVer contract
+      impact: 'Verified: no API, schema, behavior, or MQTT changes. All existing endpoints
+        unchanged.'
+    - statement: Module boundary enforcement advisory until LEGACY_IMPORTS_ALLOWED=false
+      source: devops-engineer v8 design
+      impact: Prevents new contracts from blocking existing development. Team must
+        explicitly opt into blocking enforcement.
+    - statement: Docker build contexts for portal/admin-web MUST be repository root
+      source: devops-engineer v6 fix (carry-over)
+      impact: Multi-stage Dockerfiles require COPY from repo root for pnpm workspace
+        resolution. Any future changes must preserve this constraint.
+    - statement: Nginx config update for /api/v1/ proxy is MANUAL and REQUIRED before
+        production deploy
+      source: v3.0.0 release plan (carry-over)
+      impact: Without this rule, ALL backend API routes 404 in production. Must be
+        automated in future release.
+    - statement: Team < 10 — keep infrastructure complexity proportional
+      source: architect constraint (carry-over)
+      impact: Docker Compose not Kubernetes. Single deploy host. No service mesh.
+        Modular monolith, not microservices.
+    assumptions:
+    - statement: All 18 new infrastructure modules work correctly at runtime
+      source: semantic_node_executor
+      risk: Moderate — verified at import/functional level, not under production load
+        or with all API routes exercised.
+    - statement: DI container and port interfaces will enable writing tests
+      source: semantic_node_executor
+      risk: Low — architecture is standard ports & adapters. Test injection verified.
+        No new tooling needed.
+    - statement: Existing services continue to work alongside new infrastructure
+      source: semantic_node_executor
+      risk: Low — new modules are additive. No existing code modified. No monkey-patching
+        or override magic.
+    - statement: Snapshot-based recovery works on first staging deploy
+      source: semantic_node_executor
+      risk: Moderate — not yet tested end-to-end. CI config is correct but runtime
+        validation pending.
+    - statement: Production Nginx config will be updated before production deployment
+      source: semantic_node_executor
+      risk: Medium — manual step, easy to forget. Should be automated.
+    open_questions:
+    - statement: When should backend tests be written now that DI makes them possible?
+      source: semantic_node_executor
+      owner: qa-engineer
+    - statement: Should correlation middleware and health router be wired in main.py
+        now or deferred?
+      source: semantic_node_executor
+      owner: senior-engineer
+    - statement: Should schemas/ directory be created now or deferred?
+      source: semantic_node_executor
+      owner: architect
+    - statement: When should LEGACY_IMPORTS_ALLOWED be set to false?
+      source: semantic_node_executor
+      owner: senior-engineer
+    - statement: Should web_ui be migrated to pnpm or CI updated to use yarn?
+      source: semantic_node_executor
+      owner: frontend-engineer
+    - statement: Should Nginx config update be automated in deploy pipeline?
+      source: semantic_node_executor
+      owner: devops-engineer
+    - statement: Should bcrypt replace SHA-256 for password hashing?
+      source: semantic_node_executor
+      owner: security-engineer
+  omitted_context:
+  - source: Frontend Vue SFC implementations
+    reason: background_only
+  - source: Robot agent RPA logic (robot/modules/*, robot/agent/*)
+    reason: background_only
+  - source: Individual API route handler implementations (backend/api/*)
+    reason: background_only
+  - source: Database table schemas and exact migration SQL
+    reason: background_only
+  - source: Video streaming, LLM tools, robot motion control, voice pipeline internals
+    reason: background_only
+  - source: Frontend image assets and admin upstream CHANGELOG
+    reason: background_only
+  - source: Individual Makefile targets beyond the category summary
+    reason: background_only
+  compression_rationale:
+    method: 'Compared current repository state (senior-engineer v6 + devops-engineer
+      v8) against previous release plan (v3.0.1). Identified all new files via file
+      listing. Verified imports and functional correctness through senior-engineer''s
+      verification report. Cross-referenced .importlinter contracts against ADR dependency
+      graph. Read CI/CD pipeline YAML to verify 2 new jobs and snapshot recovery step.
+      Retained all load-bearing decisions: version strategy, module boundary governance
+      mode, snapshot recovery design. Omitted unchanged subsystems (frontend, robot,
+      database schemas, API handlers) as irrelevant to this MINOR release''s scope.'
+    loss_notes:
+    - Omitted individual entity field definitions — 31 entities mapping existing MySQL
+      schema, no changes
+    - Omitted robot agent motion control details — unchanged, hardware-specific
+    - Omitted frontend Vue component tree — no frontend changes
+    - Omitted database migration SQL content — syntax checks only, unchanged
+    - Omitted video streaming/LLM/voice internals — unchanged
+    - Omitted individual Makefile targets — available via `make help`
+  quality_checks:
+  - name: Version follows SemVer (MINOR for new backwards-compatible functionality)
+    passed: true
+  - name: Changelog covers all changes — no fabricated or missing entries
+    passed: true
+  - name: Breaking changes section explicit (none — with migration notes)
+    passed: true
+  - name: Release checklist completed with pass/fail/caution per item
+    passed: true
+  - name: Rollback procedure defined including NEW snapshot-based DB recovery
+    passed: true
+  - name: APP_VERSION updated from 3.0.1 to 3.1.0 in both config files
+    passed: true
+  - name: config/setting.py marked [DEPRECATED] with migration guidance
+    passed: true
+  - name: No secrets in new or modified files
+    passed: true
+  - name: '18 new infrastructure files verified: imports resolve, ruff passes, functional
+      tests pass'
+    passed: true
+  - name: .importlinter has 7 valid contracts covering full ADR dependency graph
+    passed: true
+  - name: CI expanded 14→16 jobs with correct dependencies
+    passed: true
+  - name: Deploy pipeline db-migrate enhanced with snapshot + artifact upload
+    passed: true
+  - name: No new runtime dependencies — infrastructure uses existing packages
+    passed: true
+  - name: Deploy idempotent + concurrency-locked
+    passed: true
+  - name: All environment boundaries named (dev, CI, staging, production)
+    passed: true
+  - name: Nginx config update explicitly called out (manual /api/v1/ + /health/ proxy)
+    passed: true
+  - name: 5 blocking issues identified (4 carry-over, 1 mitigated by DI container)
+    passed: true

@@ -1,0 +1,7 @@
+from: code-reviewer
+to: senior-engineer
+relation_type: may_trigger
+timestamp: '2026-05-25T17:13:12.199926+00:00'
+focus: Force a re-do; api gaps
+artifact_refs:
+- code-reviewer-review-v1

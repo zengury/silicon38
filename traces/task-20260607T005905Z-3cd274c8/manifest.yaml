@@ -1,0 +1,60 @@
+task_id: task-20260607T005905Z-3cd274c8
+timestamp_start: '2026-06-07T00:59:07.296265+00:00'
+timestamp_end: '2026-06-07T00:59:25.056738+00:00'
+task_summary: 需要从零构建一个mobile app，他的名字叫bookshelf 作用是帮助每个爱书的人数字化他的书架
+task_type: feature
+entry_nodes:
+- to-prd
+terminal_nodes:
+- to-prd
+- graph-topologist
+- hrbp
+outcome:
+  status: partial
+  decoder_notes: LangGraph-native runtime stopped at explicit max_role_executions=1.
+  quality_signal:
+    source: runtime_decoder
+    value: 0.5
+    detail: LangGraph-native runtime stopped at explicit max_role_executions=1.
+context_block:
+  ref: org/CONTEXT_BLOCK.md
+  sha256: d82dc247c04f8cd2e797dd394ecd8d9cd927f1e194f2800d4fcf1e2be41f2a66
+artifact_index:
+- artifact_id: to-prd-prd-v1
+  type: prd
+  producer: to-prd
+  version: 1
+  status: draft
+  path: artifacts/to-prd-prd-v1.md
+  ref: artifacts/to-prd-prd-v1.md
+  provenance_ref: artifacts/to-prd-prd-v1.provenance.yaml
+- artifact_id: graph-topologist-topology-review-v1
+  type: topology-review
+  producer: graph-topologist
+  version: 1
+  status: draft
+  path: artifacts/graph-topologist-topology-review-v1.md
+  ref: artifacts/graph-topologist-topology-review-v1.md
+  provenance_ref: artifacts/graph-topologist-topology-review-v1.provenance.yaml
+- artifact_id: hrbp-talent-evaluation-v1
+  type: talent-evaluation
+  producer: hrbp
+  version: 1
+  status: draft
+  path: artifacts/hrbp-talent-evaluation-v1.md
+  ref: artifacts/hrbp-talent-evaluation-v1.md
+  provenance_ref: artifacts/hrbp-talent-evaluation-v1.provenance.yaml
+context_report_index:
+- role: to-prd
+  ref: artifacts/to-prd-context-report-v1.yaml
+  digest: 7bfbba7353ae24432572678829ed878cb8b9b23005e202446752e41ab3929d64
+  status: valid
+- role: graph-topologist
+  ref: artifacts/graph-topologist-context-report-v1.yaml
+  digest: 5183291f30ccc763760edfae75838239f00b2e0d5125f863fd47220769514fd8
+  status: valid
+- role: hrbp
+  ref: artifacts/hrbp-context-report-v1.yaml
+  digest: 6d1aad28035e522cea701346dd840415dd45c4f22b06684a785e2a57820f763b
+  status: valid
+handoff_trail: []

@@ -1,0 +1,158 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→database-engineer-20260530-094400.yaml
+      context_digest: 89ddda32b29bd4c71acc3c5d10ac7a1e2d8a9557f60579495b13e2d7694cc9ef
+  retained_context:
+    decisions:
+    - statement: MySQL 8.0 is the confirmed database target (from docker-compose)
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Modular Monolith architecture for backend (from architect)
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Layered Architecture with DDD tactical patterns (from architect)
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: '@roboease/shared package created for frontend HTTP/auth utilities
+        (from senior-engineer v1)'
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 30+ tables required spanning RBAC, robot, task, library, synergy,
+        and screen domains
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: BIGINT AUTO_INCREMENT as primary key type (optimal for MySQL 8.0)
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Soft-delete via deleted_at DATETIME(3) (enables TTL cleanup)
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Application-layer AES-256-GCM for robot passwords; DB stores ciphertext
+        only
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 6 sequential migrations with up/down pairs and zero-dependency Python
+        runner
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 'FK constraints: RESTRICT for operational, CASCADE for junctions'
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Backend source code is NOT in workspace; schema inferred from frontend
+        API + mock data
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: MySQL 8.0 with utf8mb4_general_ci (from docker/edge/docker-compose.yaml)
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: DATABASE_URL = mysql+pymysql://... (FastAPI backend)
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: EMQX handles MQTT to robots; Redis for caching
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Team size <10 developers
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Two separate SPAs (portal + admin) both using @roboease/shared
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: FastAPI backend uses SQLAlchemy/SQLModel for ORM
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Robot heartbeat frequency is every 3-5 seconds (index designed for
+        this)
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Multi-tenant architecture with enterprise_id scoping on all domain
+        tables
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Dify AI platform integration for agent management
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: 'Existing schema uses numeric IDs (based on mock data showing id:
+        2)'
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Robot passwords need encryption (mock shows '<PASSWORD>' placeholder)
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the actual production data volume per table?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the robot heartbeat frequency?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Does the existing schema use VARCHAR(20) or BIGINT for primary keys?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Is enterprise_id FK applied to ALL tables in production?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What ORM is actually used?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Are there existing del_flag soft-delete flags?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the data volume for task_result_detail?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed frontend component tree (300+ files) — not relevant for data
+      modeling
+    reason: background_only
+  - source: Artifact files from prior releases (RELEASE-REPORT, release-plans) — background
+      only
+    reason: background_only
+  - source: Docker robot/star_walker, robot/planning-backend — edge device concerns,
+      not core schema
+    reason: background_only
+  - source: Frontend portal landing page images — purely presentational
+    reason: background_only
+  - source: Frontend shared package implementation details (http-client.ts, auth-api.ts)
+      — already abstracted
+    reason: background_only
+  compression_rationale:
+    method: 'Selective inclusion based on relevance to database schema design. Retained:
+      API contracts (all 14 .api.ts files), mock data shapes (10+ .mock.ts files),
+      Docker database configuration, architectural decisions affecting data modeling.
+      Omitted: frontend presentation layer, deployment scripts, non-data-related artifacts,
+      and shared package implementation details. Primary evidence chain: frontend
+      API types → mock data → inferred SQL schema → MySQL 8.0 DDL with explicit index
+      justifications.'
+    loss_notes:
+    - v1 assumed PostgreSQL; v2 corrected to MySQL 8.0; v3 is MySQL 8.0 confirmed
+    - Inspection/inventory task subtypes from v1 were not confirmed in frontend evidence;
+      v3 treats them as task_type variants
+    - Library entities (action/expression/voice/knowledge) are structurally identical
+      — separate tables per existing codebase patterns
+    - Admin has 290+ pre-existing TypeScript errors (per senior-engineer v1) — not
+      relevant to data design
+  quality_checks:
+  - name: All upstream decisions and constraints are captured
+    passed: true
+  - name: Assumptions are explicitly documented with source evidence
+    passed: true
+  - name: Open questions are carried forward with owner
+    passed: true
+  - name: Database engine confirmed by workspace evidence (not assumed)
+    passed: true
+  - name: Every index references a specific query pattern
+    passed: true
+  - name: Every migration has a corresponding rollback
+    passed: true
+  - name: Nullable columns have documented reasons
+    passed: true
+  - name: Migration strategy is present with rollback procedures named
+    passed: true
+  - name: FK constraints enforce referential integrity at DB level
+    passed: true
+  - name: EXPLAIN plans included for critical queries
+    passed: true

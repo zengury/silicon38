@@ -1,0 +1,5 @@
+from: architect
+to: database-engineer
+relation_type: triggers
+timestamp: '2026-05-25T06:52:12.046965+00:00'
+focus: ADR-002 normalization pipeline + ADR-003 TimescaleDB → schema design

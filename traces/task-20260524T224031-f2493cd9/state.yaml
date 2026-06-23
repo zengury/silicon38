@@ -1,0 +1,13 @@
+task_id: task-20260524T224031-f2493cd9
+task_status: initializing
+node_states: {}
+artifact_registry: {}
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: false
+  all_loops_resolved: false
+  all_blocking_evals_resolved: false
+  all_joins_passed: false
+  any_unresolved_artifacts: false
+  settled_at: null

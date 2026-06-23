@@ -1,0 +1,107 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/zoom-out→architect-20260530-100638.yaml
+      context_digest: 781ce59b97d30a647043bb96a5b5667cdb91e4e1389b4360dc9dfa7920d4eeef
+  retained_context:
+    decisions:
+    - statement: Focus on top-level module boundaries and external integrations.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use codebase's own module names.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Adopt Modular Monolith architecture.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Enforce strict module boundaries via package conventions.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Keep existing technology stack.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Only file listing and key files were read; no full code traversal.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Some modules may have deeper structure not captured.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Legacy config modules need migration.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Backward-compatibility re-exports must be maintained during transition.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Team size limits ability to manage microservices complexity.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: The codebase is a multi-tenant robot management platform.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: MQTT is used for robot communication.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: JWT is used for authentication.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Team size is small (<10 developers).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Domain boundaries are still emerging.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the exact database schema?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How are MQTT topics structured?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the CI/CD pipeline?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the testing strategy?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the exact MQTT topic structure?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the testing strategy?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What are the CI/CD pipeline details?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file contents beyond key files.
+    reason: background_only
+  - source: Historical artifact contents (release plans, etc.).
+    reason: background_only
+  - source: Frontend component hierarchy.
+    reason: background_only
+  - source: Specific implementation details of services layer.
+    reason: background_only
+  compression_rationale:
+    method: High-level abstraction focusing on architectural decisions, module boundaries,
+      and data flows. Detailed implementation details omitted to keep ADR concise.
+    loss_notes:
+    - Frontend component tree not mapped.
+    - Backend service layer internal structure not detailed.
+    - Database schema not extracted.
+    - MQTT topic structure not documented.
+  quality_checks:
+  - name: Every structural decision has a stated rationale
+    passed: true
+  - name: Alternatives considered are documented
+    passed: true
+  - name: Design can be implemented incrementally
+    passed: true
+  - name: Data flows are explicit
+    passed: true
+  - name: Failure modes are identified
+    passed: true
+  - name: Design does not optimize for theoretical future requirements
+    passed: true

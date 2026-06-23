@@ -1,0 +1,53 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/to-issues→grill-with-docs-20260531-173438.yaml
+      context_digest: 47b3bad9d29ef9957707dfb284a0055f7fdeeeaa55c304a28fa4e573f0b690c1
+  retained_context:
+    decisions:
+    - statement: Task is a refactoring/enhancement.
+      source: upstream handoff
+      impact: Scope excludes new features and full rewrites.
+    - statement: Decomposition into 6 issues with dependency order.
+      source: to-issues-decomposition-v1
+      impact: Execution plan for refactoring.
+    constraints:
+    - statement: Cannot write files or execute commands.
+      source: upstream handoff
+      impact: Plan cannot be directly executed.
+    - statement: No access to external issue tracker.
+      source: upstream handoff
+      impact: Issues must be tracked inline.
+    assumptions:
+    - statement: Codebase is likely in a modern language (e.g., Python, TypeScript).
+      source: upstream handoff
+      risk: May be incorrect; needs verification.
+    - statement: Existing tests may be absent or minimal.
+      source: upstream handoff
+      risk: Coverage targets may be unrealistic.
+    open_questions:
+    - statement: Exact directory structure and languages.
+      source: upstream handoff
+      owner: runtime
+    - statement: Existing test coverage and frameworks.
+      source: upstream handoff
+      owner: runtime
+    - statement: Coding standards or architectural guidelines.
+      source: upstream handoff
+      owner: runtime
+  omitted_context:
+  - source: Detailed codebase analysis (not yet performed).
+    reason: background_only
+  - source: Specific instances of duplicate code.
+    reason: background_only
+  compression_rationale:
+    method: Extracted key decisions, constraints, and open questions from the upstream
+      handoff and decomposition. Omitted speculative details and non-essential information.
+    loss_notes:
+    - No loss of critical information; only omitted unverified details.
+  quality_checks:
+  - name: doc_sources_cited
+    passed: true
+  - name: contradictions_named
+    passed: true

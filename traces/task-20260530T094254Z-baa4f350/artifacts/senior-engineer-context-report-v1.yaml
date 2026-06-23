@@ -1,0 +1,99 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→senior-engineer-20260530-094359.yaml
+      context_digest: c2236818254d29d97b86ecc00df5dd84a9b6614872560b1571e9c46ee5f3a1ad
+  retained_context:
+    decisions:
+    - statement: Adopt Modular Monolith with DDD bounded contexts.
+      source: architect
+      impact: All refactoring follows module boundaries defined in ADR.
+    - statement: Separate domain from infrastructure using ports and adapters.
+      source: architect
+      impact: 7 services refactored to depend on port interfaces, not Session(engine).
+    - statement: Centralized configuration via core.config.settings.
+      source: architect
+      impact: core/ module created, 8 broken imports fixed.
+    - statement: Standardized error handling via exception handlers.
+      source: architect
+      impact: 4 exception handlers registered for ValueError, FileNotFoundError, PermissionError,
+        generic Exception.
+    - statement: API versioning under /api/v1/.
+      source: architect
+      impact: Maintained from previous iterations.
+    constraints:
+    - statement: Team size is small (<10 developers).
+      source: semantic_node_executor
+      impact: Simple patterns preferred; pragmatic trade-offs documented.
+    - statement: Backend uses FastAPI with SQLModel ORM.
+      source: semantic_node_executor
+      impact: Repository implementations use SQLModel Session patterns.
+    - statement: Existing SQLModel entities couple domain and persistence.
+      source: semantic_node_executor
+      impact: Full domain/persistence separation requires phased migration.
+    - statement: Backend API prefix is /api/v1.
+      source: semantic_node_executor
+      impact: Maintained from previous iteration.
+    assumptions:
+    - statement: Environment variables provide all runtime configuration.
+      source: core/config.py
+      risk: Low — dotenv fallback ensures safe defaults.
+    - statement: MD5 password hashing is acceptable for current scope.
+      source: core/security.py
+      risk: Medium — production should migrate to bcrypt.
+    - statement: psycopg2 is only needed for Dify template creation.
+      source: agent_service.py lazy import
+      risk: Low — other DB access uses SQLModel.
+    - statement: SQLite fallback in connection.py is safe for tests.
+      source: infrastructure/db/connection.py
+      risk: Low — only when DATABASE_URL is unset.
+    open_questions:
+    - statement: Should we introduce a transactional Unit-of-Work pattern?
+      source: userservice.py FIXME
+      owner: architect
+    - statement: What is the migration strategy for MD5 → bcrypt?
+      source: security review
+      owner: security-team
+    - statement: Should MQTT client move from common/ to infrastructure/mqtt/?
+      source: architecture review
+      owner: architect
+    - statement: Should remaining 4 library services use BaseCRUDRepository?
+      source: implementation observation
+      owner: senior-engineer
+  omitted_context:
+  - source: Detailed analysis of 11 services still using direct Session access (documented
+      in debt table).
+    reason: background_only
+  - source: Frontend admin mock data patterns.
+    reason: background_only
+  - source: Docker image build specifics.
+    reason: background_only
+  - source: Robot planning backend module.
+    reason: background_only
+  compression_rationale:
+    method: Focus on structural changes that complete the modular monolith pattern.
+      Prioritized creating missing dependencies (core/), extending ports to new domains,
+      and refactoring highest-impact services. Remaining direct Session usage documented
+      as prioritized technical debt for incremental migration.
+    loss_notes:
+    - ~40 remaining direct Session(engine) calls in 11 services (all documented with
+      migration path).
+    - No integration tests run due to missing database environment.
+    - Library services (action, expression, knowledge) not yet refactored — BaseCRUDRepository
+      available.
+  quality_checks:
+  - name: All Python files parse without syntax errors (123 files checked)
+    passed: true
+  - name: Core module imports resolve correctly across all consumers
+    passed: true
+  - name: Repository ports match implementations
+    passed: true
+  - name: DI container includes all new repositories
+    passed: true
+  - name: No broken imports from removed/nonexistent modules
+    passed: true
+  - name: 64 unit tests passing
+    passed: true
+  - name: Critical bugs fixed (auth.py captcha, menuService.py import)
+    passed: true

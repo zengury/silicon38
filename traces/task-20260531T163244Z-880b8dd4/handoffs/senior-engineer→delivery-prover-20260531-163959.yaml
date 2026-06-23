@@ -1,0 +1,138 @@
+from: senior-engineer
+to: delivery-prover
+relation_type: triggers
+timestamp: '2026-05-31T16:39:59.671765+00:00'
+focus: Activate delivery-prover from senior-engineer
+artifact_refs: &id001
+- senior-engineer-implementation-v1
+deliverable:
+  producer: senior-engineer
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: senior-engineer-implementation-v1
+    producer: senior-engineer
+    type: implementation
+    version: 1
+    status: draft
+    content_ref: artifacts/senior-engineer-implementation-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260531T163244Z-880b8dd4
+  from: senior-engineer
+  to: delivery-prover
+  relation_type: triggers
+  focus: Activate delivery-prover from senior-engineer
+  source:
+    producer_role: senior-engineer
+    context_compression_report_ref: artifacts/senior-engineer-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/to-issues→senior-engineer-20260531-163353.yaml
+      context_digest: 6326880166ef77a579af8546e670fc7b69d7c431e29b5dcd5e483704ffa5fd20
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Task is a codebase refactoring — eliminate duplicates, improve module
+        structure, enhance maintainability and testability
+      source: to-issues-decomposition-v1
+      impact: Defined the scope of implementation work
+    - statement: Adopt feature-based module structure (deferred — current layer-based
+        structure preserved)
+      source: to-issues-decomposition-v1
+      impact: Issue 2 not implemented in this iteration
+    - statement: Pilot module approach — refactor one module completely before bulk
+        rollout
+      source: to-issues-decomposition-v1 Issue 7
+      impact: This iteration implements the pilot (Issue 7)
+    - statement: Incremental refactoring per module, each on own branch with PR review
+      source: to-issues-decomposition-v1
+      impact: Changes are scoped to backend/python only
+    constraints:
+    - statement: Must not change external API behavior
+      source: to-issues-decomposition-v1
+      impact: All 90 tests pass unchanged; no route signatures modified
+    - statement: Codebase path is /Users/ZQ/roboease
+      source: handoff
+      impact: All file operations scoped to this directory
+    - statement: Existing tests must be preserved
+      source: to-issues-decomposition-v1
+      impact: No test files modified; test count preserved at 90
+    assumptions:
+    - statement: User wants to improve maintainability without disrupting running
+        systems
+      source: semantic_node_executor
+      risk: Low — changes are additive and backward-compatible
+    - statement: The existing common/audit.py pattern (used by device_service.py)
+        is the intended direction
+      source: codebase analysis
+      risk: Low — confirmed by existing usage in other services
+    - statement: Pilot module approach is correct — validate before scaling
+      source: to-issues-decomposition-v1 Issue 7
+      risk: Low — standard engineering practice
+    - statement: MQTT broker is accessible and the mqtt_request_reply utility will
+        work in production
+      source: codebase analysis
+      risk: Medium — needs integration testing with actual robot hardware
+    open_questions:
+    - statement: When will Unit-of-Work abstraction be available to eliminate last
+        direct Session?
+      source: codebase analysis
+      owner: architecture team
+    - statement: Should robot/ and backend/ MQTT clients be unified into shared package?
+      source: codebase analysis
+      owner: architecture team
+    - statement: Which module should be the next pilot for duplicate consolidation
+        (agent_service, dictService, menuService)?
+      source: to-issues-decomposition-v1
+      owner: senior-engineer
+    - statement: Are there integration tests that exercise MQTT request-reply path
+        end-to-end?
+      source: codebase analysis
+      owner: test-engineer
+  omitted_context:
+  - source: General triage instructions and non-essential PRD background
+    reason: background_only
+  - source: Thompson sampling details from handoff chain
+    reason: background_only
+  - source: Context digest hashes (implementation detail)
+    reason: background_only
+  - source: Issue sizing estimates (S/M/L) — not relevant to implementation decisions
+    reason: background_only
+  - source: Dependency graph details beyond Issue 7 scope
+    reason: background_only
+  compression_rationale:
+    method: Extracted only task-relevant implementation constraints and decisions
+      from the upstream artifacts. Omitted triage boilerplate, statistical sampling
+      details, and issue sizing metadata. Retained all constraints that directly governed
+      implementation choices (no external API changes, preserve tests, pilot module
+      approach).
+    loss_notes:
+    - PRD details about user-facing goals omitted — not needed for backend refactoring
+      implementation
+    - Thompson sampling weights and scores removed — implementation doesn't use them
+    - Full dependency graph removed — only Issue 7 dependency chain retained
+  quality_checks:
+  - name: Every retained decision has a source
+    passed: true
+  - name: Every constraint maps to an implementation guard
+    passed: true
+  - name: No implementation detail leaked from omitted context
+    passed: true
+  - name: Open questions are actionable with named owners
+    passed: true
+  - name: Compression is lossless for implementation-critical information
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - to-issues-decomposition-v1
+  - to-prd-prd-v1
+  - triage-analysis-v1
+  previous_blocks:
+  - ref: handoffs/to-issues→senior-engineer-20260531-163353.yaml
+    from: to-issues
+    to: senior-engineer
+    relation_type: triggers
+    focus: Activate senior-engineer from to-issues
+    context_digest: 6326880166ef77a579af8546e670fc7b69d7c431e29b5dcd5e483704ffa5fd20
+    deliverable_artifact_refs:
+    - to-issues-decomposition-v1
+  context_digest: dd2138846515c64c0e39b8490d6ba756d735ca2910232eaa8eb1a1eb7bb793dd

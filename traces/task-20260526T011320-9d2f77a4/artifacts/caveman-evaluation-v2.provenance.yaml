@@ -1,0 +1,8 @@
+artifact_id: caveman-evaluation-v2
+producer: caveman
+task_id: task-20260526T011320-9d2f77a4
+version: 2
+timestamp: '2026-05-25T17:20:03.895147+00:00'
+input_artifacts: []
+quality_checks: []
+status: approved

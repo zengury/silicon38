@@ -1,0 +1,85 @@
+from: zoom-out
+to: architect
+relation_type: may_trigger
+timestamp: '2026-05-30T13:10:15.659271+00:00'
+focus: context map identifies architecture work as part of the deliverable
+artifact_refs: &id001
+- zoom-out-context-map-v1
+deliverable:
+  producer: zoom-out
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: zoom-out-context-map-v1
+    producer: zoom-out
+    type: context-map
+    version: 1
+    status: draft
+    content_ref: artifacts/zoom-out-context-map-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260530T130959Z-ee6d83ff
+  from: zoom-out
+  to: architect
+  relation_type: may_trigger
+  focus: context map identifies architecture work as part of the deliverable
+  source:
+    producer_role: zoom-out
+    context_compression_report_ref: artifacts/zoom-out-context-report-v1.yaml
+    input_handoffs: []
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Map focuses on top-level module structure and external dependencies.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Only files listed in workspace code were available; backend source
+        not fully explored.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Backend is a single Python FastAPI service based on requirements.txt.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Admin panel is based on vue3-element-admin template.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the exact backend module structure?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What are the robot-side services (star_walker, planning-backend)?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the authentication flow?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the database schema?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the deployment environment?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file listings beyond key files.
+    reason: background_only
+  - source: Artifact planning documents (not code).
+    reason: background_only
+  compression_rationale:
+    method: Top-down structural mapping; only included modules with clear responsibilities
+      and verified relationships.
+    loss_notes:
+    - Backend internal modules not enumerated due to limited file access.
+    - Robot-side services not explored.
+  quality_checks:
+  - name: Module existence verified
+    passed: true
+  - name: Relationships verified by imports/configs
+    passed: true
+  - name: Domain vocabulary used
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs: []
+  previous_blocks: []
+  context_digest: bf874135ffd365244d93b6cde93280e485ec4524ed7779b1731d8ad05b9834c4
+soul_ref: org/soul.md

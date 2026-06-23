@@ -1,0 +1,59 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/scope-prosecutor→product-vision-anchor-20260601-110005.yaml
+      context_digest: b8feb8d0f0c45666b72f1dee6053378a050516560aac156ef473cff5684c1d35
+  retained_context:
+    decisions:
+    - statement: All features directly supporting install, brand independence, and
+        user guidance are KEEP.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Internal build tools and daemon deployment are DEFER.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Sim pack placeholder is CUT.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must hide pi brand and present Manastone as independent.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Install must include all dependencies (pi coding agent).
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: User guidance must be optimized for clarity.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: The core value is a robot agent platform with natural language control
+        and diagnosis.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Target users are robotics engineers who have purchased a Unitree
+        G1 or Agibot X2.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What specific user guidance materials are needed beyond the install
+        script?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How will brand independence be audited across all touchpoints?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file contents beyond bootstrap/README.md and pyproject.toml excerpts.
+    reason: background_only
+  - source: Prior analysis or client rationale (per input contract).
+    reason: background_only
+  compression_rationale:
+    method: Focused on the scope verdict decisions and constraints; ignored extraneous
+      file listings and code details not relevant to vision synthesis.
+    loss_notes: []
+  quality_checks:
+  - name: vision_falsifiable
+    passed: true
+  - name: out_of_scope_defined
+    passed: true

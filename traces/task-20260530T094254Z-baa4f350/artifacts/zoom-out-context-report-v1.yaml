@@ -1,0 +1,71 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read: []
+  retained_context:
+    decisions:
+    - statement: Focus on top-level module map due to limited backend source access.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use docker-compose as primary source for service relationships.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Backend source code not available in workspace.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Robot agent code not available.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Shared package not explored.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Backend is FastAPI-based (from DOCKERFILE).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Video server runs on port 8765 (from docker-compose).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: MQTT is used for robot communication (from docker-compose env vars).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Frontends use @roboease/shared workspace package.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the exact backend framework structure?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What does @roboease/shared contain?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How are robot agents implemented and deployed?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed frontend component hierarchy (not needed for high-level map).
+    reason: background_only
+  - source: Image assets (not relevant for architecture).
+    reason: background_only
+  - source: Artifact files (release plans, ops plans) as they are not code.
+    reason: background_only
+  - source: pnpm-lock.yaml (dependency lock file, not structural).
+    reason: background_only
+  compression_rationale:
+    method: 'Top-down abstraction: read docker-compose for service topology, frontend
+      package.json and router for module boundaries, DOCKERFILEs for technology stack.
+      Omitted deep component details and non-code artifacts.'
+    loss_notes:
+    - Backend source code not read; only inferred from Dockerfile and compose.
+    - Robot agent code not read.
+    - Shared package not read.
+  quality_checks:
+  - name: Module names match codebase
+    passed: true
+  - name: Relationships verified by reading imports/calls
+    passed: true
+  - name: External dependencies explicitly labeled
+    passed: true
+  - name: Map is small enough to be useful
+    passed: true

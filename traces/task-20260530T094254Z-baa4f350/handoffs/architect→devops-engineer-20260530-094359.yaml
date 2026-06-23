@@ -1,0 +1,140 @@
+from: architect
+to: devops-engineer
+relation_type: may_trigger
+timestamp: '2026-05-30T09:43:59.189349+00:00'
+focus: task involves deployment to an external platform or requires CI/CD delivery
+  pipeline
+artifact_refs: &id001
+- architect-architecture-v1
+deliverable:
+  producer: architect
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: architect-architecture-v1
+    producer: architect
+    type: architecture
+    version: 1
+    status: draft
+    content_ref: artifacts/architect-architecture-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260530T094254Z-baa4f350
+  from: architect
+  to: devops-engineer
+  relation_type: may_trigger
+  focus: task involves deployment to an external platform or requires CI/CD delivery
+    pipeline
+  source:
+    producer_role: architect
+    context_compression_report_ref: artifacts/architect-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/zoom-out→architect-20260530-094332.yaml
+      context_digest: 7fe723a1cf1d659e47ca715dabbeb6b80bb4530a9153d177664af8df21492c62
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Focus on top-level module map due to limited backend source access.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use docker-compose as primary source for service relationships.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Adopt Modular Monolith for backend.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use Layered Architecture with DDD tactical patterns.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Keep frontend as two separate SPAs.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Backend source code not available in workspace.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Robot agent code not available.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Shared package not explored.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Team size is small (<10 developers).
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Domain boundaries are not fully understood.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Backend is FastAPI-based (from DOCKERFILE).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Video server runs on port 8765 (from docker-compose).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: MQTT is used for robot communication (from docker-compose env vars).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Frontends use @roboease/shared workspace package.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Team size is small (<10 developers).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Rapid iteration is a priority.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the exact backend framework structure?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What does @roboease/shared contain?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How are robot agents implemented and deployed?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What are the exact API endpoints and data models?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed frontend component hierarchy (not needed for architecture decisions).
+    reason: background_only
+  - source: Image assets (not relevant for architecture).
+    reason: background_only
+  - source: Artifact files (release plans, ops plans) as they are not code.
+    reason: background_only
+  - source: pnpm-lock.yaml (dependency lock file, not structural).
+    reason: background_only
+  compression_rationale:
+    method: 'Top-down abstraction: used docker-compose for service topology, frontend
+      package.json and router for module boundaries, DOCKERFILEs for technology stack.
+      Omitted deep component details and non-code artifacts. Focused on load-bearing
+      decisions for architecture.'
+    loss_notes:
+    - Backend source code not read; only inferred from Dockerfile and compose.
+    - Robot agent code not read.
+    - Shared package not read.
+  quality_checks:
+  - name: Architecture decisions are grounded in actual constraints
+    passed: true
+  - name: Alternatives considered and documented
+    passed: true
+  - name: Data flows are explicit
+    passed: true
+  - name: Failure modes identified
+    passed: true
+  - name: Design can be implemented incrementally
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - zoom-out-context-map-v1
+  previous_blocks:
+  - ref: handoffs/zoom-out→architect-20260530-094332.yaml
+    from: zoom-out
+    to: architect
+    relation_type: may_trigger
+    focus: context map identifies architecture work as part of the deliverable
+    context_digest: 7fe723a1cf1d659e47ca715dabbeb6b80bb4530a9153d177664af8df21492c62
+    deliverable_artifact_refs:
+    - zoom-out-context-map-v1
+  context_digest: d5d2218f66f8b0e37b3ea0822e15d3dad3c4f807cff5125209016070d4ff4f97

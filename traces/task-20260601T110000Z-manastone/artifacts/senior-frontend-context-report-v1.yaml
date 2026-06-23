@@ -1,0 +1,123 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/epic-design→senior-frontend-20260601-112120.yaml
+      context_digest: 7087fb7dd13a773c8016f7d58a7f894bd03d40c11858d9320d8cd51a8d488ae4
+  retained_context:
+    decisions:
+    - statement: Onboarding dashboard as primary post-install touchpoint with 4-scene
+        narrative arc (Celebration → Orientation → Preview → Mastery)
+      source: epic-design
+      impact: Constrains frontend implementation to the 4-scene structure; all enhancements
+        must fit within these scenes
+    - statement: Interactive terminal simulator instead of static command preview
+      source: senior-frontend
+      impact: Users can type commands and see simulated responses, building confidence
+        in the natural-language interface before running a real command
+    - statement: Copy-to-clipboard on all command tags to reduce post-onboarding friction
+      source: senior-frontend
+      impact: Eliminates the need for users to memorize or manually re-type commands
+        from the dashboard
+    - statement: Low-power hardware detection via navigator.hardwareConcurrency ≤
+        4 cores
+      source: senior-frontend
+      impact: Parallax disabled, glow effects halved, animations simplified on Raspberry
+        Pi and embedded-class hardware
+    - statement: Zero CDN dependencies (vanilla JS only)
+      source: epic-design
+      impact: All enhancements use vanilla JS — no framework additions
+    - statement: URL parameter (?robot=) for robot model personalization
+      source: epic-design
+      impact: Robot model registry expanded to 7 canonical display strings; graceful
+        fallback for unknown models
+    constraints:
+    - statement: Must hide Pi brand and present Manastone as independent
+      source: product-vision-anchor
+      impact: Verified zero Pi brand references in the enhanced page; only 'Raspberry
+        Pi' appears as hardware reference in performance comments
+    - statement: Air-gapped robot networks — page must work without internet
+      source: epic-design
+      impact: No CDN fonts, no external JS, no API calls, no WebSockets. All assets
+        inline. execCommand clipboard fallback for file:// contexts.
+    - statement: Install must include all dependencies
+      source: product-vision-anchor
+      impact: Onboarding page assumes engine already installed — focuses on first-use
+        experience
+    - statement: User guidance must be optimized for clarity
+      source: product-vision-anchor
+      impact: 'Every enhancement serves user confidence: interactive terminal demystifies
+        NLP, copy-to-clipboard removes memorization burden, robust robot detection
+        personalizes experience'
+    - statement: Write scope is frontend_code_scoped
+      source: harness
+      impact: install.sh modifications documented as integration notes in artifact
+        comments; not implemented in this node
+    assumptions:
+    - statement: Target users are robotics engineers who have purchased a Unitree
+        G1 or Agibot X2
+      source: product-vision-anchor
+      risk: Assumption may need review if customer base expands
+    - statement: A browser exists on the target system to render the onboarding dashboard
+      source: epic-design
+      risk: Headless robot setups may not have a browser. install.sh should print
+        the file path as fallback (documented in integration notes)
+    - statement: navigator.hardwareConcurrency accurately reflects available compute
+        on embedded Linux
+      source: senior-frontend
+      risk: Some embedded systems may report incorrect core counts
+    open_questions:
+    - statement: Should install.sh auto-open the onboarding HTML in a browser, or
+        print a URL path only?
+      source: epic-design
+      owner: senior-frontend
+    - statement: What robot model display strings should be canonical?
+      source: epic-design
+      owner: product-vision-anchor
+    - statement: Should we add WebSocket live-status feed when daemon is running?
+      source: senior-frontend
+      owner: runtime
+    - statement: Should the onboarding page be served at a local URL or only as a
+        file?
+      source: senior-frontend
+      owner: runtime
+  omitted_context:
+  - source: Detailed Python runtime source files (composer.py, safety/, io/daemon.py,
+      etc.)
+    reason: background_only
+  - source: RoboOnto importers, tests, and CLI handlers
+    reason: background_only
+  - source: Archive architecture documents and dev logs
+    reason: background_only
+  - source: pilot/orchestrator/web/ — orchestrator web UI
+    reason: background_only
+  - source: roboonto/examples/ — 3D visualization HTML files
+    reason: background_only
+  compression_rationale:
+    method: 'Focused on frontend-relevant artifacts: the epic-design''s onboarding
+      dashboard v1, brand experience design document, landing page reference, and
+      product constraints. Read the install.sh to understand the robot detection and
+      config pipeline. Read README.md and QUICKSTART.md to verify command naming consistency
+      with the command cards. Omitted Python runtime internals, ontology files, test
+      fixtures, and archive documents as they have no bearing on frontend code implementation.'
+    loss_notes:
+    - The epic-design's brand audit catalogued 34 Pi leakage points across 12 files
+      — retained the constraint but did not re-audit the full codebase from a frontend
+      scope
+    - The orchestrator web UI (pilot/orchestrator/web/) was noted but not analyzed
+      in detail — it serves a different purpose than the onboarding dashboard
+    - 3D visualization HTML files in roboonto/examples/ were noted but not incorporated
+      — they serve a different use case (ontology visualization, not onboarding)
+  quality_checks:
+  - name: browser_or_screenshot_proof
+    passed: true
+  - name: responsive_or_scope_reason
+    passed: true
+  - name: brand_independence_verified
+    passed: true
+  - name: design_tokens_applied
+    passed: true
+  - name: accessibility_audit_passed
+    passed: true
+  - name: no_console_errors
+    passed: true

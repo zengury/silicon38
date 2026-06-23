@@ -1,0 +1,8 @@
+from: senior-engineer
+to: code-reviewer
+relation_type: triggers
+timestamp: '2026-05-25T18:58:09.560976+00:00'
+focus: '13 new files, ~900 lines total. Architecture: 4 core (pure) + 2 engine (hooks)
+  + 6 components (React). TypeScript clean, Vite build clean.'
+artifact_refs:
+- senior-engineer-implementation-v1

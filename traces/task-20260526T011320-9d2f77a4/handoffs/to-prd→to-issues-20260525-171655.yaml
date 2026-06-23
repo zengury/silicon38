@@ -1,0 +1,7 @@
+from: to-prd
+to: to-issues
+relation_type: triggers
+timestamp: '2026-05-25T17:16:55.719216+00:00'
+focus: PRD contains 26 user stories ready for independent issue decomposition
+artifact_refs:
+- to-prd-document-v1

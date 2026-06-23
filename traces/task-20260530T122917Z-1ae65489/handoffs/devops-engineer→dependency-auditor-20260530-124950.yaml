@@ -1,0 +1,153 @@
+from: devops-engineer
+to: dependency-auditor
+relation_type: evaluates
+timestamp: '2026-05-30T12:49:50.681515+00:00'
+focus: Activate dependency-auditor from devops-engineer
+artifact_refs: &id001
+- devops-engineer-ops-plan-v1
+deliverable:
+  producer: devops-engineer
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: devops-engineer-ops-plan-v1
+    producer: devops-engineer
+    type: ops-plan
+    version: 1
+    status: draft
+    content_ref: artifacts/devops-engineer-ops-plan-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260530T122917Z-1ae65489
+  from: devops-engineer
+  to: dependency-auditor
+  relation_type: evaluates
+  focus: Activate dependency-auditor from devops-engineer
+  source:
+    producer_role: devops-engineer
+    context_compression_report_ref: artifacts/devops-engineer-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/architect→devops-engineer-20260530-123008.yaml
+      context_digest: 009e3d2fe8e553e49a510fae001fc5c06b6a38e059702563455f76dd4449e1b3
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Maintain modular monolith with clear layer boundaries (core → api
+        → services → infrastructure)
+      source: architect
+      impact: Drives CI module boundary enforcement and migration tracking
+    - statement: Consolidate backend configuration into core.config; remove legacy
+        config/ and db/
+      source: architect
+      impact: Drives backend-migration-check job and .importlinter legacy-config contract
+    - statement: Complete cloud Docker profile with all services
+      source: architect
+      impact: docker-compose.prod.yaml already complete; docker-smoke validates all
+        6 images
+    - statement: Add import-linter CI job with advisory severity during refactoring
+      source: devops-engineer
+      impact: Blocks only when LEGACY_IMPORTS_ALLOWED=false
+    - statement: Add snapshot-based DB recovery to deploy pipeline
+      source: devops-engineer
+      impact: 30-day artifact retention for point-in-time recovery
+    constraints:
+    - statement: backend must remain a single deployable unit for now
+      source: architect
+      impact: Constrains downstream node execution.
+    - statement: Shared database requires careful schema management
+      source: architect
+      impact: Constrains downstream node execution.
+    - statement: core/, infrastructure/, schemas/ directories don't exist yet — module
+        checks are advisory
+      source: devops-engineer
+      impact: Constrains downstream node execution.
+    - statement: Team size < 10 — limited capacity for parallel migration
+      source: architect
+      impact: Constrains downstream node execution.
+    - statement: Robot hardware tests cannot run in CI — limited to unit tests
+      source: devops-engineer
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: The codebase is a monorepo with backend, frontend (admin + portal),
+        Docker configs, and robot modules
+      source: architect
+      risk: Confirmed — verified by file exploration
+    - statement: MySQL 8.0 is the primary database, Redis 7 for caching, EMQX 5.8.4
+        for MQTT
+      source: architect
+      risk: Confirmed — all present in docker-compose files
+    - statement: pnpm workspaces used for frontends with a single root lockfile
+      source: devops-engineer
+      risk: Confirmed — pnpm-workspace.yaml and pnpm-lock.yaml exist at root
+    - statement: GHCR (ghcr.io) is the container registry for production images
+      source: devops-engineer
+      risk: Confirmed — deploy.yml pushes to ghcr.io
+    open_questions:
+    - statement: Target date for LEGACY_IMPORTS_ALLOWED=false?
+      source: devops-engineer
+      owner: senior-engineer
+    - statement: Any intentional cross-boundary imports needing .importlinter exceptions?
+      source: devops-engineer
+      owner: senior-engineer
+    - statement: Should Dependabot/Renovate be added for automated dependency updates?
+      source: devops-engineer
+      owner: release-manager
+    - statement: Should robot/agent/web_ui migrate from yarn to pnpm?
+      source: devops-engineer
+      owner: senior-engineer
+    - statement: Where are robot hardware dependencies for edge deployment?
+      source: devops-engineer
+      owner: robot-team
+  omitted_context:
+  - source: 'architect: detailed failure modes for MySQL/Redis/MQTT/External API'
+    reason: background_only
+  - source: 'architect: data flow diagrams (auth, robot management, task execution,
+      AI)'
+    reason: background_only
+  - source: 'devops-engineer v1-v5: early pipeline iterations'
+    reason: background_only
+  - source: 'database-engineer artifacts: detailed schema design'
+    reason: background_only
+  compression_rationale:
+    method: Selected architect decisions that drive pipeline structure (module boundaries,
+      layer separation, Docker profiles). Filtered out detailed failure modes and
+      data flow descriptions that don't change CI/CD configuration. Retained all constraints
+      that affect pipeline design (team size, missing directories, hardware limitations).
+    loss_notes:
+    - Excluded user auth and task execution data flow details — not relevant to CI/CD
+      pipeline design
+    - Excluded detailed failure mode analysis — already handled by health checks in
+      docker-compose
+    - Excluded earlier ops plan iterations (v1-v5) — superseded by v6 fixes and v7/v8
+      enhancements
+  quality_checks:
+  - name: All YAML files parse successfully
+    passed: true
+  - name: No secrets embedded in any configuration file
+    passed: true
+  - name: Pipeline stages have clear failure outputs
+    passed: true
+  - name: Cache keys include all inputs (requirements.txt, pnpm-lock.yaml hashes)
+    passed: true
+  - name: Deployment is reversible with defined rollback procedure
+    passed: true
+  - name: Environment boundaries named (dev, CI, staging, production)
+    passed: true
+  - name: Verification paths documented (pre-push, CI, deploy)
+    passed: true
+  - name: Module boundary contracts exist and are actionable
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - architect-architecture-v1
+  - zoom-out-context-map-v1
+  previous_blocks:
+  - ref: handoffs/architect→devops-engineer-20260530-123008.yaml
+    from: architect
+    to: devops-engineer
+    relation_type: may_trigger
+    focus: task involves deployment to an external platform or requires CI/CD delivery
+      pipeline
+    context_digest: 009e3d2fe8e553e49a510fae001fc5c06b6a38e059702563455f76dd4449e1b3
+    deliverable_artifact_refs:
+    - architect-architecture-v1
+  context_digest: 5c47e6a586ce09e595f4ec6bbd169663ee853888c0524d50da5ee064886265bc

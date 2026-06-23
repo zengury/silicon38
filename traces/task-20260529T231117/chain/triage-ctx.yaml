@@ -1,0 +1,19 @@
+block_id: triage
+task_id: task-20260529T231117
+node: triage
+layer: 1
+timestamp: '2026-05-29T15:12:13.192586+00:00'
+prev_block: genesis-ctx.yaml
+original_task: 再来一次 前面机器人管理平台的序曲
+task_type: ambiguous
+entry_nodes: []
+chain:
+- node: triage
+  layer: 1
+  chain_entry: 请求'机器人管理平台序曲'——4个关键歧义需用户澄清：机器人定义、前面对话结论、核心行动、序曲交付物
+  constraints:
+  - 序曲阶段限定为分析+设计不包含实现
+  - 需先澄清需求再启动
+active_constraints:
+- 序曲阶段限定为分析+设计不包含实现
+- 需先澄清需求再启动

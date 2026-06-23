@@ -1,0 +1,66 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/scope-prosecutor→product-vision-anchor-20260601-100802.yaml
+      context_digest: c763629162dbe4aec96e3279672e1f52d2cfc25ca62a4779cf8fd9170fb5d41f
+  retained_context:
+    decisions:
+    - statement: Focus on install experience and brand independence as core v1 scope.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Defer broad multi-level functionality audit to post-v1.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must hide Pi brand from end users.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Install must include all dependencies (Pi coding agent) automatically.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Environment is noisy; work must be low-profile and precise.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Pi coding agent is a required dependency for Manastone's agent capabilities.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Users are new to Manastone and need clear guidance.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Brand independence is achievable without breaking upstream compatibility.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What specific Pi branding currently leaks into the user experience?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the exact install failure rate or confusion point for new
+        users?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How does the OpenClaw-Pi relationship model apply technically?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file listings and code snippets not relevant to vision synthesis.
+    reason: background_only
+  - source: Prior analysis or client rationale beyond scope decisions.
+    reason: background_only
+  compression_rationale:
+    method: Extracted only the task requirements, scope verdict, and harness constraints;
+      omitted all workspace file details and prior analysis to maintain focus on vision
+      synthesis.
+    loss_notes: []
+  quality_checks:
+  - name: vision_falsifiable
+    passed: true
+  - name: out_of_scope_defined
+    passed: true
+  - name: target_user_specific
+    passed: true
+  - name: alternative_named
+    passed: true
+  - name: no_abstract_filler
+    passed: true

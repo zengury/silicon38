@@ -1,0 +1,92 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→security-engineer-20260530-123007.yaml
+      context_digest: 3df4532178bcb0a1842c543159d39649d739d9a63382ddf07ea4392c05ffe5d4
+  retained_context:
+    decisions:
+    - statement: Modular monolith with clear layer boundaries
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Consolidate backend configuration into core.config
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Standardize API versioning under /api/v1/
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use SQLModel for ORM
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Separate domain logic from infrastructure
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Extract shared frontend components
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Complete cloud Docker profile
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Document robot communication protocol
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Backend must remain a single deployable unit for now
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Shared database requires careful schema management
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Robot communication protocol must be documented
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: The codebase is a monorepo with backend, frontend, and Docker configs
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: The primary database is MySQL, with Redis for caching
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Team size is small (<10 developers)
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Domain boundaries are still evolving
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the exact database schema?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How do robots communicate (MQTT topics, WebSocket messages)?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the CI/CD pipeline?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the testing strategy?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file contents of individual source files (not needed for high-level
+      architecture)
+    reason: background_only
+  - source: Historical artifact versions (v1-v7) — not relevant for current security
+      audit
+    reason: background_only
+  compression_rationale:
+    method: Retained architectural decisions and constraints relevant to security;
+      omitted implementation details not directly related to vulnerability analysis.
+    loss_notes:
+    - Omitted detailed implementation of individual modules
+    - Omitted historical planning documents
+  quality_checks:
+  - name: All findings have specific location and exploitability condition
+    passed: true
+  - name: Findings ranked by exploitability
+    passed: true
+  - name: No false positives reported
+    passed: true
+  - name: Dependency audit covers transitive dependencies
+    passed: true
+  - name: Clean verdict explicitly states what was checked
+    passed: true

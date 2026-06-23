@@ -1,0 +1,132 @@
+context_compression_report:
+  input_scope:
+    artifacts_read:
+    - artifact_id: architect-architecture-v1
+      ref: artifacts/architect-architecture-v1.md
+      sha256: b8565faa4c5a46e0eee3d38f8f84b678503aa0a14e92befb12c2ecdf0613f634
+      used: true
+      why: Primary architecture handoff artifact defining the snapshot adapter, Three.js
+        frontend, polling/replay model, handoff block model, and read-only boundary.
+    handoffs_read:
+    - ref: handoffs/architect→api-designer-20260527-145527.yaml
+      sha256: 3cf0af892691cafb9a519ae641200d3396235a89e8128f33b9d564cf3bdde8ff
+      context_digest: 2c3178b86f61778e163e9da4ea8f6405db78aafbaa80c1c9034088545474a22e
+      used: true
+      why: Direct activation handoff for api-designer; focus is to specify read-only
+        snapshot API and JSON contracts.
+    - ref: handoffs/caveman→architect-20260527-144434.yaml
+      context_digest: d39f77d1e7a7f400cf4c44334e04146346f62d972d886346305a2c49398dd909
+      used: true
+      why: Inherited previous context block cited by the architect handoff.
+  retained_context:
+    decisions:
+    - statement: The visualizer API is local and read-only in v1.
+      source: architect-architecture-v1.md and handoffs/architect→api-designer-20260527-145527.yaml
+      impact: The contract exposes only GET endpoints and excludes runtime commands,
+        graph edits, artifact approval, and learning mutations.
+    - statement: The frontend consumes normalized JSON snapshots rather than raw YAML
+        files.
+      source: architect-architecture-v1.md
+      impact: The API centers on /api/runs/{task_id}/snapshot and /api/runs/{task_id}/events.
+    - statement: Ledger facts are authoritative for durable visual state.
+      source: architect-context-report-v1.yaml
+      impact: Every graph, node status, handoff block, policy gate, and learning object
+        preserves source refs.
+    - statement: Handoff blocks are first-class API objects.
+      source: architect-architecture-v1.md
+      impact: The contract includes deliverable slices, context-block summaries, digest
+        chains, and previous block refs.
+    - statement: Polling and deterministic replay come before SSE, WebSocket, or LangGraph
+        event bridges.
+      source: architect-architecture-v1.md
+      impact: Polling expectations and idempotent event application are specified
+        explicitly.
+    constraints:
+    - statement: Context-only relations cannot activate nodes.
+      source: architect-context-report-v1.yaml
+      impact: Relation schemas include activation_capable and evaluation_reverse_aware
+        fields.
+    - statement: Do not introduce a second source of truth.
+      source: architect-architecture-v1.md
+      impact: Errors and warnings expose parse issues instead of hiding or repairing
+        trace facts silently.
+    - statement: Graph, Policy, Ledger, Runtime, and Learning remain the visible top-level
+        concepts.
+      source: architect-context-report-v1.yaml
+      impact: The API organizes data around those concepts without adding competing
+        domain abstractions.
+    assumptions:
+    - statement: A Python adapter can normalize YAML traces and serve JSON locally.
+      source: architect-architecture-v1.md
+      risk: Implementation may later choose FastAPI or stdlib HTTP, but the JSON contract
+        should remain stable.
+    - statement: Polling at 500-1000 ms is sufficient for v1 local live observability.
+      source: architect-context-report-v1.yaml
+      risk: A future high-frequency runtime feed may need SSE/WebSocket while preserving
+        the same durable snapshot schema.
+    - statement: Learning index files may be absent or stale during early prototype
+        runs.
+      source: api-designer judgment from current trace state
+      risk: The contract returns empty arrays plus warnings rather than failing snapshots.
+    open_questions:
+    - statement: Should v1 implementation use only Python stdlib or a small web framework?
+      source: architect-context-report-v1.yaml
+      owner: senior-engineer
+    - statement: Which trace becomes the canonical demo trace after this run completes?
+      source: architect-context-report-v1.yaml
+      owner: prototype
+    - statement: Should the read-only viewer later become an authenticated control
+        plane?
+      source: architect-context-report-v1.yaml
+      owner: future-api-designer
+  omitted_context:
+  - source: Full architecture prose and Mermaid diagrams
+    reason: background_only
+  - source: Detailed Three.js scene layout decisions
+    reason: irrelevant
+  - source: Full manifest and state bodies
+    reason: duplicate
+  - source: Senior backend skill implementation examples
+    reason: irrelevant
+  compression_rationale:
+    method: Retained only decisions, constraints, assumptions, and open questions
+      needed to implement or consume the local read-only snapshot API.
+    loss_notes:
+    - Exact graph and trace contents are not embedded; clients retrieve them through
+      normalized snapshot resources.
+    - Transport upgrade details are preserved only as polling-first expectations and
+      future compatibility notes.
+    - UI rendering details are reduced to schema requirements for nodes, relations,
+      policy gates, handoff blocks, and learning indices.
+  quality_checks:
+  - name: cites_exact_direct_handoff_ref
+    passed: true
+  - name: cites_exact_direct_handoff_context_digest
+    passed: true
+  - name: cites_exact_direct_handoff_file_sha256
+    passed: true
+  - name: cites_architecture_artifact_ref_and_sha256
+    passed: true
+  - name: preserves_read_only_boundary
+    passed: true
+  - name: includes_graph_nodes_relations_contract
+    passed: true
+  - name: includes_task_trace_node_status_handoff_blocks
+    passed: true
+  - name: includes_context_policy_learning_error_polling_contracts
+    passed: true
+  producer_output_artifact_refs:
+  - api-designer-contract-v1
+  inherited_artifact_refs:
+  - architect-architecture-v1
+  - architect-context-report-v1
+  previous_blocks:
+  - ref: handoffs/architect→api-designer-20260527-145527.yaml
+    from: architect
+    to: api-designer
+    relation_type: triggers
+    focus: specify read-only snapshot API and JSON contracts
+    context_digest: 2c3178b86f61778e163e9da4ea8f6405db78aafbaa80c1c9034088545474a22e
+    file_sha256: 3cf0af892691cafb9a519ae641200d3396235a89e8128f33b9d564cf3bdde8ff
+    deliverable_artifact_refs:
+    - architect-architecture-v1

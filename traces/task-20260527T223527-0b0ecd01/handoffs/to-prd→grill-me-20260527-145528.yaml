@@ -1,0 +1,181 @@
+from: to-prd
+to: grill-me
+relation_type: evaluates
+timestamp: '2026-05-27T14:55:29.082581+00:00'
+focus: stress-test PRD scope and operational promises
+artifact_refs: &id001
+- to-prd-prd-v1
+deliverable:
+  producer: to-prd
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: to-prd-prd-v1
+    producer: to-prd
+    type: prd
+    version: 1
+    status: draft
+    content_ref: artifacts/to-prd-prd-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260527T223527-0b0ecd01
+  from: to-prd
+  to: grill-me
+  relation_type: evaluates
+  focus: stress-test PRD scope and operational promises
+  source:
+    producer_role: to-prd
+    context_compression_report_ref: artifacts/to-prd-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/triage→to-prd-20260527-144434.yaml
+      context_digest: 6cd1b49c5a5163e76e9d64f2603178a27b64cf84ff2487664a1387c2277a8ea7
+    - ref: handoffs/caveman→to-prd-20260527-144434.yaml
+      context_digest: 93dfa50d9418a38365a1c419b0b5d968267bf8cc847551f1e22456e007a8424d
+    input_artifacts:
+    - artifact_id: triage-analysis-v1
+      used: true
+      why: Provided task classification, scope, constraints, risks, recommended downstream
+        graph candidates, and done conditions.
+    - artifact_id: caveman-analysis-v1
+      used: true
+      why: Provided first-principles product shape, minimum viable version, complexity
+        cuts, essential data contract, and build order.
+  compressed_context:
+    decisions:
+    - statement: The visualizer is a Silicon Org internal observability and operations
+        feature, not a generic multi-agent dashboard.
+      source: triage-analysis-v1 and handoffs/triage→to-prd-20260527-144434.yaml
+      impact: PRD requirements center on Silicon Org's own Graph, Policy, Ledger,
+        Runtime, Learning, handoffs, and context blocks.
+    - statement: Ledger-derived run snapshots are the frontend source of truth.
+      source: caveman-analysis-v1 and handoffs/caveman→to-prd-20260527-144434.yaml
+      impact: The PRD requires a normalized snapshot contract and forbids rendering
+        private Runtime reasoning as fact.
+    - statement: MVP should prove trace replay or near-realtime polling before full
+        live runtime transport.
+      source: caveman-analysis-v1 and triage-analysis-v1
+      impact: Realtime behavior is specified as polling/replay first, with a later
+        stream-compatible data contract.
+    - statement: Handoff blocks must be visible, animated, and inspectable.
+      source: explicit user request and caveman-analysis-v1
+      impact: The PRD requires handoff block animation and a side inspector for deliverable
+        refs, context-block contents, and digest chains.
+    - statement: The UI must expose Graph, Policy, Ledger, Runtime, and Learning as
+        first-class surfaces.
+      source: org/CONTEXT_BLOCK.md, triage-analysis-v1, and caveman-analysis-v1
+      impact: The interface design requires separate visible surfaces for all five
+        concepts.
+    constraints:
+    - statement: Ledger facts, not private Runtime reasoning, must drive visual operational
+        state.
+      source: org/CONTEXT_BLOCK.md, org/RUNTIME.md, and both to-prd handoffs
+      impact: Every displayed operational fact must cite a graph or ledger source,
+        and missing facts render as not recorded.
+    - statement: Context-only relation types must not be shown as direct activation
+        edges.
+      source: org/RUNTIME.md and handoffs/triage→to-prd-20260527-144434.yaml
+      impact: The PRD requires visual distinction between activation-capable and context-only
+        relations.
+    - statement: Activation is dynamic and based on prior outputs, not a preselected
+        whole path.
+      source: org/CONTEXT_BLOCK.md and triage-analysis-v1
+      impact: The product must show candidates, skips, deferrals, policy gates, and
+        trace playback.
+    - statement: The visualizer must not replace Graph, Policy, Ledger, Runtime, or
+        Learning behavior.
+      source: triage-analysis-v1
+      impact: Non-goals explicitly exclude policy mutation, node execution, graph
+        editing, and new sources of truth in MVP.
+    - statement: Deterministic layout is preferred over uncontrolled physics for operational
+        understanding.
+      source: caveman-analysis-v1
+      impact: The PRD makes stable node positions a testable requirement.
+    assumptions:
+    - statement: A local web app using Three.js or a Three.js-backed view is acceptable
+        for the first product slice.
+      source: explicit user request and caveman-analysis-v1
+      risk: If the final frontend must be embedded elsewhere, the data adapter and
+        snapshot contract need to remain framework-neutral.
+    - statement: A trace-to-snapshot adapter can normalize current graph and ledger
+        files for the UI.
+      source: caveman-analysis-v1
+      risk: Trace schema drift may require tolerant parsing and versioned snapshots.
+    - statement: Near-realtime polling within two seconds is enough for MVP.
+      source: triage-analysis-v1 and PRD synthesis
+      risk: If true streaming is required immediately, architecture must add event-stream
+        plumbing earlier.
+    - statement: The current graph size is manageable for direct Three.js rendering.
+      source: triage-analysis-v1
+      risk: Labels, particles, and detailed panels may still clutter the scene without
+        filtering and level-of-detail controls.
+    open_questions:
+    - statement: Which trace should become the canonical demo trace for first delivery?
+      source: caveman-analysis-v1
+      owner: architect
+    - statement: Should MVP trace selection be fixed, dropdown-based, or file-picker-based?
+      source: caveman-analysis-v1 and PRD synthesis
+      owner: ux-researcher-designer
+    - statement: Should the frontend live as a static viewer generated from snapshots
+        or as a dev-server app with a lightweight local API?
+      source: caveman-analysis-v1
+      owner: architect
+  omitted_context:
+  - source: full org/RUNTIME.md command syntax
+    reason: background_only
+  - source: full org/CONTEXT_BLOCK.md prose
+    reason: background_only
+  - source: full ontology/nodes.yaml and ontology/relations.yaml contents
+    reason: background_only
+  - source: triage recommended downstream candidate list details
+    reason: background_only
+  - source: complete upstream completion_report prose
+    reason: duplicate
+  compression_rationale:
+    method: Retained only product-shaping decisions, hard Silicon Org constraints,
+      interface/data assumptions, and open questions that affect downstream architecture,
+      UX, prototype, and frontend work.
+    loss_notes:
+    - Exact graph node and edge inventories were not copied; downstream implementation
+      should read ontology files directly for authoritative counts and metadata.
+    - Runtime command examples were omitted because the PRD specifies product behavior
+      rather than node execution procedure.
+    - Repeated statements about Ledger truth and five core concepts were consolidated
+      to reduce downstream noise without weakening constraints.
+  quality_checks:
+  - name: all_required_upstream_handoffs_cited_with_exact_context_digest
+    passed: true
+  - name: all_used_upstream_artifacts_cited
+    passed: true
+  - name: retains_graph_policy_ledger_runtime_learning_model
+    passed: true
+  - name: retains_ledger_as_source_of_truth_constraint
+    passed: true
+  - name: retains_context_only_relation_constraint
+    passed: true
+  - name: prd_requirements_are_testable
+    passed: true
+  - name: yaml_parseable
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - caveman-analysis-v1
+  - triage-analysis-v1
+  previous_blocks:
+  - ref: handoffs/caveman→to-prd-20260527-144434.yaml
+    from: caveman
+    to: to-prd
+    relation_type: may_trigger
+    focus: carry first-principles minimum viable scope and complexity cuts into PRD
+    context_digest: 93dfa50d9418a38365a1c419b0b5d968267bf8cc847551f1e22456e007a8424d
+    deliverable_artifact_refs:
+    - caveman-analysis-v1
+  - ref: handoffs/triage→to-prd-20260527-144434.yaml
+    from: triage
+    to: to-prd
+    relation_type: triggers
+    focus: turn 3D realtime org visualizer request into product requirements and acceptance
+      criteria
+    context_digest: 6cd1b49c5a5163e76e9d64f2603178a27b64cf84ff2487664a1387c2277a8ea7
+    deliverable_artifact_refs:
+    - triage-analysis-v1
+  context_digest: b6b70dc53d8ead13c39d3707ac0703011bb5d87fbf0aeed0ddd7619c77980f83
+soul_ref: org/soul.md

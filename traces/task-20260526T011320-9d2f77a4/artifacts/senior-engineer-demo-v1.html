@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robot Fleet Ops Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
+</script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+<style>
+:root {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-card: #1e293b;
+  --bg-card-hover: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --accent: #3b82f6;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --critical: #ef4444;
+  --offline: #64748b;
+  --border: #334155;
+  --shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+  --radius: 12px;
+  --transition: 300ms ease;
+}
+.light {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --border: #e2e8f0;
+  --shadow: 0 4px 6px -1px rgba(0,0,0,0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background var(--transition), color var(--transition);
+  min-height: 100vh;
+}
+/* HEADER */
+.header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 24px; background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100;
+  transition: background var(--transition);
+}
+.header-left { display: flex; align-items: center; gap: 16px; }
+.logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+.fleet-badge {
+  font-size: 13px; padding: 4px 12px; border-radius: 20px;
+  background: var(--bg-card); color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+.fleet-badge.online { color: var(--success); border-color: var(--success); }
+.fleet-badge.partial { color: var(--warning); border-color: var(--warning); }
+.header-right { display: flex; align-items: center; gap: 12px; }
+.btn {
+  padding: 6px 14px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--bg-card); color: var(--text-primary); cursor: pointer;
+  font-size: 13px; transition: all var(--transition);
+}
+.btn:hover { background: var(--bg-card-hover); }
+.btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.critical { background: var(--critical); border-color: var(--critical); color: #fff; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity:1 } 50% { opacity:0.6 } }
+.alert-count { font-weight: 700; margin-left: 4px; }
+/* LAYOUT */
+.layout { display: flex; height: calc(100vh - 57px); }
+.sidebar {
+  width: 280px; background: var(--bg-secondary); border-right: 1px solid var(--border);
+  overflow-y: auto; flex-shrink: 0; transition: background var(--transition);
+  padding: 16px;
+}
+.sidebar h3 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-bottom: 12px; }
+.alert-item {
+  padding: 12px; margin-bottom: 8px; border-radius: var(--radius);
+  background: var(--bg-card); border-left: 3px solid var(--border);
+  cursor: pointer; transition: all var(--transition); font-size: 13px;
+}
+.alert-item:hover { background: var(--bg-card-hover); }
+.alert-item.critical { border-left-color: var(--critical); }
+.alert-item.warning { border-left-color: var(--warning); }
+.alert-item.acknowledged { opacity: 0.6; border-left-color: var(--offline); }
+.alert-item .alert-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.alert-item .robot-name { font-weight: 600; font-size: 12px; }
+.alert-item .severity-badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 700; text-transform: uppercase; }
+.severity-badge.CRITICAL { background: #fecaca; color: #991b1b; }
+.severity-badge.WARNING { background: #fef3c7; color: #92400e; }
+.alert-item .alert-msg { font-size: 12px; color: var(--text-secondary); }
+.alert-item .alert-actions { display: flex; gap: 6px; margin-top: 8px; }
+.alert-item .alert-actions button { font-size: 11px; padding: 3px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-primary); cursor: pointer; }
+.alert-item .alert-actions button:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+.no-alerts { text-align: center; padding: 24px; color: var(--success); font-size: 14px; }
+.main { flex: 1; overflow-y: auto; padding: 20px; }
+/* DASHBOARD */
+.dashboard-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  margin-bottom: 20px;
+}
+@media (max-width: 1200px) { .dashboard-grid { grid-template-columns: 1fr; } }
+.chart-card {
+  background: var(--bg-card); border-radius: var(--radius); padding: 16px;
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+  transition: background var(--transition);
+}
+.chart-card.full-width { grid-column: 1 / -1; }
+.chart-card h4 { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+.chart-card canvas { max-height: 220px; }
+/* HEATMAP */
+.heatmap-container { display: flex; flex-direction: column; gap: 4px; }
+.heatmap-row { display: flex; align-items: center; gap: 8px; }
+.heatmap-label { font-size: 11px; color: var(--text-secondary); width: 100px; text-align: right; flex-shrink: 0; }
+.heatmap-cells { display: flex; gap: 3px; }
+.heatmap-cell {
+  width: 36px; height: 24px; border-radius: 4px; font-size: 10px;
+  display: flex; align-items: center; justify-content: center; font-weight: 600;
+  transition: background var(--transition);
+}
+/* MAP */
+#map { height: 220px; border-radius: 8px; }
+/* ROBOT CARDS */
+.robot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+.robot-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow);
+  cursor: pointer; transition: all var(--transition); position: relative;
+}
+.robot-card:hover { background: var(--bg-card-hover); transform: translateY(-2px); }
+.robot-card.critical { border-color: var(--critical); animation: pulseBorder 2s infinite; }
+.robot-card.warning { border-color: var(--warning); }
+.robot-card.offline { opacity: 0.55; }
+@keyframes pulseBorder { 0%,100% { border-color: var(--critical); box-shadow: 0 0 0 0 rgba(239,68,68,0.4); } 50% { border-color: #f87171; box-shadow: 0 0 0 6px rgba(239,68,68,0); } }
+.robot-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.robot-name { font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+.status-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.status-dot.online { background: var(--success); }
+.status-dot.warning { background: var(--warning); }
+.status-dot.critical,.status-dot.error { background: var(--critical); }
+.status-dot.offline { background: var(--offline); }
+.alert-badge {
+  font-size: 11px; background: var(--critical); color: #fff; padding: 2px 8px;
+  border-radius: 10px; font-weight: 700;
+}
+.robot-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.metric { font-size: 12px; }
+.metric-label { color: var(--text-secondary); font-size: 11px; }
+.metric-value { font-weight: 600; font-size: 13px; }
+.metric-bar {
+  height: 4px; border-radius: 2px; margin-top: 2px;
+  background: var(--border); overflow: hidden;
+}
+.metric-bar-fill { height: 100%; border-radius: 2px; transition: width 500ms ease; }
+.metric-bar-fill.good { background: var(--success); }
+.metric-bar-fill.warn { background: var(--warning); }
+.metric-bar-fill.bad { background: var(--critical); }
+.robot-footer { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-secondary); }
+.last-seen { font-style: italic; }
+.ownership-badge {
+  font-size: 10px; padding: 2px 8px; border-radius: 8px;
+  background: var(--accent); color: #fff; font-weight: 600;
+}
+/* DETAIL PANEL */
+.detail-overlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5);
+  z-index: 200; display: flex; justify-content: flex-end;
+  opacity: 0; pointer-events: none; transition: opacity 250ms;
+}
+.detail-overlay.open { opacity: 1; pointer-events: auto; }
+.detail-panel {
+  width: 520px; max-width: 90vw; background: var(--bg-secondary); height: 100%;
+  overflow-y: auto; padding: 24px; box-shadow: -4px 0 20px rgba(0,0,0,0.3);
+  transition: background var(--transition);
+}
+.detail-panel h2 { margin-bottom: 16px; font-size: 20px; display: flex; align-items: center; gap: 10px; }
+.detail-panel .close-btn { float: right; background: none; border: none; color: var(--text-primary); font-size: 24px; cursor: pointer; }
+.sensor-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+.sensor-table th { text-align: left; color: var(--text-secondary); font-weight: 500; padding: 8px 12px; border-bottom: 1px solid var(--border); font-size: 11px; text-transform: uppercase; }
+.sensor-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.temp-cell { font-weight: 600; transition: color var(--transition); }
+.temp-normal { color: var(--success); }
+.temp-warm { color: var(--warning); }
+.temp-hot { color: var(--critical); }
+.detail-section { margin-top: 20px; }
+.detail-section h4 { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+.comment-thread { margin-top: 16px; }
+.comment { padding: 10px; background: var(--bg-card); border-radius: 8px; margin-bottom: 8px; font-size: 13px; }
+.comment-author { font-weight: 600; font-size: 12px; color: var(--accent); }
+.comment-time { font-size: 11px; color: var(--text-secondary); margin-left: 8px; }
+.comment-input { display: flex; gap: 8px; margin-top: 12px; }
+.comment-input input {
+  flex: 1; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--bg-card); color: var(--text-primary); font-size: 13px;
+}
+.comment-input button { padding: 8px 16px; }
+/* CONFIG PANEL */
+.config-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.config-group h4 { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+.config-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 13px; }
+.config-row input[type=range] { width: 120px; accent-color: var(--accent); }
+.config-row input[type=number] { width: 64px; padding: 4px; border-radius: 4px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-primary); text-align: center; font-size: 12px; }
+.config-row select { padding: 4px 8px; border-radius: 4px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-primary); font-size: 12px; }
+/* TOAST */
+.toast {
+  position: fixed; bottom: 24px; right: 24px; padding: 12px 20px;
+  border-radius: var(--radius); background: var(--bg-card); border: 1px solid var(--border);
+  box-shadow: var(--shadow); z-index: 300; font-size: 13px;
+  display: flex; align-items: center; gap: 12px;
+  animation: slideIn 300ms ease;
+}
+.toast button { padding: 4px 12px; font-size: 12px; }
+@keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .layout { flex-direction: column; }
+  .sidebar { width: 100%; max-height: 200px; border-right: none; border-bottom: 1px solid var(--border); }
+  .robot-grid { grid-template-columns: 1fr; }
+  .detail-panel { width: 100vw; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-left">
+    <span class="logo">🤖 FleetOps</span>
+    <span class="fleet-badge" id="fleetBadge">6/6 Online</span>
+  </div>
+  <div class="header-right">
+    <button class="btn" id="layoutCompact">Compact</button>
+    <button class="btn" id="layoutRelaxed">Relaxed</button>
+    <button class="btn" id="layoutFocus">Focus</button>
+    <button class="btn" id="themeToggle">🌙 Dark</button>
+    <button class="btn" id="langToggle">🌐 中</button>
+    <button class="btn" id="injectFall">💥 Inject Fall</button>
+    <button class="btn" id="injectLowBatt">🔋 Low Battery</button>
+    <button class="btn" id="injectJointLoss">🦾 Joint Loss</button>
+    <button class="btn" id="resolveAll">✅ Resolve All</button>
+  </div>
+</header>
+
+<!-- LAYOUT -->
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <h3>⚠ Alerts</h3>
+    <div id="alertList"><div class="no-alerts">✅ No active alerts</div></div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main" id="mainContent">
+    <!-- DASHBOARD -->
+    <div class="dashboard-grid" id="dashboardGrid">
+      <div class="chart-card">
+        <h4>Fleet Status</h4>
+        <canvas id="donutChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Avg Battery Trend (1h)</h4>
+        <canvas id="lineChart"></canvas>
+      </div>
+      <div class="chart-card full-width">
+        <h4>Joint Temperature Heatmap</h4>
+        <div class="heatmap-container" id="heatmap"></div>
+      </div>
+      <div class="chart-card full-width">
+        <h4>Robot Locations</h4>
+        <div id="map"></div>
+      </div>
+    </div>
+
+    <!-- ROBOT CARDS -->
+    <div class="robot-grid" id="robotGrid"></div>
+  </main>
+</div>
+
+<!-- DETAIL OVERLAY -->
+<div class="detail-overlay" id="detailOverlay">
+  <div class="detail-panel" id="detailPanel"></div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div id="toastContainer"></div>
+
+<script>
+// ─── DATA NORMALIZER ────────────────────────────────────────
+const UNIT_CONVERSIONS = {
+  'fahrenheit_to_celsius': v => (v - 32) * 5/9,
+  'voltage_to_percent_48v': v => Math.min(100, Math.max(0, ((v - 36) / (50.4 - 36)) * 100)),
+  'voltage_to_percent_24v': v => Math.min(100, Math.max(0, ((v - 18) / (25.2 - 18)) * 100)),
+  'deg_to_rad': v => v * Math.PI / 180,
+};
+
+const ADAPTERS = {
+  'json-a': {
+    normalize(raw) {
+      return {
+        robotId: raw.robot_id || raw.id,
+        timestamp: raw.ts || Date.now(),
+        battery: {
+          level: raw.bat_pct ?? raw.battery?.percentage ?? 0,
+          voltage: raw.bat_v ?? raw.battery?.voltage ?? 0,
+          temperature: raw.bat_temp_c ?? UNIT_CONVERSIONS.fahrenheit_to_celsius(raw.bat_temp_f ?? 77) ?? 25,
+        },
+        joints: (raw.joints || raw.motors || []).map(j => ({
+          name: j.name || j.joint_name || 'unknown',
+          temperature: j.temp_c ?? j.temperature ?? UNIT_CONVERSIONS.fahrenheit_to_celsius(j.temp_f) ?? 25,
+          torque: j.torque ?? j.torque_nm ?? 0,
+          velocity: j.velocity ?? j.vel ?? 0,
+          position: j.position ?? j.pos ?? 0,
+          communication: j.comm || j.communication || 'OK',
+        })),
+        cpu: { usage: raw.cpu_pct ?? raw.cpu?.usage ?? 0, temperature: raw.cpu_temp_c ?? raw.cpu?.temp ?? 25 },
+        network: { latency: raw.latency_ms ?? raw.net?.ping ?? 0, rssi: raw.rssi ?? raw.net?.rssi ?? -50 },
+        task: { id: raw.task_id ?? raw.task?.id ?? '', name: raw.task_name ?? raw.task?.name ?? 'Idle', progress: raw.task_progress ?? raw.task?.progress ?? 0 },
+        location: { lat: raw.lat ?? raw.gps?.lat ?? 0, lng: raw.lng ?? raw.gps?.lng ?? 0, alt: raw.alt ?? raw.gps?.alt },
+        status: raw.status ?? raw.state ?? 'ONLINE',
+        statusDetail: raw.status_detail ?? raw.error ?? '',
+      };
+    }
+  },
+  'json-b': {
+    normalize(raw) {
+      return {
+        robotId: raw.machineId || raw.deviceId,
+        timestamp: raw.timestamp || Date.now(),
+        battery: {
+          level: raw.power?.level ?? raw.batteryLevel ?? 0,
+          voltage: raw.power?.voltage ?? raw.batteryVoltage ?? 0,
+          temperature: raw.power?.temperature ?? 25,
+        },
+        joints: (raw.actuators || raw.servos || []).map(j => ({
+          name: j.id || j.label || 'unknown',
+          temperature: j.temp ?? j.temperature ?? 25,
+          torque: j.torque ?? 0,
+          velocity: j.speed ?? j.velocity ?? 0,
+          position: j.angle ?? j.position ?? 0,
+          communication: j.online ? 'OK' : 'LOST',
+        })),
+        cpu: { usage: raw.system?.cpu ?? 0, temperature: raw.system?.cpuTemp ?? 25 },
+        network: { latency: raw.network?.ping ?? 0, rssi: raw.network?.signal ?? -50 },
+        task: { id: raw.mission?.id ?? '', name: raw.mission?.name ?? 'Idle', progress: raw.mission?.completion ?? 0 },
+        location: { lat: raw.position?.latitude ?? 0, lng: raw.position?.longitude ?? 0 },
+        status: raw.status ?? 'ONLINE',
+      };
+    }
+  },
+  'proto-like': {
+    normalize(raw) {
+      return {
+        robotId: raw.robotId || raw.robot_id,
+        timestamp: raw.timestamp ?? raw.time_ms ?? Date.now(),
+        battery: {
+          level: raw.batteryLevel ?? raw.battery_level ?? ((raw.batteryVoltage ?? 48) - 36) / (50.4 - 36) * 100,
+          voltage: raw.batteryVoltage ?? raw.battery_voltage ?? 48,
+          temperature: raw.batteryTemp ?? raw.battery_temp ?? 25,
+        },
+        joints: (raw.jointStates || raw.joint_states || []).map(j => ({
+          name: j.jointName || j.name || 'unknown',
+          temperature: j.temperature ?? j.temp ?? 25,
+          torque: j.torque ?? 0,
+          velocity: j.velocity ?? 0,
+          position: j.position ?? 0,
+          communication: j.commStatus ?? j.comm_status ?? 'OK',
+        })),
+        cpu: { usage: raw.cpuUsage ?? raw.cpu_usage ?? 0, temperature: raw.cpuTemp ?? raw.cpu_temp ?? 25 },
+        network: { latency: raw.networkLatency ?? raw.network_latency ?? 0, rssi: raw.rssi ?? -50 },
+        task: { id: raw.currentTaskId ?? '', name: raw.currentTask ?? 'Idle', progress: raw.taskProgress ?? 0 },
+        location: { lat: raw.latitude ?? 0, lng: raw.longitude ?? 0, alt: raw.altitude },
+        status: raw.robotStatus ?? raw.status ?? 'ONLINE',
+      };
+    }
+  }
+};
+
+class DataNormalizer {
+  constructor() {
+    this.adapters = new Map();
+    Object.entries(ADAPTERS).forEach(([fmt, adp]) => this.registerAdapter(fmt, adp));
+  }
+  registerAdapter(format, adapter) { this.adapters.set(format, adapter); }
+  normalize(raw, format) {
+    const adapter = this.adapters.get(format);
+    if (!adapter) throw new Error(`Unknown format: ${format}`);
+    return adapter.normalize(raw);
+  }
+}
+
+const normalizer = new DataNormalizer();
+
+// ─── ALERT ENGINE ───────────────────────────────────────────
+class AlertEngine {
+  constructor() {
+    this.rules = [
+      { id: 'fall', metric: 'status', operator: '==', threshold: 'FALLEN', severity: 'CRITICAL', messageTemplate: 'Robot has fallen!' },
+      { id: 'low_battery', metric: 'battery.level', operator: '<', threshold: 20, severity: 'WARNING', messageTemplate: 'Battery critically low ({value}%)' },
+      { id: 'joint_lost', metric: 'joints', operator: 'includes', threshold: 'LOST', severity: 'CRITICAL', messageTemplate: 'Joint communication lost: {detail}' },
+    ];
+    this.activeAlerts = [];
+    this.alertHistory = [];
+    this.dedupWindow = 300000; // 5 min
+  }
+  getValue(obj, path) {
+    if (path === 'joints') return obj.joints || [];
+    return path.split('.').reduce((o, k) => o?.[k], obj);
+  }
+  evaluate(telemetry) {
+    const newAlerts = [];
+    for (const rule of this.rules) {
+      const value = this.getValue(telemetry, rule.metric);
+      let triggered = false;
+      let detail = '';
+
+      if (rule.operator === '==') triggered = value === rule.threshold;
+      else if (rule.operator === '<') triggered = typeof value === 'number' && value < rule.threshold;
+      else if (rule.operator === '>') triggered = typeof value === 'number' && value > rule.threshold;
+      else if (rule.operator === 'includes' && Array.isArray(value)) {
+        const lost = value.filter(v => (v.communication || v.commStatus) === 'LOST');
+        triggered = lost.length > 0;
+        detail = lost.map(v => v.name || v.jointName).join(', ');
+      }
+
+      if (triggered) {
+        // Dedup
+        const recentDup = this.activeAlerts.find(a =>
+          a.robotId === telemetry.robotId && a.ruleId === rule.id &&
+          (Date.now() - a.timestamp) < this.dedupWindow
+        );
+        if (!recentDup) {
+          const msg = rule.messageTemplate.replace('{value}', value).replace('{detail}', detail);
+          newAlerts.push({
+            id: `alert-${Date.now()}-${Math.random().toString(36).slice(2,6)}`,
+            robotId: telemetry.robotId,
+            robotName: ROBOT_NAMES[telemetry.robotId] || telemetry.robotId,
+            ruleId: rule.id,
+            severity: rule.severity,
+            message: msg,
+            timestamp: Date.now(),
+            acknowledged: false,
+            resolved: false,
+          });
+        }
+      }
+    }
+    // Resolve alerts where condition is no longer true
+    this.activeAlerts.forEach(a => {
+      const rule = this.rules.find(r => r.id === a.ruleId);
+      if (!rule) return;
+      const value = this.getValue(telemetry, rule.metric);
+      let stillTriggered = false;
+      if (rule.operator === '==') stillTriggered = value === rule.threshold;
+      else if (rule.operator === '<') stillTriggered = typeof value === 'number' && value < rule.threshold;
+      else if (rule.operator === 'includes' && Array.isArray(value)) stillTriggered = value.some(v => (v.communication || v.commStatus) === 'LOST');
+      if (!stillTriggered && !a.resolved) {
+        a.resolved = true;
+        a.resolvedAt = Date.now();
+        a.autoResolved = true;
+      }
+    });
+    this.activeAlerts.push(...newAlerts);
+    this.alertHistory.push(...newAlerts);
+    return newAlerts;
+  }
+  acknowledge(alertId) {
+    const a = this.activeAlerts.find(x => x.id === alertId);
+    if (a) a.acknowledged = true;
+  }
+  getActive() { return this.activeAlerts.filter(a => !a.resolved || (a.resolved && Date.now() - (a.resolvedAt||0) < 10000)); }
+}
+
+const alertEngine = new AlertEngine();
+
+// ─── MOCK DATA ──────────────────────────────────────────────
+const JOINT_NAMES = ['left_shoulder_pitch','left_shoulder_roll','left_elbow','left_wrist','right_shoulder_pitch','right_shoulder_roll','right_elbow','right_wrist','left_hip','left_knee','left_ankle','right_hip','right_knee','right_ankle'];
+const ROBOT_NAMES = { R01:'Atlas-01', R02:'Nova-02', R03:'Titan-03', R04:'Vega-04', R05:'Orion-05', R06:'Phoenix-06' };
+const ROBOT_LOCATIONS = { R01:{lat:31.2304,lng:121.4737}, R02:{lat:31.2350,lng:121.4800}, R03:{lat:31.2200,lng:121.4650}, R04:{lat:31.2400,lng:121.4900}, R05:{lat:31.2150,lng:121.4550}, R06:{lat:31.2500,lng:121.5000} };
+
+class RobotSimulator {
+  constructor(id, personality) {
+    this.id = id;
+    this.p = personality;
+    this.tick = 0;
+    this.anomaly = null;
+    this.batteryLevel = personality.baseBattery;
+    this.jointTemps = personality.baseJointTemps.map(t => t);
+    this.cpuUsage = personality.baseCpu;
+    this.status = 'ONLINE';
+    this.latency = personality.baseLatency;
+    this.format = personality.format;
+  }
+  injectAnomaly(type) {
+    this.anomaly = type;
+    if (type === 'fall') this.status = 'FALLEN';
+    if (type === 'low_battery') this.batteryLevel = 15;
+    if (type === 'joint_loss') {
+      const idx = Math.floor(Math.random() * this.jointTemps.length);
+      this._lostJointIdx = idx;
+      this.jointTemps[idx] = this.jointTemps[idx] + 15;
+    }
+  }
+  resolveAnomaly() {
+    if (this.anomaly === 'fall') this.status = 'ONLINE';
+    if (this.anomaly === 'low_battery') this.batteryLevel = this.p.baseBattery;
+    if (this.anomaly === 'joint_loss' && this._lostJointIdx !== undefined) this.jointTemps[this._lostJointIdx] = this.p.baseJointTemps[this._lostJointIdx];
+    this.anomaly = null;
+  }
+  generateTelemetry() {
+    this.tick++;
+    // Battery drain
+    if (this.status === 'ONLINE') this.batteryLevel = Math.max(0, this.batteryLevel - (this.p.batteryDrain + Math.random() * 0.1));
+    // Joint temp drift
+    this.jointTemps = this.jointTemps.map((t, i) => t + (Math.random() - 0.5) * 0.3 + (this.p.tempDrift[i] || 0));
+    // CPU
+    this.cpuUsage = Math.min(100, Math.max(0, this.cpuUsage + (Math.random() - 0.5) * 5));
+    // Latency
+    if (this.status === 'ONLINE') this.latency = Math.max(5, this.p.baseLatency + (Math.random() - 0.5) * 20);
+    // Offline simulation
+    if (this.p.offlineChance > 0 && Math.random() < this.p.offlineChance && this.status === 'ONLINE') {
+      this.status = 'OFFLINE';
+      setTimeout(() => { if (this.status === 'OFFLINE') this.status = 'ONLINE'; }, 10000 + Math.random() * 20000);
+    }
+
+    const numJoints = JOINT_NAMES.length;
+    return {
+      robotId: this.id,
+      timestamp: Date.now(),
+      battery: { level: Math.round(this.batteryLevel * 10) / 10, voltage: 36 + (this.batteryLevel / 100) * 14.4, temperature: 25 + (Math.random() - 0.5) * 5 },
+      joints: JOINT_NAMES.map((name, i) => ({
+        name,
+        temperature: Math.round(this.jointTemps[i] * 10) / 10,
+        torque: Math.round((Math.random() * 10) * 10) / 10,
+        velocity: Math.round((Math.random() - 0.5) * 2 * 10) / 10,
+        position: Math.round((Math.random() - 0.5) * Math.PI * 10) / 10,
+        communication: (this.anomaly === 'joint_loss' && i === this._lostJointIdx) ? 'LOST' : 'OK',
+      })),
+      cpu: { usage: Math.round(this.cpuUsage), temperature: 40 + Math.round((this.cpuUsage / 100) * 40) },
+      network: { latency: Math.round(this.latency), rssi: -50 + Math.round(Math.random() * 20) },
+      task: { id: `task-${this.tick % 5}`, name: ['Patrol','Charging','Idle','Inspection','Pick-and-Place'][this.tick % 5], progress: Math.round(Math.random() * 100) },
+      location: ROBOT_LOCATIONS[this.id],
+      status: this.status,
+      statusDetail: this.status === 'FALLEN' ? 'Fall detected — gyroscope anomaly' : this.status === 'OFFLINE' ? 'Heartbeat timeout' : '',
+    };
+  }
+}
+
+const PERSONALITIES = {
+  R01: { baseBattery:85, baseJointTemps:JOINT_NAMES.map(()=>35), baseCpu:30, baseLatency:15, batteryDrain:0.02, tempDrift:JOINT_NAMES.map(()=>0), offlineChance:0, format:'json-a' },
+  R02: { baseBattery:72, baseJointTemps:JOINT_NAMES.map(()=>38), baseCpu:55, baseLatency:45, batteryDrain:0.03, tempDrift:JOINT_NAMES.map(()=>0), offlineChance:0, format:'json-b' },
+  R03: { baseBattery:50, baseJointTemps:JOINT_NAMES.map((_,i)=>i<4?58:38), baseCpu:70, baseLatency:20, batteryDrain:0.04, tempDrift:JOINT_NAMES.map((_,i)=>i<4?0.05:0), offlineChance:0, format:'json-a' },
+  R04: { baseBattery:91, baseJointTemps:JOINT_NAMES.map(()=>33), baseCpu:25, baseLatency:10, batteryDrain:0.05, tempDrift:JOINT_NAMES.map(()=>0), offlineChance:0, format:'proto-like' },
+  R05: { baseBattery:24, baseJointTemps:JOINT_NAMES.map(()=>36), baseCpu:45, baseLatency:25, batteryDrain:0.02, tempDrift:JOINT_NAMES.map(()=>0), offlineChance:0, format:'json-b' },
+  R06: { baseBattery:60, baseJointTemps:JOINT_NAMES.map(()=>35), baseCpu:40, baseLatency:50, batteryDrain:0.03, tempDrift:JOINT_NAMES.map(()=>0), offlineChance:0.015, format:'proto-like' },
+};
+
+const simulators = {};
+Object.entries(PERSONALITIES).forEach(([id, p]) => { simulators[id] = new RobotSimulator(id, p); });
+
+// ─── HISTORY BUFFER ─────────────────────────────────────────
+const history = {}; // robotId -> [{ts, battery, avgTemp, cpu}]
+Object.keys(simulators).forEach(id => { history[id] = []; });
+
+// ─── STORE ──────────────────────────────────────────────────
+let robots = {};
+let alerts = [];
+let configs = {};
+let ui = { theme: 'dark', language: 'zh-CN', layout: 'relaxed', selectedRobot: null };
+let comments = {};
+
+Object.keys(simulators).forEach(id => {
+  robots[id] = null;
+  configs[id] = {
+    alertThresholds: { tempMax: 65, batteryMin: 20, latencyMax: 200 },
+    samplingFrequency: 1,
+    reconnect: { maxRetries: 10, retryInterval: 1000, timeout: 30000 },
+  };
+  comments[id] = [];
+});
+
+function updateTelemetry(telemetry) {
+  robots[telemetry.robotId] = telemetry;
+  // History
+  if (!history[telemetry.robotId]) history[telemetry.robotId] = [];
+  history[telemetry.robotId].push({
+    ts: telemetry.timestamp,
+    battery: telemetry.battery.level,
+    avgTemp: telemetry.joints.reduce((s,j)=>s+j.temperature,0)/telemetry.joints.length,
+    cpu: telemetry.cpu.usage,
+  });
+  if (history[telemetry.robotId].length > 3600) history[telemetry.robotId].shift();
+  // Alert eval
+  const newAlerts = alertEngine.evaluate(telemetry);
+  if (newAlerts.length > 0) {
+    alerts = alertEngine.getActive();
+    playAlertSound();
+  }
+  alerts = alertEngine.getActive();
+  render();
+}
+
+function acknowledgeAlert(id) {
+  alertEngine.acknowledge(id);
+  alerts = alertEngine.getActive();
+  render();
+}
+
+// ─── SIMULATION LOOP ────────────────────────────────────────
+function tick() {
+  Object.values(simulators).forEach(sim => {
+    const raw = sim.generateTelemetry();
+    const telemetry = normalizer.normalize(raw, sim.format);
+    updateTelemetry(telemetry);
+  });
+}
+
+setInterval(tick, 1000);
+tick(); // Initial tick
+
+// ─── CHARTS ─────────────────────────────────────────────────
+let donutChart, lineChart;
+
+function initCharts() {
+  const donutCtx = document.getElementById('donutChart').getContext('2d');
+  donutChart = new Chart(donutCtx, {
+    type: 'doughnut',
+    data: { labels: ['Online','Warning','Error','Offline'], datasets: [{ data: [6,0,0,0], backgroundColor: ['#22c55e','#f59e0b','#ef4444','#64748b'], borderWidth: 2, borderColor: getComputedStyle(document.documentElement).getPropertyValue('--bg-card').trim() }] },
+    options: { responsive: true, maintainAspectRatio: true, cutout:'65%', plugins: { legend: { position:'bottom', labels: { color: getComputedStyle(document.documentElement).getPropertyValue('--text-secondary').trim(), padding:16, font:{size:11} } } } }
+  });
+
+  const lineCtx = document.getElementById('lineChart').getContext('2d');
+  lineChart = new Chart(lineCtx, {
+    type: 'line',
+    data: { labels: [], datasets: [{ label:'Avg Battery %', data:[], borderColor:'#3b82f6', backgroundColor:'rgba(59,130,246,0.1)', fill:true, tension:0.3, pointRadius:0 }] },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      scales: { x:{ display:false }, y:{ min:0, max:100, ticks:{ color: getComputedStyle(document.documentElement).getPropertyValue('--text-secondary').trim(), font:{size:10} }, grid:{ color: getComputedStyle(document.documentElement).getPropertyValue('--border').trim() } } },
+      plugins: { legend:{ display:false } }
+    }
+  });
+}
+
+function updateCharts() {
+  const robotList = Object.values(robots).filter(Boolean);
+  const online = robotList.filter(r => r.status === 'ONLINE' && !hasActiveWarnings(r.robotId)).length;
+  const warning = robotList.filter(r => r.status === 'ONLINE' && hasActiveWarnings(r.robotId)).length;
+  const error = robotList.filter(r => r.status === 'FALLEN' || r.status === 'ERROR').length;
+  const offline = robotList.filter(r => r.status === 'OFFLINE').length;
+
+  donutChart.data.datasets[0].data = [online, warning, error, offline];
+  donutChart.update();
+
+  const avgBattery = robotList.reduce((s,r) => s + r.battery.level, 0) / Math.max(1, robotList.length);
+  const now = new Date().toLocaleTimeString();
+  lineChart.data.labels.push(now);
+  lineChart.data.datasets[0].data.push(Math.round(avgBattery));
+  if (lineChart.data.labels.length > 60) { lineChart.data.labels.shift(); lineChart.data.datasets[0].data.shift(); }
+  lineChart.update();
+}
+
+function hasActiveWarnings(robotId) {
+  return alerts.some(a => a.robotId === robotId && !a.resolved);
+}
+
+function getRobotAlertLevel(robotId) {
+  const robotAlerts = alerts.filter(a => a.robotId === robotId && !a.resolved && !a.acknowledged);
+  if (robotAlerts.some(a => a.severity === 'CRITICAL')) return 'critical';
+  if (robotAlerts.some(a => a.severity === 'WARNING')) return 'warning';
+  return 'normal';
+}
+
+// ─── HEATMAP ────────────────────────────────────────────────
+function renderHeatmap() {
+  const container = document.getElementById('heatmap');
+  const robotIds = Object.keys(robots).filter(id => robots[id]);
+  let html = '';
+  robotIds.forEach(id => {
+    const r = robots[id];
+    html += `<div class="heatmap-row"><span class="heatmap-label">${ROBOT_NAMES[id]}</span><div class="heatmap-cells">`;
+    r.joints.forEach(j => {
+      let color;
+      if (j.temperature < 40) color = '#22c55e';
+      else if (j.temperature < 55) color = '#f59e0b';
+      else if (j.temperature < 70) color = '#f97316';
+      else color = '#ef4444';
+      html += `<div class="heatmap-cell" style="background:${color};color:#fff" title="${j.name}: ${j.temperature.toFixed(1)}°C">${Math.round(j.temperature)}</div>`;
+    });
+    html += '</div></div>';
+  });
+  container.innerHTML = html;
+}
+
+// ─── MAP ────────────────────────────────────────────────────
+let map;
+function initMap() {
+  map = L.map('map').setView([31.2304, 121.4737], 14);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution:'&copy; OpenStreetMap' }).addTo(map);
+}
+
+function updateMap() {
+  if (!map) return;
+  // Remove old markers
+  map.eachLayer(l => { if (l instanceof L.Marker) map.removeLayer(l); });
+  Object.entries(robots).forEach(([id, r]) => {
+    if (!r) return;
+    const level = getRobotAlertLevel(id);
+    const color = level === 'critical' ? '#ef4444' : level === 'warning' ? '#f59e0b' : r.status === 'OFFLINE' ? '#64748b' : '#22c55e';
+    const icon = L.divIcon({ html: `<div style="width:14px;height:14px;border-radius:50%;background:${color};border:2px solid #fff;box-shadow:0 0 6px ${color}"></div>`, className:'', iconSize:[14,14], iconAnchor:[7,7] });
+    L.marker([r.location.lat, r.location.lng], {icon}).addTo(map).bindPopup(`<b>${ROBOT_NAMES[id]}</b><br>${r.status} — ${r.battery.level.toFixed(0)}%`);
+  });
+}
+
+// ─── ALERT SOUND ────────────────────────────────────────────
+let audioCtx;
+function playAlertSound() {
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.frequency.value = 880;
+    osc.type = 'square';
+    gain.gain.value = 0.05;
+    osc.start(); osc.stop(audioCtx.currentTime + 0.15);
+  } catch(e) {}
+}
+
+// ─── RENDER ─────────────────────────────────────────────────
+function renderRobotCards() {
+  const grid = document.getElementById('robotGrid');
+  const robotList = Object.values(robots).filter(Boolean);
+
+  // Sort: critical > warning > normal > offline
+  const order = { critical:0, warning:1, normal:2, offline:3 };
+  robotList.sort((a,b) => {
+    const la = getRobotAlertLevel(a.robotId);
+    const lb = getRobotAlertLevel(b.robotId);
+    if (a.status === 'OFFLINE' && b.status !== 'OFFLINE') return 1;
+    if (b.status === 'OFFLINE' && a.status !== 'OFFLINE') return -1;
+    return (order[la]||2) - (order[lb]||2);
+  });
+
+  grid.innerHTML = robotList.map(r => {
+    const level = getRobotAlertLevel(r.robotId);
+    const cardClass = r.status === 'OFFLINE' ? 'offline' : level;
+    const alertCount = alerts.filter(a => a.robotId === r.robotId && !a.resolved && !a.acknowledged).length;
+    const statusClass = r.status === 'ONLINE' ? (level === 'critical' ? 'critical' : level === 'warning' ? 'warning' : 'online') : r.status === 'OFFLINE' ? 'offline' : 'critical';
+    const isOwned = ui.ownedRobots && ui.ownedRobots.has(r.robotId);
+
+    return `
+    <div class="robot-card ${cardClass}" onclick="openDetail('${r.robotId}')">
+      <div class="robot-card-header">
+        <span class="robot-name"><span class="status-dot ${statusClass}"></span>${ROBOT_NAMES[r.robotId]}</span>
+        ${alertCount > 0 ? `<span class="alert-badge">⚠ ${alertCount}</span>` : ''}
+        ${isOwned ? '<span class="ownership-badge">🔧 我在处理</span>' : ''}
+      </div>
+      <div class="robot-metrics">
+        <div class="metric">
+          <div class="metric-label">🔋 Battery</div>
+          <div class="metric-value">${r.battery.level.toFixed(0)}%</div>
+          <div class="metric-bar"><div class="metric-bar-fill ${r.battery.level > 30 ? 'good' : r.battery.level > 20 ? 'warn' : 'bad'}" style="width:${r.battery.level}%"></div></div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">🌡 Max Joint Temp</div>
+          <div class="metric-value">${Math.max(...r.joints.map(j=>j.temperature)).toFixed(1)}°C</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">💻 CPU</div>
+          <div class="metric-value">${r.cpu.usage}%</div>
+          <div class="metric-bar"><div class="metric-bar-fill ${r.cpu.usage < 70 ? 'good' : r.cpu.usage < 90 ? 'warn' : 'bad'}" style="width:${r.cpu.usage}%"></div></div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">📶 Latency</div>
+          <div class="metric-value">${r.network.latency}ms</div>
+        </div>
+      </div>
+      <div class="robot-footer">
+        <span class="last-seen">🕐 ${new Date(r.timestamp).toLocaleTimeString()}</span>
+        <span>📋 ${r.task.name} ${r.task.progress}%</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderAlertSidebar() {
+  const container = document.getElementById('alertList');
+  const active = alerts.filter(a => !a.resolved);
+  if (active.length === 0) {
+    container.innerHTML = '<div class="no-alerts">✅ No active alerts</div>';
+    return;
+  }
+  container.innerHTML = active.map(a => `
+    <div class="alert-item ${a.severity.toLowerCase()} ${a.acknowledged ? 'acknowledged' : ''}" onclick="openDetail('${a.robotId}')">
+      <div class="alert-header">
+        <span class="robot-name">${a.robotName}</span>
+        <span class="severity-badge ${a.severity}">${a.severity}</span>
+      </div>
+      <div class="alert-msg">${a.message}</div>
+      <div style="font-size:10px;color:var(--text-secondary);margin-top:4px">${new Date(a.timestamp).toLocaleTimeString()}</div>
+      ${!a.acknowledged ? `<div class="alert-actions"><button onclick="event.stopPropagation();acknowledgeAlert('${a.id}')">✓ Acknowledge</button></div>` : ''}
+      ${a.autoResolved ? '<div style="font-size:10px;color:var(--success);margin-top:4px">Auto-resolved</div>' : ''}
+    </div>
+  `).join('');
+}
+
+function renderFleetBadge() {
+  const robotList = Object.values(robots).filter(Boolean);
+  const online = robotList.filter(r => r.status === 'ONLINE').length;
+  const total = robotList.length;
+  const badge = document.getElementById('fleetBadge');
+  badge.textContent = `${online}/${total} Online`;
+  badge.className = 'fleet-badge ' + (online === total ? 'online' : online > 0 ? 'partial' : '');
+}
+
+function render() {
+  renderFleetBadge();
+  renderRobotCards();
+  renderAlertSidebar();
+  renderHeatmap();
+  updateCharts();
+  updateMap();
+}
+
+// ─── DETAIL PANEL ───────────────────────────────────────────
+function openDetail(robotId) {
+  const r = robots[robotId];
+  if (!r) return;
+  ui.selectedRobot = robotId;
+  const panel = document.getElementById('detailPanel');
+  const maxTemp = Math.max(...r.joints.map(j=>j.temperature));
+  const lostJoints = r.joints.filter(j => j.communication === 'LOST');
+
+  panel.innerHTML = `
+    <button class="close-btn" onclick="closeDetail()">×</button>
+    <h2><span class="status-dot ${r.status === 'ONLINE' ? 'online' : r.status === 'OFFLINE' ? 'offline' : 'critical'}"></span>${ROBOT_NAMES[robotId]}</h2>
+    <div style="display:flex;gap:12px;margin-bottom:16px">
+      <button class="btn" onclick="event.stopPropagation();toggleOwnership('${robotId}')">${(ui.ownedRobots && ui.ownedRobots.has(robotId)) ? '✅ 我在处理' : '🔧 标记我在处理'}</button>
+      <button class="btn" onclick="event.stopPropagation();openConfig('${robotId}')">⚙ Config</button>
+      <button class="btn" onclick="event.stopPropagation();exportCSV('${robotId}')">📥 Export CSV</button>
+    </div>
+
+    <div class="detail-section">
+      <h4>Sensor Data</h4>
+      <table class="sensor-table">
+        <tr><th>Metric</th><th>Value</th><th>Status</th></tr>
+        <tr><td>Battery</td><td>${r.battery.level.toFixed(1)}% (${r.battery.voltage.toFixed(1)}V)</td><td style="color:${r.battery.level > 30 ? 'var(--success)' : 'var(--warning)'}">${r.battery.level > 30 ? 'Normal' : 'Low'}</td></tr>
+        <tr><td>CPU</td><td>${r.cpu.usage}% / ${r.cpu.temperature}°C</td><td style="color:${r.cpu.usage < 70 ? 'var(--success)' : 'var(--warning)'}">${r.cpu.usage < 70 ? 'Normal' : 'High'}</td></tr>
+        <tr><td>Network</td><td>${r.network.latency}ms / RSSI ${r.network.rssi}dBm</td><td style="color:${r.network.latency < 100 ? 'var(--success)' : 'var(--warning)'}">${r.network.latency < 100 ? 'Good' : 'Slow'}</td></tr>
+        <tr><td>Task</td><td>${r.task.name} (${r.task.progress}%)</td><td>—</td></tr>
+        <tr><td>Status</td><td>${r.status}${r.statusDetail ? ' — ' + r.statusDetail : ''}</td><td>${r.status === 'ONLINE' ? '✅' : r.status === 'FALLEN' ? '🆘' : '⚠'}</td></tr>
+      </table>
+    </div>
+
+    <div class="detail-section">
+      <h4>Joint Status (${r.joints.length} joints${lostJoints.length > 0 ? ` — <span style="color:var(--critical)">${lostJoints.length} LOST</span>` : ''})</h4>
+      <table class="sensor-table">
+        <tr><th>Joint</th><th>Temp</th><th>Torque</th><th>Comm</th></tr>
+        ${r.joints.map(j => `
+          <tr>
+            <td>${j.name}</td>
+            <td class="temp-cell ${j.temperature < 40 ? 'temp-normal' : j.temperature < 55 ? 'temp-warm' : 'temp-hot'}">${j.temperature.toFixed(1)}°C</td>
+            <td>${j.torque.toFixed(1)} Nm</td>
+            <td style="color:${j.communication === 'LOST' ? 'var(--critical)' : 'var(--success)'}">${j.communication}</td>
+          </tr>
+        `).join('')}
+      </table>
+    </div>
+
+    <div class="detail-section">
+      <h4>History (Past Hour)</h4>
+      <canvas id="historyChart" style="max-height:200px"></canvas>
+    </div>
+
+    <div class="detail-section">
+      <h4>Comments</h4>
+      <div class="comment-thread" id="commentThread">${(comments[robotId] || []).map(c => `
+        <div class="comment"><span class="comment-author">${c.author}</span><span class="comment-time">${new Date(c.time).toLocaleTimeString()}</span><br>${c.text}</div>
+      `).join('')}</div>
+      <div class="comment-input">
+        <input type="text" id="commentInput" placeholder="Add comment or @mention..." onkeypress="if(event.key==='Enter')addComment('${robotId}')">
+        <button class="btn" onclick="addComment('${robotId}')">Send</button>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('detailOverlay').classList.add('open');
+
+  // Render history chart
+  setTimeout(() => {
+    const histCtx = document.getElementById('historyChart');
+    if (!histCtx || !history[robotId]) return;
+    const hist = history[robotId];
+    new Chart(histCtx, {
+      type: 'line',
+      data: {
+        labels: hist.map(h => new Date(h.ts).toLocaleTimeString()),
+        datasets: [
+          { label:'Battery %', data:hist.map(h=>h.battery), borderColor:'#22c55e', tension:0.3, pointRadius:0 },
+          { label:'Avg Joint Temp', data:hist.map(h=>h.avgTemp), borderColor:'#f59e0b', tension:0.3, pointRadius:0 },
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: true,
+        scales: { x:{ ticks:{ color:'#94a3b8', font:{size:9}, maxTicksLimit:10 } }, y:{ ticks:{ color:'#94a3b8', font:{size:9} }, grid:{ color:'#334155' } } },
+        plugins: { legend:{ labels:{ color:'#94a3b8', font:{size:10} } } }
+      }
+    });
+  }, 100);
+}
+
+function closeDetail() {
+  document.getElementById('detailOverlay').classList.remove('open');
+  ui.selectedRobot = null;
+}
+
+function toggleOwnership(robotId) {
+  if (!ui.ownedRobots) ui.ownedRobots = new Set();
+  if (ui.ownedRobots.has(robotId)) ui.ownedRobots.delete(robotId);
+  else ui.ownedRobots.add(robotId);
+  render();
+  if (ui.selectedRobot === robotId) openDetail(robotId);
+}
+
+function addComment(robotId) {
+  const input = document.getElementById('commentInput');
+  if (!input || !input.value.trim()) return;
+  if (!comments[robotId]) comments[robotId] = [];
+  comments[robotId].push({ author: 'Engineer Li', time: Date.now(), text: input.value.trim() });
+  input.value = '';
+  openDetail(robotId);
+}
+
+// ─── CONFIG PANEL ───────────────────────────────────────────
+function openConfig(robotId) {
+  const cfg = configs[robotId];
+  const panel = document.getElementById('detailPanel');
+  panel.innerHTML = `
+    <button class="close-btn" onclick="openDetail('${robotId}')">← Back</button>
+    <h2>⚙ Config: ${ROBOT_NAMES[robotId]}</h2>
+    <div class="config-grid">
+      <div class="config-group">
+        <h4>Alert Thresholds</h4>
+        <div class="config-row"><span>Max Joint Temp (°C)</span><input type="number" id="cfgTempMax" value="${cfg.alertThresholds.tempMax}" min="30" max="100" onchange="updateConfig('${robotId}')"></div>
+        <div class="config-row"><span>Min Battery (%)</span><input type="number" id="cfgBattMin" value="${cfg.alertThresholds.batteryMin}" min="5" max="50" onchange="updateConfig('${robotId}')"></div>
+        <div class="config-row"><span>Max Latency (ms)</span><input type="number" id="cfgLatMax" value="${cfg.alertThresholds.latencyMax}" min="50" max="1000" onchange="updateConfig('${robotId}')"></div>
+      </div>
+      <div class="config-group">
+        <h4>Sampling</h4>
+        <div class="config-row"><span>Frequency</span><select id="cfgFreq" onchange="updateConfig('${robotId}')"><option value="1" ${cfg.samplingFrequency===1?'selected':''}>1s</option><option value="5" ${cfg.samplingFrequency===5?'selected':''}>5s</option><option value="10" ${cfg.samplingFrequency===10?'selected':''}>10s</option><option value="30" ${cfg.samplingFrequency===30?'selected':''}>30s</option></select></div>
+      </div>
+      <div class="config-group">
+        <h4>Reconnect Strategy</h4>
+        <div class="config-row"><span>Max Retries</span><input type="number" id="cfgRetries" value="${cfg.reconnect.maxRetries}" min="1" max="50" onchange="updateConfig('${robotId}')"></div>
+        <div class="config-row"><span>Interval (ms)</span><input type="number" id="cfgInterval" value="${cfg.reconnect.retryInterval}" min="100" max="10000" step="100" onchange="updateConfig('${robotId}')"></div>
+        <div class="config-row"><span>Timeout (ms)</span><input type="number" id="cfgTimeout" value="${cfg.reconnect.timeout}" min="1000" max="60000" step="1000" onchange="updateConfig('${robotId}')"></div>
+      </div>
+    </div>
+    <p style="margin-top:12px;font-size:12px;color:var(--text-secondary)">Changes take effect immediately.</p>
+  `;
+}
+
+function updateConfig(robotId) {
+  const cfg = configs[robotId];
+  const tempMax = document.getElementById('cfgTempMax');
+  const battMin = document.getElementById('cfgBattMin');
+  const latMax = document.getElementById('cfgLatMax');
+  const freq = document.getElementById('cfgFreq');
+  const retries = document.getElementById('cfgRetries');
+  const interval = document.getElementById('cfgInterval');
+  const timeout = document.getElementById('cfgTimeout');
+
+  if (tempMax) cfg.alertThresholds.tempMax = parseInt(tempMax.value);
+  if (battMin) cfg.alertThresholds.batteryMin = parseInt(battMin.value);
+  if (latMax) cfg.alertThresholds.latencyMax = parseInt(latMax.value);
+  if (freq) cfg.samplingFrequency = parseInt(freq.value);
+  if (retries) cfg.reconnect.maxRetries = parseInt(retries.value);
+  if (interval) cfg.reconnect.retryInterval = parseInt(interval.value);
+  if (timeout) cfg.reconnect.timeout = parseInt(timeout.value);
+
+  // Undo toast
+  showToast('Config updated', () => {
+    // Restore defaults (just for demo)
+    cfg.alertThresholds = { tempMax: 65, batteryMin: 20, latencyMax: 200 };
+    cfg.samplingFrequency = 1;
+    cfg.reconnect = { maxRetries: 10, retryInterval: 1000, timeout: 30000 };
+    openConfig(robotId);
+  });
+}
+
+// ─── EXPORT ─────────────────────────────────────────────────
+function exportCSV(robotId) {
+  const r = robots[robotId];
+  if (!r) return;
+  let csv = 'Metric,Value\n';
+  csv += `Battery Level,${r.battery.level}%\n`;
+  csv += `Battery Voltage,${r.battery.voltage}V\n`;
+  csv += `CPU Usage,${r.cpu.usage}%\n`;
+  csv += `CPU Temp,${r.cpu.temperature}°C\n`;
+  csv += `Network Latency,${r.network.latency}ms\n`;
+  csv += `RSSI,${r.rssi}dBm\n`;
+  csv += `Task,${r.task.name}\n`;
+  csv += `Status,${r.status}\n`;
+  r.joints.forEach(j => { csv += `${j.name} Temp,${j.temperature}°C\n`; });
+  const blob = new Blob([csv], {type:'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `${robotId}_report.csv`; a.click();
+  URL.revokeObjectURL(url);
+  showToast('CSV exported!');
+}
+
+// ─── TOAST ──────────────────────────────────────────────────
+function showToast(message, onUndo) {
+  const container = document.getElementById('toastContainer');
+  const id = 'toast-' + Date.now();
+  container.innerHTML = `<div class="toast" id="${id}">${message} ${onUndo ? '<button class="btn" onclick="document.getElementById(\''+id+'\').remove()">Undo</button>' : ''}</div>`;
+  setTimeout(() => { const el = document.getElementById(id); if (el) el.remove(); }, 4000);
+  // Store undo callback
+  if (onUndo) {
+    const el = document.getElementById(id);
+    if (el) el.querySelector('button').onclick = () => { el.remove(); onUndo(); };
+  }
+}
+
+// ─── THEME ──────────────────────────────────────────────────
+function toggleTheme() {
+  ui.theme = ui.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.className = ui.theme;
+  document.getElementById('themeToggle').textContent = ui.theme === 'dark' ? '🌙 Dark' : '☀️ Light';
+  // Recreate charts with new theme
+  if (donutChart) donutChart.destroy();
+  if (lineChart) lineChart.destroy();
+  initCharts();
+  updateCharts();
+}
+
+// ─── LAYOUT PRESETS ─────────────────────────────────────────
+document.getElementById('layoutCompact').addEventListener('click', () => {
+  document.getElementById('dashboardGrid').style.display = 'none';
+  document.getElementById('robotGrid').style.gridTemplateColumns = 'repeat(auto-fill, minmax(280px, 1fr))';
+});
+document.getElementById('layoutRelaxed').addEventListener('click', () => {
+  document.getElementById('dashboardGrid').style.display = 'grid';
+  document.getElementById('robotGrid').style.gridTemplateColumns = 'repeat(auto-fill, minmax(320px, 1fr))';
+});
+document.getElementById('layoutFocus').addEventListener('click', () => {
+  document.getElementById('dashboardGrid').style.display = 'none';
+  document.getElementById('sidebar').style.display = 'none';
+  document.getElementById('robotGrid').style.gridTemplateColumns = 'repeat(auto-fill, minmax(400px, 1fr))';
+});
+
+// ─── ANOMALY INJECTION ──────────────────────────────────────
+document.getElementById('injectFall').addEventListener('click', () => {
+  simulators['R03'].injectAnomaly('fall');
+  showToast('⚠ Injected FALL on Titan-03');
+});
+document.getElementById('injectLowBatt').addEventListener('click', () => {
+  simulators['R05'].injectAnomaly('low_battery');
+  showToast('🔋 Injected LOW BATTERY on Orion-05');
+});
+document.getElementById('injectJointLoss').addEventListener('click', () => {
+  simulators['R03'].injectAnomaly('joint_loss');
+  showToast('🦾 Injected JOINT LOSS on Titan-03');
+});
+document.getElementById('resolveAll').addEventListener('click', () => {
+  Object.values(simulators).forEach(s => s.resolveAnomaly());
+  alerts.forEach(a => { a.resolved = true; a.resolvedAt = Date.now(); });
+  alerts = alertEngine.getActive();
+  render();
+  showToast('✅ All anomalies resolved');
+});
+
+// ─── INIT ───────────────────────────────────────────────────
+document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+document.getElementById('detailOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeDetail();
+});
+
+initCharts();
+initMap();
+render();
+
+console.log('🤖 Fleet Ops Dashboard ready.');
+console.log('Try: click 💥 Inject Fall, 🔋 Low Battery, 🦾 Joint Loss');
+console.log('Then click ✅ Resolve All');
+console.log('Click any robot card for detail + comments + config + export');
+</script>
+</body>
+</html>

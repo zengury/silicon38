@@ -1,0 +1,111 @@
+context_compression_report:
+  input_scope:
+    artifacts_read:
+    - artifact_id: ux-researcher-designer-ux-spec-v1
+      path: artifacts/ux-researcher-designer-ux-spec-v1.md
+      used: true
+      why: 'Extracted UX decisions: persona (desktop usage), journey map phases, interaction
+        models for dashboard/collaboration/alerts, wireframe layout, dark theme priority,
+        ECharts for charts'
+    handoffs_read:
+    - ref: handoffs/ux-researcher-designer→ui-design-system-20260530-165637.yaml
+      context_digest: 0c150cd922930a3ae18ffb910d8b553063a4c00c4789b862f297b83777321d0e
+  retained_context:
+    decisions:
+    - statement: Frontend采用React + TypeScript + ECharts
+      source: to-prd-prd-v1
+      impact: Constrains component system to React/TSX props interfaces; chart components
+        wrap ECharts instances
+    - statement: CSS变量实现暗色/亮色切换
+      source: architect-architecture-v1
+      impact: Theme system uses CSS custom properties exclusively; ECharts gets theme-specific
+        color arrays
+    - statement: 可拖拽布局
+      source: ux-researcher-designer-ux-spec-v1
+      impact: DashboardGrid wraps react-grid-layout; cards support collapsed/expanded
+        states; layout persisted to localStorage
+    - statement: 暗色主题优先
+      source: ux-researcher-designer-ux-spec-v1
+      impact: Dark theme as default; chart colors brightened for dark backgrounds;
+        contrast verified for both themes
+    - statement: 告警引擎基于规则引擎
+      source: to-prd-prd-v1
+      impact: ConfigPanel exposes threshold configuration; AlertBanner/AlertListPanel
+        display rule-triggered alerts with severity levels
+    - statement: 协作功能基于WebSocket实时通信
+      source: to-prd-prd-v1
+      impact: CollaborationPanel handles real-time message arrival; @mention autocomplete;
+        optimistic UI for sent messages
+    constraints:
+    - statement: 初始支持10台机器人
+      source: to-prd-prd-v1
+      impact: Dashboard layout must handle sparse data; empty states designed for
+        all components
+    - statement: 需支持暗色/亮色主题、多语言、可拖拽布局
+      source: ux-researcher-designer-ux-spec-v1
+      impact: Every component renders correctly in both themes; all user-facing strings
+        use i18n keys; grid cards support drag handles
+    - statement: 运维团队使用桌面浏览器访问面板
+      source: ux-researcher-designer-ux-spec-v1
+      impact: Desktop-first responsive strategy; 1280px primary design target
+    - statement: 历史数据保留30天
+      source: to-prd-prd-v1
+      impact: Chart time range selectors support 30-day window; loading states for
+        large time ranges
+    assumptions:
+    - statement: 机器人通过HTTP/WebSocket上报数据
+      source: to-prd-prd-v1
+      risk: If protocol changes to polling-only, real-time indicator states need timeout-based
+        detection
+    - statement: 运维团队使用桌面浏览器访问面板
+      source: ux-researcher-designer-ux-spec-v1
+      risk: If mobile access becomes required, all components need touch-optimized
+        variants
+    - statement: 历史数据保留30天
+      source: to-prd-prd-v1
+      risk: If retention changes significantly, time-range presets and aggregation
+        levels need adjustment
+    open_questions:
+    - statement: 告警通知方式是否需要邮件/短信？
+      source: ux-researcher-designer-ux-spec-v1
+      owner: runtime
+    - statement: 是否需要角色权限管理？
+      source: ux-researcher-designer-ux-spec-v1
+      owner: runtime
+    - statement: 机器人数量上限是多少？
+      source: ux-researcher-designer-ux-spec-v1
+      owner: runtime
+  omitted_context:
+  - source: 具体文件路径和代码片段 from upstream
+    reason: background_only
+  - source: 第三方库版本号 from upstream
+    reason: background_only
+  - source: Apple HIG specific platform rules
+    reason: irrelevant
+  - source: Alternative framework integration patterns (Vue, SCSS, Next.js)
+    reason: irrelevant
+  compression_rationale:
+    method: 'Retained all decisions, constraints, assumptions, and open questions
+      that directly impact component API design, state modeling, and theme/token architecture.
+      Omitted implementation details (file paths, library versions) and platform-irrelevant
+      patterns (iOS HIG, Vue integration, SCSS exports). Focus: what changes downstream
+      component implementation choices.'
+    loss_notes:
+    - Omitted specific file paths from upstream — not needed for design system spec
+    - Omitted library version numbers — determined at implementation time
+    - Omitted Apple HIG iOS/macOS-specific rules — not applicable to web dashboard
+    - Omitted alternative framework integration patterns — React/CSS is the chosen
+      stack
+  quality_checks:
+  - name: component_states_present
+    passed: true
+  - name: accessibility_notes_present
+    passed: true
+  - name: token_consistency
+    passed: true
+  - name: evidence_backed_claims
+    passed: true
+  - name: no_contradiction_with_constraints
+    passed: true
+  - name: handoff_readiness
+    passed: true

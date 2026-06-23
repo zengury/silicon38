@@ -1,0 +1,7 @@
+from: zoom-out
+to: architect
+relation_type: may_trigger
+timestamp: '2026-05-25T18:58:06.395601+00:00'
+focus: Resolve Python-JS engine duplication architecture before code-level refactoring
+artifact_refs:
+- zoom-out-analysis-v1

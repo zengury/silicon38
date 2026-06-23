@@ -1,0 +1,364 @@
+schema: silicon_org.trace_learning_snapshot.v1
+task_id: task-20260531T163244Z-880b8dd4
+timestamp: '2026-05-31T16:52:55.203137+00:00'
+outcome:
+  status: partial
+  decoder_notes: LangGraph-native runtime stopped at explicit max_role_executions=12.
+  quality_signal:
+    source: runtime_decoder
+    value: 0.5
+    detail: LangGraph-native runtime stopped at explicit max_role_executions=12.
+role_signals:
+- role: triage
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: to-prd
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: product-vision-anchor
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: to-issues
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: caveman
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: architect
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: epic-design
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: senior-engineer
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: delivery-prover
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: code-reviewer
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: devops-engineer
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: senior-frontend
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: graph-topologist
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: hrbp
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+relation_signals:
+- from: triage
+  to: to-prd
+  relation_type: thompson_sample
+  signal: 0.125
+  confidence: 0.1625
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=thompson_sample; multiplier=0.25
+- from: to-prd
+  to: caveman
+  relation_type: evaluates
+  signal: 0.425
+  confidence: 0.5525
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=evaluates; multiplier=0.85
+- from: to-prd
+  to: to-issues
+  relation_type: thompson_sample
+  signal: 0.125
+  confidence: 0.1625
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=thompson_sample; multiplier=0.25
+- from: to-prd
+  to: product-vision-anchor
+  relation_type: thompson_sample
+  signal: 0.125
+  confidence: 0.1625
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=thompson_sample; multiplier=0.25
+- from: to-issues
+  to: senior-engineer
+  relation_type: triggers
+  signal: 0.5
+  confidence: 0.65
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=triggers; multiplier=1.00
+- from: product-vision-anchor
+  to: architect
+  relation_type: thompson_sample
+  signal: 0.125
+  confidence: 0.1625
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=thompson_sample; multiplier=0.25
+- from: product-vision-anchor
+  to: epic-design
+  relation_type: thompson_sample
+  signal: 0.125
+  confidence: 0.1625
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=thompson_sample; multiplier=0.25
+- from: senior-engineer
+  to: delivery-prover
+  relation_type: triggers
+  signal: 0.5
+  confidence: 0.65
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=triggers; multiplier=1.00
+- from: senior-engineer
+  to: code-reviewer
+  relation_type: triggers
+  signal: 0.5
+  confidence: 0.65
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=triggers; multiplier=1.00
+- from: architect
+  to: devops-engineer
+  relation_type: thompson_sample
+  signal: 0.125
+  confidence: 0.1625
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=thompson_sample; multiplier=0.25
+- from: delivery-prover
+  to: senior-frontend
+  relation_type: thompson_sample
+  signal: 0.125
+  confidence: 0.1625
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=thompson_sample; multiplier=0.25
+proposals:
+- proposal_key: task-20260531T163244Z-880b8dd4:convergence_gate_breach:all_non_loop_nodes_settled
+  task_id: task-20260531T163244Z-880b8dd4
+  task_type: general
+  type: convergence_gate_breach
+  severity: critical
+  finding: 'Delivered task has unresolved convergence gate: all_non_loop_nodes_settled.'
+  recommended_action: Reject future success delivery until this convergence gate is
+    true.
+  evidence:
+    task_type: general
+    gate: all_non_loop_nodes_settled
+    value: false
+  status: proposed
+  auto_apply: false
+- proposal_key: task-20260531T163244Z-880b8dd4:convergence_gate_breach:all_loops_resolved
+  task_id: task-20260531T163244Z-880b8dd4
+  task_type: general
+  type: convergence_gate_breach
+  severity: critical
+  finding: 'Delivered task has unresolved convergence gate: all_loops_resolved.'
+  recommended_action: Reject future success delivery until this convergence gate is
+    true.
+  evidence:
+    task_type: general
+    gate: all_loops_resolved
+    value: false
+  status: proposed
+  auto_apply: false
+- proposal_key: task-20260531T163244Z-880b8dd4:convergence_gate_breach:all_blocking_evals_resolved
+  task_id: task-20260531T163244Z-880b8dd4
+  task_type: general
+  type: convergence_gate_breach
+  severity: critical
+  finding: 'Delivered task has unresolved convergence gate: all_blocking_evals_resolved.'
+  recommended_action: Reject future success delivery until this convergence gate is
+    true.
+  evidence:
+    task_type: general
+    gate: all_blocking_evals_resolved
+    value: false
+  status: proposed
+  auto_apply: false
+- proposal_key: task-20260531T163244Z-880b8dd4:convergence_gate_breach:all_joins_passed
+  task_id: task-20260531T163244Z-880b8dd4
+  task_type: general
+  type: convergence_gate_breach
+  severity: critical
+  finding: 'Delivered task has unresolved convergence gate: all_joins_passed.'
+  recommended_action: Reject future success delivery until this convergence gate is
+    true.
+  evidence:
+    task_type: general
+    gate: all_joins_passed
+    value: false
+  status: proposed
+  auto_apply: false
+- proposal_key: task-20260531T163244Z-880b8dd4:convergence_gate_breach:all_artifacts_resolved
+  task_id: task-20260531T163244Z-880b8dd4
+  task_type: general
+  type: convergence_gate_breach
+  severity: critical
+  finding: 'Delivered task has unresolved convergence gate: all_artifacts_resolved.'
+  recommended_action: Reject future success delivery until this convergence gate is
+    true.
+  evidence:
+    task_type: general
+    gate: all_artifacts_resolved
+    value: false
+  status: proposed
+  auto_apply: false
+- proposal_key: task-20260531T163244Z-880b8dd4:convergence_gate_breach:no_undecided_activation_candidates
+  task_id: task-20260531T163244Z-880b8dd4
+  task_type: general
+  type: convergence_gate_breach
+  severity: critical
+  finding: 'Delivered task has unresolved convergence gate: no_undecided_activation_candidates.'
+  recommended_action: Reject future success delivery until this convergence gate is
+    true.
+  evidence:
+    task_type: general
+    gate: no_undecided_activation_candidates
+    value: false
+  status: proposed
+  auto_apply: false
+- proposal_key: aggregate:convergence_gate_cluster:general:all_non_loop_nodes_settled
+  task_id: aggregate:general
+  task_type: general
+  type: convergence_gate_cluster
+  severity: critical
+  finding: 2 general task(s) were delivered with convergence gate all_non_loop_nodes_settled
+    unresolved.
+  recommended_action: Reject future success delivery for this task type until all_non_loop_nodes_settled
+    is true.
+  evidence:
+    task_type: general
+    gate: all_non_loop_nodes_settled
+    support_count: 2
+    supporting_task_ids:
+    - task-20260531T070551Z-ba3a8327
+    - task-20260531T163244Z-880b8dd4
+    trigger_task_id: task-20260531T163244Z-880b8dd4
+  status: proposed
+  auto_apply: false
+  basis: aggregate
+- proposal_key: aggregate:convergence_gate_cluster:general:all_loops_resolved
+  task_id: aggregate:general
+  task_type: general
+  type: convergence_gate_cluster
+  severity: critical
+  finding: 2 general task(s) were delivered with convergence gate all_loops_resolved
+    unresolved.
+  recommended_action: Reject future success delivery for this task type until all_loops_resolved
+    is true.
+  evidence:
+    task_type: general
+    gate: all_loops_resolved
+    support_count: 2
+    supporting_task_ids:
+    - task-20260531T070551Z-ba3a8327
+    - task-20260531T163244Z-880b8dd4
+    trigger_task_id: task-20260531T163244Z-880b8dd4
+  status: proposed
+  auto_apply: false
+  basis: aggregate
+- proposal_key: aggregate:convergence_gate_cluster:general:all_blocking_evals_resolved
+  task_id: aggregate:general
+  task_type: general
+  type: convergence_gate_cluster
+  severity: critical
+  finding: 2 general task(s) were delivered with convergence gate all_blocking_evals_resolved
+    unresolved.
+  recommended_action: Reject future success delivery for this task type until all_blocking_evals_resolved
+    is true.
+  evidence:
+    task_type: general
+    gate: all_blocking_evals_resolved
+    support_count: 2
+    supporting_task_ids:
+    - task-20260531T070551Z-ba3a8327
+    - task-20260531T163244Z-880b8dd4
+    trigger_task_id: task-20260531T163244Z-880b8dd4
+  status: proposed
+  auto_apply: false
+  basis: aggregate
+- proposal_key: aggregate:convergence_gate_cluster:general:all_joins_passed
+  task_id: aggregate:general
+  task_type: general
+  type: convergence_gate_cluster
+  severity: critical
+  finding: 2 general task(s) were delivered with convergence gate all_joins_passed
+    unresolved.
+  recommended_action: Reject future success delivery for this task type until all_joins_passed
+    is true.
+  evidence:
+    task_type: general
+    gate: all_joins_passed
+    support_count: 2
+    supporting_task_ids:
+    - task-20260531T070551Z-ba3a8327
+    - task-20260531T163244Z-880b8dd4
+    trigger_task_id: task-20260531T163244Z-880b8dd4
+  status: proposed
+  auto_apply: false
+  basis: aggregate
+- proposal_key: aggregate:convergence_gate_cluster:general:all_artifacts_resolved
+  task_id: aggregate:general
+  task_type: general
+  type: convergence_gate_cluster
+  severity: critical
+  finding: 2 general task(s) were delivered with convergence gate all_artifacts_resolved
+    unresolved.
+  recommended_action: Reject future success delivery for this task type until all_artifacts_resolved
+    is true.
+  evidence:
+    task_type: general
+    gate: all_artifacts_resolved
+    support_count: 2
+    supporting_task_ids:
+    - task-20260531T070551Z-ba3a8327
+    - task-20260531T163244Z-880b8dd4
+    trigger_task_id: task-20260531T163244Z-880b8dd4
+  status: proposed
+  auto_apply: false
+  basis: aggregate
+- proposal_key: aggregate:convergence_gate_cluster:general:no_undecided_activation_candidates
+  task_id: aggregate:general
+  task_type: general
+  type: convergence_gate_cluster
+  severity: critical
+  finding: 2 general task(s) were delivered with convergence gate no_undecided_activation_candidates
+    unresolved.
+  recommended_action: Reject future success delivery for this task type until no_undecided_activation_candidates
+    is true.
+  evidence:
+    task_type: general
+    gate: no_undecided_activation_candidates
+    support_count: 2
+    supporting_task_ids:
+    - task-20260531T070551Z-ba3a8327
+    - task-20260531T163244Z-880b8dd4
+    trigger_task_id: task-20260531T163244Z-880b8dd4
+  status: proposed
+  auto_apply: false
+  basis: aggregate

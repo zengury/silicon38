@@ -1,0 +1,62 @@
+task_id: task-20260531T163111Z-49e4329c
+task_status: propagating
+node_states:
+  triage:
+    status: completed
+    updated_at: '2026-05-31T16:31:30.343710+00:00'
+    activated_at: '2026-05-31T16:31:30.229414+00:00'
+    completed_at: '2026-05-31T16:31:30.343710+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - triage-analysis-v1
+    blocked_reason: null
+    entry_node: true
+  to-prd:
+    status: completed
+    updated_at: '2026-05-31T16:32:03.894744+00:00'
+    activated_at: '2026-05-31T16:32:03.736660+00:00'
+    completed_at: '2026-05-31T16:32:03.894744+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - to-prd-prd-v1
+    blocked_reason: null
+artifact_registry:
+  triage-analysis-v1:
+    type: analysis
+    producer: triage
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/triage-analysis-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T16:31:30.261065+00:00'
+  to-prd-prd-v1:
+    type: prd
+    producer: to-prd
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/to-prd-prd-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T16:32:03.774512+00:00'
+context_compression_reports:
+  triage:
+    ref: artifacts/triage-context-report-v1.yaml
+    registered_at: '2026-05-31T16:31:30.301800+00:00'
+    digest: cdfbdd82ac420cf2e7c7412e55749fd41d9389f2da30bc6cb17c6d123d124497
+    status: valid
+  to-prd:
+    ref: artifacts/to-prd-context-report-v1.yaml
+    registered_at: '2026-05-31T16:32:03.842157+00:00'
+    digest: 5f4175158537dda283f3f3470039879fe75bf5c0345cce79eaecfe5120a07e49
+    status: valid
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: false
+  all_loops_resolved: false
+  all_blocking_evals_resolved: false
+  all_joins_passed: false
+  all_artifacts_resolved: false
+  no_undecided_activation_candidates: false
+  settled_at: null

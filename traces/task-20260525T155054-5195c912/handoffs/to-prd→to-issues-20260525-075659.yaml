@@ -1,0 +1,5 @@
+from: to-prd
+to: to-issues
+relation_type: triggers
+timestamp: '2026-05-25T07:56:59.953721+00:00'
+focus: 24 user stories → 30+ implementation issues

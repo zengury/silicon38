@@ -1,0 +1,117 @@
+task_id: task-20260526T083818-ddd3d784
+timestamp_start: '2026-05-26T00:38:23.835922+00:00'
+timestamp_end: '2026-05-26T00:51:12.021915+00:00'
+task_summary: Refactor and optimize manastone-diag codebase
+task_type: refactor
+entry_nodes:
+- zoom-out
+terminal_nodes:
+- zoom-out
+- architect
+- caveman
+- senior-engineer
+- tdd
+- code-reviewer
+outcome:
+  status: success
+  decoder_notes: 'Refactored manastone-diag v0.4: 7-step ADR-001 implemented. Fixed
+    motion.py typo, extracted shared server factory (7 servers → 1 pattern), separated
+    config init/access, migrated orchestrator keywords to fault_library.yaml, deleted
+    dead ui.py, moved gradio to optional. Net -200 lines. MCP tool contracts preserved.
+    All syntax checks pass. Code review: APPROVED.'
+  quality_signal:
+    source: runtime_decoder
+    value: 1.0
+    detail: 'Refactored manastone-diag v0.4: 7-step ADR-001 implemented. Fixed motion.py
+      typo, extracted shared server factory (7 servers → 1 pattern), separated config
+      init/access, migrated orchestrator keywords to fault_library.yaml, deleted dead
+      ui.py, moved gradio to optional. Net -200 lines. MCP tool contracts preserved.
+      All syntax checks pass. Code review: APPROVED.'
+context_block:
+  ref: org/CONTEXT_BLOCK.md
+  sha256: 43a4dc752c2e1b56f0d8e6f692741b93fdb0034515282692e7df7f87e81a907e
+artifact_index:
+- artifact_id: zoom-out-analysis-v1
+  type: analysis
+  producer: zoom-out
+  version: 1
+  status: draft
+  path: artifacts/zoom-out-output-v1.md
+  ref: artifacts/zoom-out-output-v1.md
+  provenance_ref: artifacts/zoom-out-analysis-v1.provenance.yaml
+- artifact_id: architect-document-v1
+  type: document
+  producer: architect
+  version: 1
+  status: draft
+  path: artifacts/architect-output-v1.md
+  ref: artifacts/architect-output-v1.md
+  provenance_ref: artifacts/architect-document-v1.provenance.yaml
+- artifact_id: caveman-analysis-v1
+  type: analysis
+  producer: caveman
+  version: 1
+  status: draft
+  path: artifacts/caveman-output-v1.md
+  ref: artifacts/caveman-output-v1.md
+  provenance_ref: artifacts/caveman-analysis-v1.provenance.yaml
+- artifact_id: senior-engineer-code-v1
+  type: code
+  producer: senior-engineer
+  version: 1
+  status: draft
+  path: artifacts/senior-engineer-output-v1.md
+  ref: artifacts/senior-engineer-output-v1.md
+  provenance_ref: artifacts/senior-engineer-code-v1.provenance.yaml
+- artifact_id: tdd-analysis-v1
+  type: analysis
+  producer: tdd
+  version: 1
+  status: draft
+  path: artifacts/tdd-output-v1.md
+  ref: artifacts/tdd-output-v1.md
+  provenance_ref: artifacts/tdd-analysis-v1.provenance.yaml
+- artifact_id: code-reviewer-analysis-v1
+  type: analysis
+  producer: code-reviewer
+  version: 1
+  status: draft
+  path: artifacts/code-reviewer-output-v1.md
+  ref: artifacts/code-reviewer-output-v1.md
+  provenance_ref: artifacts/code-reviewer-analysis-v1.provenance.yaml
+handoff_trail:
+- ref: handoffs/zoom-out→architect-20260526-004057.yaml
+  from: zoom-out
+  to: architect
+  relation_type: may_trigger
+  timestamp: '2026-05-26T00:40:57.454209+00:00'
+  artifact_refs:
+  - zoom-out-analysis-v1
+- ref: handoffs/architect→caveman-20260526-004319.yaml
+  from: architect
+  to: caveman
+  relation_type: evaluates
+  timestamp: '2026-05-26T00:43:19.858657+00:00'
+  artifact_refs:
+  - architect-document-v1
+- ref: handoffs/architect→senior-engineer-20260526-004320.yaml
+  from: architect
+  to: senior-engineer
+  relation_type: triggers
+  timestamp: '2026-05-26T00:43:20.054301+00:00'
+  artifact_refs:
+  - architect-document-v1
+- ref: handoffs/senior-engineer→tdd-20260526-004921.yaml
+  from: senior-engineer
+  to: tdd
+  relation_type: evaluates
+  timestamp: '2026-05-26T00:49:21.686187+00:00'
+  artifact_refs:
+  - senior-engineer-code-v1
+- ref: handoffs/senior-engineer→code-reviewer-20260526-004921.yaml
+  from: senior-engineer
+  to: code-reviewer
+  relation_type: triggers
+  timestamp: '2026-05-26T00:49:21.900251+00:00'
+  artifact_refs:
+  - senior-engineer-code-v1

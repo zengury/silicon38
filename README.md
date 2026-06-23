@@ -34,8 +34,8 @@ the Runtime. Full doctrine: [`docs/DYNAMIC_WORKFLOW_HARNESS.md`](docs/DYNAMIC_WO
 ## Quick Start
 
 ```bash
-git clone https://github.com/zengury/silicon_org.git
-cd silicon_org
+git clone https://github.com/zengury/silicon38.git
+cd silicon38
 ```
 
 Then start your coding agent **in this directory**:

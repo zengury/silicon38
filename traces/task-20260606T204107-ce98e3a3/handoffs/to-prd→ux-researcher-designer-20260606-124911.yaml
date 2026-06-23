@@ -1,0 +1,113 @@
+from: to-prd
+to: ux-researcher-designer
+relation_type: supports
+timestamp: '2026-06-06T12:49:11.757362+00:00'
+focus: 'PRD: 10 user stories, iOS SwiftUI, photo capture flow, search experience'
+artifact_refs: &id001
+- to-prd-prd-v1
+deliverable:
+  producer: to-prd
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: to-prd-prd-v1
+    producer: to-prd
+    type: prd
+    version: 1
+    status: draft
+    content_ref: artifacts/to-prd-prd-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260606T204107-ce98e3a3
+  from: to-prd
+  to: ux-researcher-designer
+  relation_type: supports
+  focus: 'PRD: 10 user stories, iOS SwiftUI, photo capture flow, search experience'
+  source:
+    producer_role: to-prd
+    context_compression_report_ref: artifacts/to-prd-context-report-v1.yaml
+    input_handoffs: []
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: 'App name: Bookshelf'
+      source: semantic_node_executor
+      impact: names the product for all downstream artifacts
+    - statement: 'Core feature: photo-based AI recognition to digitize physical bookshelves'
+      source: semantic_node_executor
+      impact: defines the technical core — all architecture must support this
+    - statement: 'Monetization: $1.99/month subscription'
+      source: semantic_node_executor
+      impact: subscription gating must be in architecture from day one
+    - statement: 'Initial platform: iOS using SwiftUI'
+      source: to-prd
+      impact: constrains frontend technology stack and Apple ecosystem dependencies
+    - statement: 'AI recognition: cloud-based LLM (GPT-4o)'
+      source: to-prd
+      impact: backend must proxy AI calls; cost/per-request latency matter
+    - statement: 'Backend: Node.js/Express with PostgreSQL'
+      source: to-prd
+      impact: determines backend stack, ORM choices, hosting
+    - statement: 'Authentication: email/password and OAuth (Google, Apple)'
+      source: to-prd
+      impact: Apple OAuth mandatory for App Store compliance
+    - statement: 'Subscription: Apple In-App Purchase for iOS'
+      source: to-prd
+      impact: backend must validate App Store receipts server-side
+    constraints:
+    - statement: Must be mobile app (iOS/Android)
+      source: semantic_node_executor
+      impact: no web or desktop version in scope
+    - statement: No manual book entry
+      source: semantic_node_executor
+      impact: photo recognition is the only input method — no fallback forms
+    - statement: Digital shelf must mirror physical layout
+      source: semantic_node_executor
+      impact: shelf data model must store row/column positions; rendering engine must
+        match
+    - statement: Initial release iOS only
+      source: to-prd
+      impact: cross-platform concerns deferred; Swift-only for v1
+    - statement: English only for initial release
+      source: to-prd
+      impact: no i18n infrastructure needed for v1
+    assumptions:
+    - statement: AI can accurately recognize books from photos and summarize content
+      source: semantic_node_executor
+      risk: core assumption — if 90%+ accuracy not achievable, product fails
+    - statement: Users have multiple shelves with books
+      source: semantic_node_executor
+      risk: single-shelf users may not need the app; market size risk
+    - statement: Users are willing to pay $1.99/month
+      source: semantic_node_executor
+      risk: price sensitivity unknown; may need freemium tier
+    open_questions:
+    - statement: Accuracy threshold for recognition? (targeting 90%+)
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Multilingual support? (deferred to v2)
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Privacy concerns with storing shelf photos?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: detailed technical implementation steps
+    reason: background_only
+  - source: marketing and go-to-market strategy
+    reason: irrelevant
+  compression_rationale:
+    method: Extracted load-bearing decisions, hard constraints, and assumptions that
+      change downstream architecture/UX choices.
+    loss_notes: []
+  quality_checks:
+  - name: All upstream decisions captured with impact
+    passed: true
+  - name: Constraints explicit and non-contradictory
+    passed: true
+  - name: Open questions named with owners
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs: []
+  previous_blocks: []
+  context_digest: c2fa79f697f6a2554efc51a331f99463daaf9058e796a026a22bdd3f5147aaab
+soul_ref: org/soul.md

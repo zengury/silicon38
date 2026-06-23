@@ -1,0 +1,69 @@
+context_compression_report:
+  input_scope:
+    artifacts_read:
+      - artifact_id: code-reviewer-review-v1
+        used: true
+        why: "Triggered the documentation node by identifying public behavior, API contract, and operating protocol changes that needed to be explicit."
+      - artifact_id: delivery-prover-proof-v1
+        used: true
+        why: "Provided verified run command, demo URL, API/browser proof counts, security remediation evidence, and residual risk."
+      - artifact_id: senior-engineer-implementation-v1
+        used: true
+        why: "Provided implemented server routes, local safety boundary, and read-only API behavior."
+      - artifact_id: senior-frontend-implementation-v1
+        used: true
+        why: "Provided frontend behavior, concept layers, handoff visualization, and vendored asset decisions."
+    handoffs_read:
+      - ref: "handoffs/code-reviewer→technical-writer-20260527-160624.yaml"
+        context_digest: "2133e1c3678bf9c765c29d1acce847717f2eb93c2ed3f3077cb38c1d7dc9845f"
+
+  retained_context:
+    decisions:
+      - statement: "Documentation must describe the runnable demo, implemented routes, and local safety boundary."
+        source: "handoffs/code-reviewer→technical-writer-20260527-160624.yaml"
+        impact: "Created docs/silicon-org-visualizer.md with run command, URL, API route list, and security notes."
+      - statement: "The documentation should reflect post-remediation behavior, not the pre-review blocked state."
+        source: "delivery-prover-proof-v1"
+        impact: "Included verified live counts, no external requests, and fixed task id/CORS/Policy CLI behavior."
+    constraints:
+      - statement: "Keep the doc concise and operational."
+        source: "technical-writer node scope"
+        impact: "Focused the document on how to run, what it shows, API routes, safety boundary, and proof counts."
+      - statement: "Do not invent runtime authority beyond the implemented read-only visualizer."
+        source: "senior-engineer-implementation-v1 and senior-frontend-implementation-v1"
+        impact: "Document states that the server exposes no Ledger mutation commands and the UI is a projection surface."
+    assumptions:
+      - statement: "The current task id is acceptable as the demo example."
+        source: "delivery-prover-proof-v1"
+        risk: "Future users may prefer `latest` or another trace id in the run command."
+    open_questions:
+      - statement: "Should this doc become a README section once the visualizer is packaged?"
+        source: "technical-writer judgment"
+        owner: "technical-writer"
+
+  omitted_context:
+    - source: "Full code-reviewer finding text"
+      reason: background_only
+    - source: "Full delivery prover command transcript"
+      reason: background_only
+    - source: "Complete frontend source code"
+      reason: background_only
+    - source: "Unrelated workspace skill changes"
+      reason: irrelevant
+
+  compression_rationale:
+    method: "Retained only the operating facts required for concise demo documentation."
+    loss_notes:
+      - "The full review and proof artifacts remain in trace artifacts and are referenced rather than duplicated."
+      - "Implementation details are summarized at route and behavior level."
+      - "Future packaging decisions are left as open questions."
+
+  quality_checks:
+    - name: "documents_run_command"
+      passed: true
+    - name: "documents_api_routes"
+      passed: true
+    - name: "documents_local_safety_boundary"
+      passed: true
+    - name: "reflects_post_remediation_state"
+      passed: true

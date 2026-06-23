@@ -1,0 +1,147 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/devops-engineer→release-manager-20260530-145416.yaml
+      context_digest: cf5c4515c92d8dc46ba95c4b37c861b4006bf71920cf0046c7e4b4b67a7c8a26
+  retained_context:
+    decisions:
+    - statement: Modular monolith infrastructure is now implemented and operational
+        (was 'planned' in v3.1.0)
+      source: senior-engineer-implementation-v8 + filesystem survey
+      impact: Backend can now start; main.py integrates correlation middleware and
+        health check router; 10/26 services use DI container. Version bump from 3.1.0
+        MINOR-planning to 3.2.0 MINOR-delivered.
+    - statement: Compose consolidation into profiles (architect Decision 4, devops-engineer
+        v10)
+      source: devops-engineer-ops-plan-v10
+      impact: Single docker-compose.yml with dev/staging/prod profiles (299 lines).
+        Replaces 3 legacy files. Makefile with 35+ targets. .env.example documents
+        all variables. deploy.yml still references old file — needs v3.2.1 PATCH.
+    - statement: PII-safe logging with 36 RED metrics across 8 services (observability-engineer
+        v2)
+      source: observability-engineer-design-v2
+      impact: structured_log with mask_pii() integrated. Health endpoints with DB+MQTT
+        dependency checks. Correlation middleware active in main.py.
+    - statement: 7-module database schema design is design-only — NOT shipped in v3.2.0
+      source: database-engineer-data-design-v7
+      impact: 35 entities in 7 schemas designed. Alembic migrations not written. Raw
+        SQL DML remains active. Deferred to v3.4.0.
+    - statement: 71 unit tests created (was 0)
+      source: senior-engineer-implementation-v8 + tests/ directory survey
+      impact: Infrastructure layer has test coverage. Service layer has 0 tests. Coverage
+        gap acknowledged in checklist.
+    - statement: Version 3.2.0 — MINOR bump
+      source: release-manager decision
+      impact: No breaking API changes. Substantial new functionality shipped. v3.0.x
+        MAJOR lineage preserved.
+    constraints:
+    - statement: Team size is small; avoid over-engineering
+      source: architect-architecture-v1
+      impact: Single-host Docker Compose, simple Makefile, no Kubernetes. Compose
+        profiles are sufficient.
+    - statement: Must maintain backward API compatibility
+      source: architect-architecture-v1
+      impact: All API paths, response shapes, auth flows unchanged. No MAJOR bump.
+        Verified by code review.
+    - statement: Incremental refactoring required
+      source: architect-architecture-v1
+      impact: 10/26 services migrated to DI (38%). Remaining 16 have FIXME annotations.
+        Legacy compose files preserved.
+    - statement: Backend was previously unstartable (missing core/, infrastructure/,
+        ports/ modules)
+      source: devops-engineer-ops-plan-v10 (gap discovery)
+      impact: Now resolved — all modules exist on disk. Backend can start. CI module-check
+        can become blocking.
+    - statement: deploy.yml still references docker-compose.prod.yaml
+      source: devops-engineer-ops-plan-v10
+      impact: Production deploy from CI is broken until fixed. Requires v3.2.1 PATCH.
+    assumptions:
+    - statement: Backend was previously at version 3.0.1 (based on core/config.py
+        APP_VERSION)
+      source: semantic_node_executor
+      risk: Low — APP_VERSION constant confirms baseline. No prior git tag exists.
+    - statement: 10 DI-migrated services behave identically to pre-migration
+      source: semantic_node_executor
+      risk: 'Moderate — without integration tests, verified by code review only. Mitigation:
+        services use same queries, same DB tables.'
+    - statement: Old compose files can be removed after 2 release cycles without incident
+      source: semantic_node_executor
+      risk: Low — if someone has hardcoded old file paths in CI scripts outside the
+        repo.
+    - statement: Production host has docker compose v2
+      source: semantic_node_executor
+      risk: Medium — compose profiles require v2 syntax. v1 will fail. Verify before
+        deploy.
+    open_questions:
+    - statement: Should deploy.yml compose command fix ship as v3.2.1 PATCH or block
+        v3.2.0?
+      source: semantic_node_executor
+      owner: release-manager → devops-engineer
+    - statement: Should service-layer integration tests be backfilled before production?
+      source: semantic_node_executor
+      owner: release-manager → qa-engineer / engineering lead
+    - statement: When should Alembic replace raw SQL DML migrations?
+      source: semantic_node_executor
+      owner: database-engineer
+    - statement: Should Redis have a password in CI/dev for security parity?
+      source: semantic_node_executor
+      owner: security-engineer
+  omitted_context:
+  - source: Frontend component details (Vue components, styles, assets)
+    reason: background_only
+  - source: Robot hardware code (robot/*/hardware/)
+    reason: background_only
+  - source: Mock data files (frontend/admin/mock/*.mock.ts)
+    reason: background_only
+  - source: Detailed API route implementations (34+ route modules in api/admin/, api/portal/)
+    reason: background_only
+  - source: Historical artifact contents (ops-plans v1-v8, release-plans v1-v3)
+    reason: background_only
+  - source: Detailed database migration SQL contents (dbscripts/DML/*)
+    reason: background_only
+  - source: Per-service metric implementation details (8 instrumented services)
+    reason: background_only
+  - source: database-engineer-data-design-v2 through v6
+    reason: background_only
+  compression_rationale:
+    method: Operational release-management compression. Surveyed 30+ files across
+      5 node deliverables. Retained 6 decisions, 5 constraints, 4 assumptions, and
+      4 open questions directly affecting release scope, versioning, deployment, and
+      rollback. Cross-referenced architect's constraints against actual code state
+      (filesystem survey). Omitted frontend components, robot hardware code, detailed
+      API implementations, historical artifacts, and superseded versions. Focused
+      on what changed between v3.1.0 and v3.2.0.
+    loss_notes:
+    - Per-service metric implementation details not retained; aggregated summary sufficient
+    - Individual API route implementations not captured (unchanged, no release impact)
+    - Frontend component tree not captured (no frontend changes)
+    - Robot agent behavior details not captured (separate deployment domain)
+    - Historical artifact iteration contents not retained (superseded)
+    - Database migration SQL content not validated (no migration changes in this release)
+  quality_checks:
+  - name: Version number follows Semantic Versioning strictly
+    passed: true
+  - name: Changelog covers every user-visible change
+    passed: true
+  - name: No changes in the release that are not in the changelog
+    passed: true
+  - name: Breaking changes in dedicated, prominent section
+    passed: true
+  - name: Release checklist completed with pass/fail for each item
+    passed: true
+  - name: Rollback procedure defined before release ships
+    passed: true
+  - name: All secrets validated — none in code, configs, or artifacts
+    passed: true
+  - name: Environment boundaries named and documented (dev, staging, production)
+    passed: true
+  - name: deploy.yml compose reference gap identified with explicit mitigation
+    passed: true
+  - name: Backend module existence verified (40 files on disk, was 0)
+    passed: true
+  - name: DI migration progress quantified (10/26 services, 38%)
+    passed: true
+  - name: Test coverage status quantified (71 tests, infrastructure only, 0 service
+      tests)
+    passed: true

@@ -1,0 +1,5 @@
+from: triage
+to: to-prd
+relation_type: triggers
+timestamp: '2026-05-25T07:54:13.912903+00:00'
+focus: 12 requirements scoped P0-P2 → formal PRD with user stories

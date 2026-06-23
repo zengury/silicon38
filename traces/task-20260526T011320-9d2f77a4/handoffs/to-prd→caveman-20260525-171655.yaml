@@ -1,0 +1,7 @@
+from: to-prd
+to: caveman
+relation_type: evaluates
+timestamp: '2026-05-25T17:16:55.917052+00:00'
+focus: PRD written - evaluate for first-principles soundness and unnecessary complexity
+artifact_refs:
+- to-prd-document-v1

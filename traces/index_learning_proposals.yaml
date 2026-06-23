@@ -1,0 +1,22 @@
+proposals:
+- proposal_key: task-20260606T204107-ce98e3a3:verification_gap:runtime_decoder_unverified
+  task_id: task-20260606T204107-ce98e3a3
+  task_type: feature
+  type: verification_gap
+  severity: major
+  finding: Task was delivered as success without an approved delivery-prover signal.
+  recommended_action: Require delivery-prover for implementation tasks or downgrade
+    delivery to partial.
+  evidence:
+    task_type: feature
+    source: runtime_decoder_unverified
+    quality_value: 0.7
+    detail: 'success delivered without an approved delivery-prover artifact; quality
+      confidence capped. Bookshelf complete design: PRD + scope verdict + product
+      vision (JTBD+positioning) + modular monolith architecture (iOS SwiftUI, Node.js/Express,
+      PostgreSQL, GPT-4o Vision pipeline) + UX spec (persona Elena, 3-tab design,
+      journey map, 8 edge cases). 6 nodes, 6 artifacts.'
+  status: proposed
+  auto_apply: false
+  timestamp: '2026-06-06T12:52:45.823636+00:00'
+policy_overlays: []

@@ -1,0 +1,141 @@
+task_id: task-20260531T174304Z-d2fc8043
+timestamp_start: '2026-05-31T17:43:05.085282+00:00'
+timestamp_end: null
+task_summary: 优化重构 /Users/ZQ/roboease 代码库：消除重复代码、改善模块结构、提升可维护性和可测试性
+task_type: general
+entry_nodes:
+- triage
+terminal_nodes:
+- triage
+- to-prd
+- scope-prosecutor
+- caveman
+- to-issues
+- senior-engineer
+outcome: null
+context_block:
+  ref: org/CONTEXT_BLOCK.md
+  sha256: d82dc247c04f8cd2e797dd394ecd8d9cd927f1e194f2800d4fcf1e2be41f2a66
+artifact_index:
+- artifact_id: triage-analysis-v1
+  type: analysis
+  producer: triage
+  version: 1
+  status: draft
+  path: artifacts/triage-analysis-v1.md
+  ref: artifacts/triage-analysis-v1.md
+  provenance_ref: artifacts/triage-analysis-v1.provenance.yaml
+- artifact_id: to-prd-prd-v1
+  type: prd
+  producer: to-prd
+  version: 1
+  status: draft
+  path: artifacts/to-prd-prd-v1.md
+  ref: artifacts/to-prd-prd-v1.md
+  provenance_ref: artifacts/to-prd-prd-v1.provenance.yaml
+- artifact_id: scope-prosecutor-scope-verdict-v1
+  type: scope-verdict
+  producer: scope-prosecutor
+  version: 1
+  status: draft
+  path: artifacts/scope-prosecutor-scope-verdict-v1.md
+  ref: artifacts/scope-prosecutor-scope-verdict-v1.md
+  provenance_ref: artifacts/scope-prosecutor-scope-verdict-v1.provenance.yaml
+- artifact_id: caveman-analysis-v1
+  type: analysis
+  producer: caveman
+  version: 1
+  status: draft
+  path: artifacts/caveman-analysis-v1.md
+  ref: artifacts/caveman-analysis-v1.md
+  provenance_ref: artifacts/caveman-analysis-v1.provenance.yaml
+- artifact_id: to-issues-decomposition-v1
+  type: decomposition
+  producer: to-issues
+  version: 1
+  status: draft
+  path: artifacts/to-issues-decomposition-v1.md
+  ref: artifacts/to-issues-decomposition-v1.md
+  provenance_ref: artifacts/to-issues-decomposition-v1.provenance.yaml
+- artifact_id: senior-engineer-implementation-v1
+  type: implementation
+  producer: senior-engineer
+  version: 1
+  status: draft
+  path: artifacts/senior-engineer-implementation-v1.md
+  ref: artifacts/senior-engineer-implementation-v1.md
+  provenance_ref: artifacts/senior-engineer-implementation-v1.provenance.yaml
+context_report_index:
+- role: triage
+  ref: artifacts/triage-context-report-v1.yaml
+  digest: b70643c5dfd5e60008f8b38f911ca1b559c4bb495daacf12506312cc8d2863d0
+  status: valid
+- role: to-prd
+  ref: artifacts/to-prd-context-report-v1.yaml
+  digest: cdcf435cc848b94d1003db705563594bcb4473c55087194ac0411552694dace8
+  status: valid
+- role: scope-prosecutor
+  ref: artifacts/scope-prosecutor-context-report-v1.yaml
+  digest: 158a2f86e396d1555e88f4aeed857a1a546d39524efbc087c494993142dd86f3
+  status: valid
+- role: caveman
+  ref: artifacts/caveman-context-report-v1.yaml
+  digest: c958053e07e6157382ae3466b565c6ff0f61c26e8c050f24f0af0822e06c09da
+  status: valid
+- role: to-issues
+  ref: artifacts/to-issues-context-report-v1.yaml
+  digest: 114cfa0bbdbc098a94ee6da406d7d11383d0f0dec0059e98a2260083ee560b49
+  status: valid
+- role: senior-engineer
+  ref: artifacts/senior-engineer-context-report-v1.yaml
+  digest: 47db45544a5e6085f08974f70867653f6b185d1f0bb452643a7b00fcafaedd7b
+  status: valid
+handoff_trail:
+- ref: handoffs/triage→to-prd-20260531-174318.yaml
+  from: triage
+  to: to-prd
+  relation_type: thompson_sample
+  timestamp: '2026-05-31T17:43:18.482070+00:00'
+  artifact_refs:
+  - triage-analysis-v1
+  context_block_digest: cbb0e558d7b18f7142d624fcd4203d0b68e9d952dc6b9f67e6d743f394688090
+- ref: handoffs/to-prd→to-issues-20260531-174340.yaml
+  from: to-prd
+  to: to-issues
+  relation_type: thompson_sample
+  timestamp: '2026-05-31T17:43:40.200819+00:00'
+  artifact_refs:
+  - to-prd-prd-v1
+  context_block_digest: ff5705feed37d3ec6ea8550ccabbb973f70c8e4177347de03da0788a5659ff7a
+- ref: handoffs/to-prd→scope-prosecutor-20260531-174340.yaml
+  from: to-prd
+  to: scope-prosecutor
+  relation_type: evaluates
+  timestamp: '2026-05-31T17:43:40.509574+00:00'
+  artifact_refs:
+  - to-prd-prd-v1
+  context_block_digest: 12a4bee22534d297e31bcd9baa8277660b120e16dbae6b3a2b16e8145c733a20
+- ref: handoffs/to-prd→caveman-20260531-174340.yaml
+  from: to-prd
+  to: caveman
+  relation_type: evaluates
+  timestamp: '2026-05-31T17:43:40.846836+00:00'
+  artifact_refs:
+  - to-prd-prd-v1
+  context_block_digest: c79d52e6d5d7c82a3dba0f1f32ac3eee9d1bc362e53a9bb8ec24e5e70e35a898
+- ref: handoffs/to-issues→senior-engineer-20260531-174416.yaml
+  from: to-issues
+  to: senior-engineer
+  relation_type: thompson_sample
+  timestamp: '2026-05-31T17:44:16.283403+00:00'
+  artifact_refs:
+  - to-issues-decomposition-v1
+  context_block_digest: 0b0f59857fa3895430d006c38d6298687716041f5b86cf4c48b1941aa7c0b84d
+- ref: handoffs/to-issues→api-designer-20260531-174416.yaml
+  from: to-issues
+  to: api-designer
+  relation_type: thompson_sample
+  timestamp: '2026-05-31T17:44:16.564452+00:00'
+  artifact_refs:
+  - to-issues-decomposition-v1
+  context_block_digest: f087f79a0f156583a0fcbf23ccc06b48a7efed798d0b6de27addc2fee3792954

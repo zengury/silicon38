@@ -1,0 +1,64 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/to-prd→caveman-20260531-163320.yaml
+      context_digest: 4d2c1733598420e62d50704fc95c83cf5c807c00a600b3d1d94e197129b6f768
+  retained_context:
+    decisions:
+    - statement: Task is a refactoring task.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Adopt feature-based module structure.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use static analysis to identify duplicates.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Incremental refactoring per module.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must not change external behavior.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: 'Codebase path: /Users/ZQ/roboease.'
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Existing tests must be preserved.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: User wants to improve maintainability and testability.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Existing tests may exist but are not guaranteed.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Preferred module structure (feature-based vs layer-based)?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Existing test preservation requirements?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Risk tolerance for refactoring?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: User stories 4-7 (test preservation, new tests, incremental, documentation)
+      are covered by minimum viable version.
+    reason: background_only
+  - source: Out of scope items (new features, API changes, etc.) are already clear.
+    reason: background_only
+  compression_rationale:
+    method: Retained only decisions and constraints directly relevant to execution.
+      Omitted redundant user stories and out-of-scope list.
+    loss_notes: []
+  quality_checks:
+  - name: Explanation passes non-engineer test
+    passed: true
+  - name: Minimum viable version is simpler than PRD
+    passed: true
+  - name: Complexity tradeoff named
+    passed: true

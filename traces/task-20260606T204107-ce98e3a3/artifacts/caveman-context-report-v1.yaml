@@ -1,0 +1,53 @@
+context_compression_report:
+  input_scope:
+    artifacts_read:
+      - artifact_id: to-prd-prd-v1
+        used: true
+        why: "PRD defines full feature set that caveman simplifies"
+    handoffs_read: []
+  retained_context:
+    decisions:
+      - statement: "MVP named 'Single-Shelf Photo Search'"
+        source: "caveman"
+        impact: "the simplest articulation of product — guides UI simplicity and onboarding length"
+      - statement: "Drop all social features until user base > 10k"
+        source: "caveman"
+        impact: "social infrastructure (matching, messaging, notifications) removed from v1"
+      - statement: "One shelf photo = one shelf, simplicity first"
+        source: "caveman"
+        impact: "multi-shelf management UI can be deferred; simpler data model"
+      - statement: "Manual link sharing instead of in-app matching"
+        source: "caveman"
+        impact: "no backend matching algorithm needed; just share URLs"
+    constraints:
+      - statement: "No OAuth for MVP, email/password only"
+        source: "caveman"
+        impact: "simpler auth; Apple OAuth can be added in v1.1"
+      - statement: "No Redis caching at low scale"
+        source: "caveman"
+        impact: "simpler deployment; PostgreSQL alone is sufficient"
+      - statement: "No cosine similarity vectors; simple tag overlap"
+        source: "caveman"
+        impact: "when social features arrive, start simple, not with ML"
+    assumptions:
+      - statement: "Social features add 3x complexity for uncertain engagement"
+        source: "caveman"
+        risk: "if market research shows social is primary driver, this cut may be wrong"
+      - statement: "Single shelf is sufficient for initial user value"
+        source: "caveman"
+        risk: "power users with 5+ shelves may bounce without multi-shelf support"
+    open_questions:
+      - statement: "Threshold for adding second shelf feature?"
+        source: "caveman"
+        owner: runtime
+  omitted_context:
+    - source: "detailed complexity tradeoff analysis"
+      reason: background_only
+  compression_rationale:
+    method: "Extracted MVP definition, complexity cuts, and simplification decisions with their impact on architecture."
+    loss_notes: []
+  quality_checks:
+    - name: "MVP scope clearly named with impact"
+      passed: true
+    - name: "All cuts justified with architectural implications"
+      passed: true

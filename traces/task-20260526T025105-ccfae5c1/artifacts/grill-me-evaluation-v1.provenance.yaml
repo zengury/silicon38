@@ -1,0 +1,8 @@
+artifact_id: grill-me-evaluation-v1
+producer: grill-me
+task_id: task-20260526T025105-ccfae5c1
+version: 1
+timestamp: '2026-05-25T18:54:31.451188+00:00'
+input_artifacts: []
+quality_checks: []
+status: approved

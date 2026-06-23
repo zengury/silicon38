@@ -1,0 +1,88 @@
+from: to-prd
+to: to-issues
+relation_type: triggers
+timestamp: '2026-05-31T07:06:29.537765+00:00'
+focus: Activate to-issues from to-prd
+artifact_refs: &id001
+- to-prd-prd-v1
+deliverable:
+  producer: to-prd
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: to-prd-prd-v1
+    producer: to-prd
+    type: prd
+    version: 1
+    status: draft
+    content_ref: artifacts/to-prd-prd-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260531T070551Z-ba3a8327
+  from: to-prd
+  to: to-issues
+  relation_type: triggers
+  focus: Activate to-issues from to-prd
+  source:
+    producer_role: to-prd
+    context_compression_report_ref: artifacts/to-prd-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/triage→to-prd-20260531-070611.yaml
+      context_digest: 8c6cda9925bf2e7b44680c28b2bad3f638236f7d2d9515b5c3dcf8b9367d4512
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Task is a refactoring enhancement
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Priority is high
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: No new features
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Preserve existing behavior
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Codebase is at /Users/ZQ/roboease
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Refactoring will improve maintainability and testability
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Preferred module structure?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Any files off-limits?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed code analysis (not yet performed)
+    reason: background_only
+  - source: Specific duplicate instances (not yet identified)
+    reason: background_only
+  compression_rationale:
+    method: Summarize only high-level classification and scope; omit low-level details
+      not yet available.
+    loss_notes:
+    - No code-level specifics retained; will be gathered by downstream agents.
+  quality_checks:
+  - name: scope_boundary_present
+    passed: true
+  - name: done_condition_present
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - triage-analysis-v1
+  previous_blocks:
+  - ref: handoffs/triage→to-prd-20260531-070611.yaml
+    from: triage
+    to: to-prd
+    relation_type: triggers
+    focus: Activate to-prd from triage
+    context_digest: 8c6cda9925bf2e7b44680c28b2bad3f638236f7d2d9515b5c3dcf8b9367d4512
+    deliverable_artifact_refs:
+    - triage-analysis-v1
+  context_digest: eeeef01f1673bdc2bfa7d144db8a5584be1ad77d48b347f8dadb12152cc158b2

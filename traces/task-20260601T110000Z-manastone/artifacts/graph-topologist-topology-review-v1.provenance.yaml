@@ -1,0 +1,8 @@
+artifact_id: graph-topologist-topology-review-v1
+producer: graph-topologist
+task_id: task-20260601T110000Z-manastone
+version: 1
+timestamp: '2026-06-01T11:29:50.830976+00:00'
+input_artifacts: []
+quality_checks: []
+status: draft

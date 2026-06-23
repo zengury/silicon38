@@ -1,0 +1,84 @@
+from: scope-prosecutor
+to: product-vision-anchor
+relation_type: constrains
+timestamp: '2026-06-06T12:44:20.984753+00:00'
+focus: 'scope verdict: KEEP 6, DEFER 4 social features; v1 core is photo-digitization+search'
+artifact_refs: &id001
+- scope-prosecutor-scope-verdict-v1
+deliverable:
+  producer: scope-prosecutor
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: scope-prosecutor-scope-verdict-v1
+    producer: scope-prosecutor
+    type: scope-verdict
+    version: 1
+    status: draft
+    content_ref: artifacts/scope-prosecutor-scope-verdict-v1.yaml
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260606T204107-ce98e3a3
+  from: scope-prosecutor
+  to: product-vision-anchor
+  relation_type: constrains
+  focus: 'scope verdict: KEEP 6, DEFER 4 social features; v1 core is photo-digitization+search'
+  source:
+    producer_role: scope-prosecutor
+    context_compression_report_ref: artifacts/scope-prosecutor-context-report-v1.yaml
+    input_handoffs: []
+    input_artifacts:
+    - artifact_id: to-prd-prd-v1
+      used: true
+      why: PRD defines scope that prosecutor evaluates
+  compressed_context:
+    decisions:
+    - statement: 'MVP core: photo capture → AI recognition → shelf rendering → search'
+      source: scope-prosecutor
+      impact: defines the irreducible v1 feature set; all architecture/UX must serve
+        these 4 flows
+    - statement: 'KEEP 6 features, DEFER 4 (all social: discovery, messaging, notifications,
+        shelf sharing)'
+      source: scope-prosecutor
+      impact: social infrastructure not needed in v1 backend; reduces scope by ~40%
+    - statement: 'v1 core statement: photo-based digitization with search on virtual
+        shelf'
+      source: scope-prosecutor
+      impact: the vision must anchor around personal utility, not social discovery
+    constraints:
+    - statement: All social features deferred to post-v1
+      source: scope-prosecutor
+      impact: backend can skip real-time messaging, WebSocket, similarity engine for
+        v1
+    - statement: $1.99/month subscription required for business viability
+      source: scope-prosecutor
+      impact: IAP must work from day one; no free unlimited tier
+    - statement: iOS only for initial release
+      source: to-prd
+      impact: Apple ecosystem lock for v1; SwiftUI + StoreKit
+    assumptions:
+    - statement: Core value is personal digitization, not social discovery
+      source: scope-prosecutor
+      risk: if users expect social features from day one, retention may suffer
+    - statement: Users will pay $1.99/month for shelf digitization alone
+      source: scope-prosecutor
+      risk: market validation needed; price point may need adjustment
+    open_questions:
+    - statement: When to reintroduce social features? (user base > 10k?)
+      source: scope-prosecutor
+      owner: runtime
+  omitted_context:
+  - source: individual feature verdict justifications
+    reason: background_only
+  compression_rationale:
+    method: Extracted KEEP/DEFER boundary decisions and their architectural impact.
+      Omitted per-feature reasoning details.
+    loss_notes: []
+  quality_checks:
+  - name: All feature verdicts summarized with impact
+    passed: true
+  - name: MVP core clearly stated
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs: []
+  previous_blocks: []
+  context_digest: 6dd7543917bd86c47f1caa4319dcfb0f416e2350393a352f3a4359eeb8062cc9

@@ -1,0 +1,55 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/to-prd→caveman-20260531-173413.yaml
+      context_digest: a79eb67e14d19af1745126008f457c45d802a43b49b64e80b0d28087b5c9d97e
+  retained_context:
+    decisions:
+    - statement: Task is refactoring/enhancement, no new features.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Scope excludes full rewrite.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Cannot write files or execute commands.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: No external issue tracker access.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Codebase likely Python or TypeScript.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Tests may be absent or minimal.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Exact directory structure and languages.
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Existing test coverage and frameworks.
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Priority between deduplication vs. long-term refactoring.
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed codebase analysis (not yet performed).
+    reason: background_only
+  - source: Specific instances of duplicate code.
+    reason: background_only
+  compression_rationale:
+    method: Extracted key decisions, constraints, and open questions from upstream
+      handoff and PRD. Omitted speculative details.
+    loss_notes:
+    - No loss of critical information.
+  quality_checks:
+  - name: explanation_passes_non_engineer_test
+    passed: true
+  - name: minimum_viable_version_simpler_than_existing
+    passed: true
+  - name: complexity_tradeoff_named
+    passed: true

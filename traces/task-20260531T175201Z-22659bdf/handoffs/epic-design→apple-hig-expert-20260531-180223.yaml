@@ -1,0 +1,120 @@
+from: epic-design
+to: apple-hig-expert
+relation_type: evaluates
+timestamp: '2026-05-31T18:02:23.667647+00:00'
+focus: Activate apple-hig-expert from epic-design
+artifact_refs: &id001
+- epic-design-experience-design-v1
+deliverable:
+  producer: epic-design
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: epic-design-experience-design-v1
+    producer: epic-design
+    type: experience-design
+    version: 1
+    status: draft
+    content_ref: artifacts/epic-design-experience-design-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260531T175201Z-22659bdf
+  from: epic-design
+  to: apple-hig-expert
+  relation_type: evaluates
+  focus: Activate apple-hig-expert from epic-design
+  source:
+    producer_role: epic-design
+    context_compression_report_ref: artifacts/epic-design-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/to-issues→epic-design-20260531-175303.yaml
+      context_digest: 52c00ffafd445dda95c8126406bab02396c4fdd9a663e7deef850aec3ad6085e
+    input_artifacts:
+    - artifact_id: to-issues-decomposition-v1
+      path: artifacts/to-issues-decomposition-v1.md
+      used: true
+      why: Primary upstream deliverable — confirmed task is code refactoring, not
+        design
+  compressed_context:
+    decisions:
+    - statement: Task is a refactoring task, not a feature request or design task.
+      source: to-issues decomposition (handoff)
+      impact: Determines that epic-design cannot execute — wrong node type for this
+        task category
+    - statement: 'Six issues defined in dependency order: linting → dedup → module
+        restructure → docs → tests → scale.'
+      source: to-issues-decomposition-v1
+      impact: Confirms zero immersive design work in any issue
+    constraints:
+    - statement: Must not introduce new features.
+      source: to-issues decomposition (handoff)
+      impact: epic-design cannot repurpose the task as a UI redesign
+    - statement: Must preserve existing behavior.
+      source: to-issues decomposition (handoff)
+      impact: No room for visual overhaul
+    - statement: epic-design harness requires narrative brief and design system tokens.
+      source: org/registry/epic-design.md
+      impact: Both blocking conditions satisfied — node blocked
+    assumptions:
+    - statement: Codebase is at /Users/ZQ/roboease.
+      source: to-issues decomposition (handoff)
+      risk: Verified — codebase exists and is a backend-heavy robot-as-a-service platform
+    - statement: Thompson sampling edge to-issues→epic-design is a routing misconfiguration
+        for refactoring tasks.
+      source: self (epic-design analysis)
+      risk: Assumption about edge configuration — Graph Topologist should validate
+    open_questions:
+    - statement: What is the current test coverage?
+      source: to-issues decomposition (handoff)
+      owner: runtime
+    - statement: Are there ADRs that constrain refactoring?
+      source: to-issues decomposition (handoff)
+      owner: runtime
+    - statement: Should to-issues→epic-design edge have a task-type gate?
+      source: self (epic-design analysis)
+      owner: graph-topologist
+  omitted_context:
+  - source: Detailed codebase module structure (backend domain, services, DI container)
+    reason: irrelevant
+  - source: Specific duplicate code instances and their locations
+    reason: irrelevant
+  - source: Issue dependency graph (1→2→3→5→6, 3→6, 4 independent)
+    reason: irrelevant
+  - source: roboease frontend component tree and page structure (confirmed admin dashboard,
+      no immersive targets)
+    reason: background_only
+  compression_rationale:
+    method: Filtered by task-type relevance. Retained only the classification and
+      scope boundaries that proved the mismatch. Omitted all code-structure details
+      irrelevant to an immersive design node.
+    loss_notes:
+    - No loss of information relevant to refactoring — omitted details belong to code-reviewer/improve-codebase-architecture
+      nodes
+    - The mismatch diagnosis itself is retained for downstream routing correction
+  quality_checks:
+  - name: Input scope complete (all handoffs and artifacts accounted)
+    passed: true
+  - name: Retained decisions have source citations
+    passed: true
+  - name: Retained constraints have impact statements
+    passed: true
+  - name: Omitted context has reason labels
+    passed: true
+  - name: No hard constraints omitted
+    passed: true
+  - name: Compression rationale documented
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - to-issues-decomposition-v1
+  - to-prd-prd-v1
+  - triage-analysis-v1
+  previous_blocks:
+  - ref: handoffs/to-issues→epic-design-20260531-175303.yaml
+    from: to-issues
+    to: epic-design
+    relation_type: thompson_sample
+    focus: Thompson sample α=2.0 β=5.0 [structural_prior]
+    context_digest: 52c00ffafd445dda95c8126406bab02396c4fdd9a663e7deef850aec3ad6085e
+    deliverable_artifact_refs:
+    - to-issues-decomposition-v1
+  context_digest: de1925cb280926c20584f386e65b4fa228d3b6cb5d702799069bc0a0de81c00b

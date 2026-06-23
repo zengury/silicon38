@@ -1,0 +1,17 @@
+task_id: task-20260529T231117
+events:
+- event_id: ev-001
+  timestamp: '2026-05-29T15:11:17.342213+00:00'
+  event_type: task_started
+  payload:
+    detail: 机器人管理平台序曲 — 定义并启动建设
+- event_id: ev-002
+  timestamp: '2026-05-29T15:11:23.772182+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'triage: activated'
+- event_id: ev-003
+  timestamp: '2026-05-29T15:12:13.108644+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'triage: completed'

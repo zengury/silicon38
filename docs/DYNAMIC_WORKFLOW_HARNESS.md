@@ -172,7 +172,7 @@ pi, Cursor) with a LangGraph-native local kernel and zero hosted dependencies.
   window and want continuity across sessions and tasks.
 
 **Flagship examples to publish**:
-1. A long refactor run twice — ephemeral DW vs harnessed DW —
+1. A long refactor (roboease trace) run twice — ephemeral DW vs harnessed DW —
    showing convergence gates, blocking review, and the learned weight delta.
 2. "Add a role in 4 files" — extending the library live, demonstrating the
    curated-library-is-open point.

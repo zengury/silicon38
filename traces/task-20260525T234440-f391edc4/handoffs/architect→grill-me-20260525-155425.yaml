@@ -1,0 +1,5 @@
+from: architect
+to: grill-me
+relation_type: evaluates
+timestamp: '2026-05-25T15:54:25.870986+00:00'
+focus: 对抗性审查架构 ADR：5 层管道是否过度设计？告警延迟 SLA 是否可实现？单机部署是否足够？

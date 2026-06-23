@@ -1,0 +1,5 @@
+from: database-engineer
+to: senior-engineer
+relation_type: triggers
+timestamp: '2026-05-25T07:04:25.073475+00:00'
+focus: migration files + schema → ORM models

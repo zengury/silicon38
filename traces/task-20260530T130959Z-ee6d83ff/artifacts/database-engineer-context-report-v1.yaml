@@ -1,0 +1,110 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→database-engineer-20260530-131050.yaml
+      context_digest: 4e220098be60169c8c3edb7ccba02ef3299d931073fef69dad6aba2b3e34c5f2
+  retained_context:
+    decisions:
+    - statement: Adopt modular monolith for backend with database per module
+      source: architect
+      impact: Drives 6+1 schema split in v6 design
+    - statement: Use event bus (Redis pub/sub) for async communication between modules
+      source: architect
+      impact: Decouples modules; task status changes flow through events, not cross-schema
+        queries
+    - statement: Extract authentication into dedicated module
+      source: architect
+      impact: Identity schema (raas_identity) is the first and most critical schema
+        to isolate
+    - statement: Preserve VARCHAR(20) Snowflake PKs for Phase 1
+      source: database-engineer
+      impact: Deferred BIGINT migration to Phase 2 to avoid breaking all service create()
+        methods
+    - statement: Application-level FK enforcement for cross-schema references
+      source: database-engineer
+      impact: Service layer must validate cross-schema references; periodic consistency
+        checks as backstop
+    - statement: 4-phase migration strategy (harden → expand → transition → contract)
+      source: database-engineer
+      impact: Each phase independently reversible; feature flags control read/write
+        switching
+    constraints:
+    - statement: MySQL 8.0 only — no PostgreSQL migration planned
+      source: database-engineer
+      impact: Cross-database FKs impossible; application-level enforcement required
+    - statement: Team size is small (<10); avoid over-engineering
+      source: architect
+      impact: Zero-dependency migration runner, not Alembic; 6+1 schemas not 12+
+    - statement: Existing deployment uses Docker Compose; must remain compatible
+      source: architect
+      impact: Single MySQL container; schemas are logical databases within same instance
+    - statement: Robot-side services are separate and cannot be merged
+      source: architect
+      impact: Planning backend (Flask/SQLite) not in scope for this refactor
+    - statement: Snowflake ID generation embedded in all service create() methods
+      source: database-engineer
+      impact: Cannot change PK type to BIGINT without coordinated refactor
+    assumptions:
+    - statement: Backend is a single Python FastAPI service based on requirements.txt
+      source: semantic_node_executor
+      risk: Assumption may need review
+    - statement: Event bus can be implemented with Redis pub/sub
+      source: architect
+      risk: May need evaluation for consistency guarantees
+    - statement: Production MySQL version is 8.0.18 or later (supports ALGORITHM=INPLACE)
+      source: database-engineer
+      risk: Older versions would require table locks for FK/index creation
+    - statement: No existing data integrity violations that would block FK creation
+      source: database-engineer
+      risk: Pre-migration data validation needed; orphan records would need cleanup
+    open_questions:
+    - statement: What is the current production data volume per table?
+      source: database-engineer
+      owner: devops-engineer
+    - statement: What is the exact event bus technology? (Redis pub/sub vs in-process)
+      source: architect
+      owner: architect
+    - statement: How many Snowflake worker IDs are configured?
+      source: database-engineer
+      owner: senior-engineer
+    - statement: Does the face_recognition table exist? Referenced in imports but
+        no DDL found
+      source: database-engineer
+      owner: senior-engineer
+    - statement: Is the legacy menu table (BIGINT PK) still actively written?
+      source: database-engineer
+      owner: senior-engineer
+  omitted_context:
+  - source: Frontend component details (Vue, Element Plus, images)
+    reason: background_only
+  - source: Detailed Docker build files (DOCKERFILE contents)
+    reason: background_only
+  - source: Mock data files (admin/mock/*.ts)
+    reason: background_only
+  - source: Action library JSON data (150+ motion entries in DML)
+    reason: background_only
+  compression_rationale:
+    method: 'Top-down architectural mapping from architect decisions → concrete schema
+      boundaries. Retained: all architect decisions, all schema design decisions,
+      all identified constraints and risks. Omitted: implementation details not affecting
+      schema structure (Docker build args, frontend assets, mock data).'
+    loss_notes:
+    - Action library motion details (150+ entries) compressed to 'LONGTEXT JSON column'
+    - Frontend routing/menu tree structure not retained (not relevant to DB schema)
+    - Docker Compose environment variables not retained (found in config modules)
+  quality_checks:
+  - name: migration_strategy_present
+    passed: true
+  - name: rollback_or_safety_named
+    passed: true
+  - name: every_index_references_query_pattern
+    passed: true
+  - name: nullable_columns_have_documented_reason
+    passed: true
+  - name: fk_constraints_explicit_with_on_delete
+    passed: true
+  - name: architect_decisions_preserved
+    passed: true
+  - name: module_boundaries_verified_against_service_code
+    passed: true

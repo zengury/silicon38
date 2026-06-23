@@ -1,0 +1,54 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read: []
+  retained_context:
+    decisions:
+      - statement: "Learning writes reviewable proposals but does not auto-mutate Policy."
+        source: "learning/proposals.py and tools/ledger.py"
+        impact: "Keeps graph evolution evidence-driven without letting a bad diagnosis become law."
+      - statement: "Success delivery requires all convergence gates to be true."
+        source: "tools/ledger.py and org/DECODER.md"
+        impact: "Prevents blocking evaluator and candidate-resolution failures from being delivered as success."
+      - statement: "Context reports must cite exact upstream handoff digests."
+        source: "tools/policy.py and org/CONTEXT_BLOCK.md"
+        impact: "Preserves the block-chain context model instead of allowing prose digest placeholders."
+    constraints:
+      - statement: "Existing historical traces are not rewritten."
+        source: "development decision"
+        impact: "Old defects remain visible to validation and learning review."
+      - statement: "Post-delivery meta nodes must still write artifacts and context reports."
+        source: "tools/policy.py and org/RUNTIME.md"
+        impact: "Meta learning work cannot bypass the Ledger."
+    assumptions:
+      - statement: "Skip-cost thresholds are initial conservative priors."
+        source: "implementation note"
+        risk: "medium"
+      - statement: "Human review remains required before graph or policy mutation."
+        source: "org/CONTEXT_BLOCK.md five-concept model"
+        risk: "low"
+    open_questions:
+      - statement: "Should learning proposals become a first-class schema?"
+        source: "development record"
+        owner: "graph-topologist / runtime maintainer"
+      - statement: "Should repeated advisory evaluator skips have task-type-specific penalties?"
+        source: "development record"
+        owner: "graph-topologist / policy maintainer"
+  omitted_context:
+    - source: "older incomplete task traces"
+      reason: "background_only"
+    - source: "community skill replacement search details"
+      reason: "background_only"
+  compression_rationale:
+    method: "Retain only decisions, constraints, assumptions, and open questions that affect future control-loop maintenance."
+    loss_notes:
+      - "Detailed command output is summarized in the development record."
+  quality_checks:
+    - name: "All retained decisions cite a source."
+      passed: true
+    - name: "All retained constraints cite a source."
+      passed: true
+    - name: "All assumptions include risk."
+      passed: true
+    - name: "Open questions have owners."
+      passed: true

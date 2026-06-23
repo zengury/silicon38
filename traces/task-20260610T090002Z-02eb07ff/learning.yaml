@@ -1,0 +1,132 @@
+schema: silicon_org.trace_learning_snapshot.v1
+task_id: task-20260610T090002Z-02eb07ff
+timestamp: '2026-06-10T09:10:11.680998+00:00'
+outcome:
+  status: partial
+  decoder_notes: 'Graph propagation exhausted — no more legal candidates. Unmet convergence
+    gates: no_undecided_activation_candidates.'
+  quality_signal:
+    source: runtime_decoder
+    value: 0.5
+    detail: 'Graph propagation exhausted — no more legal candidates. Unmet convergence
+      gates: no_undecided_activation_candidates.'
+role_signals:
+- role: zoom-out
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: triage
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: architect
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: improve-codebase-architecture
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: to-prd
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: graph-topologist
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: hrbp
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+relation_signals:
+- from: zoom-out
+  to: triage
+  relation_type: thompson_sample
+  signal: 0.125
+  confidence: 0.1625
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=thompson_sample; multiplier=0.25
+- from: zoom-out
+  to: improve-codebase-architecture
+  relation_type: thompson_sample
+  signal: 0.125
+  confidence: 0.1625
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=thompson_sample; multiplier=0.25
+- from: zoom-out
+  to: architect
+  relation_type: may_trigger
+  signal: 0.45
+  confidence: 0.5850000000000001
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=may_trigger; multiplier=0.90
+- from: architect
+  to: senior-engineer
+  relation_type: triggers
+  signal: 0.5
+  confidence: 0.65
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=triggers; multiplier=1.00
+- from: triage
+  to: to-prd
+  relation_type: thompson_sample
+  signal: 0.125
+  confidence: 0.1625
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=thompson_sample; multiplier=0.25
+- from: improve-codebase-architecture
+  to: refactor-specialist
+  relation_type: triggers
+  signal: 0.5
+  confidence: 0.65
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=triggers; multiplier=1.00
+proposals:
+- proposal_key: task-20260610T090002Z-02eb07ff:convergence_gate_breach:no_undecided_activation_candidates
+  task_id: task-20260610T090002Z-02eb07ff
+  task_type: refactor
+  type: convergence_gate_breach
+  severity: critical
+  finding: 'Delivered task has unresolved convergence gate: no_undecided_activation_candidates.'
+  recommended_action: Reject future success delivery until this convergence gate is
+    true.
+  evidence:
+    task_type: refactor
+    gate: no_undecided_activation_candidates
+    value: false
+  status: proposed
+  auto_apply: false
+- proposal_key: aggregate:convergence_gate_cluster:refactor:no_undecided_activation_candidates
+  task_id: aggregate:refactor
+  task_type: refactor
+  type: convergence_gate_cluster
+  severity: critical
+  finding: 8 refactor task(s) were delivered with convergence gate no_undecided_activation_candidates
+    unresolved.
+  recommended_action: Reject future success delivery for this task type until no_undecided_activation_candidates
+    is true.
+  evidence:
+    task_type: refactor
+    gate: no_undecided_activation_candidates
+    support_count: 8
+    supporting_task_ids:
+    - task-20260530T092732Z-a680fc73
+    - task-20260530T094254Z-baa4f350
+    - task-20260530T100617Z-6f43e4f7
+    - task-20260530T122917Z-1ae65489
+    - task-20260530T130959Z-ee6d83ff
+    - task-20260530T143742Z-b85bb72b
+    - task-20260610T023455Z-9f61727f
+    - task-20260610T090002Z-02eb07ff
+    trigger_task_id: task-20260610T090002Z-02eb07ff
+  status: proposed
+  auto_apply: false
+  basis: aggregate

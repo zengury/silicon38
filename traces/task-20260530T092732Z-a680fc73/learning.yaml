@@ -1,0 +1,174 @@
+schema: silicon_org.trace_learning_snapshot.v1
+task_id: task-20260530T092732Z-a680fc73
+timestamp: '2026-05-30T09:41:04.528064+00:00'
+outcome:
+  status: partial
+  decoder_notes: Graph propagation exhausted — no more legal candidates.
+  quality_signal:
+    source: runtime_decoder
+    value: 0.5
+    detail: Graph propagation exhausted — no more legal candidates.
+role_signals:
+- role: zoom-out
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: architect
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: security-engineer
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: api-designer
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: database-engineer
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: senior-engineer
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+- role: graph-topologist
+  signal: 0.5
+  confidence: 0.75
+  source: role_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; terminal_role=true
+relation_signals:
+- from: zoom-out
+  to: architect
+  relation_type: may_trigger
+  signal: 0.45
+  confidence: 0.5850000000000001
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=may_trigger; multiplier=0.90
+- from: architect
+  to: senior-engineer
+  relation_type: triggers
+  signal: 0.5
+  confidence: 0.65
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=triggers; multiplier=1.00
+- from: architect
+  to: api-designer
+  relation_type: triggers
+  signal: 0.5
+  confidence: 0.65
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=triggers; multiplier=1.00
+- from: architect
+  to: database-engineer
+  relation_type: triggers
+  signal: 0.5
+  confidence: 0.65
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=triggers; multiplier=1.00
+- from: architect
+  to: security-engineer
+  relation_type: may_trigger
+  signal: 0.45
+  confidence: 0.5850000000000001
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=may_trigger; multiplier=0.90
+- from: architect
+  to: devops-engineer
+  relation_type: may_trigger
+  signal: 0.45
+  confidence: 0.5850000000000001
+  source: relation_credit_assignment.v0
+  detail: outcome=partial; decoder_quality=0.50; relation_type=may_trigger; multiplier=0.90
+proposals:
+- proposal_key: task-20260530T092732Z-a680fc73:convergence_gate_breach:all_non_loop_nodes_settled
+  task_id: task-20260530T092732Z-a680fc73
+  task_type: refactor
+  type: convergence_gate_breach
+  severity: critical
+  finding: 'Delivered task has unresolved convergence gate: all_non_loop_nodes_settled.'
+  recommended_action: Reject future success delivery until this convergence gate is
+    true.
+  evidence:
+    task_type: refactor
+    gate: all_non_loop_nodes_settled
+    value: false
+  status: proposed
+  auto_apply: false
+- proposal_key: task-20260530T092732Z-a680fc73:convergence_gate_breach:all_loops_resolved
+  task_id: task-20260530T092732Z-a680fc73
+  task_type: refactor
+  type: convergence_gate_breach
+  severity: critical
+  finding: 'Delivered task has unresolved convergence gate: all_loops_resolved.'
+  recommended_action: Reject future success delivery until this convergence gate is
+    true.
+  evidence:
+    task_type: refactor
+    gate: all_loops_resolved
+    value: false
+  status: proposed
+  auto_apply: false
+- proposal_key: task-20260530T092732Z-a680fc73:convergence_gate_breach:all_blocking_evals_resolved
+  task_id: task-20260530T092732Z-a680fc73
+  task_type: refactor
+  type: convergence_gate_breach
+  severity: critical
+  finding: 'Delivered task has unresolved convergence gate: all_blocking_evals_resolved.'
+  recommended_action: Reject future success delivery until this convergence gate is
+    true.
+  evidence:
+    task_type: refactor
+    gate: all_blocking_evals_resolved
+    value: false
+  status: proposed
+  auto_apply: false
+- proposal_key: task-20260530T092732Z-a680fc73:convergence_gate_breach:all_joins_passed
+  task_id: task-20260530T092732Z-a680fc73
+  task_type: refactor
+  type: convergence_gate_breach
+  severity: critical
+  finding: 'Delivered task has unresolved convergence gate: all_joins_passed.'
+  recommended_action: Reject future success delivery until this convergence gate is
+    true.
+  evidence:
+    task_type: refactor
+    gate: all_joins_passed
+    value: false
+  status: proposed
+  auto_apply: false
+- proposal_key: task-20260530T092732Z-a680fc73:convergence_gate_breach:all_artifacts_resolved
+  task_id: task-20260530T092732Z-a680fc73
+  task_type: refactor
+  type: convergence_gate_breach
+  severity: critical
+  finding: 'Delivered task has unresolved convergence gate: all_artifacts_resolved.'
+  recommended_action: Reject future success delivery until this convergence gate is
+    true.
+  evidence:
+    task_type: refactor
+    gate: all_artifacts_resolved
+    value: false
+  status: proposed
+  auto_apply: false
+- proposal_key: task-20260530T092732Z-a680fc73:convergence_gate_breach:no_undecided_activation_candidates
+  task_id: task-20260530T092732Z-a680fc73
+  task_type: refactor
+  type: convergence_gate_breach
+  severity: critical
+  finding: 'Delivered task has unresolved convergence gate: no_undecided_activation_candidates.'
+  recommended_action: Reject future success delivery until this convergence gate is
+    true.
+  evidence:
+    task_type: refactor
+    gate: no_undecided_activation_candidates
+    value: false
+  status: proposed
+  auto_apply: false

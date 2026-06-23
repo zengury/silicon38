@@ -1,0 +1,196 @@
+task_id: task-20260526T011320-9d2f77a4
+timestamp_start: '2026-05-25T17:13:22.822637+00:00'
+timestamp_end: '2026-05-25T17:28:25.629065+00:00'
+task_summary: Robot Fleet Ops Dashboard — fleet monitoring web panel with real-time
+  telemetry, heterogeneous data normalization, alerting, history, config, collaboration,
+  export, theming
+task_type: complex/multi-part
+entry_nodes:
+- triage
+- caveman
+terminal_nodes:
+- triage
+- caveman
+- to-prd
+- to-issues
+- architect
+- senior-engineer
+- grill-me
+- ux-researcher-designer
+- code-reviewer
+- ui-design-system
+outcome:
+  status: success
+  decoder_notes: 'Fleet Ops Dashboard: Architecture (ADR with component topology,
+    data flow, unified schema, tech stack), UX design (journey map, 3-layer info architecture),
+    Design system (tokens + 9 component primitives), Working Demo (single-file HTML:
+    6 robots, 3-format DataNormalizer, AlertEngine, charts, map, detail panel, config,
+    comments, theme toggle). All 9 user requirements addressed.'
+  quality_signal:
+    source: runtime_decoder
+    value: 1.0
+    detail: 'Fleet Ops Dashboard: Architecture (ADR with component topology, data
+      flow, unified schema, tech stack), UX design (journey map, 3-layer info architecture),
+      Design system (tokens + 9 component primitives), Working Demo (single-file HTML:
+      6 robots, 3-format DataNormalizer, AlertEngine, charts, map, detail panel, config,
+      comments, theme toggle). All 9 user requirements addressed.'
+artifact_index:
+- artifact_id: triage-analysis-v1
+  type: analysis
+  producer: triage
+  version: 1
+  status: approved
+  path: artifacts/triage-analysis-v1.md
+  ref: artifacts/triage-analysis-v1.md
+  provenance_ref: artifacts/triage-analysis-v1.provenance.yaml
+- artifact_id: caveman-analysis-v1
+  type: analysis
+  producer: caveman
+  version: 1
+  status: approved
+  path: artifacts/caveman-analysis-v1.md
+  ref: artifacts/caveman-analysis-v1.md
+  provenance_ref: artifacts/caveman-analysis-v1.provenance.yaml
+- artifact_id: to-prd-document-v1
+  type: document
+  producer: to-prd
+  version: 1
+  status: approved
+  path: artifacts/to-prd-document-v1.md
+  ref: artifacts/to-prd-document-v1.md
+  provenance_ref: artifacts/to-prd-document-v1.provenance.yaml
+- artifact_id: caveman-evaluation-v2
+  type: evaluation
+  producer: caveman
+  version: 2
+  status: approved
+  path: artifacts/caveman-evaluation-v2.md
+  ref: artifacts/caveman-evaluation-v2.md
+  provenance_ref: artifacts/caveman-evaluation-v2.provenance.yaml
+- artifact_id: to-issues-decomposition-v1
+  type: decomposition
+  producer: to-issues
+  version: 1
+  status: approved
+  path: artifacts/to-issues-decomposition-v1.md
+  ref: artifacts/to-issues-decomposition-v1.md
+  provenance_ref: artifacts/to-issues-decomposition-v1.provenance.yaml
+- artifact_id: architect-design-v1
+  type: design
+  producer: architect
+  version: 1
+  status: approved
+  path: artifacts/architect-design-v1.md
+  ref: artifacts/architect-design-v1.md
+  provenance_ref: artifacts/architect-design-v1.provenance.yaml
+- artifact_id: ux-researcher-designer-spec-v1
+  type: spec
+  producer: ux-researcher-designer
+  version: 1
+  status: approved
+  path: artifacts/ux-researcher-designer-spec-v1.md
+  ref: artifacts/ux-researcher-designer-spec-v1.md
+  provenance_ref: artifacts/ux-researcher-designer-spec-v1.provenance.yaml
+- artifact_id: grill-me-evaluation-v1
+  type: evaluation
+  producer: grill-me
+  version: 1
+  status: approved
+  path: artifacts/grill-me-evaluation-v1.md
+  ref: artifacts/grill-me-evaluation-v1.md
+  provenance_ref: artifacts/grill-me-evaluation-v1.provenance.yaml
+- artifact_id: senior-engineer-demo-v1
+  type: demo
+  producer: senior-engineer
+  version: 1
+  status: approved
+  path: artifacts/senior-engineer-demo-v1.html
+  ref: artifacts/senior-engineer-demo-v1.html
+  provenance_ref: artifacts/senior-engineer-demo-v1.provenance.yaml
+- artifact_id: code-reviewer-review-v1
+  type: review
+  producer: code-reviewer
+  version: 1
+  status: approved
+  path: artifacts/code-reviewer-review-v1.md
+  ref: artifacts/code-reviewer-review-v1.md
+  provenance_ref: artifacts/code-reviewer-review-v1.provenance.yaml
+- artifact_id: ui-design-system-tokens-v1
+  type: tokens
+  producer: ui-design-system
+  version: 1
+  status: approved
+  path: artifacts/ui-design-system-tokens-v1.md
+  ref: artifacts/ui-design-system-tokens-v1.md
+  provenance_ref: artifacts/ui-design-system-tokens-v1.provenance.yaml
+handoff_trail:
+- ref: handoffs/triage→to-prd-20260525-171530.yaml
+  from: triage
+  to: to-prd
+  relation_type: triggers
+  timestamp: '2026-05-25T17:15:30.809565+00:00'
+  artifact_refs:
+  - triage-analysis-v1
+- ref: handoffs/to-prd→to-issues-20260525-171655.yaml
+  from: to-prd
+  to: to-issues
+  relation_type: triggers
+  timestamp: '2026-05-25T17:16:55.719216+00:00'
+  artifact_refs:
+  - to-prd-document-v1
+- ref: handoffs/to-prd→architect-20260525-171655.yaml
+  from: to-prd
+  to: architect
+  relation_type: may_trigger
+  timestamp: '2026-05-25T17:16:55.817875+00:00'
+  artifact_refs:
+  - to-prd-document-v1
+- ref: handoffs/to-prd→caveman-20260525-171655.yaml
+  from: to-prd
+  to: caveman
+  relation_type: evaluates
+  timestamp: '2026-05-25T17:16:55.917052+00:00'
+  artifact_refs:
+  - to-prd-document-v1
+- ref: handoffs/architect→senior-engineer-20260525-172049.yaml
+  from: architect
+  to: senior-engineer
+  relation_type: triggers
+  timestamp: '2026-05-25T17:20:49.967657+00:00'
+  artifact_refs:
+  - architect-design-v1
+- ref: handoffs/to-issues→senior-engineer-20260525-172050.yaml
+  from: to-issues
+  to: senior-engineer
+  relation_type: triggers
+  timestamp: '2026-05-25T17:20:50.080245+00:00'
+  artifact_refs:
+  - to-issues-decomposition-v1
+- ref: handoffs/architect→grill-me-20260525-172050.yaml
+  from: architect
+  to: grill-me
+  relation_type: evaluates
+  timestamp: '2026-05-25T17:20:50.252560+00:00'
+  artifact_refs:
+  - architect-design-v1
+- ref: handoffs/triage→ux-researcher-designer-20260525-172058.yaml
+  from: triage
+  to: ux-researcher-designer
+  relation_type: may_trigger
+  timestamp: '2026-05-25T17:20:58.928089+00:00'
+  artifact_refs:
+  - triage-analysis-v1
+- ref: handoffs/senior-engineer→code-reviewer-20260525-172648.yaml
+  from: senior-engineer
+  to: code-reviewer
+  relation_type: triggers
+  timestamp: '2026-05-25T17:26:48.411470+00:00'
+  artifact_refs:
+  - senior-engineer-demo-v1
+- ref: handoffs/ux-researcher-designer→ui-design-system-20260525-172648.yaml
+  from: ux-researcher-designer
+  to: ui-design-system
+  relation_type: may_trigger
+  timestamp: '2026-05-25T17:26:48.532910+00:00'
+  artifact_refs:
+  - ux-researcher-designer-spec-v1

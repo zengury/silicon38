@@ -1,0 +1,12 @@
+artifact_id: zoom-out-module-map-v1
+producer: zoom-out
+type: analysis
+version: 1
+status: draft
+created_at: "2026-05-24T23:38:00+08:00"
+superseded_by: null
+content_ref: artifacts/zoom-out-module-map-v1.md
+consumers:
+  - architect
+  - improve-codebase-architecture
+  - senior-engineer

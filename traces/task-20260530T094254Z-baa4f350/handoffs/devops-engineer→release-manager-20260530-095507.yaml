@@ -1,0 +1,122 @@
+from: devops-engineer
+to: release-manager
+relation_type: triggers
+timestamp: '2026-05-30T09:55:07.714809+00:00'
+focus: Activate release-manager from devops-engineer
+artifact_refs: &id001
+- devops-engineer-ops-plan-v1
+deliverable:
+  producer: devops-engineer
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: devops-engineer-ops-plan-v1
+    producer: devops-engineer
+    type: ops-plan
+    version: 1
+    status: draft
+    content_ref: artifacts/devops-engineer-ops-plan-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260530T094254Z-baa4f350
+  from: devops-engineer
+  to: release-manager
+  relation_type: triggers
+  focus: Activate release-manager from devops-engineer
+  source:
+    producer_role: devops-engineer
+    context_compression_report_ref: artifacts/devops-engineer-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/architect→devops-engineer-20260530-094359.yaml
+      context_digest: d5d2218f66f8b0e37b3ea0822e15d3dad3c4f807cff5125209016070d4ff4f97
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Multi-stage Dockerfiles for frontend services require repository
+        root as build context
+      source: devops-engineer analysis
+      impact: Changed deploy.yml, ci.yml, and Makefile build configurations. Without
+        this fix, portal and admin-web Docker builds would fail at COPY step.
+    - statement: Adopt Modular Monolith for backend with Layered Architecture and
+        DDD tactical patterns
+      source: architect (handoff)
+      impact: Single backend service in docker-compose; no microservice orchestration
+        needed. CI pipeline builds one backend image.
+    - statement: Use pnpm workspace with single root lockfile
+      source: devops-engineer verification
+      impact: Frontend CI jobs reference root pnpm-lock.yaml as cache key. Docker
+        builds must include repo root context for workspace resolution.
+    - statement: GitHub Actions for CI/CD (not GitLab CI)
+      source: devops-engineer (v1-v5)
+      impact: All pipeline configuration in .github/workflows/. Uses GHA-specific
+        actions (dorny/paths-filter, docker/build-push-action, slackapi/slack-github-action).
+    constraints: []
+    assumptions: []
+    open_questions:
+    - statement: Does robot/agent/web_ui/ use yarn or pnpm? CI job expects pnpm.
+      source: v5 ops plan
+      owner: frontend-engineer
+    - statement: What is the exact backend framework structure? Source not in workspace.
+      source: architect (handoff)
+      owner: runtime
+    - statement: What does @roboease/shared contain? Referenced by both frontend Dockerfiles
+        and workspace config.
+      source: architect (handoff)
+      owner: frontend-engineer
+    - statement: Are robot planning backend tests written? Pipeline is ready but tests
+        may fail.
+      source: v5 ops plan
+      owner: qa-engineer
+  omitted_context:
+  - source: semantic_node_executor
+    reason: background_only
+  - source: semantic_node_executor
+    reason: background_only
+  - source: semantic_node_executor
+    reason: background_only
+  - source: semantic_node_executor
+    reason: background_only
+  compression_rationale:
+    method: 'Build-context-focused audit: Compared Dockerfile COPY instructions against
+      CI/deploy build context configurations. Identified systematic mismatch where
+      frontend multi-stage builds required repo root but were configured with child
+      directories. Retained architectural decisions (modular monolith, workspace structure)
+      as load-bearing context. Omitted frontend component details and image assets
+      as irrelevant to CI/CD configuration.'
+    loss_notes:
+    - robot/agent/web_ui/ directory not examined for yarn vs pnpm — question carried
+      forward
+    - Backend source structure not validated — constraint from architect handoff
+    - Previous ops-plan v1-v4 detailed evolution not retained — v5 is the cumulative
+      reference
+  quality_checks:
+  - name: Pipeline is idempotent — running twice does not produce errors or duplicates
+    passed: true
+  - name: No secrets in configuration files — secrets referenced, not embedded
+    passed: true
+  - name: Every pipeline stage has clear failure output
+    passed: true
+  - name: Caching is correct — cache keys include all inputs that affect cached output
+    passed: true
+  - name: Deployment is reversible — rollback procedure is defined and tested
+    passed: true
+  - name: Configuration is syntactically valid — YAML parses successfully
+    passed: true
+  - name: Environment boundaries are named and distinct
+    passed: true
+  - name: Verification path is present for each environment
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - architect-architecture-v1
+  - zoom-out-context-map-v1
+  previous_blocks:
+  - ref: handoffs/architect→devops-engineer-20260530-094359.yaml
+    from: architect
+    to: devops-engineer
+    relation_type: may_trigger
+    focus: task involves deployment to an external platform or requires CI/CD delivery
+      pipeline
+    context_digest: d5d2218f66f8b0e37b3ea0822e15d3dad3c4f807cff5125209016070d4ff4f97
+    deliverable_artifact_refs:
+    - architect-architecture-v1
+  context_digest: d9a4f0a795456df816edb581f0fe24bc70280dd4951446aa8b3d5e360411eeed

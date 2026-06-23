@@ -1,0 +1,106 @@
+from: to-issues
+to: senior-engineer
+relation_type: triggers
+timestamp: '2026-05-26T14:13:42.871311+00:00'
+focus: 'Implement FleetOps Dashboard demo: canonical model, mock WebSocket server,
+  real-time engine, dashboard with ECharts, robot detail, alerts, config, comments,
+  export, theming/layout'
+artifact_refs: &id001
+- to-issues-output-v1
+deliverable:
+  producer: to-issues
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: to-issues-output-v1
+    producer: to-issues
+    type: output
+    version: 1
+    status: draft
+    content_ref: artifacts/to-issues-output-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260526T220515-e7ada379
+  from: to-issues
+  to: senior-engineer
+  relation_type: triggers
+  focus: 'Implement FleetOps Dashboard demo: canonical model, mock WebSocket server,
+    real-time engine, dashboard with ECharts, robot detail, alerts, config, comments,
+    export, theming/layout'
+  source:
+    producer_role: to-issues
+    context_compression_report_ref: artifacts/to-issues-context-report-v1.yaml
+    input_handoffs:
+    - ref: to-prd→to-issues-20260526-140814.yaml
+      from: to-prd
+      type: triggers
+      context_digest: Decompose fleet monitoring dashboard PRD into independently
+        deliverable work items
+    input_artifacts:
+    - artifact_id: to-prd-output-v1
+      path: artifacts/to-prd-output-v1.md
+      used: true
+      why: Primary input — PRD defines all user stories, implementation decisions,
+        and scope boundaries
+  compressed_context:
+    decisions:
+    - statement: Canonical Model 是整个系统的数据基础，作为第一个阻塞性切片
+      source: 'to-prd: Schema Adapter Pipeline + Canonical Model 定义'
+      impact: '#1 是所有其他切片的前置依赖'
+    - statement: 按垂直切片而非水平分层分解
+      source: 'to-issues skill: tracer bullet vertical slices'
+      impact: 每片都是端到端可验证的，减少跨切片等待
+    constraints:
+    - statement: Demo 阶段前端内存存储，生产需持久化
+      source: 'to-prd: Further Notes'
+      impact: '#7 Config Panel 和 #8 Collaboration 使用 localStorage'
+    - statement: 纯 SPA 前端架构
+      source: 'to-prd: Implementation Decision #1'
+      impact: 所有切片为前端工作，Mock Server 仅辅助开发
+    assumptions:
+    - statement: Mock WebSocket Server 由前端团队构建或已有现成工具
+      source: 'to-prd: assumption ''后端聚合服务已存在或可以独立构建'''
+      risk: medium — 需要验证是否有后端团队并行开发
+    - statement: 20 台机器人规模足以演示所有功能
+      source: 客户需求未明确数量，PRD 估算 20-100 台
+      risk: low — Demo 用 20 台合理
+    open_questions:
+    - statement: 后端聚合服务是否由本团队构建
+      source: 'to-prd: open_question'
+      owner: user / architect
+  omitted_context:
+  - context: 地图服务选型（Mapbox vs Leaflet）
+    source: 'to-prd: open_question'
+    reason: background_only
+  - context: 时序数据库选型（InfluxDB vs TimescaleDB）
+    source: 'to-prd: open_question'
+    reason: irrelevant
+  - context: 用户认证方式
+    source: 'to-prd: Out of Scope'
+    reason: irrelevant
+  compression_rationale:
+    method: 仅保留影响切片划分和依赖图的结构性决策，省略实现细节和暂不相关的技术选型
+    loss_notes: []
+  quality_checks:
+  - name: 所有 retained decisions 有 source 和 impact
+    passed: true
+  - name: 所有 retained constraints 有 source 和 impact
+    passed: true
+  - name: 所有 assumptions 有 source 和 risk
+    passed: true
+  - name: omitted context 每项有明确 reason
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - to-prd-output-v1
+  previous_blocks:
+  - ref: handoffs/to-prd→to-issues-20260526-140814.yaml
+    from: to-prd
+    to: to-issues
+    relation_type: triggers
+    focus: 'Decompose fleet monitoring dashboard PRD into independently deliverable
+      work items: data adapter, real-time engine, alert engine, dashboard UI, history
+      view, config panel, collaboration, export, theming/l10n/layout'
+    context_digest: 1daa2366b67666858c38a18e9816c507e44cbd562fa8398fdd37b0d9f66ae48e
+    deliverable_artifact_refs:
+    - to-prd-output-v1
+  context_digest: 3bef104eba32bfcb3e47174ff760dbe65dfada6895e2127d9cf334c09af295ad

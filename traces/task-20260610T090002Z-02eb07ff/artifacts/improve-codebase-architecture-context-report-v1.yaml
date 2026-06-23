@@ -1,0 +1,107 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/zoom-out→improve-codebase-architecture-20260610-090020.yaml
+      context_digest: 6658ac8e08b0e1938ee1c1e6926d2435578de86271cc22afdb23959676f65dd9
+  retained_context:
+    decisions:
+    - statement: 'Identified 8 specific architectural problems: MQTT client duplication
+        (backend vs robot), log_setting duplication, inline MQTT reply pattern, shallow
+        library services, competing persistence patterns, verbose DI container, inconsistent
+        audit patterns, settings fragmentation.'
+      source: improve-codebase-architecture
+      impact: Each problem names specific modules, file paths, line numbers, and consequences.
+        Prioritized roadmap with 8 independently deployable steps.
+    - statement: Cross-module duplication (MQTT client, log_setting) is the highest-impact
+        problem because the implementations have already diverged (e.g., auto-reconnect
+        in backend MQTT but not robot).
+      source: improve-codebase-architecture
+      impact: Steps 1-3 address duplication first; Steps 4-6 address structural patterns;
+        Steps 7-8 are cleanup.
+    - statement: Shallow library service files (ActionLibraryService, ExpressionLibraryService,
+        VoiceLibraryService) pass the deletion test — removing them and using BaseEntityService
+        directly would not scatter complexity.
+      source: improve-codebase-architecture
+      impact: Step 4 collapses them into a declarative registry.
+    - statement: TaskBaseService uses direct SQLModel Session access while TaskService
+        uses repository ports — the backend is converging on hexagonal architecture
+        but the task domain is split.
+      source: improve-codebase-architecture
+      impact: Step 5 aligns TaskBaseService with repository ports.
+    constraints:
+    - statement: Robot module runs on edge device with different Python environment
+        — shared packages must not pull in backend-only dependencies (FastAPI, SQLModel).
+      source: improve-codebase-architecture
+      impact: Shared MQTT/logging packages must have minimal dependency footprint.
+    - statement: Deprecated backend/config/setting.py must be verified for zero remaining
+        imports before deletion (Step 8).
+      source: improve-codebase-architecture
+      impact: Requires grep audit before cleanup.
+    - statement: Frontend TypeScript code was not analyzed in depth — only directory
+        structure inspected.
+      source: improve-codebase-architecture
+      impact: Frontend dedup analysis may reveal additional opportunities.
+    assumptions:
+    - statement: The existing test suite (backend/tests/ with 14 test files) provides
+        sufficient coverage to serve as regression guard for Steps 1-8.
+      source: improve-codebase-architecture
+      risk: If test coverage is thin for TaskBaseService subclasses, Step 5 carries
+        additional risk.
+    - statement: The CRUD router factory (crud_router.py) can work with BaseEntityService
+        directly without modification, or requires only a minor update to resolve
+        entity CN names from the registry.
+      source: improve-codebase-architecture
+      risk: Minor API surface change in crud_router.py.
+    open_questions:
+    - statement: 'Where should the shared MQTT/logging common package live? Options:
+        monorepo root packages/roboease-common/, pip-installable package, or git submodule.'
+      source: improve-codebase-architecture
+      owner: architect
+    - statement: Are there integration tests for InspectionTaskService and InventoryTaskService
+        that would serve as regression guards for the Step 5 (TaskBaseService → ports)
+        refactor?
+      source: improve-codebase-architecture
+      owner: refactor-specialist
+    - statement: Do frontend admin/ and frontend portal/ have duplicate shared utilities
+        (HTTP client, auth, token storage) that should be analyzed in a follow-up
+        pass?
+      source: improve-codebase-architecture
+      owner: runtime
+  omitted_context:
+  - source: Detailed file-by-file analysis of all 22+ backend services
+    reason: background_only
+  - source: Frontend component-level code analysis (admin/portal Vue/React structure)
+    reason: background_only
+  - source: docker/ deployment configurations and CI/CD pipeline details
+    reason: background_only
+  - source: Robot agent skill/capability/task_engine internals beyond interface-level
+      inspection
+    reason: background_only
+  - source: Database migration scripts (dbscripts/)
+    reason: background_only
+  compression_rationale:
+    method: 'Problem-focused compression: only the 8 identified architectural problems
+      with their specific modules, evidence locations, and consequences are retained.
+      The roadmap steps preserve the action plan. Detailed service-by-service analysis
+      and non-architectural code (deployment configs, migrations, frontend internals)
+      are omitted as background or out-of-scope.'
+    loss_notes:
+    - Individual service method signatures not carried forward — only pattern-level
+      analysis retained
+    - Frontend TypeScript dedup potential not assessed
+    - Robot agent motion/skill/task_engine internals not deeply analyzed — only MQTT
+      and logging duplication at robot layer retained
+  quality_checks:
+  - name: Every problem references actual code locations
+    passed: true
+  - name: Every problem names specific modules and consequences
+    passed: true
+  - name: Every improvement step is independently deployable
+    passed: true
+  - name: Deletion test applied to shallow modules
+    passed: true
+  - name: Cross-module files read and compared side-by-side
+    passed: true
+  - name: Impact-to-risk ordering justified for each step
+    passed: true

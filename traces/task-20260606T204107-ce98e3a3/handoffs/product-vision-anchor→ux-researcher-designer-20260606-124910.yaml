@@ -1,0 +1,126 @@
+from: product-vision-anchor
+to: ux-researcher-designer
+relation_type: constrains
+timestamp: '2026-06-06T12:49:10.712137+00:00'
+focus: 'Vision: ''command over collection'' — every screen must reduce cognitive load'
+artifact_refs: &id001
+- product-vision-anchor-product-vision-statement-v1
+deliverable:
+  producer: product-vision-anchor
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: product-vision-anchor-product-vision-statement-v1
+    producer: product-vision-anchor
+    type: product-vision-statement
+    version: 1
+    status: draft
+    content_ref: artifacts/product-vision-anchor-product-vision-statement-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260606T204107-ce98e3a3
+  from: product-vision-anchor
+  to: ux-researcher-designer
+  relation_type: constrains
+  focus: 'Vision: ''command over collection'' — every screen must reduce cognitive
+    load'
+  source:
+    producer_role: product-vision-anchor
+    context_compression_report_ref: artifacts/product-vision-anchor-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/to-prd→product-vision-anchor-20260606-124420.yaml
+      context_digest: 854aaf9a1f4ebf80539527bab113bad6cde984160c73516b918a41e33211cccd
+    - ref: handoffs/scope-prosecutor→product-vision-anchor-20260606-124420.yaml
+      context_digest: 6dd7543917bd86c47f1caa4319dcfb0f416e2350393a352f3a4359eeb8062cc9
+    input_artifacts:
+    - artifact_id: to-prd-prd-v1
+      used: true
+      why: PRD defines user stories, tech decisions, out-of-scope items that the vision
+        must encompass
+    - artifact_id: scope-prosecutor-scope-verdict-v1
+      used: true
+      why: scope verdict defines what is KEPT vs DEFERRED — vision must honor these
+        boundaries
+  compressed_context:
+    decisions:
+    - statement: Primary job is 'find a book by its physical location' — not 'catalog
+        books'
+      source: product-vision-anchor
+      impact: reframes entire product from cataloging tool to spatial retrieval tool
+    - statement: 'Emotional promise: command over collection, not overwhelm'
+      source: product-vision-anchor
+      impact: every UI/UX decision must reduce cognitive load
+    - statement: 'Out of scope forever: e-book reader, e-commerce, general social
+        network, data monetization'
+      source: product-vision-anchor
+      impact: hard boundaries for all downstream feature discussions
+    - statement: iOS only, photo-only input, subscription day one, no social v1
+      source: to-prd + scope-prosecutor
+      impact: architecture and UX scope boundaries
+    constraints:
+    - statement: $1.99/month subscription from day one
+      source: to-prd
+      impact: IAP must be integrated before launch; no free unlimited tier
+    - statement: Photo-based input only — no manual fallback
+      source: semantic_node_executor
+      impact: recognition pipeline is the only data source; no backup entry method
+    - statement: All social features deferred to post-v1
+      source: scope-prosecutor
+      impact: backend skips WebSocket, matching engine, messaging for v1
+    assumptions:
+    - statement: Users will pay $1.99/month for shelf digitization alone (without
+        social features)
+      source: scope-prosecutor
+      risk: market validation needed; price sensitivity unknown
+    - statement: AI recognition can achieve 90%+ accuracy from shelf photos
+      source: to-prd
+      risk: core technical assumption — if fails, product fails
+    open_questions:
+    - statement: Does 'command over collection' resonate as the emotional driver in
+        user testing?
+      source: product-vision-anchor
+      owner: runtime
+  omitted_context:
+  - source: Detailed PRD user stories 5–10 (deferred features)
+    reason: irrelevant
+  - source: to-issues decomposition detail
+    reason: background_only
+  compression_rationale:
+    method: Extracted vision statement, JTBD layers, positioning, and out-of-scope
+      boundaries. Omitted implementation-level details not needed for architecture/UX
+      synthesis.
+    loss_notes: []
+  quality_checks:
+  - name: Vision statement is falsifiable
+    passed: true
+  - name: Target user is specific (not 'users' or 'people')
+    passed: true
+  - name: Alternative being beaten is named
+    passed: true
+  - name: Out-of-scope-forever defined
+    passed: true
+  - name: Vision test includes all three check questions
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - scope-prosecutor-scope-verdict-v1
+  - to-prd-prd-v1
+  previous_blocks:
+  - ref: handoffs/scope-prosecutor→product-vision-anchor-20260606-124420.yaml
+    from: scope-prosecutor
+    to: product-vision-anchor
+    relation_type: constrains
+    focus: 'scope verdict: KEEP 6, DEFER 4 social features; v1 core is photo-digitization+search'
+    context_digest: 6dd7543917bd86c47f1caa4319dcfb0f416e2350393a352f3a4359eeb8062cc9
+    deliverable_artifact_refs:
+    - scope-prosecutor-scope-verdict-v1
+  - ref: handoffs/to-prd→product-vision-anchor-20260606-124420.yaml
+    from: to-prd
+    to: product-vision-anchor
+    relation_type: triggers
+    focus: PRD contains 10 user stories, tech decisions, and scope boundaries for
+      vision synthesis
+    context_digest: 854aaf9a1f4ebf80539527bab113bad6cde984160c73516b918a41e33211cccd
+    deliverable_artifact_refs:
+    - to-prd-prd-v1
+  context_digest: 3d110eaa5aa91ebfcf189c8d54e870b02c761c8df99ebe8f98267e927ea6536e
+soul_ref: org/soul.md

@@ -1,0 +1,8 @@
+artifact_id: caveman-analysis-v1
+producer: caveman
+task_id: task-20260526T083818-ddd3d784
+version: 1
+timestamp: '2026-05-26T00:44:07.974838+00:00'
+input_artifacts: []
+quality_checks: []
+status: draft

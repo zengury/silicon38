@@ -1,0 +1,89 @@
+task_id: task-20260531T163111Z-49e4329c
+events:
+- event_id: ev-001
+  timestamp: '2026-05-31T16:31:11.922268+00:00'
+  event_type: task_started
+  payload:
+    detail: 优化重构 /Users/ZQ/roboease 代码库：消除重复代码、改善模块结构、提升可维护性和可测试性
+- event_id: ev-002
+  timestamp: '2026-05-31T16:31:30.234830+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'triage: activated'
+- event_id: ev-003
+  timestamp: '2026-05-31T16:31:30.319120+00:00'
+  event_type: context_report_registered
+  payload:
+    role: triage
+    ref: artifacts/triage-context-report-v1.yaml
+    digest: cdfbdd82ac420cf2e7c7412e55749fd41d9389f2da30bc6cb17c6d123d124497
+- event_id: ev-004
+  timestamp: '2026-05-31T16:31:30.350100+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'triage: completed'
+- event_id: ev-005
+  timestamp: '2026-05-31T16:31:30.609679+00:00'
+  event_type: activation_decision
+  payload:
+    from: triage
+    to: diagnose
+    relation_type: triggers
+    decision: defer
+    detail: 'Candidate gated by task_type=general; allowed task types: [''bug'', ''bug_fix'',
+      ''diagnose'', ''debug'', ''incident'', ''performance''].'
+    decision_quality:
+      reason_chars: 125
+      requires_review: true
+- event_id: ev-006
+  timestamp: '2026-05-31T16:31:30.737154+00:00'
+  event_type: activation_decision
+  payload:
+    from: triage
+    to: ux-researcher-designer
+    relation_type: may_trigger
+    decision: defer
+    detail: 'Candidate gated by task_type=general; allowed task types: [''feature'',
+      ''design'', ''launch''].'
+    decision_quality:
+      reason_chars: 90
+      requires_review: true
+- event_id: ev-007
+  timestamp: '2026-05-31T16:31:30.869455+00:00'
+  event_type: activation_decision
+  payload:
+    from: triage
+    to: prototype
+    relation_type: may_trigger
+    decision: defer
+    detail: 'Candidate gated by task_type=general; allowed task types: [''feature'',
+      ''design'', ''architecture''].'
+    decision_quality:
+      reason_chars: 96
+      requires_review: true
+- event_id: ev-008
+  timestamp: '2026-05-31T16:31:31.271963+00:00'
+  event_type: activation_decision
+  payload:
+    from: triage
+    to: to-prd
+    relation_type: triggers
+    decision: activate
+    detail: Activate to-prd from triage
+- event_id: ev-009
+  timestamp: '2026-05-31T16:32:03.744549+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'to-prd: activated'
+- event_id: ev-010
+  timestamp: '2026-05-31T16:32:03.864499+00:00'
+  event_type: context_report_registered
+  payload:
+    role: to-prd
+    ref: artifacts/to-prd-context-report-v1.yaml
+    digest: 5f4175158537dda283f3f3470039879fe75bf5c0345cce79eaecfe5120a07e49
+- event_id: ev-011
+  timestamp: '2026-05-31T16:32:03.908766+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'to-prd: completed'

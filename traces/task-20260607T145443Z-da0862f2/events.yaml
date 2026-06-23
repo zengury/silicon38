@@ -1,0 +1,246 @@
+task_id: task-20260607T145443Z-da0862f2
+events:
+- event_id: ev-001
+  timestamp: '2026-06-07T14:55:00.566778+00:00'
+  event_type: task_started
+  payload:
+    detail: '/Users/ZQ/manastone/manastone — Build demonstration-taught guided tour
+      system. Full brief: /Users/ZQ/Downloads/v3_TOUR_BRIEF.md. Two modes (teaching
+      + guiding), voice-only operator interface, anti-hallucination, 5 acceptance
+      steps.'
+- event_id: ev-002
+  timestamp: '2026-06-07T14:55:34.672849+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'to-prd: activated'
+- event_id: ev-003
+  timestamp: '2026-06-07T14:55:35.821412+00:00'
+  event_type: context_report_registered
+  payload:
+    role: to-prd
+    ref: artifacts/to-prd-context-report-v1.yaml
+    digest: 29f8b135ee2b5308de66badadac49e689a657c528827af1f205b6b6c17ceb88f
+- event_id: ev-004
+  timestamp: '2026-06-07T14:55:36.240380+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'to-prd: completed'
+- event_id: ev-005
+  timestamp: '2026-06-07T14:55:41.517060+00:00'
+  event_type: activation_decision
+  payload:
+    from: to-prd
+    to: grill-me
+    relation_type: may_trigger
+    decision: defer
+    detail: Candidate score 0.30 is below activation threshold 0.50; deferred for
+      later policy review.
+    decision_quality:
+      reason_chars: 90
+      requires_review: true
+- event_id: ev-006
+  timestamp: '2026-06-07T14:55:49.773664+00:00'
+  event_type: activation_decision
+  payload:
+    from: to-prd
+    to: to-issues
+    relation_type: thompson_sample
+    decision: activate
+    detail: Thompson sample α=367.9 β=4.2 [validated:triggers]
+- event_id: ev-007
+  timestamp: '2026-06-07T14:55:53.279251+00:00'
+  event_type: activation_decision
+  payload:
+    from: to-prd
+    to: ux-researcher-designer
+    relation_type: may_trigger
+    decision: activate
+    detail: PRD includes user-facing interface requirements, interaction design, or
+      visual design deliverables
+- event_id: ev-008
+  timestamp: '2026-06-07T14:55:57.256417+00:00'
+  event_type: activation_decision
+  payload:
+    from: to-prd
+    to: architect
+    relation_type: may_trigger
+    decision: activate
+    detail: requirements imply system architecture, data flow, or technology decisions
+- event_id: ev-009
+  timestamp: '2026-06-07T14:56:00.576765+00:00'
+  event_type: activation_decision
+  payload:
+    from: to-prd
+    to: product-vision-anchor
+    relation_type: thompson_sample
+    decision: activate
+    detail: Thompson sample α=292.8 β=4.2 [validated:triggers]
+- event_id: ev-010
+  timestamp: '2026-06-07T14:56:18.731240+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'product-vision-anchor: activated'
+- event_id: ev-011
+  timestamp: '2026-06-07T14:56:20.953710+00:00'
+  event_type: context_report_registered
+  payload:
+    role: product-vision-anchor
+    ref: artifacts/product-vision-anchor-context-report-v1.yaml
+    digest: f94a8e3346450b28cb1c4f6ff7f6649b0296e9db54159478b00dbd4925e8cdef
+- event_id: ev-012
+  timestamp: '2026-06-07T14:56:21.590692+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'product-vision-anchor: completed'
+- event_id: ev-013
+  timestamp: '2026-06-07T14:56:26.129670+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'to-issues: activated'
+- event_id: ev-014
+  timestamp: '2026-06-07T14:56:28.554611+00:00'
+  event_type: context_report_registered
+  payload:
+    role: to-issues
+    ref: artifacts/to-issues-context-report-v1.yaml
+    digest: d116cdddb272c4f047018cf5dc0a7c5b951dd5ddbf0d246319eba01a69cff44c
+- event_id: ev-015
+  timestamp: '2026-06-07T14:56:29.274011+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'to-issues: completed'
+- event_id: ev-016
+  timestamp: '2026-06-07T14:56:32.745552+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'architect: activated'
+- event_id: ev-017
+  timestamp: '2026-06-07T14:56:35.383500+00:00'
+  event_type: context_report_registered
+  payload:
+    role: architect
+    ref: artifacts/architect-context-report-v1.yaml
+    digest: a85a4fdba104ac74db24a0eefd7e6261326eafbbd5a98efa8047077019f94e36
+- event_id: ev-018
+  timestamp: '2026-06-07T14:56:36.201409+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'architect: completed'
+- event_id: ev-019
+  timestamp: '2026-06-07T14:56:39.779705+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'ux-researcher-designer: activated'
+- event_id: ev-020
+  timestamp: '2026-06-07T14:56:42.684600+00:00'
+  event_type: context_report_registered
+  payload:
+    role: ux-researcher-designer
+    ref: artifacts/ux-researcher-designer-context-report-v1.yaml
+    digest: 94f3149d78337cf56eeb5ea36b99b9b162837e8b1c5bb71c3538121838c03a78
+- event_id: ev-021
+  timestamp: '2026-06-07T14:56:43.637833+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'ux-researcher-designer: completed'
+- event_id: ev-022
+  timestamp: '2026-06-07T14:56:53.422499+00:00'
+  event_type: activation_decision
+  payload:
+    from: architect
+    to: devops-engineer
+    relation_type: may_trigger
+    decision: defer
+    detail: 'Candidate gated by task_type=design; skipped task types: [''docs'', ''design''].'
+    decision_quality:
+      reason_chars: 76
+      requires_review: true
+- event_id: ev-023
+  timestamp: '2026-06-07T14:56:55.710236+00:00'
+  event_type: activation_decision
+  payload:
+    from: architect
+    to: grill-me
+    relation_type: may_trigger
+    decision: defer
+    detail: Candidate score 0.40 is below activation threshold 0.50; deferred for
+      later policy review.
+    decision_quality:
+      reason_chars: 90
+      requires_review: true
+- event_id: ev-024
+  timestamp: '2026-06-07T14:57:07.566127+00:00'
+  event_type: activation_decision
+  payload:
+    from: to-issues
+    to: senior-engineer
+    relation_type: thompson_sample
+    decision: activate
+    detail: Thompson sample α=337.9 β=5.5 [validated:triggers]
+- event_id: ev-025
+  timestamp: '2026-06-07T14:57:13.614842+00:00'
+  event_type: activation_decision
+  payload:
+    from: ux-researcher-designer
+    to: prototype
+    relation_type: triggers
+    decision: activate
+    detail: Activate prototype from ux-researcher-designer
+- event_id: ev-026
+  timestamp: '2026-06-07T14:57:20.342904+00:00'
+  event_type: activation_decision
+  payload:
+    from: architect
+    to: customer-success
+    relation_type: may_trigger
+    decision: activate
+    detail: task produces a customer-facing deliverable (design, feature with UI,
+      product launch) — NOT bug_fix, refactor, ops, or internal tooling
+- event_id: ev-027
+  timestamp: '2026-06-07T14:57:26.708383+00:00'
+  event_type: activation_decision
+  payload:
+    from: to-issues
+    to: dependency-auditor
+    relation_type: thompson_sample
+    decision: activate
+    detail: Thompson sample α=1.0 β=6.0 [structural_prior]
+- event_id: ev-028
+  timestamp: '2026-06-07T14:57:53.001137+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'dependency-auditor: activated'
+- event_id: ev-029
+  timestamp: '2026-06-07T14:57:56.673973+00:00'
+  event_type: context_report_registered
+  payload:
+    role: dependency-auditor
+    ref: artifacts/dependency-auditor-context-report-v1.yaml
+    digest: d86b53a9194bd024b27cf0ab1fd971e67256da69d8d3dadd115e381fb66c3e06
+- event_id: ev-030
+  timestamp: '2026-06-07T14:57:57.874426+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'dependency-auditor: completed'
+- event_id: ev-031
+  timestamp: '2026-06-07T14:58:02.749953+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'customer-success: activated'
+- event_id: ev-032
+  timestamp: '2026-06-07T15:02:26.564364+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'senior-engineer: activated'
+- event_id: ev-033
+  timestamp: '2026-06-07T15:02:32.313369+00:00'
+  event_type: context_report_registered
+  payload:
+    role: senior-engineer
+    ref: artifacts/senior-engineer-context-report-v1.yaml
+    digest: 564c417a0e174a216788549776ea389337877cdc34f1f164d74f7317fa0a09da
+- event_id: ev-034
+  timestamp: '2026-06-07T15:02:33.783592+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'senior-engineer: completed'

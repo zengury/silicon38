@@ -1,0 +1,8 @@
+from: triage
+to: to-prd
+relation_type: triggers
+timestamp: '2026-05-25T16:14:32.603366+00:00'
+focus: Convert soul-knife scope into a testable PRD; ground the single foreground
+  act and the relegated surfaces.
+artifact_refs:
+- triage-classification-v1

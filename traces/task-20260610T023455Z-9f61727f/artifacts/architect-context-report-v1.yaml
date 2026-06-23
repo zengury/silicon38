@@ -1,0 +1,88 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/zoom-out→architect-20260610-023513.yaml
+      context_digest: 6a04a68b948facfd9bdddfe0c76c1e212bb4c8fb9c78bd6fb902a8a5ac2bbc9b
+  retained_context:
+    decisions:
+    - statement: Focus on src/ directory as primary area of interest.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Identified utils/helpers.py as candidate for deduplication.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Modular refactoring with clear separation of concerns.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Extract shared utilities into focused modules.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Split core/pipeline.py into a package with orchestrator and stage
+        classes.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Unify retry/error-handling in utils/retry.py.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Timeboxed to one iteration; deep analysis deferred.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: No access to runtime or database; static analysis only.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: All changes must pass existing tests before merging.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: No new external dependencies.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Refactoring must be done in small, mergeable PRs.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Codebase structure is representative of actual architecture.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: No hidden modules outside src/ are critical.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Team is familiar with Python and standard testing practices.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Should we use dependency injection for stages to improve testability?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the exact retry policy (max retries, backoff) for services?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Are there any other duplicated utilities beyond helpers.py?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the exact scope of the pipeline's responsibilities?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file contents (not needed for high-level design).
+    reason: background_only
+  - source: Third-party library versions (not relevant to structure).
+    reason: background_only
+  - source: Specific test cases (deferred to implementation phase).
+    reason: background_only
+  compression_rationale:
+    method: 'Semantic summarization: extracted key decisions, constraints, and open
+      questions from upstream handoff and context map. Omitted low-level implementation
+      details.'
+    loss_notes:
+    - No loss of critical architectural information.
+    - Implementation details (e.g., function signatures) omitted but not needed for
+      architecture design.
+  quality_checks:
+  - name: All upstream decisions retained
+    passed: true
+  - name: Constraints accurately captured
+    passed: true
+  - name: Open questions preserved for downstream
+    passed: true

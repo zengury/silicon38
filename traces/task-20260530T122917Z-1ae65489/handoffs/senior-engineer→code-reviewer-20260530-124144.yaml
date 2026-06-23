@@ -1,0 +1,57 @@
+from: senior-engineer
+to: code-reviewer
+relation_type: triggers
+timestamp: '2026-05-30T12:41:44.829536+00:00'
+focus: Activate code-reviewer from senior-engineer
+artifact_refs: &id001
+- senior-engineer-implementation-v1
+deliverable:
+  producer: senior-engineer
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: senior-engineer-implementation-v1
+    producer: senior-engineer
+    type: implementation
+    version: 1
+    status: draft
+    content_ref: artifacts/senior-engineer-implementation-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260530T122917Z-1ae65489
+  from: senior-engineer
+  to: code-reviewer
+  relation_type: triggers
+  focus: Activate code-reviewer from senior-engineer
+  source:
+    producer_role: senior-engineer
+    context_compression_report_ref: artifacts/senior-engineer-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/architect→senior-engineer-20260530-123007.yaml
+      context_digest: 0ed3c86187716e5126b99491bf1a2b86ab0462fe7865fda1800ce39ededb3f01
+    input_artifacts: []
+  compressed_context:
+    decisions: []
+    constraints: []
+    assumptions: []
+    open_questions: []
+  omitted_context: []
+  compression_rationale:
+    method: semantic_node_executor_normalized
+    loss_notes: []
+  quality_checks:
+  - name: semantic_executor_schema_normalized
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - architect-architecture-v1
+  - zoom-out-context-map-v1
+  previous_blocks:
+  - ref: handoffs/architect→senior-engineer-20260530-123007.yaml
+    from: architect
+    to: senior-engineer
+    relation_type: triggers
+    focus: Activate senior-engineer from architect
+    context_digest: 0ed3c86187716e5126b99491bf1a2b86ab0462fe7865fda1800ce39ededb3f01
+    deliverable_artifact_refs:
+    - architect-architecture-v1
+  context_digest: a96cb80be6a50b34dc4c48599de30cd2de108b66a42d164f43cbd64692c9b712

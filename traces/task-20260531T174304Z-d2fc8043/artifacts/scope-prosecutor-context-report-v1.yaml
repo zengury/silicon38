@@ -1,0 +1,52 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/to-prd→scope-prosecutor-20260531-174340.yaml
+      context_digest: 12a4bee22534d297e31bcd9baa8277660b120e16dbae6b3a2b16e8145c733a20
+  retained_context:
+    decisions:
+    - statement: Task is a codebase improvement (enhancement) not a bug.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Priority set to high due to impact on maintainability.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: No write access to the codebase.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must respect existing ADRs and out-of-scope decisions.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: The codebase is primarily one language (to be confirmed).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Existing tests may be present (to be confirmed).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the primary programming language(s)?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Are there existing tests and what framework?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Any architectural constraints?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Desired outcome metrics?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context: []
+  compression_rationale:
+    method: Retained key decisions, constraints, assumptions, and open questions from
+      the handoff. Omitted detailed scope items and agent recommendations as they
+      are not needed for scope prosecution.
+    loss_notes: []
+  quality_checks:
+  - name: Required fields present
+    passed: true
+  - name: Context compression valid
+    passed: true

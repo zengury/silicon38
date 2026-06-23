@@ -1,0 +1,101 @@
+from: architect
+to: api-designer
+relation_type: triggers
+timestamp: '2026-05-30T12:30:09.223454+00:00'
+focus: Activate api-designer from architect
+artifact_refs: &id001
+- architect-architecture-v1
+deliverable:
+  producer: architect
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: architect-architecture-v1
+    producer: architect
+    type: architecture
+    version: 1
+    status: draft
+    content_ref: artifacts/architect-architecture-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260530T122917Z-1ae65489
+  from: architect
+  to: api-designer
+  relation_type: triggers
+  focus: Activate api-designer from architect
+  source:
+    producer_role: architect
+    context_compression_report_ref: artifacts/architect-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/zoom-out→architect-20260530-122936.yaml
+      context_digest: 3fd8e231d648fc9f633993926e1fb01296bb57471bb2c95e9f1defd943591dd6
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Map the entire codebase at a high level to identify modules and their
+        responsibilities.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Focus on backend, frontends, Docker, and artifacts directories.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Only read files, no writes or bash execution.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must use actual module names and domain terms from the codebase.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: The codebase is a monorepo with backend, frontend, and Docker configs.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: The primary database is MySQL, with Redis for caching.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the exact database schema?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How do robots communicate with the backend (MQTT topics, WebSocket
+        messages)?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the CI/CD pipeline?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the testing strategy?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file contents of individual source files (not needed for high-level
+      architecture).
+    reason: background_only
+  - source: Historical artifact versions (v1-v7) — not relevant for current architecture.
+    reason: background_only
+  compression_rationale:
+    method: High-level module identification from directory structure and key files.
+    loss_notes:
+    - Omitted detailed implementation of individual modules.
+    - Omitted historical planning documents.
+  quality_checks:
+  - name: Module names match codebase
+    passed: true
+  - name: Relationships verified by reading imports/calls
+    passed: true
+  - name: External dependencies labeled
+    passed: true
+  - name: Map is concise and relevant
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - zoom-out-context-map-v1
+  previous_blocks:
+  - ref: handoffs/zoom-out→architect-20260530-122936.yaml
+    from: zoom-out
+    to: architect
+    relation_type: may_trigger
+    focus: context map identifies architecture work as part of the deliverable
+    context_digest: 3fd8e231d648fc9f633993926e1fb01296bb57471bb2c95e9f1defd943591dd6
+    deliverable_artifact_refs:
+    - zoom-out-context-map-v1
+  context_digest: 217d452738e13b3be0992dc54e8752c03aa1e95339a72cda738f433e1bbbe97c

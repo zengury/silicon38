@@ -1,0 +1,5 @@
+from: ux-researcher-designer
+to: ui-design-system
+relation_type: supports
+timestamp: '2026-05-25T15:50:25.902828+00:00'
+focus: 17 个核心组件需要设计系统产出，重点在 RobotCard 信息密度和 AlertBanner 视觉紧迫感

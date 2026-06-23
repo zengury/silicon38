@@ -1,0 +1,63 @@
+task_id: task-20260525T155054-5195c912
+timestamp_start: '2026-05-25T07:50:54.151233+00:00'
+timestamp_end: '2026-05-25T07:57:11.833706+00:00'
+task_summary: 'Robot Fleet Ops Dashboard: real-time monitoring web panel for humanoid
+  robot fleets — real-time telemetry, heterogeneous data normalization, fleet overview
+  dashboard, alerts, 30-day history, config panel, engineer collaboration, PDF/Excel
+  reports, dark/light themes, i18n, draggable layouts'
+task_type: architecture
+entry_nodes:
+- triage
+- caveman
+- zoom-out
+- ux-researcher-designer
+terminal_nodes:
+- triage
+- caveman
+- zoom-out
+- ux-researcher-designer
+- to-prd
+- architect
+- ui-design-system
+outcome:
+  status: success
+  quality_signal:
+    source: architect
+    value: 0.9
+artifact_index:
+- artifact_id: triage-analysis-v1
+  type: analysis
+  producer: triage
+  version: 1
+  path: artifacts/triage-analysis-v1.md
+- artifact_id: caveman-analysis-v1
+  type: analysis
+  producer: caveman
+  version: 1
+  path: artifacts/caveman-simplify-v1.md
+- artifact_id: zoom-out-analysis-v1
+  type: analysis
+  producer: zoom-out
+  version: 1
+  path: artifacts/zoom-out-analysis-v1.md
+- artifact_id: ux-researcher-designer-uxspec-v1
+  type: uxspec
+  producer: ux-researcher-designer
+  version: 1
+  path: artifacts/ux-researcher-designer-uxspec-v1.md
+- artifact_id: to-prd-prd-v1
+  type: prd
+  producer: to-prd
+  version: 1
+  path: artifacts/to-prd-prd-v1.md
+- artifact_id: architect-adr-v1
+  type: adr
+  producer: architect
+  version: 1
+  path: artifacts/architect-adr-v1.md
+- artifact_id: ui-design-system-design-v1
+  type: design
+  producer: ui-design-system
+  version: 1
+  path: artifacts/ui-design-system-design-v1.md
+handoff_trail: []

@@ -1,0 +1,8 @@
+from: architect
+to: caveman
+relation_type: evaluates
+timestamp: '2026-05-26T00:43:19.858657+00:00'
+focus: 'Review ADR-001 for first-principles clarity: are the 7 decisions the simplest
+  possible? Any over-engineering?'
+artifact_refs:
+- architect-document-v1

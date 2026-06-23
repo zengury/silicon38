@@ -1,0 +1,82 @@
+from: zoom-out
+to: improve-codebase-architecture
+relation_type: may_trigger
+timestamp: '2026-06-10T02:35:14.577918+00:00'
+focus: context map identifies structural debt, coupling, or module boundary violations
+artifact_refs: &id001
+- zoom-out-context-map-v1
+deliverable:
+  producer: zoom-out
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: zoom-out-context-map-v1
+    producer: zoom-out
+    type: context-map
+    version: 1
+    status: draft
+    content_ref: artifacts/zoom-out-context-map-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260610T023455Z-9f61727f
+  from: zoom-out
+  to: improve-codebase-architecture
+  relation_type: may_trigger
+  focus: context map identifies structural debt, coupling, or module boundary violations
+  source:
+    producer_role: zoom-out
+    context_compression_report_ref: artifacts/zoom-out-context-report-v1.yaml
+    input_handoffs: []
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Focus on src/ directory as primary area of interest.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Identified utils/helpers.py as candidate for deduplication.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Timeboxed to one iteration; deep analysis deferred.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: No access to runtime or database; static analysis only.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Codebase structure is representative of actual architecture.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: No hidden modules outside src/ are critical.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Are there any other duplicated utilities beyond helpers.py?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the exact scope of the pipeline's responsibilities?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file contents (not needed for high-level map).
+    reason: background_only
+  - source: Third-party library versions (not relevant to structure).
+    reason: background_only
+  compression_rationale:
+    method: 'Semantic summarization: extracted module responsibilities, call relationships,
+      and data flows from directory structure and file names. Omitted low-level implementation
+      details.'
+    loss_notes:
+    - No loss of critical structural information.
+    - Implementation details (e.g., function signatures) omitted but not needed for
+      context map.
+  quality_checks:
+  - name: Module existence verified
+    passed: true
+  - name: Relationships verified by imports
+    passed: true
+  - name: External dependencies labeled
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs: []
+  previous_blocks: []
+  context_digest: 168c3e1411afe50637e03a7c22a727d01bfe9e53e976ac75971916e4dd50b0ec

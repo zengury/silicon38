@@ -1,0 +1,163 @@
+context_compression_report:
+  input_scope:
+    artifacts_read:
+    - artifact_id: to-prd-prd-v1
+      path: artifacts/to-prd-prd-v1.md
+      sha256: c9e63af72a94bbabd0394b85a52678a1eca123d8d345eadd6e672e29f779274c
+      used: true
+      why: Primary PRD defining product goals, MVP scope, snapshot contract, surfaces,
+        requirements, acceptance criteria, non-goals, risks, and success criteria.
+    - artifact_id: architect-architecture-v1
+      path: artifacts/architect-architecture-v1.md
+      sha256: b8565faa4c5a46e0eee3d38f8f84b678503aa0a14e92befb12c2ecdf0613f634
+      used: true
+      why: Provided implementation architecture for snapshot adapter/server, API endpoints,
+        normalized schema, deterministic scene model, polling/replay model, and integration
+        boundaries.
+    - artifact_id: prototype-plan-v1
+      path: artifacts/prototype-plan-v1.md
+      sha256: e430c44ca6ddb6bc66f529b3fd529c0cbfe201718d61a14f9978ae891fc96325
+      used: true
+      why: Provided minimum runnable demo scope, 3D layout model, handoff block behavior,
+        interaction checklist, and prototype follow-up risks.
+    handoffs_read:
+    - ref: handoffs/to-prd→to-issues-20260527-145526.yaml
+      file_sha256: c9f9fb504a542cecca8f782207dcd36b5a156822b0fac8fdd4e5f70713dfb1ef
+      context_digest: 133222db9344c3cbd8516da71522b6fc8623ff3d68243c280e05b30bd0f7956f
+    - ref: handoffs/triage→to-prd-20260527-144434.yaml
+      context_digest: 6cd1b49c5a5163e76e9d64f2603178a27b64cf84ff2487664a1387c2277a8ea7
+      inherited_via: handoffs/to-prd→to-issues-20260527-145526.yaml
+    - ref: handoffs/caveman→to-prd-20260527-144434.yaml
+      context_digest: 93dfa50d9418a38365a1c419b0b5d968267bf8cc847551f1e22456e007a8424d
+      inherited_via: handoffs/to-prd→to-issues-20260527-145526.yaml
+  retained_context:
+    decisions:
+    - statement: Implementation should start with a normalized snapshot exporter before
+        frontend rendering.
+      source: to-prd-prd-v1 and architect-architecture-v1
+      impact: All downstream slices depend on a stable contract that keeps raw YAML
+        and trace parsing out of rendering components.
+    - statement: The local server is read-only in MVP.
+      source: architect-architecture-v1
+      impact: Issue slices exclude graph editing, policy decisions, artifact approval,
+        handoff creation, learning updates, and runtime commands.
+    - statement: Three.js scene should use deterministic layout and five operating
+        surfaces.
+      source: to-prd-prd-v1, architect-architecture-v1, and prototype-plan-v1
+      impact: Frontend slices include Graph, Policy, Ledger, Runtime, and Learning
+        surfaces and avoid uncontrolled layout physics by default.
+    - statement: Handoff blocks are first-class inspectable objects.
+      source: to-prd-prd-v1 and prototype-plan-v1
+      impact: A dedicated slice covers animation plus inspector details for deliverables,
+        context digests, previous blocks, retained context, and quality checks.
+    - statement: Replay and live polling should use the same normalized event model.
+      source: to-prd-prd-v1 and architect-architecture-v1
+      impact: Timeline/replay work is split after the server and state projection
+        are available, preserving a future streaming upgrade path.
+    - statement: Learning is visible but advisory.
+      source: to-prd-prd-v1 and architect-architecture-v1
+      impact: Learning gets its own surface and tests, but no slice lets learning
+        proposals override Policy gates.
+    constraints:
+    - statement: Ledger-derived facts remain the source of truth for displayed operational
+        state.
+      source: handoffs/to-prd→to-issues-20260527-145526.yaml and to-prd-prd-v1
+      impact: Every implementation slice includes source references, not-recorded
+        states, or explicit invalid markers.
+    - statement: Context-only relations must not be styled as direct activation paths.
+      source: handoffs/to-prd→to-issues-20260527-145526.yaml and architect-architecture-v1
+      impact: Graph normalization and policy slices explicitly test relation-type
+        classification.
+    - statement: Activation is dynamic based on previous outputs, not a preselected
+        path.
+      source: handoffs/to-prd→to-issues-20260527-145526.yaml
+      impact: Policy gates, candidates, skipped/deferred decisions, and timeline replay
+        are separate deliverables.
+    - statement: The frontend must not parse raw Graph/Ledger files inside rendering
+        components.
+      source: to-prd-prd-v1 and architect-architecture-v1
+      impact: Snapshot exporter/server slices precede Three.js scene implementation.
+    - statement: The visualizer must work without an active runtime.
+      source: to-prd-prd-v1 and prototype-plan-v1
+      impact: Demo trace selection and replay are explicit slices rather than follow-up
+        polish.
+    assumptions:
+    - statement: A local Vite + TypeScript + Three.js or React Three Fiber app is
+        acceptable for the first production path.
+      source: architect-architecture-v1 and prototype-plan-v1
+      risk: Repository packaging may still choose a different app folder or framework
+        boundary.
+    - statement: Polling within two seconds satisfies MVP realtime behavior.
+      source: to-prd-prd-v1
+      risk: If live runtime streaming becomes mandatory immediately, SSE/WebSocket/LangGraph
+        bridge work must move earlier.
+    - statement: Current graph size can be rendered directly if filters and deterministic
+        layout are provided.
+      source: prototype-plan-v1
+      risk: All 35 nodes and 122 edges may still require label level-of-detail and
+        focused views.
+    - statement: Learning data may be absent in early traces.
+      source: to-prd-prd-v1
+      risk: Learning surface must have a useful empty state and fixtures for populated
+        verification.
+    open_questions:
+    - statement: Where should the production visualizer app live in the repository?
+      source: architect-architecture-v1 and prototype-plan-v1
+      owner: senior-frontend
+    - statement: Which trace should become the canonical demo trace after this run
+        converges?
+      source: to-prd-prd-v1
+      owner: runtime
+    - statement: Should the first live transport after polling be SSE, WebSocket,
+        or a LangGraph event bridge?
+      source: architect-architecture-v1 and prototype-plan-v1
+      owner: architect
+    - statement: Should graph editing remain permanently out of scope or become a
+        separate authenticated control plane?
+      source: to-prd-prd-v1 non-goals
+      owner: silicon_org_builder
+  omitted_context:
+  - source: full PRD persona prose
+    reason: irrelevant
+  - source: full TypeScript schema snippets
+    reason: irrelevant
+  - source: complete UI copy and visual styling details
+    reason: irrelevant
+  - source: full raw manifest and state contents
+    reason: background_only
+  - source: complete handoff context block retained decisions
+    reason: irrelevant
+  compression_rationale:
+    method: Retained implementation-ordering decisions, hard source-of-truth constraints,
+      activation semantics, required vertical slices, and open questions that change
+      issue dependencies.
+    loss_notes:
+    - Exact endpoint and schema snippets were not duplicated in the issue body; downstream
+      implementers should read architect-architecture-v1 for precise field contracts.
+    - Exact PRD requirement IDs were compressed into acceptance criteria to keep slices
+      independently actionable.
+    - Full UI visual language was not copied because senior-frontend and ui-design-system
+      artifacts should own final styling details.
+  quality_checks:
+  - name: cites_direct_prd_handoff_with_exact_digest
+    passed: true
+  - name: cites_inherited_upstream_handoffs_with_exact_digests
+    passed: true
+  - name: lists_all_artifacts_read_with_sha256
+    passed: true
+  - name: includes_snapshot_server_slice
+    passed: true
+  - name: includes_graph_normalization_slice
+    passed: true
+  - name: includes_three_js_scene_slice
+    passed: true
+  - name: includes_handoff_context_block_inspector_slice
+    passed: true
+  - name: includes_live_polling_and_replay_slice
+    passed: true
+  - name: includes_verification_and_followups
+    passed: true
+  - name: preserves_ledger_as_source_of_truth
+    passed: true
+  - name: yaml_parseable
+    passed: true

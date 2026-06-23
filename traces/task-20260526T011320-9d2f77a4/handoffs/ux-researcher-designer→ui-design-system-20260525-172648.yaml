@@ -1,0 +1,8 @@
+from: ux-researcher-designer
+to: ui-design-system
+relation_type: may_trigger
+timestamp: '2026-05-25T17:26:48.532910+00:00'
+focus: UX spec defines color system, 3-layer info architecture, interaction patterns,
+  motion design. Design tokens and component primitives needed.
+artifact_refs:
+- ux-researcher-designer-spec-v1

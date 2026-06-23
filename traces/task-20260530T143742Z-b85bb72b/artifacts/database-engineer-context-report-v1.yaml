@@ -1,0 +1,117 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→database-engineer-20260530-143859.yaml
+      context_digest: b958579c4874b0719900a82afc306574a4132dce585014abff2e405f0e36fca6
+  retained_context:
+    decisions:
+    - statement: Modular monolith with 7 module-specific schemas (identity, robot,
+        task, agent, library, screen, shared). Each schema maps 1:1 to a FastAPI module.
+      source: architect-architecture-v1 + service code analysis
+      impact: Determines schema boundaries and migration phase ordering.
+    - statement: Cross-schema references use application-level FK validation with
+        periodic consistency checks. Same-schema references use DB-level FK with CASCADE
+        deletes.
+      source: database-engineer-v6 analysis
+      impact: Guides which relationships get DB-level vs app-level enforcement.
+    - statement: Soft-delete is universal. Hard-delete only after 180-day retention
+        via scheduled cleanup. User records are never hard-deleted for audit compliance.
+      source: service code analysis (all services use `del_flag`)
+      impact: Determines DDL structure and retention SQL.
+    - statement: String primary keys (VARCHAR(20)) from IdUtil.get_next_id(). No auto-increment
+        due to distributed system concerns.
+      source: service code analysis
+      impact: PK type selection for all 35 tables.
+    - statement: MySQL 8.0+ with ALGORITHM=INPLACE, LOCK=NONE for all DDL. Zero-downtime
+        migration strategy.
+      source: database-engineer harness quality criteria
+      impact: All migration SQL uses safe DDL operations.
+    - statement: 'Connection pools sized per module: identity(10+20), robot(5+10),
+        task(10+20), agent(5+10), library(5+10), screen(5+10), shared(10+20).'
+      source: service code analysis + traffic pattern inference
+      impact: Database connection resource allocation.
+    constraints:
+    - statement: MySQL 8.0+ is the primary target. PostgreSQL 15+ support is planned
+        but not implemented. Dify subsystem uses its own PostgreSQL instance.
+      source: requirements.txt (pymysql + psycopg2-binary)
+      impact: Migration SQL is MySQL-specific; PostgreSQL translation deferred.
+    - statement: Backend uses FastAPI and SQLModel. Entities must be defined as SQLModel
+        classes with `table=True`.
+      source: architect-architecture-v1
+      impact: Entity definitions use SQLModel idiom.
+    - statement: No existing migrations or Alembic setup. Migration runner must be
+        zero-dependency.
+      source: codebase file listing (no alembic.ini or migrations/)
+      impact: Runner uses pure Python + pymysql, not Alembic CLI.
+    - statement: Team size <10 developers. Migration must be simple enough for a single
+        engineer.
+      source: handoff constraints
+      impact: 4-phase strategy keeps each phase small and reversible.
+    - statement: Cannot access robot-side code. Robot heartbeat frequency and MQTT
+        payload size are assumed.
+      source: handoff constraints
+      impact: Indexes for robot table assume high write frequency; may need tuning.
+    assumptions:
+    - statement: Current database is a monolithic `raas` MySQL database with all tables
+        in one schema.
+      source: service code (all use `engine` from db.database)
+      risk: Medium. Confirmed by dbconfig.py image attachment.
+    - statement: '`user.password` column stores hashed passwords. Service code calls
+        `hash_password()` from core.security.'
+      source: userservice.py
+      risk: Low
+    - statement: '`IdUtil.get_next_id()` generates Snowflake-like 18-19 digit string
+        IDs. VARCHAR(20) is sufficient.'
+      source: common/IdUtil.py import pattern
+      risk: Low
+    - statement: Robot heartbeat frequency is approximately 1 per 5 seconds per robot
+        (~2K writes/second with 10K robots).
+      source: MQTT architecture assumption
+      risk: Medium. Need production metrics to confirm.
+    open_questions:
+    - statement: What are the actual production table sizes for strategic sizing of
+        composite indexes?
+      source: semantic_node_executor
+      owner: senior-engineer
+    - statement: What is the `face_recognition` entity schema? Referenced by imports
+        but no DDL found.
+      source: semantic_node_executor
+      owner: product-owner
+    - statement: Does the legacy `menu` table (BIGINT PK) need migration or remain
+        read-only?
+      source: semantic_node_executor
+      owner: architect
+  omitted_context:
+  - source: Docker Compose configuration details
+    reason: background_only
+  - source: Frontend component structure and routing
+    reason: background_only
+  - source: MQTT topic architecture details
+    reason: background_only
+  - source: Historical artifact contents (release plans, ops plans)
+    reason: background_only
+  compression_rationale:
+    method: 'Semantic compression: retained all entity definitions, query patterns,
+      service-level data flow, and architectural constraints. Omitted Docker, frontend,
+      and historical artifact details. All 35 entity types identified from service
+      source code imports are compressed into schemas, indexes, and DDL.'
+    loss_notes:
+    - Lost exact robot MQTT payload schemas (not needed for DB schema).
+    - Lost Dify API endpoint details (handled by agent_service, not DB layer).
+    - Lost Docker service-to-database mapping (handled by devops-engineer).
+  quality_checks:
+  - name: All 35 entities have DDL
+    passed: true
+  - name: Every migration has matching rollback
+    passed: true
+  - name: Every index references a specific query pattern
+    passed: true
+  - name: All nullable columns justified
+    passed: true
+  - name: No table-locking migration without stated strategy
+    passed: true
+  - name: Agent entity DDL matches service field usage
+    passed: true
+  - name: FKs enforced at DB level for same-schema relationships
+    passed: true

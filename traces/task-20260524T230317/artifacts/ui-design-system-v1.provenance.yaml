@@ -1,0 +1,10 @@
+artifact_id: ui-design-system-v1
+type: design_spec
+producer: ui-design-system
+version: 1
+status: approved
+superseded_by: null
+content_ref: artifacts/ui-design-system-v1.md
+created_at: "2026-05-24T23:08:00+08:00"
+consumers:
+  - senior-frontend

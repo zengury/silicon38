@@ -1,0 +1,94 @@
+context_compression_report:
+  input_scope:
+    artifacts_read:
+    - artifact_id: delivery-prover-proof-v1
+      path: artifacts/delivery-prover-proof-v1.md
+      used: true
+      why: Confirmed backend tests pass (90/90) and refactoring scope context
+    handoffs_read:
+    - ref: handoffs/delivery-prover→senior-frontend-20260531-164644.yaml
+      context_digest: fa400170dd7d87ef980df10550eeed7062af80a8a784e0e9ad79e4fac17eee89
+  retained_context:
+    decisions:
+    - statement: Task is a codebase refactoring — eliminate duplicates, improve module
+        structure, enhance maintainability and testability
+      source: handoff delivery-prover→senior-frontend
+      impact: Drove all frontend duplicate consolidation decisions
+    - statement: Pilot module approach — refactor one module completely before bulk
+        rollout
+      source: handoff delivery-prover→senior-frontend
+      impact: Scoped this pass to utility consolidation only; no structural reorganization
+    constraints:
+    - statement: Must not change external API behavior
+      source: handoff delivery-prover→senior-frontend
+      impact: All re-exports expose identical function signatures; import paths preserved
+    - statement: Codebase path is /Users/ZQ/roboease
+      source: handoff delivery-prover→senior-frontend
+      impact: Constrains all file operations to frontend/ subtree
+    - statement: Existing tests must be preserved
+      source: handoff delivery-prover→senior-frontend
+      impact: No frontend tests exist — no test breakage possible. Verified zero test
+        files.
+    assumptions:
+    - statement: The existing shared package pattern (@roboease/shared) is the intended
+        direction for code consolidation
+      source: handoff delivery-prover→senior-frontend
+      risk: Assumption validated — shared package already used by both admin and portal
+        for HTTP client, auth, token storage
+    - statement: service.js is truly dead code — not dynamically imported at runtime
+      source: direct codebase analysis
+      risk: Low — grep found zero imports, references non-existent store directory,
+        portal main.ts doesn't import it
+    open_questions:
+    - statement: Should shared's package.json declare nprogress as a peerDependency
+        for cleaner type resolution?
+      source: direct observation during type-check
+      owner: runtime
+    - statement: Are there integration tests that exercise the frontend end-to-end?
+      source: handoff delivery-prover→senior-frontend (from upstream)
+      owner: runtime
+    - statement: Should the re-exports be removed and all importers updated to import
+        directly from @roboease/shared?
+      source: implementation decision
+      owner: code-reviewer
+  omitted_context:
+  - source: Thompson sampling details and statistical scores from handoff chain
+    reason: background_only
+  - source: Backend refactoring specifics (api_response.py, mqtt_reply.py, audit.py
+      details)
+    reason: irrelevant
+  - source: Delivery-prover's 8-step verification evidence (backend test logs, git
+      diff outputs)
+    reason: irrelevant
+  - source: Context digest hashes and ledger metadata
+    reason: background_only
+  - source: Issue sizing and dependency graph details from to-issues decomposition
+    reason: irrelevant
+  compression_rationale:
+    method: Extracted only task-relevant implementation constraints from upstream
+      handoffs. Retained the core refactoring mandate and constraints that govern
+      frontend code changes (no API changes, preserve tests, codebase path). Omitted
+      backend-specific implementation details, statistical sampling metadata, and
+      triage boilerplate. All retained context directly influenced frontend consolidation
+      decisions.
+    loss_notes:
+    - Backend refactoring specifics omitted — frontend operates independently
+    - Thompson sampling weights and scores removed — implementation doesn't use them
+    - Delivery-prover test evidence omitted — backend verification doesn't affect
+      frontend
+    - Issue sizing metadata omitted — not relevant to utility consolidation
+  quality_checks:
+  - name: Every retained decision has a source
+    passed: true
+  - name: Every constraint maps to an implementation guard
+    passed: true
+  - name: No implementation detail leaked from omitted context
+    passed: true
+  - name: Open questions are actionable with named owners
+    passed: true
+  - name: Compression is lossless for implementation-critical information
+    passed: true
+  - name: All import chains verified intact after refactoring
+    passed: true
+  - name: Deleted files confirmed unreferenced by static import graph
+    passed: true

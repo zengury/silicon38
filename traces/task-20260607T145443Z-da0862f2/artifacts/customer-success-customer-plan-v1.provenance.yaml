@@ -1,0 +1,8 @@
+artifact_id: customer-success-customer-plan-v1
+producer: customer-success
+task_id: task-20260607T145443Z-da0862f2
+version: 1
+timestamp: '2026-06-07T14:58:03.652546+00:00'
+input_artifacts: []
+quality_checks: []
+status: draft

@@ -1,0 +1,39 @@
+task_id: task-hrbp-test
+task_status: propagating
+node_states:
+  triage:
+    status: completed
+    updated_at: '2026-05-30T12:09:09.046681+00:00'
+    activated_at: '2026-05-30T12:09:08.945629+00:00'
+    completed_at: '2026-05-30T12:09:09.046681+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - triage-analysis-v1
+    blocked_reason: null
+    entry_node: true
+artifact_registry:
+  triage-analysis-v1:
+    type: analysis
+    producer: triage
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/triage-analysis-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T12:09:08.976390+00:00'
+context_compression_reports:
+  triage:
+    ref: artifacts/triage-context-report-v1.yaml
+    registered_at: '2026-05-30T12:09:09.011163+00:00'
+    digest: 6469fc75978e96cf952c94dc9e1fa64e4f6bd06a2e4dd41ff068bc8ac1dc3e7f
+    status: valid
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: false
+  all_loops_resolved: false
+  all_blocking_evals_resolved: false
+  all_joins_passed: false
+  all_artifacts_resolved: false
+  no_undecided_activation_candidates: false
+  settled_at: null

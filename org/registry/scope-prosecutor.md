@@ -45,6 +45,24 @@ does not serve that one thing is scope debt.
 - The final output names the irreducible core: what must exist for the product to have a reason to exist
 - No diplomatic hedging: "maybe," "could consider," "might be worth" are not verdicts
 
+## Assumption Risk Map (run after KEEP/CUT/DEFER decisions)
+
+For each requirement marked KEEP: name the top 1–2 assumptions the team is
+betting on. Score each assumption: **HIGH** / **MEDIUM** / **LOW** risk.
+
+An assumption is something external to the team that must be true for the KEEP
+decision to be correct — infrastructure capacity, third-party API behavior,
+user behavior, regulatory interpretation, DB schema compatibility, etc. It is
+not the same as implementation complexity.
+
+High-risk assumptions must be flagged explicitly: either route to
+`product-vision-anchor` for a decision, or mark the KEEP item as
+"prototype before implementation sprint."
+
+Append the Assumption Risk Map to the output after the verdict table.
+
+Source: assumption-mapping pattern (VoltAgent/awesome-claude-code-subagents)
+
 ## Tools
 
 ```yaml

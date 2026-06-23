@@ -1,0 +1,89 @@
+from: to-issues
+to: senior-engineer
+relation_type: triggers
+timestamp: '2026-05-31T07:06:53.964164+00:00'
+focus: Activate senior-engineer from to-issues
+artifact_refs: &id001
+- to-issues-decomposition-v1
+deliverable:
+  producer: to-issues
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: to-issues-decomposition-v1
+    producer: to-issues
+    type: decomposition
+    version: 1
+    status: draft
+    content_ref: artifacts/to-issues-decomposition-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260531T070551Z-ba3a8327
+  from: to-issues
+  to: senior-engineer
+  relation_type: triggers
+  focus: Activate senior-engineer from to-issues
+  source:
+    producer_role: to-issues
+    context_compression_report_ref: artifacts/to-issues-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/to-prd→to-issues-20260531-070629.yaml
+      context_digest: eeeef01f1673bdc2bfa7d144db8a5584be1ad77d48b347f8dadb12152cc158b2
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Task is a refactoring enhancement
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Priority is high
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: No new features
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Preserve existing behavior
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Codebase is at /Users/ZQ/roboease
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Refactoring will improve maintainability and testability
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Preferred module structure?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Any files off-limits?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed code analysis (not yet performed)
+    reason: background_only
+  - source: Specific duplicate instances (not yet identified)
+    reason: background_only
+  compression_rationale:
+    method: Retain high-level scope and constraints from PRD; omit low-level code
+      details not yet available.
+    loss_notes:
+    - No code-level specifics retained; will be gathered by downstream agents.
+  quality_checks:
+  - name: scope_boundary_present
+    passed: true
+  - name: done_condition_present
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - to-prd-prd-v1
+  - triage-analysis-v1
+  previous_blocks:
+  - ref: handoffs/to-prd→to-issues-20260531-070629.yaml
+    from: to-prd
+    to: to-issues
+    relation_type: triggers
+    focus: Activate to-issues from to-prd
+    context_digest: eeeef01f1673bdc2bfa7d144db8a5584be1ad77d48b347f8dadb12152cc158b2
+    deliverable_artifact_refs:
+    - to-prd-prd-v1
+  context_digest: 0738393f2c791f344ff5671d2e6b5f5bac3bd9db4e49070031181407860cabc2

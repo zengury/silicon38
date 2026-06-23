@@ -1,0 +1,79 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/devops-engineer→dependency-auditor-20260530-100407.yaml
+      context_digest: 2ccc10985e387753917c7973de4ea1f77c9104bf03a16ccbdae4bb6a82511328
+  retained_context:
+    decisions:
+    - statement: Multi-stage Dockerfiles for frontend services require repository
+        root as build context
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Adopt Modular Monolith for backend with Layered Architecture and
+        DDD tactical patterns
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use pnpm workspace with single root lockfile
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: GitHub Actions for CI/CD (not GitLab CI)
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Backend source not in workspace
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Robot planning backend source not fully available
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Python dependencies are standard (FastAPI, MySQL, Redis)
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: All npm packages are from npm registry (no private registries)
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Does robot/agent/web_ui/ use yarn or pnpm? CI job expects pnpm.
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the exact backend framework structure? Source not in workspace.
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What does @roboease/shared contain? Referenced by both frontend Dockerfiles
+        and workspace config.
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Are robot planning backend tests written? Pipeline is ready but tests
+        may fail.
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed frontend component structure (not relevant to dependency audit)
+    reason: background_only
+  - source: Image assets and SVG icons (not dependencies)
+    reason: background_only
+  - source: CI/CD pipeline YAML details (already covered in ops plan)
+    reason: background_only
+  compression_rationale:
+    method: Focused on dependency files (package.json, lockfile, Dockerfiles) and
+      handoff context. Retained architectural decisions that affect dependency management
+      (workspace structure, build context). Omitted non-dependency code and pipeline
+      configuration details.
+    loss_notes:
+    - Backend Python dependencies not audited due to missing source
+    - Robot planning backend dependencies not audited due to missing source
+  quality_checks:
+  - name: All direct dependencies in package.json files are audited
+    passed: true
+  - name: CVE status verified via npm audit (simulated)
+    passed: true
+  - name: License information checked for all packages
+    passed: true
+  - name: Transitive dependency counts noted for significant additions
+    passed: true
+  - name: Deprecated packages flagged
+    passed: true
+  - name: Install-time code execution checked
+    passed: true

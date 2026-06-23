@@ -1,0 +1,19 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read: []
+  retained_context:
+    decisions:
+    - statement: graph-topologist produced artifact graph-topologist-topology-review-v1.
+      source: graph-topologist-topology-review-v1
+      impact: Downstream nodes can consume the registered artifact.
+    constraints: []
+    assumptions: []
+    open_questions: []
+  omitted_context: []
+  compression_rationale:
+    method: ledger_transaction_generated_minimal_report
+    loss_notes: []
+  quality_checks:
+  - name: context_report_schema_complete
+    passed: true

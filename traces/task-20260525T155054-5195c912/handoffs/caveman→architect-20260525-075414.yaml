@@ -1,0 +1,5 @@
+from: caveman
+to: architect
+relation_type: evaluates
+timestamp: '2026-05-25T07:54:14.018670+00:00'
+focus: 'first-principles challenge: 4 invariants, simplest-version benchmark'

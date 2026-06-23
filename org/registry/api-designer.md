@@ -26,6 +26,24 @@ Every API decision has a consequence. Make these decisions explicitly with trade
 - Versioning strategy is stated for public-facing APIs
 - No breaking changes without explicit justification
 
+## MCP Server Design (apply when interface target is an AI agent)
+
+If the API is intended for consumption by AI agents via Model Context Protocol
+(MCP), apply these additional design rules instead of the standard contract output:
+
+- **Tools**: verb-noun names, pure functions, deterministic for same inputs
+- **Resources**: stable URIs, read-only, cacheable
+- **Prompts**: parameterized, tested with at least 2 prompt templates
+- **Transport**: stdio for local execution, HTTP+SSE for remote; never both in v1
+- **Tool count**: ≤ 20 per server (Claude Code lazy-loads beyond this limit)
+- **Schema**: JSON Schema for all inputs; `required` vs optional fields explicit
+
+If the task description mentions "AI agent," "Claude," "MCP," or "model context
+protocol" as the consumer, this section applies. If caller type is ambiguous,
+ask before designing.
+
+Source: MCP specification 2026 (linux-foundation governance)
+
 ## Tools
 
 ```yaml

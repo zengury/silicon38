@@ -1,0 +1,142 @@
+{
+  "app": {
+    "title": "Robot Fleet Monitoring Dashboard",
+    "shortTitle": "Robot Monitor"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "alerts": "Alerts",
+    "config": "Config",
+    "collaboration": "Collaboration",
+    "export": "Export"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "error": "Error",
+    "idle": "Idle",
+    "charging": "Charging"
+  },
+  "metrics": {
+    "battery": "Battery",
+    "temperature": "Temperature",
+    "cpu": "CPU",
+    "network": "Latency",
+    "task": "Current Task",
+    "location": "Location",
+    "batteryUnit": "%",
+    "temperatureUnit": "°C",
+    "cpuUnit": "%",
+    "networkUnit": "ms",
+    "voltageUnit": "V",
+    "noTask": "No Task",
+    "altitude": "Altitude"
+  },
+  "charts": {
+    "fleetOverview": "Fleet Overview",
+    "batteryDistribution": "Battery Distribution",
+    "cpuTemperatureTrend": "CPU / Temperature Trend",
+    "geoHeatmap": "Robot Position Heatmap",
+    "history30d": "30-Day History",
+    "expandOverview": "Expand Overview",
+    "collapseOverview": "Collapse Overview",
+    "noData": "No Data",
+    "loading": "Loading..."
+  },
+  "alerts": {
+    "title": "Alert List",
+    "allAlerts": "All Alerts",
+    "active": "Active",
+    "acknowledged": "Acknowledged",
+    "resolved": "Resolved",
+    "severity": {
+      "critical": "Critical",
+      "warning": "Warning",
+      "info": "Info"
+    },
+    "acknowledge": "Acknowledge",
+    "mute": "Mute",
+    "viewDetails": "View Details",
+    "noAlerts": "No Alerts",
+    "robotFell": "Robot Fall Detected",
+    "jointDisconnected": "Joint Disconnected",
+    "batteryLow": "Battery Low",
+    "cpuHigh": "CPU Temp High",
+    "networkHigh": "Network Latency High"
+  },
+  "collaboration": {
+    "title": "Engineer Collaboration",
+    "commentPlaceholder": "Type a message...",
+    "send": "Send",
+    "imHandling": "I'm Handling",
+    "resolved": "Resolved",
+    "atMention": "@mention colleague",
+    "noComments": "No Comments"
+  },
+  "config": {
+    "title": "Configuration",
+    "alertThresholds": "Alert Thresholds",
+    "samplingFrequency": "Sampling Frequency",
+    "reconnectStrategy": "Reconnect Strategy",
+    "batteryLowThreshold": "Low Battery Threshold",
+    "jointTempHighThreshold": "Joint Temp Max",
+    "cpuTempHighThreshold": "CPU Temp Max",
+    "networkLatencyHighThreshold": "Network Latency Max",
+    "tiltAngleThreshold": "Tilt Angle Threshold",
+    "maxRetries": "Max Retries",
+    "baseDelay": "Base Delay",
+    "backoffMultiplier": "Backoff Multiplier",
+    "save": "Save Config",
+    "saving": "Saving...",
+    "saved": "Saved",
+    "reset": "Reset Defaults",
+    "saveError": "Save Failed",
+    "samplesPerSecond": "samples/sec"
+  },
+  "export": {
+    "title": "Export Reports",
+    "pdf": "Export PDF",
+    "excel": "Export Excel",
+    "format": "Format",
+    "dateRange": "Date Range",
+    "from": "From",
+    "to": "To",
+    "includeCharts": "Include Charts",
+    "includeAlerts": "Include Alerts",
+    "includeComments": "Include Comments",
+    "generate": "Generate Report",
+    "generating": "Generating...",
+    "download": "Download",
+    "expires": "Link expires"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "switch": "Toggle Theme"
+  },
+  "lang": {
+    "switch": "中文",
+    "zhCN": "中文",
+    "en": "English"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "close": "Close",
+    "back": "Back",
+    "search": "Search",
+    "filter": "Filter",
+    "refresh": "Refresh",
+    "settings": "Settings",
+    "noData": "No Data",
+    "robot": "Robot",
+    "robots": "robots",
+    "fleet": "Fleet",
+    "selected": "Selected",
+    "all": "All",
+    "timeline": "Timeline"
+  }
+}

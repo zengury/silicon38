@@ -1,0 +1,7 @@
+from: ui-design-system
+to: senior-frontend
+relation_type: constrains
+timestamp: '2026-05-25T16:46:54.253564+00:00'
+focus: Tokens are the only palette/type/space/motion vocabulary.
+artifact_refs:
+- ui-design-system-tokens-v1

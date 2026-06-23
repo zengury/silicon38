@@ -1,0 +1,91 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/to-issues→senior-engineer-20260530-165635.yaml
+      context_digest: 92f0441579c05186630810b1ca58aed8fb5c19585eacada0cf0616efef91a2a4
+  retained_context:
+    decisions:
+    - statement: Adapter pattern for data normalization — implemented via BaseAdapter
+        + AdapterRegistry with hot-plug support
+      source: architect
+      impact: Three adapters registered (JSON production, Protobuf/Modbus stubs).
+        New protocols = one new file.
+    - statement: Backend Node.js + Express + WebSocket + PostgreSQL + Redis
+      source: architect
+      impact: Full implementation with 18 REST endpoints + WebSocket server on /ws.
+    - statement: Alert engine rule-based with configurable thresholds
+      source: architect
+      impact: Engine supports numeric operators and status matching. Cooldown per-rule.
+        Rules reloadable at runtime.
+    - statement: Collaboration via WebSocket
+      source: architect
+      impact: CollaborationManager broadcasts chat messages. Messages persisted via
+        REST.
+    - statement: Export via Puppeteer (PDF) and exceljs (Excel)
+      source: architect
+      impact: GET /api/export?format=pdf|excel|csv with graceful fallback to CSV.
+    constraints:
+    - statement: Initial support for 10 robots
+      source: PRD
+      impact: Architecture scales horizontally; Redis cache + PG pool sized accordingly.
+    - statement: Data format unification required — adapter pattern mandatory
+      source: PRD
+      impact: All ingress flows through AdapterRegistry.normalize().
+    - statement: Data retention 30 days
+      source: PRD
+      impact: PostgreSQL cleanup_old_telemetry() function removes old data.
+    assumptions:
+    - statement: Robots report via HTTP/WebSocket
+      source: PRD
+      risk: If robots use another transport, additional ingress adapters needed.
+    - statement: No authentication required for MVP
+      source: senior-engineer
+      risk: Production deployment will need auth layer.
+    open_questions:
+    - statement: Should alert escalation auto-create higher-severity follow-up alerts?
+      source: senior-engineer
+      owner: runtime
+    - statement: Should WebSocket messages be signed/authenticated?
+      source: senior-engineer
+      owner: runtime
+    - statement: Should historical data use PostgreSQL partitioning?
+      source: senior-engineer
+      owner: runtime
+    - statement: 告警通知方式是否需要邮件/短信？
+      source: to-issues
+      owner: runtime
+    - statement: 是否需要角色权限管理？
+      source: to-issues
+      owner: runtime
+  omitted_context:
+  - source: npm dependency versions — declared in package.json
+    reason: background_only
+  - source: Caveman analysis detail — summarized into architecture decisions
+    reason: background_only
+  - source: UX spec detail — frontend concern not needed for backend handoff
+    reason: background_only
+  compression_rationale:
+    method: Retained all architectural decisions, constraints, and open questions
+      from upstream plus new implementation-level decisions. Omitted library versions
+      (in package.json), test fixtures (self-documenting), and UX detail (frontend
+      scope).
+    loss_notes:
+    - Caveman analysis details omitted — decisions already captured in architect ADR.
+    - UX spec visual details omitted — not load-bearing for code-reviewer downstream.
+    - npm dependency exact versions omitted — declared in package.json.
+  quality_checks:
+  - name: TypeScript compiles clean (strict mode)
+    passed: true
+  - name: All 36 tests pass (4 suites)
+    passed: true
+  - name: Adapter registry supports hot-plug (proven by CustomAdapter test)
+    passed: true
+  - name: Alert engine cooldown prevents alert storms
+    passed: true
+  - name: Redis fallback to in-memory cache works
+    passed: true
+  - name: Export falls back to CSV when libraries unavailable
+    passed: true
+  - name: All acceptance criteria from Issues 1-2, 4-8 addressed
+    passed: true

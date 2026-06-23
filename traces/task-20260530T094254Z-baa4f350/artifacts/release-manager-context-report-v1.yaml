@@ -1,0 +1,140 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/devops-engineer→release-manager-20260530-095507.yaml
+      context_digest: d9a4f0a795456df816edb581f0fe24bc70280dd4951446aa8b3d5e360411eeed
+  retained_context:
+    decisions:
+    - statement: Release version is 3.0.1 (PATCH) — deployment infrastructure bug
+        fixes
+      source: release-manager analysis
+      impact: No API changes; drop-in replacement for v3.0.0. APP_VERSION updated
+        to '3.0.1'.
+    - statement: Frontend Docker build contexts MUST be repository root for pnpm workspace
+        resolution
+      source: devops-engineer v6 analysis
+      impact: Fixed deploy.yml, ci.yml, Makefile. Without fix, portal and admin-web
+        Docker builds fail.
+    - statement: CI docker-smoke expanded from 3 to 6 images
+      source: devops-engineer v6 fix
+      impact: Portal, admin-web, and planning-backend now validated in CI.
+    - statement: Makefile build-admin and build-portal targets use correct root context
+      source: devops-engineer v6 fix
+      impact: Local `make build` now matches CI behavior.
+    - statement: Root pnpm-lock.yaml confirmed — single workspace lockfile
+      source: devops-engineer v5 finding, v6 confirmation
+      impact: No per-project lockfiles needed. CI cache key references root correctly.
+    - statement: API path changes from v3.0.0 remain authoritative
+      source: release-plan-v2 (v3.0.0)
+      impact: All v3.0.0 migration instructions (Nginx, frontend baseURL, robot config)
+        remain valid.
+    - statement: Backend test coverage is 0% — CRITICAL blocker unchanged
+      source: release-plan-v2 finding, reconfirmed
+      impact: Production deployment blocked until backend tests exist.
+    constraints:
+    - statement: Must maintain backward compatibility with v3.0.0
+      source: SemVer contract
+      impact: Only CI/CD config files changed. No API, schema, or behavior changes.
+    - statement: Multi-stage Dockerfiles require repository root as build context
+      source: devops-engineer v6 analysis
+      impact: All future pipeline changes must respect this. Build context ≠ app directory
+        for frontend images.
+    - statement: pnpm workspaces use single root lockfile
+      source: pnpm workspace convention
+      impact: CI cache keys and Docker COPY must reference root pnpm-lock.yaml.
+    - statement: Nginx config update is manual and REQUIRED before production deployment
+      source: v3.0.0 release plan, reconfirmed
+      impact: nginx.conf does not proxy /api/v1/ to backend. Must be updated before
+        deploying v3.0.0+.
+    assumptions:
+    - statement: All 6 Docker images build successfully with corrected contexts
+      source: semantic_node_executor
+      risk: Moderate — not runtime-verified. CI docker-smoke validates builds but
+        not running containers.
+    - statement: v3.0.0 was never actually deployed to production
+      source: semantic_node_executor
+      risk: Low — release-plan-v2 was a planning artifact. Broken build contexts would
+        have caused failure.
+    - statement: Production Nginx config can be updated manually before deployment
+      source: semantic_node_executor
+      risk: Medium — if forgotten, ALL backend API routes will 404 in production.
+    - statement: web_ui yarn usage will be resolved before CI triggers its job
+      source: semantic_node_executor
+      risk: Medium — if robot/agent/web_ui/ changes, CI will fail because it runs
+        pnpm but project uses yarn.
+    open_questions:
+    - statement: Should backend tests be backfilled before ANY production deployment?
+      source: release-manager (carried from v3.0.0)
+      owner: qa-engineer
+    - statement: Should Nginx config update be automated in the deploy pipeline?
+      source: release-manager (carried from v3.0.0)
+      owner: devops-engineer
+    - statement: Should web_ui be migrated to pnpm or CI updated to use yarn?
+      source: devops-engineer v5 finding
+      owner: frontend-engineer
+    - statement: When will backend source be fully available in the workspace?
+      source: architect handoff (carried forward)
+      owner: runtime
+  omitted_context:
+  - source: Frontend component implementation details (Vue SFCs, composables, stores)
+    reason: background_only
+  - source: Robot agent RPA logic (robot/modules/*, robot/agent/*)
+    reason: background_only
+  - source: Individual API route handler implementations (backend/api/admin/*.py)
+    reason: background_only
+  - source: Database table schemas and exact migration SQL content
+    reason: background_only
+  - source: Video streaming server internals (backend/video_server.py)
+    reason: background_only
+  - source: LLM tool implementations, robot motion control, hardware interface
+    reason: background_only
+  compression_rationale:
+    method: 'Focused audit on deployment infrastructure changes between v3.0.0 (release-plan-v2)
+      and current repository state (post devops v4-v6). Compared Dockerfile COPY instructions
+      against CI/deploy build context configurations. Identified systematic mismatch
+      where frontend multi-stage builds required repository root but were configured
+      with child directories. Read all modified files: deploy.yml, ci.yml, Makefile,
+      Dockerfiles, config/setting.py. Cross-referenced pnpm-workspace.yaml and frontend/shared/package.json
+      to verify dependency chain. Retained all load-bearing architectural decisions
+      from v3.0.0. Omitted frontend components, robot internals, database schemas,
+      and hardware code as unchanged.'
+    loss_notes:
+    - Robot agent motion control details not captured (unchanged, hardware-specific)
+    - Frontend Vue component tree not captured (no frontend changes)
+    - Database migration SQL content not validated beyond syntax (unchanged)
+    - Video streaming server internals not captured (unchanged)
+    - web_ui source not examined beyond package.json (yarn vs pnpm finding only)
+    - Individual API route handler details not captured (routes verified at registration
+      level)
+  quality_checks:
+  - name: Version number follows Semantic Versioning strictly (PATCH for bug fixes)
+    passed: true
+  - name: Changelog covers every change — no changes in release not in changelog
+    passed: true
+  - name: No changes fabricated — all changes verified against actual file content
+    passed: true
+  - name: Breaking changes section is explicit (none — cross-references v3.0.0)
+    passed: true
+  - name: Release checklist completed with pass/fail for each item
+    passed: true
+  - name: Rollback procedure defined (inherits v3.0.0 — verified still valid)
+    passed: true
+  - name: APP_VERSION updated from '3.0' to '3.0.1' in backend/config/setting.py
+    passed: true
+  - name: All secrets validated — none in modified files
+    passed: true
+  - name: Docker build contexts verified against COPY instructions in all Dockerfiles
+    passed: true
+  - name: CI docker-smoke matrix includes all 6 images
+    passed: true
+  - name: Makefile targets match CI build behavior
+    passed: true
+  - name: pnpm-lock.yaml confirmed at repository root
+    passed: true
+  - name: '@roboease/shared workspace package confirmed at frontend/shared/'
+    passed: true
+  - name: Deploy is idempotent — preflight-check prevents redeploy of same SHA
+    passed: true
+  - name: Nginx config update requirement explicitly called out as manual step
+    passed: true

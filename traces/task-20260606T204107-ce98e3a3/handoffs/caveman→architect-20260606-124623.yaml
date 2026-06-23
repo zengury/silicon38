@@ -1,0 +1,88 @@
+from: caveman
+to: architect
+relation_type: may_trigger
+timestamp: '2026-06-06T12:46:23.281585+00:00'
+focus: 'Caveman: MVP=''Single-Shelf Photo Search'', drop OAuth/Redis/cosine-similarity,
+  social deferred to 10k+ users'
+artifact_refs: &id001
+- caveman-analysis-v1
+deliverable:
+  producer: caveman
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: caveman-analysis-v1
+    producer: caveman
+    type: analysis
+    version: 1
+    status: draft
+    content_ref: artifacts/caveman-analysis-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260606T204107-ce98e3a3
+  from: caveman
+  to: architect
+  relation_type: may_trigger
+  focus: 'Caveman: MVP=''Single-Shelf Photo Search'', drop OAuth/Redis/cosine-similarity,
+    social deferred to 10k+ users'
+  source:
+    producer_role: caveman
+    context_compression_report_ref: artifacts/caveman-context-report-v1.yaml
+    input_handoffs: []
+    input_artifacts:
+    - artifact_id: to-prd-prd-v1
+      used: true
+      why: PRD defines full feature set that caveman simplifies
+  compressed_context:
+    decisions:
+    - statement: MVP named 'Single-Shelf Photo Search'
+      source: caveman
+      impact: the simplest articulation of product — guides UI simplicity and onboarding
+        length
+    - statement: Drop all social features until user base > 10k
+      source: caveman
+      impact: social infrastructure (matching, messaging, notifications) removed from
+        v1
+    - statement: One shelf photo = one shelf, simplicity first
+      source: caveman
+      impact: multi-shelf management UI can be deferred; simpler data model
+    - statement: Manual link sharing instead of in-app matching
+      source: caveman
+      impact: no backend matching algorithm needed; just share URLs
+    constraints:
+    - statement: No OAuth for MVP, email/password only
+      source: caveman
+      impact: simpler auth; Apple OAuth can be added in v1.1
+    - statement: No Redis caching at low scale
+      source: caveman
+      impact: simpler deployment; PostgreSQL alone is sufficient
+    - statement: No cosine similarity vectors; simple tag overlap
+      source: caveman
+      impact: when social features arrive, start simple, not with ML
+    assumptions:
+    - statement: Social features add 3x complexity for uncertain engagement
+      source: caveman
+      risk: if market research shows social is primary driver, this cut may be wrong
+    - statement: Single shelf is sufficient for initial user value
+      source: caveman
+      risk: power users with 5+ shelves may bounce without multi-shelf support
+    open_questions:
+    - statement: Threshold for adding second shelf feature?
+      source: caveman
+      owner: runtime
+  omitted_context:
+  - source: detailed complexity tradeoff analysis
+    reason: background_only
+  compression_rationale:
+    method: Extracted MVP definition, complexity cuts, and simplification decisions
+      with their impact on architecture.
+    loss_notes: []
+  quality_checks:
+  - name: MVP scope clearly named with impact
+    passed: true
+  - name: All cuts justified with architectural implications
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs: []
+  previous_blocks: []
+  context_digest: 5408de9189915031b8377ccac50e00e8a8be567ad4de86c670e50135137256e6
+soul_ref: org/soul.md

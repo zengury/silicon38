@@ -1,0 +1,76 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/to-prd→product-vision-anchor-20260531-163320.yaml
+      context_digest: 32f1ddd87c967fe8211b21a0c68969eba043fe8cc3c2eb87694f67d8633405da
+  retained_context:
+    decisions:
+    - statement: Task is a refactoring task for roboease codebase at /Users/ZQ/roboease
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Adopt feature-based module structure
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use static analysis to identify duplicates
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Extract interfaces for testability
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Incremental refactoring per module
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: No external behavior changes
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must not change external behavior
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: 'Codebase path: /Users/ZQ/roboease'
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Existing tests must be preserved
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: User wants to improve maintainability and testability
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Existing tests may exist but are not guaranteed
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Team will confirm preferred module structure
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Preferred module structure (feature-based vs layer-based)?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Existing test preservation requirements?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Risk tolerance for refactoring?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: General triage instructions
+    reason: background_only
+  - source: Non-essential details from handoffs
+    reason: background_only
+  compression_rationale:
+    method: Extracted only task-relevant information for vision synthesis; omitted
+      general instructions and non-essential details.
+    loss_notes: []
+  quality_checks:
+  - name: Vision statement is falsifiable
+    passed: true
+  - name: Vision statement names specific target user and situation
+    passed: true
+  - name: Vision statement names alternative being beaten
+    passed: true
+  - name: Vision statement avoids abstract filler
+    passed: true
+  - name: Out of scope forever defined
+    passed: true

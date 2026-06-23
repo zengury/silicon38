@@ -1,0 +1,60 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read: []
+  retained_context:
+    decisions:
+    - statement: Classify as high priority
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Recommend orchestrator-led multi-agent team
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Out-of-scope includes pi internals and non-user-facing code
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Noisy environment; work must be low-volume and precise
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Repo is mature with multiple iterations
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: User wants to keep manastone as the primary brand
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: pi coding agent is a dependency that should be bundled
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Onboarding is currently missing or insufficient
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Exact missing dependencies
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Existing onboarding assets
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Desired hidden brand name for pi agent
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Rebranding approach
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context: []
+  compression_rationale:
+    method: Extracted key decisions, constraints, and open questions from the triage
+      analysis. Omitted raw task description and environment details that are not
+      needed for downstream execution.
+    loss_notes: []
+  quality_checks:
+  - name: problem_statement_falsifiable
+    passed: true
+  - name: scope_boundary_present
+    passed: true
+  - name: done_condition_present
+    passed: true
+  - name: blocking_questions_specific
+    passed: true

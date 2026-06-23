@@ -1,0 +1,9 @@
+task_id: task-20260525T010808-9010ac70
+timestamp_start: "2026-05-25T01:08:08+08:00"
+timestamp_end: null
+task_summary: "完全重构 WisglowAgent 代码，按 Kahn 建筑原则：减法、深模块、数据即光、served/servant 分离"
+task_type: refactor
+entry_nodes:
+  - zoom-out
+  - improve-codebase-architecture
+outcome: null

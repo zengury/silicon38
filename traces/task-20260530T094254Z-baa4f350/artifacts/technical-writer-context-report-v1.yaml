@@ -1,0 +1,95 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/code-reviewer→technical-writer-20260530-100408.yaml
+      context_digest: 9329a3c58c122f034dd4fa35eaabce7d92dd3ed41a1c76a0a050e9e835289675
+  retained_context:
+    decisions:
+    - statement: Adopt Modular Monolith with DDD bounded contexts.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Separate domain from infrastructure using ports and adapters.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Centralized configuration via core.config.settings.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Standardized error handling via exception handlers.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: API versioning under /api/v1/.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Team size is small (<10 developers).
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Backend uses FastAPI with SQLModel ORM.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Existing SQLModel entities couple domain and persistence.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Backend API prefix is /api/v1.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Environment variables provide all runtime configuration.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: MD5 password hashing is acceptable for current scope.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: psycopg2 is only needed for Dify template creation.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: SQLite fallback in connection.py is safe for tests.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Should we introduce a transactional Unit-of-Work pattern?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the migration strategy for MD5 → bcrypt?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Should MQTT client move from common/ to infrastructure/mqtt/?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Should remaining 4 library services use BaseCRUDRepository?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed analysis of 11 services still using direct Session access (documented
+      in debt table).
+    reason: background_only
+  - source: Frontend admin mock data patterns.
+    reason: background_only
+  - source: Docker image build specifics.
+    reason: background_only
+  - source: Robot planning backend module.
+    reason: background_only
+  compression_rationale:
+    method: Focus on structural decisions and constraints that directly impact developer
+      documentation. Omitted implementation details that are not user-facing or that
+      are already documented as technical debt.
+    loss_notes:
+    - ~40 remaining direct Session(engine) calls in 11 services (all documented with
+      migration path).
+    - No integration tests run due to missing database environment.
+    - Library services (action, expression, knowledge) not yet refactored — BaseCRUDRepository
+      available.
+  quality_checks:
+  - name: All code examples are runnable and correct as written
+    passed: true
+  - name: Prerequisites are stated before they are needed
+    passed: true
+  - name: Documentation covers the happy path fully before addressing edge cases
+    passed: true
+  - name: No documentation that is only true under unstated conditions
+    passed: true
+  - name: Changelog entries describe user-visible impact
+    passed: true
+  - name: No jargon without definition at first use
+    passed: true

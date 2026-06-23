@@ -1,0 +1,30 @@
+core_statement: Refactor the codebase to eliminate duplication and improve modularity, enabling faster and safer development.
+feature_verdicts:
+  - feature: Consolidate duplicate code into shared modules
+    verdict: KEEP
+    reason: Directly reduces duplication, the core value of the refactoring.
+  - feature: Clear module responsibilities
+    verdict: KEEP
+    reason: Essential for maintainability and the primary job of the refactoring.
+  - feature: Consistent architectural pattern (layered)
+    verdict: KEEP
+    reason: Provides a clear structure that makes the codebase easier to understand and modify.
+  - feature: Simple, stable module interfaces
+    verdict: KEEP
+    reason: Enables modules to be used without internal knowledge, reducing cognitive load.
+  - feature: High test coverage for core logic
+    verdict: KEEP
+    reason: Critical for safe refactoring; without it, changes risk breaking behavior.
+  - feature: Easy-to-write and maintain tests
+    verdict: DEFER
+    reason: Important but not essential for v1; focus on coverage first, then improve test ergonomics.
+  - feature: Incremental refactoring
+    verdict: KEEP
+    reason: Ensures system remains functional; without it, risk of breaking changes is too high.
+  - feature: Clear documentation of new module structure
+    verdict: DEFER
+    reason: Valuable but not critical for the refactoring to succeed; can be added after structure stabilizes.
+kept_count: 6
+cut_count: 0
+deferred_count: 2
+scope_reduction_summary: Deferred test maintainability improvements and documentation to later iterations, keeping focus on the essential structural changes and test coverage.

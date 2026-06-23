@@ -1,0 +1,77 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/to-prd→scope-prosecutor-20260606-123438.yaml
+      context_digest: f2accabe63801312d0d59fab706572b813332b85645e5b3bb8fa0dc8fbe62b46
+  retained_context:
+    decisions:
+    - statement: 'App name: Bookshelf'
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 'Core feature: photo-based AI recognition to digitize physical bookshelves'
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 'Monetization: $1.99/month subscription'
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 'Social features: shelf similarity matching and communication'
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must be mobile app (iOS/Android)
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: No manual book entry
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Digital shelf must mirror physical layout
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: AI can accurately recognize books from photos and summarize content
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Users have multiple shelves with books
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Users are willing to pay $1.99/month
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Target platform first?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Accuracy threshold for recognition?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Multilingual support?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Minimum social feature?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Privacy concerns?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed technical architecture
+    reason: background_only
+  - source: Specific AI model selection
+    reason: background_only
+  - source: Exact UI mockups
+    reason: background_only
+  - source: Marketing strategy
+    reason: background_only
+  compression_rationale:
+    method: Extracted key decisions, constraints, assumptions, and open questions
+      from triage handoff and analysis artifact. Omitted implementation details not
+      needed for scope prosecution.
+    loss_notes: []
+  quality_checks:
+  - name: All requirements have testable criteria
+    passed: true
+  - name: Out-of-scope list is non-empty
+    passed: true
+  - name: Success criteria are measurable
+    passed: true

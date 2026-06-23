@@ -1,0 +1,101 @@
+from: to-issues
+to: epic-design
+relation_type: thompson_sample
+timestamp: '2026-05-31T17:53:03.587312+00:00'
+focus: Thompson sample α=2.0 β=5.0 [structural_prior]
+artifact_refs: &id001
+- to-issues-decomposition-v1
+deliverable:
+  producer: to-issues
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: to-issues-decomposition-v1
+    producer: to-issues
+    type: decomposition
+    version: 1
+    status: draft
+    content_ref: artifacts/to-issues-decomposition-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260531T175201Z-22659bdf
+  from: to-issues
+  to: epic-design
+  relation_type: thompson_sample
+  focus: Thompson sample α=2.0 β=5.0 [structural_prior]
+  source:
+    producer_role: to-issues
+    context_compression_report_ref: artifacts/to-issues-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/to-prd→to-issues-20260531-175235.yaml
+      context_digest: 7c0b21741dab9beb2e7967475f6b5be60d616764b825a1a0a0fa900a5a73c6ed
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Task is a refactoring task, not a feature request.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Out-of-scope items explicitly listed to prevent scope creep.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must not introduce new features.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must preserve existing behavior.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Codebase is at /Users/ZQ/roboease.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: User wants actionable improvements, not just analysis.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the current test coverage?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Are there ADRs that constrain refactoring?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Preferred module structure?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed codebase exploration not performed yet (blocking questions need
+      answers).
+    reason: background_only
+  - source: Specific duplicate code instances not identified (requires code analysis).
+    reason: background_only
+  compression_rationale:
+    method: Extracted only essential classification and scope boundaries; deferred
+      detailed analysis until blocking questions are resolved.
+    loss_notes:
+    - No loss of critical information; omitted details are recoverable when execution
+      begins.
+  quality_checks:
+  - name: Independent issues present
+    passed: true
+  - name: Dependencies named
+    passed: true
+  - name: Every issue has acceptance criteria
+    passed: true
+  - name: Dependency graph is acyclic
+    passed: true
+  - name: No issue blocked by unspecified dependency
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - to-prd-prd-v1
+  - triage-analysis-v1
+  previous_blocks:
+  - ref: handoffs/to-prd→to-issues-20260531-175235.yaml
+    from: to-prd
+    to: to-issues
+    relation_type: thompson_sample
+    focus: Thompson sample α=366.8 β=3.5 [validated:triggers]
+    context_digest: 7c0b21741dab9beb2e7967475f6b5be60d616764b825a1a0a0fa900a5a73c6ed
+    deliverable_artifact_refs:
+    - to-prd-prd-v1
+  context_digest: 52c00ffafd445dda95c8126406bab02396c4fdd9a663e7deef850aec3ad6085e
+soul_ref: org/soul.md

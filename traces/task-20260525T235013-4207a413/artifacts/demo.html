@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Fleet Ops — Triage Canvas (demo)</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<style>
+  :root {
+    --color-canvas:          oklch(8% 0.005 250);
+    --color-canvas-raised:   oklch(12% 0.006 250);
+    --color-canvas-overlay:  oklch(8% 0.005 250 / 0.88);
+    --color-critical:        oklch(62% 0.22 25);
+    --color-critical-muted:  oklch(62% 0.22 25 / 0.18);
+    --color-warning:         oklch(72% 0.17 68);
+    --color-warning-muted:   oklch(72% 0.17 68 / 0.14);
+    --color-text-primary:    oklch(93% 0.004 250);
+    --color-text-secondary:  oklch(65% 0.006 250);
+    --color-text-recessive:  oklch(42% 0.005 250);
+    --color-btn-surface:     oklch(18% 0.007 250);
+    --color-btn-border:      oklch(32% 0.008 250);
+    --color-divider:         oklch(20% 0.005 250 / 0.6);
+
+    --type-size-failure:    clamp(1.75rem, 1.2rem + 2.2vw, 2.5rem);
+    --type-size-robot-id:   clamp(1.1rem, 0.9rem + 0.8vw, 1.4rem);
+    --type-size-vitals-value:  clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
+    --type-size-vitals-label:  clamp(0.7rem, 0.65rem + 0.2vw, 0.8rem);
+    --type-size-mono:       clamp(0.7rem, 0.65rem + 0.15vw, 0.78rem);
+
+    --type-family-mono:     ui-monospace, 'Cascadia Code', monospace;
+
+    --space-card-pad-x:     1.25rem;
+    --space-card-pad-y:     1rem;
+    --space-card-gap:       0.5rem;
+    --space-vitals-gap:     0.75rem;
+    --space-gutter-top:     0.875rem;
+    --space-canvas-pad-x:   clamp(2rem, 4vw, 5rem);
+    --space-canvas-pad-y:   clamp(1.5rem, 3vh, 3rem);
+    --space-card-stack-gap: 1.25rem;
+
+    --motion-enter-duration: 240ms;
+    --motion-enter-easing:   cubic-bezier(0.22, 1, 0.36, 1);
+    --motion-exit-duration:  300ms;
+    --motion-exit-easing:    cubic-bezier(0.4, 0, 1, 1);
+    --motion-modal-duration: 120ms;
+    --motion-modal-easing:   cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--color-canvas);
+    color: var(--color-text-primary);
+    font-family: system-ui, ui-sans-serif, sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  .tabs {
+    position: fixed; top: 0; left: 0; right: 0;
+    display: flex; gap: 1.5rem;
+    padding: 1rem var(--space-canvas-pad-x);
+    z-index: 10;
+    pointer-events: none;
+  }
+  .tab {
+    font-size: var(--type-size-vitals-label);
+    color: var(--color-text-recessive);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    pointer-events: auto;
+  }
+  .tab.active { color: var(--color-text-primary); }
+
+  .canvas {
+    position: relative;
+    width: 100vw; height: 100vh;
+    padding: var(--space-canvas-pad-y) var(--space-canvas-pad-x);
+  }
+
+  .system-line {
+    position: absolute;
+    left: 50%; top: 66vh;
+    transform: translateX(-50%);
+    font-family: var(--type-family-mono);
+    font-size: var(--type-size-mono);
+    color: var(--color-text-recessive);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    transition: opacity 200ms;
+  }
+
+  .watch-tick {
+    position: absolute;
+    left: 2rem; bottom: 2rem;
+    display: flex; align-items: center; gap: 0.6rem;
+    font-family: var(--type-family-mono);
+    font-size: var(--type-size-mono);
+    color: var(--color-text-recessive);
+    opacity: 0;
+    transition: opacity 220ms;
+  }
+  .watch-tick.on { opacity: 1; }
+  .watch-tick::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--color-warning);
+  }
+
+  .card-stack {
+    position: relative;
+    margin-top: 4rem;
+    display: flex; flex-direction: column;
+    gap: var(--space-card-stack-gap);
+    max-width: 720px;
+  }
+
+  .card {
+    position: relative;
+    background: var(--color-canvas-raised);
+    border: 1px solid var(--color-critical);
+    border-radius: 6px;
+    padding: var(--space-card-pad-y) var(--space-card-pad-x);
+    transform: translateY(40px); opacity: 0;
+    animation: cardEnter var(--motion-enter-duration) var(--motion-enter-easing) forwards;
+    overflow: hidden;
+  }
+  .card[data-state="HANDOFF"] { border-color: var(--color-warning); }
+  .card[data-state="HANDOFF"] .rim-glow { background: var(--color-warning-muted); }
+  .rim-glow {
+    position: absolute; inset: 0;
+    background: var(--color-critical-muted);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .card.exit { animation: cardExit var(--motion-exit-duration) var(--motion-exit-easing) forwards; }
+  @keyframes cardEnter { to { transform: translateY(0); opacity: 1; } }
+  @keyframes cardExit  { to { transform: translateY(-60px); opacity: 0; } }
+
+  .card > * { position: relative; z-index: 1; }
+
+  .failure-type {
+    font-size: var(--type-size-failure);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--color-critical);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .card[data-state="HANDOFF"] .failure-type { color: var(--color-warning); }
+  .robot-id {
+    font-size: var(--type-size-robot-id);
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin: var(--space-card-gap) 0 0 0;
+    font-family: var(--type-family-mono);
+  }
+
+  .vitals {
+    margin-top: 1.4rem;
+    padding-top: 0.875rem;
+    border-top: 1px solid var(--color-divider);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-vitals-gap);
+  }
+  .vital { position: relative; cursor: default; }
+  .vital-value {
+    font-size: var(--type-size-vitals-value);
+    font-weight: 500;
+    color: var(--color-text-primary);
+    font-variant-numeric: tabular-nums;
+  }
+  .vital-value.alarm { color: var(--color-critical); }
+  .vital-label {
+    font-size: var(--type-size-vitals-label);
+    color: var(--color-text-recessive);
+    margin-top: 0.15rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .gutter {
+    margin-top: var(--space-gutter-top);
+    padding-top: var(--space-gutter-top);
+    border-top: 1px solid var(--color-divider);
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .claim-btn, .claimer {
+    font-size: var(--type-size-vitals-label);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--color-btn-surface);
+    border: 1px solid var(--color-btn-border);
+    color: var(--color-text-primary);
+    padding: 0.4rem 0.85rem;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .claim-btn:hover { background: oklch(22% 0.008 250); }
+  .claimer { cursor: default; color: var(--color-text-secondary); }
+  .claimer::before {
+    content: 'claimed by ';
+    color: var(--color-text-recessive);
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 0.8em;
+  }
+  .note {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-divider);
+    color: var(--color-text-primary);
+    padding: 0.35rem 0.2rem;
+    font-family: inherit;
+    font-size: var(--type-size-vitals-value);
+  }
+  .note:focus { outline: none; border-bottom-color: var(--color-text-secondary); }
+  .history-link {
+    margin-left: auto;
+    font-size: var(--type-size-vitals-label);
+    color: var(--color-text-recessive);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .history-link:hover { color: var(--color-text-secondary); }
+  .suppressed-badge {
+    margin-top: 0.5rem;
+    font-family: var(--type-family-mono);
+    font-size: var(--type-size-mono);
+    color: var(--color-text-recessive);
+  }
+
+  .shadow {
+    position: fixed;
+    background: var(--color-canvas-raised);
+    border: 1px solid var(--color-divider);
+    padding: 0.4rem 0.6rem;
+    font-family: var(--type-family-mono);
+    font-size: var(--type-size-mono);
+    color: var(--color-text-recessive);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 80ms;
+    z-index: 5;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .shadow.on { opacity: 1; }
+
+  .scrim {
+    position: fixed; inset: 0;
+    background: var(--color-canvas-overlay);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--motion-modal-duration) var(--motion-modal-easing);
+    z-index: 50;
+  }
+  .scrim.on { opacity: 1; pointer-events: auto; }
+
+  .modal {
+    position: fixed;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(540px, 86vw);
+    background: var(--color-canvas-raised);
+    border: 1px solid var(--color-critical);
+    border-radius: 6px;
+    padding: 1.5rem 1.75rem;
+    z-index: 51;
+  }
+  .modal-counter {
+    font-size: var(--type-size-vitals-label);
+    color: var(--color-text-recessive);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.6rem;
+  }
+  .modal-title { color: var(--color-critical); margin: 0;
+                 font-size: var(--type-size-failure); font-weight: 700; line-height: 1.1; }
+  .modal-robot { font-family: var(--type-family-mono); margin: 0.4rem 0 1.2rem 0; color: var(--color-text-primary); }
+  .modal-vitals { display: grid; grid-template-columns: repeat(4,1fr); gap: var(--space-vitals-gap);
+                  padding-top: 0.875rem; border-top: 1px solid var(--color-divider); }
+  .modal-actions { margin-top: 1.5rem; display: flex; gap: 0.75rem; justify-content: flex-end; }
+  .modal-actions button {
+    background: var(--color-btn-surface);
+    border: 1px solid var(--color-btn-border);
+    color: var(--color-text-primary);
+    padding: 0.55rem 1.1rem;
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: var(--type-size-vitals-value);
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .modal-actions #btn-ack { border-color: var(--color-text-secondary); }
+  .modal-actions #btn-ack:focus,
+  .modal-actions #btn-ack:hover { background: oklch(22% 0.008 250); outline: none; }
+  .modal-actions #btn-claim:hover { background: oklch(22% 0.008 250); }
+  .modal-actions #btn-escalate { border-color: var(--color-critical); color: var(--color-critical); }
+  .modal-actions #btn-escalate:hover { background: var(--color-critical-muted); }
+
+  .demo-strip {
+    position: fixed;
+    bottom: 1rem; right: 1rem;
+    display: flex; gap: 0.5rem;
+    z-index: 100;
+    font-family: var(--type-family-mono);
+    font-size: var(--type-size-mono);
+  }
+  .demo-strip button {
+    background: var(--color-canvas-raised);
+    border: 1px solid var(--color-btn-border);
+    color: var(--color-text-recessive);
+    padding: 0.35rem 0.6rem;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+  }
+  .demo-strip button:hover { color: var(--color-text-primary); border-color: var(--color-text-secondary); }
+  .demo-strip .label {
+    color: var(--color-text-recessive);
+    padding: 0.35rem 0.5rem;
+    border: 1px dashed var(--color-divider);
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="tabs">
+  <span class="tab active">Triage</span>
+  <span class="tab">Fleet Health</span>
+</nav>
+
+<main class="canvas" id="canvas">
+  <div class="system-line" id="system-line">12 robots online · <span id="clock">00:00:00</span></div>
+  <div class="watch-tick" id="watch-tick">robot-G1-007 · joint temp trending</div>
+  <div class="card-stack" id="card-stack"></div>
+</main>
+
+<div class="scrim" id="scrim"></div>
+<div class="modal" id="modal" style="display:none">
+  <div class="modal-counter">1 of 1</div>
+  <h1 class="modal-title">JOINT OVERTEMP — LEFT HIP ACTUATOR</h1>
+  <p class="modal-robot">robot-G1-007</p>
+  <div class="modal-vitals" id="modal-vitals"></div>
+  <div class="modal-actions">
+    <button id="btn-ack" autofocus>ACK</button>
+    <button id="btn-claim">Claim</button>
+    <button id="btn-escalate">Escalate</button>
+  </div>
+</div>
+
+<div class="shadow" id="shadow"></div>
+
+<div class="demo-strip">
+  <span class="label" id="state-label">state: IDLE</span>
+  <button id="btn-idle">→ IDLE</button>
+  <button id="btn-watch">→ WATCH</button>
+  <button id="btn-incident">→ INCIDENT</button>
+</div>
+
+<script>
+  const clockEl = document.getElementById('clock');
+  function tick() {
+    const d = new Date();
+    const pad = n => String(n).padStart(2,'0');
+    clockEl.textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  }
+  tick(); setInterval(tick, 1000);
+
+  const vitals = [
+    { metric: 'TEMP', canonical: '68 °C', raw: 'raw: 68.3 °C  (lf_joint_temp[0] · millidegC: 68300)', alarm: true },
+    { metric: 'BATT', canonical: '47 %',  raw: 'raw: 0.4733  (battery_soc · unitless ratio)' },
+    { metric: 'CPU',  canonical: '71 %',  raw: 'raw: 0.713   (cpu_load_1s · ratio)' },
+    { metric: 'NET',  canonical: '38 ms', raw: 'raw: 38421 µs  (orin_rtt_estimate)' },
+  ];
+
+  function vitalsHTML(arr) {
+    return arr.map(v => `
+      <div class="vital" data-raw="${v.raw}">
+        <div class="vital-value ${v.alarm ? 'alarm' : ''}">${v.canonical}</div>
+        <div class="vital-label">${v.metric}</div>
+      </div>
+    `).join('');
+  }
+
+  const stateLabel = document.getElementById('state-label');
+  const systemLine = document.getElementById('system-line');
+  const watchTick = document.getElementById('watch-tick');
+  const stack = document.getElementById('card-stack');
+  const scrim = document.getElementById('scrim');
+  const modal = document.getElementById('modal');
+  const modalVitals = document.getElementById('modal-vitals');
+  let state = 'IDLE';
+
+  function setState(s) { state = s; stateLabel.textContent = `state: ${s}`; }
+
+  function goIdle() {
+    closeModal();
+    watchTick.classList.remove('on');
+    stack.innerHTML = '';
+    systemLine.style.opacity = '1';
+    setState('IDLE');
+  }
+  function goWatch() {
+    closeModal();
+    stack.innerHTML = '';
+    systemLine.style.opacity = '1';
+    watchTick.classList.add('on');
+    setState('WATCH');
+  }
+  function goIncident() {
+    watchTick.classList.remove('on');
+    systemLine.style.opacity = '0.4';
+    openModal();
+    setState('INCIDENT');
+  }
+
+  function openModal() {
+    modalVitals.innerHTML = vitalsHTML(vitals);
+    modal.style.display = 'block';
+    requestAnimationFrame(() => scrim.classList.add('on'));
+    document.getElementById('btn-ack').focus();
+  }
+  function closeModal() { scrim.classList.remove('on'); modal.style.display = 'none'; }
+
+  function spawnCard(claimed) {
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.dataset.state = claimed ? 'HANDOFF' : 'INCIDENT';
+    card.innerHTML = `
+      <div class="rim-glow"></div>
+      <h2 class="failure-type">JOINT OVERTEMP — LEFT HIP ACTUATOR</h2>
+      <p class="robot-id">robot-G1-007</p>
+      <div class="vitals">${vitalsHTML(vitals)}</div>
+      <div class="gutter">
+        ${claimed
+          ? '<span class="claimer">manas</span>'
+          : '<button class="claim-btn" data-action="claim">Claim</button>'}
+        <input class="note" placeholder="${claimed ? 'isolating hip actuator…' : 'add a note (one line)'}" ${claimed ? 'value="checking actuator current draw"' : ''}/>
+        <span class="history-link" data-action="history">View History →</span>
+        <button class="claim-btn" data-action="resolve" style="margin-left:.5rem">Mark Resolved</button>
+      </div>
+      <div class="suppressed-badge">+2 more since ACK</div>
+    `;
+    stack.innerHTML = '';
+    stack.appendChild(card);
+    bindCard(card);
+  }
+
+  function bindCard(card) {
+    card.addEventListener('click', e => {
+      const action = e.target.dataset.action;
+      if (action === 'claim') {
+        card.dataset.state = 'HANDOFF';
+        e.target.outerHTML = '<span class="claimer">manas</span>';
+        setState('HANDOFF');
+      } else if (action === 'resolve') {
+        card.classList.add('exit');
+        setTimeout(goIdle, 320);
+        setState('RESOLVED');
+      } else if (action === 'history') {
+        alert('History drawer would slide in from the right (40% of canvas, default zoom: last 15 min). Out of scope for this single-file demo.');
+      }
+    });
+    card.querySelectorAll('.vital').forEach(v => {
+      let dwell;
+      v.addEventListener('pointerenter', () => {
+        dwell = setTimeout(() => showShadow(v, v.dataset.raw), 200);
+      });
+      v.addEventListener('pointerleave', () => { clearTimeout(dwell); hideShadow(); });
+    });
+  }
+
+  const shadowEl = document.getElementById('shadow');
+  function showShadow(anchor, text) {
+    if (modal.style.display === 'block') return;
+    shadowEl.textContent = text;
+    const r = anchor.getBoundingClientRect();
+    shadowEl.style.left = `${r.left}px`;
+    shadowEl.style.top  = `${r.bottom + 6}px`;
+    shadowEl.classList.add('on');
+  }
+  function hideShadow() { shadowEl.classList.remove('on'); }
+
+  document.getElementById('btn-ack').addEventListener('click', () => {
+    closeModal(); spawnCard(false); setState('INCIDENT');
+  });
+  document.getElementById('btn-claim').addEventListener('click', () => {
+    closeModal(); spawnCard(true); setState('HANDOFF');
+  });
+  document.getElementById('btn-escalate').addEventListener('click', () => {
+    alert('Escalate flow would write an audit note + ping the on-call. Out of scope for demo.');
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.style.display === 'block') {
+      document.getElementById('btn-ack').click();
+    }
+  });
+
+  document.getElementById('btn-idle').addEventListener('click', goIdle);
+  document.getElementById('btn-watch').addEventListener('click', goWatch);
+  document.getElementById('btn-incident').addEventListener('click', goIncident);
+
+  // Auto-cycle so the design speaks without input.
+  let idleSince = Date.now();
+  ['click','keydown','pointermove'].forEach(ev =>
+    document.addEventListener(ev, () => { idleSince = Date.now(); })
+  );
+  setTimeout(() => { if (Date.now() - idleSince > 2500 && state === 'IDLE')  goWatch();    }, 3000);
+  setTimeout(() => { if (Date.now() - idleSince > 4500 && state === 'WATCH') goIncident(); }, 6500);
+</script>
+
+</body>
+</html>

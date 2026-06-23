@@ -1,0 +1,54 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/to-prd→caveman-20260531-170955.yaml
+      context_digest: 2c154594763fba715a767870545de45a75631e142a3b28820325dc32885f392b
+  retained_context:
+    decisions:
+    - statement: Classify as enhancement (refactoring)
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Priority high
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: No code modification during triage
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must use read-only tools
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Codebase is primarily one language
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Existing tests may exist
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Primary language?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Existing tests?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Module structure?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed user stories (8 items)
+    reason: background_only
+  - source: Implementation decisions about testing strategy details
+    reason: background_only
+  - source: Out of scope list
+    reason: background_only
+  compression_rationale:
+    method: Extract key decisions, constraints, and open questions. Omit verbose descriptions
+      and template boilerplate.
+    loss_notes: []
+  quality_checks:
+  - name: scope_boundary_present
+    passed: true
+  - name: done_condition_present
+    passed: true

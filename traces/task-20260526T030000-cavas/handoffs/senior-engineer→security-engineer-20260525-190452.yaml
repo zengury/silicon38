@@ -1,0 +1,7 @@
+from: senior-engineer
+to: security-engineer
+relation_type: evaluates
+timestamp: '2026-05-25T19:04:52.095216+00:00'
+focus: Review structural refactor for new security surface
+artifact_refs:
+- senior-engineer-code-v1

@@ -1,0 +1,35 @@
+artifact_id: prototype-dashboard-v1
+role: prototype
+type: plan
+version: 1
+timestamp: "2026-05-31T00:00:00Z"
+task_id: task-20260530T165512Z-064cf2e1
+inputs:
+  handoffs:
+    - ref: handoffs/ux-researcher-designer→prototype-20260530-165638.yaml
+      context_digest: d726e752c97f7d6c8f5c390494951645054784cf453077d798e7fb8649957cd5
+  artifacts:
+    - ux-researcher-designer-ux-spec-v1
+    - to-prd-prd-v1
+    - architect-architecture-v1
+outputs:
+  - path: artifacts/prototype-dashboard-v1.md
+    type: plan
+  - path: prototype/dashboard-prototype.html
+    type: prototype
+    mime: text/html
+question_answered: "What layout and interaction model works best for a robot fleet monitoring dashboard?"
+finding: "Hybrid: Variant B sidebar command center + Variant A overview charts with toggle + Variant C timeline as drawer/tab"
+recommendation: proceed
+shortcuts:
+  - all robot data fabricated in-memory
+  - ECharts via CDN, no bundler
+  - vanilla JS, no React/TypeScript
+  - dark theme via CSS variables toggle
+  - i18n via embedded JS object
+  - alarm banner hardcoded to RBT-003
+  - history data is random walk
+  - send message buttons are alert() stubs
+  - drag handles visual only
+  - scatter plot instead of real map tiles
+  - no error handling or loading states

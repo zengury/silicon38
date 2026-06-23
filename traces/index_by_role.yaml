@@ -1,0 +1,331 @@
+to-prd:
+- task_id: task-20260523T214431
+  timestamp: '2026-05-23T21:46:00+08:00'
+  outcome: success
+  iterations: 1
+  quality_contribution: 0.9
+- task_id: task-20260524T235435-cd06553e
+  timestamp: '2026-05-25T07:06:12.154258+00:00'
+  outcome: success
+- task_id: task-20260525T235013-4207a413
+  timestamp: '2026-05-25T17:24:06.820003+00:00'
+  outcome: unknown
+- task_id: task-20260606T204107-ce98e3a3
+  timestamp: '2026-06-06T12:52:45.823636+00:00'
+  outcome: success
+  signal: 0.9099999999999999
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=0.70; terminal_role=true
+ux-researcher-designer:
+- task_id: task-20260523T214431
+  timestamp: '2026-05-23T21:46:00+08:00'
+  outcome: success
+  iterations: 1
+  quality_contribution: 0.85
+- task_id: task-20260524T235435-cd06553e
+  timestamp: '2026-05-25T07:06:12.154258+00:00'
+  outcome: success
+- task_id: task-20260525T235013-4207a413
+  timestamp: '2026-05-25T17:24:06.820003+00:00'
+  outcome: unknown
+- task_id: task-20260606T204107-ce98e3a3
+  timestamp: '2026-06-06T12:52:45.823636+00:00'
+  outcome: success
+  signal: 0.9099999999999999
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=0.70; terminal_role=true
+apple-hig-expert:
+- task_id: task-20260523T214431
+  timestamp: '2026-05-23T21:46:00+08:00'
+  outcome: success
+  iterations: 1
+  quality_contribution: 0.88
+to-issues:
+- task_id: task-20260523T214431
+  timestamp: '2026-05-23T21:48:00+08:00'
+  outcome: success
+  iterations: 1
+  quality_contribution: 0.82
+- task_id: task-20260524T235435-cd06553e
+  timestamp: '2026-05-25T07:06:12.154258+00:00'
+  outcome: success
+prototype:
+- task_id: task-20260523T214431
+  timestamp: '2026-05-23T21:48:00+08:00'
+  outcome: success
+  iterations: 1
+  quality_contribution: 0.92
+ui-design-system:
+- task_id: task-20260524T230317
+  timestamp: '2026-05-24T23:08:00+08:00'
+  outcome: success
+  iterations: 1
+  quality_contribution: 0.82
+- task_id: task-20260524T235435-cd06553e
+  timestamp: '2026-05-25T07:06:12.154258+00:00'
+  outcome: success
+- task_id: task-20260525T235013-4207a413
+  timestamp: '2026-05-25T17:24:06.820003+00:00'
+  outcome: unknown
+architect:
+- task_id: task-20260523T214431
+  timestamp: '2026-05-23T21:48:00+08:00'
+  outcome: success
+  iterations: 1
+  quality_contribution: 0.9
+- task_id: task-20260524T235435-cd06553e
+  timestamp: '2026-05-25T07:06:12.154258+00:00'
+  outcome: success
+- task_id: task-20260525T235013-4207a413
+  timestamp: '2026-05-25T17:24:06.820003+00:00'
+  outcome: unknown
+- task_id: task-20260526T025105-ccfae5c1
+  timestamp: '2026-05-25T18:59:22.844035+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+- task_id: task-20260526T030000-cavas
+  timestamp: '2026-05-25T19:06:04.969762+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+- task_id: task-20260526T083818-ddd3d784
+  timestamp: '2026-05-26T00:51:12.021915+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+- task_id: task-20260606T204107-ce98e3a3
+  timestamp: '2026-06-06T12:52:45.823636+00:00'
+  outcome: success
+  signal: 0.9099999999999999
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=0.70; terminal_role=true
+senior-frontend:
+- task_id: task-20260524T230317
+  timestamp: '2026-05-24T23:12:00+08:00'
+  outcome: success
+  iterations: 1
+  quality_contribution: 0.9
+- task_id: task-20260525T235013-4207a413
+  timestamp: '2026-05-25T17:24:06.820003+00:00'
+  outcome: unknown
+api-designer:
+- task_id: task-20260523T214431
+  timestamp: '2026-05-23T21:50:00+08:00'
+  outcome: success
+  iterations: 1
+  quality_contribution: 0.8
+- task_id: task-20260525T235013-4207a413
+  timestamp: '2026-05-25T17:24:06.820003+00:00'
+  outcome: unknown
+code-reviewer:
+- task_id: task-20260523T214431
+  timestamp: '2026-05-23T21:51:00+08:00'
+  outcome: success
+  iterations: 1
+  quality_contribution: 0.88
+- task_id: task-20260524T230317
+  timestamp: '2026-05-24T23:21:00+08:00'
+  outcome: success
+  iterations: 1
+  quality_contribution: 0.8
+- task_id: task-20260525T235013-4207a413
+  timestamp: '2026-05-25T17:24:06.820003+00:00'
+  outcome: unknown
+- task_id: task-20260526T025105-ccfae5c1
+  timestamp: '2026-05-25T18:59:22.844035+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+- task_id: task-20260526T030000-cavas
+  timestamp: '2026-05-25T19:06:04.969762+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+- task_id: task-20260526T083818-ddd3d784
+  timestamp: '2026-05-26T00:51:12.021915+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+zoom-out:
+- task_id: task-20260524T230317
+  timestamp: '2026-05-24T23:05:00+08:00'
+  outcome: success
+  iterations: 1
+  quality_contribution: 0.9
+- task_id: task-20260525T235013-4207a413
+  timestamp: '2026-05-25T17:24:06.820003+00:00'
+  outcome: unknown
+- task_id: task-20260526T025105-ccfae5c1
+  timestamp: '2026-05-25T18:59:22.844035+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+- task_id: task-20260526T030000-cavas
+  timestamp: '2026-05-25T19:06:04.969762+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+- task_id: task-20260526T083818-ddd3d784
+  timestamp: '2026-05-26T00:51:12.021915+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+improve-codebase-architecture:
+- task_id: task-20260524T230317
+  timestamp: '2026-05-24T23:08:00+08:00'
+  outcome: success
+  iterations: 1
+  quality_contribution: 0.85
+refactor-specialist:
+- task_id: task-20260524T230317
+  timestamp: '2026-05-24T23:12:00+08:00'
+  outcome: success
+  iterations: 1
+  quality_contribution: 0.88
+triage:
+- task_id: task-20260524T235435-cd06553e
+  timestamp: '2026-05-25T07:06:12.154258+00:00'
+  outcome: success
+- task_id: task-20260525T235013-4207a413
+  timestamp: '2026-05-25T17:24:06.820003+00:00'
+  outcome: unknown
+caveman:
+- task_id: task-20260524T235435-cd06553e
+  timestamp: '2026-05-25T07:06:12.154258+00:00'
+  outcome: success
+- task_id: task-20260525T235013-4207a413
+  timestamp: '2026-05-25T17:24:06.820003+00:00'
+  outcome: unknown
+- task_id: task-20260526T025105-ccfae5c1
+  timestamp: '2026-05-25T18:59:22.844035+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+- task_id: task-20260526T083818-ddd3d784
+  timestamp: '2026-05-26T00:51:12.021915+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+- task_id: task-20260606T204107-ce98e3a3
+  timestamp: '2026-06-06T12:52:45.823636+00:00'
+  outcome: success
+  signal: 0.9099999999999999
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=0.70; terminal_role=true
+senior-engineer:
+- task_id: task-20260524T235435-cd06553e
+  timestamp: '2026-05-25T07:06:12.154258+00:00'
+  outcome: success
+- task_id: task-20260526T025105-ccfae5c1
+  timestamp: '2026-05-25T18:59:22.844035+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+- task_id: task-20260526T030000-cavas
+  timestamp: '2026-05-25T19:06:04.969762+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+- task_id: task-20260526T083818-ddd3d784
+  timestamp: '2026-05-26T00:51:12.021915+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+database-engineer:
+- task_id: task-20260524T235435-cd06553e
+  timestamp: '2026-05-25T07:06:12.154258+00:00'
+  outcome: success
+grill-me:
+- task_id: task-20260526T025105-ccfae5c1
+  timestamp: '2026-05-25T18:59:22.844035+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+tdd:
+- task_id: task-20260526T025105-ccfae5c1
+  timestamp: '2026-05-25T18:59:22.844035+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+- task_id: task-20260526T030000-cavas
+  timestamp: '2026-05-25T19:06:04.969762+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+- task_id: task-20260526T083818-ddd3d784
+  timestamp: '2026-05-26T00:51:12.021915+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+security-engineer:
+- task_id: task-20260526T025105-ccfae5c1
+  timestamp: '2026-05-25T18:59:22.844035+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+- task_id: task-20260526T030000-cavas
+  timestamp: '2026-05-25T19:06:04.969762+00:00'
+  outcome: success
+  signal: 1.0
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; terminal_role=true
+scope-prosecutor:
+- task_id: task-20260606T204107-ce98e3a3
+  timestamp: '2026-06-06T12:52:45.823636+00:00'
+  outcome: success
+  signal: 0.9099999999999999
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=0.70; terminal_role=true
+product-vision-anchor:
+- task_id: task-20260606T204107-ce98e3a3
+  timestamp: '2026-06-06T12:52:45.823636+00:00'
+  outcome: success
+  signal: 0.9099999999999999
+  confidence: 0.75
+  signal_source: role_credit_assignment.v0
+  detail: outcome=success; decoder_quality=0.70; terminal_role=true

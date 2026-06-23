@@ -1,0 +1,6 @@
+from: caveman
+to: architect
+relation_type: evaluates
+timestamp: '2026-05-25T13:43:10.747590+00:00'
+focus: 'constrain architecture to the one-true-act: 3-second fault response. data
+  normalization + alert path are core; everything else is out-of-product.'

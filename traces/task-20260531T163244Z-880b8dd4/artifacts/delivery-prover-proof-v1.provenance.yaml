@@ -1,0 +1,8 @@
+artifact_id: delivery-prover-proof-v1
+producer: delivery-prover
+task_id: task-20260531T163244Z-880b8dd4
+version: 1
+timestamp: '2026-05-31T16:40:28.814317+00:00'
+input_artifacts: []
+quality_checks: []
+status: draft

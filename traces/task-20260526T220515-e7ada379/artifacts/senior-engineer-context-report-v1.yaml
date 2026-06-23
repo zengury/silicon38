@@ -1,0 +1,92 @@
+context_compression_report:
+  input_scope:
+    artifacts_read:
+      - artifact_id: "to-prd-output-v1"
+        path: "artifacts/to-prd-output-v1.md"
+        used: true
+        why: "PRD defines all 9 user requirements, Canonical Model shape, and implementation decisions"
+      - artifact_id: "to-issues-output-v1"
+        path: "artifacts/to-issues-output-v1.md"
+        used: true
+        why: "Issue breakdown provides dependency graph for implementation ordering"
+      - artifact_id: "architect-output-v1"
+        path: "artifacts/architect-output-v1.md"
+        used: true
+        why: "All 8 ADRs provide architecture contracts: Canonical Model types, Adapter Pipeline interface, WebSocket message format, Alert state machine, Zustand store architecture, component tree"
+    handoffs_read:
+      - ref: "to-issues→senior-engineer-20260526-141342.yaml"
+        from: to-issues
+        type: triggers
+        context_digest: "Implement FleetOps Dashboard demo with all 10 issue slices"
+      - ref: "architect→senior-engineer-20260526-141342.yaml"
+        from: architect
+        type: triggers
+        context_digest: "Architecture decisions: Canonical Model types, Adapter Pipeline interface, WebSocket message format, Alert state machine, Zustand store architecture"
+  retained_context:
+    decisions:
+      - statement: "Canonical RobotSnapshot 作为所有组件的数据契约"
+        source: "architect ADR-002"
+        impact: "src/types/index.ts 精确实现了 ADR-002 的完整类型定义"
+      - statement: "MockDataEngine 作为 Adapter Pipeline 的 Demo 实现"
+        source: "architect ADR-003"
+        impact: "20 台机器人仿真，包含电量衰减、温度波动、故障注入、任务切换等真实行为"
+      - statement: "Zustand 多 Store 架构：fleetStore / alertStore / configStore / commentStore / uiStore"
+        source: "architect ADR-006"
+        impact: "各组件通过独立 Store 通信，避免不必要的重渲染"
+      - statement: "ECharts 作为图表库：环形图、折线图、热力图、仪表盘"
+        source: "architect ADR-007"
+        impact: "Dashboard 和 Detail 页面均使用 ECharts 实现实时图表"
+      - statement: "Alert Engine 状态机 + 8 条默认规则 + Cooldown 去重"
+        source: "architect ADR-005"
+        impact: "alertStore.ts 实现了完整的规则评估、告警生成、确认/解决生命周期"
+      - statement: "10 个垂直切片映射到 Demo 实现模块"
+        source: "to-issues decomposition"
+        impact: "所有 10 个 slice 的功能均在 Demo 中实现"
+    constraints:
+      - statement: "Demo 阶段使用内存存储，无持久化后端"
+        source: "to-prd Further Notes + architect ADR-008"
+        impact: "MockDataEngine 内置历史缓存，评论和配置使用 Zustand (内存) 存储"
+      - statement: "单用户模式，无认证"
+        source: "to-prd Out of Scope"
+        impact: "评论功能使用硬编码的 MOCK_USERS 列表"
+      - statement: "纯 SPA，无 SSR"
+        source: "to-prd Implementation Decision #1"
+        impact: "Vite 构建为纯客户端 SPA，单 HTML 入口"
+    assumptions:
+      - statement: "Leaflet 地图在 Demo 中展示坐标数据而非完整地图"
+        source: "architect ADR-007 (Leaflet 选型)"
+        risk: "low — Demo 展示坐标和朝向数据，生产环境替换为完整地图 tile"
+      - statement: "Excel/PDF 导出使用浏览器原生能力 (window.print + exceljs)"
+        source: "architect ADR-007"
+        risk: "low — export 按钮已就位，PDF 通过 @media print CSS 实现"
+    open_questions:
+      - statement: "生产环境下后端聚合服务的归属"
+        source: "architect open_question"
+        owner: "user / release-manager"
+      - statement: "中国大陆地图服务替换方案"
+        source: "architect constraint"
+        owner: "user"
+  omitted_context:
+    - context: "to-issues 中的详细 issue 验收标准"
+      source: "to-issues-output-v1.md"
+      reason: "background_only"
+    - context: "architect ADR 中的 Alternatives Rejected 章节"
+      source: "architect-output-v1.md"
+      reason: "background_only"
+    - context: "PRD 中的 Testing Decisions"
+      source: "to-prd-output-v1.md"
+      reason: "irrelevant"
+  compression_rationale:
+    method: "聚焦 ADR 中的接口契约和类型定义，这些是实现的硬约束。省略设计探索和备选方案，因为它们不影响实现决策"
+    loss_notes: []
+  quality_checks:
+    - name: "所有 retained decisions 有 source 和 impact"
+      passed: true
+    - name: "所有 constraints 有 source 和 impact"
+      passed: true
+    - name: "所有 assumptions 有 source 和 risk"
+      passed: true
+    - name: "omitted context 每项有明确 reason"
+      passed: true
+    - name: "实现与 ADR 契约一致"
+      passed: true

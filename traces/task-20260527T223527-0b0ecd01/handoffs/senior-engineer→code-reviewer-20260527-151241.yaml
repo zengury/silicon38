@@ -1,0 +1,136 @@
+from: senior-engineer
+to: code-reviewer
+relation_type: triggers
+timestamp: '2026-05-27T15:12:41.438174+00:00'
+focus: review snapshot server implementation
+artifact_refs: &id001
+- senior-engineer-implementation-v1
+deliverable:
+  producer: senior-engineer
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: senior-engineer-implementation-v1
+    producer: senior-engineer
+    type: implementation
+    version: 1
+    status: draft
+    content_ref: artifacts/senior-engineer-implementation-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260527T223527-0b0ecd01
+  from: senior-engineer
+  to: code-reviewer
+  relation_type: triggers
+  focus: review snapshot server implementation
+  source:
+    producer_role: senior-engineer
+    context_compression_report_ref: artifacts/senior-engineer-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/architect→senior-engineer-20260527-145527.yaml
+      context_digest: 416e13550c7b1d4b2ca6398e28af110fa5482534c01a479fe1968380ee87df22
+    input_artifacts:
+    - artifact_id: architect-architecture-v1
+      ref: artifacts/architect-architecture-v1.md
+      used: true
+      why: Defined the read-only snapshot adapter/server boundary, endpoint expectations,
+        Graph/Ledger/Learning data sources, and tolerance rules for malformed traces.
+  compressed_context:
+    decisions:
+    - statement: The visualizer must consume a normalized Ledger-derived snapshot
+        instead of parsing raw YAML in the frontend.
+      source: handoffs/architect→senior-engineer-20260527-145527.yaml context_block
+        and architect-architecture-v1
+      impact: Implemented tools/org_viz_server.py as the local read-only JSON projection
+        boundary.
+    - statement: The server must be local, read-only, and tolerant of missing or malformed
+        old traces.
+      source: architect-architecture-v1
+      impact: The server never calls ledger mutation commands and reports parse/read
+        problems in an errors array while still returning partial snapshots.
+    - statement: Graph, Policy, Ledger, Runtime, and Learning remain the load-bearing
+        operational concepts.
+      source: org/CONTEXT_BLOCK.md as inherited through the architect handoff
+      impact: Snapshot payload separates graph, trace, policy, and learning sections
+        without adding new top-level operating concepts.
+    - statement: Handoff blocks must preserve deliverable metadata and context-block
+        summaries.
+      source: handoffs/architect→senior-engineer-20260527-145527.yaml context_block
+      impact: Normalized handoff objects include deliverable, contextBlock, digest,
+        previousBlocks, source, compressedContext, and sourceRef fields.
+    constraints:
+    - statement: Use Python stdlib only for the local snapshot server.
+      source: senior-engineer task instruction
+      impact: Implemented a small in-file tolerant YAML subset reader instead of importing
+        PyYAML or adding a web framework.
+    - statement: Do not mutate the Ledger from the server.
+      source: senior-engineer task instruction and architect-architecture-v1
+      impact: All endpoints are GET-only and no code path writes trace, ontology,
+        artifact, handoff, or learning files.
+    - statement: Serve / as visualizer/index.html when present.
+      source: senior-engineer task instruction
+      impact: Static serving maps / to visualizer/index.html and rejects path traversal.
+    assumptions:
+    - statement: A full snapshot endpoint is sufficient for the first Three.js polling/replay
+        UI.
+      source: architect-architecture-v1
+      risk: High-frequency animation may later require SSE/WebSocket, but the snapshot
+        schema can remain stable.
+    - statement: Older trace YAML only needs a tolerant subset parser for current
+        operational visualization.
+      source: current trace and ontology files
+      risk: Future YAML features may require expanding the parser or permitting a
+        dependency.
+    open_questions:
+    - statement: Whether the frontend will use exactly this snapshot schema or request
+        API-designer refinements.
+      source: architect downstream handoff notes
+      owner: api-designer
+    - statement: Whether live runtime events should later appear only after Ledger
+        persistence or also as explicitly ephemeral runtime facts.
+      source: architect-architecture-v1
+      owner: architect
+  omitted_context:
+  - source: Full text of architect-architecture-v1
+    reason: irrelevant
+  - source: Full Graph edge list
+    reason: irrelevant
+  - source: Full contents of handoff context_block
+    reason: irrelevant
+  compression_rationale:
+    method: Retained the server contract, read-only constraints, source-of-truth decisions,
+      and exact upstream handoff digest needed by downstream frontend/API nodes.
+    loss_notes:
+    - Three.js visual rendering details are omitted because senior-engineer implemented
+      only the snapshot server.
+    - Future SSE/WebSocket transport is omitted except as a stable-schema assumption.
+    - Complete source code is referenced by file path rather than duplicated in this
+      report.
+  quality_checks:
+  - name: cites_exact_architect_handoff_ref
+    passed: true
+  - name: cites_exact_architect_context_digest
+    passed: true
+  - name: cites_architect_artifact_read
+    passed: true
+  - name: preserves_ledger_as_source_of_truth
+    passed: true
+  - name: keeps_server_read_only
+    passed: true
+  - name: uses_python_stdlib_only
+    passed: true
+  - name: validates_snapshot_against_current_trace
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - architect-architecture-v1
+  - caveman-analysis-v1
+  previous_blocks:
+  - ref: handoffs/architect→senior-engineer-20260527-145527.yaml
+    from: architect
+    to: senior-engineer
+    relation_type: triggers
+    focus: implement local snapshot server and data adapter from ontology/traces
+    context_digest: 416e13550c7b1d4b2ca6398e28af110fa5482534c01a479fe1968380ee87df22
+    deliverable_artifact_refs:
+    - architect-architecture-v1
+  context_digest: 7b9c479df828cddeb8c45c44aafb35d7567306fdd77fa2a8c39f28c17ac7e711

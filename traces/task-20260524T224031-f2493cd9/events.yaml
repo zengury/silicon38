@@ -1,0 +1,7 @@
+task_id: task-20260524T224031-f2493cd9
+events:
+  - event_id: ev-001
+    timestamp: "2026-05-24T22:40:31+08:00"
+    event_type: task_started
+    payload:
+      detail: "Refactor ink-pet monolith + add pretext-inspired dynamic effects + novel interactions"

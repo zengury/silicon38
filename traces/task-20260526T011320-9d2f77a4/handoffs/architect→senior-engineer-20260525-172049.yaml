@@ -1,0 +1,8 @@
+from: architect
+to: senior-engineer
+relation_type: triggers
+timestamp: '2026-05-25T17:20:49.967657+00:00'
+focus: 'Architecture complete: component tree, data flow, module interfaces, project
+  structure. Implement per ADR section 2 and 6.'
+artifact_refs:
+- architect-design-v1

@@ -1,0 +1,65 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read: []
+  retained_context:
+    decisions:
+    - statement: Focus on top-level module boundaries and external integrations.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use codebase's own module names.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Only file listing and key files were read; no full code traversal.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Some modules may have deeper structure not captured.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: The codebase is a multi-tenant robot management platform.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: MQTT is used for robot communication.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: JWT is used for authentication.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the exact database schema?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How are MQTT topics structured?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the CI/CD pipeline?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the testing strategy?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file contents beyond key files.
+    reason: background_only
+  - source: Historical artifact contents (release plans, etc.).
+    reason: background_only
+  - source: Frontend component hierarchy.
+    reason: background_only
+  compression_rationale:
+    method: High-level abstraction focusing on module boundaries, external dependencies,
+      and data flows. Detailed implementation details omitted to keep map concise.
+    loss_notes:
+    - Frontend component tree not mapped.
+    - Backend service layer internal structure not detailed.
+    - Database schema not extracted.
+  quality_checks:
+  - name: Module names match codebase
+    passed: true
+  - name: Relationships verified by reading imports
+    passed: true
+  - name: External dependencies labeled
+    passed: true
+  - name: Map is concise and relevant
+    passed: true

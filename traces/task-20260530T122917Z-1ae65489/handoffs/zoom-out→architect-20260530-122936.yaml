@@ -1,0 +1,91 @@
+from: zoom-out
+to: architect
+relation_type: may_trigger
+timestamp: '2026-05-30T12:29:36.723823+00:00'
+focus: context map identifies architecture work as part of the deliverable
+artifact_refs: &id001
+- zoom-out-context-map-v1
+deliverable:
+  producer: zoom-out
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: zoom-out-context-map-v1
+    producer: zoom-out
+    type: context-map
+    version: 1
+    status: draft
+    content_ref: artifacts/zoom-out-context-map-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260530T122917Z-1ae65489
+  from: zoom-out
+  to: architect
+  relation_type: may_trigger
+  focus: context map identifies architecture work as part of the deliverable
+  source:
+    producer_role: zoom-out
+    context_compression_report_ref: artifacts/zoom-out-context-report-v1.yaml
+    input_handoffs: []
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Map the entire codebase at a high level to identify modules and their
+        responsibilities.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Focus on backend, frontends, Docker, and artifacts directories.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Only read files, no writes or bash execution.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must use actual module names and domain terms from the codebase.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: The codebase is a monorepo with backend, frontend, and Docker configs.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: The primary database is MySQL, with Redis for caching.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the exact database schema?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How do robots communicate with the backend (MQTT topics, WebSocket
+        messages)?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the CI/CD pipeline?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the testing strategy?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file contents of individual source files (not needed for high-level
+      map).
+    reason: background_only
+  - source: Historical artifact versions (v1-v7) — not relevant for current architecture.
+    reason: background_only
+  compression_rationale:
+    method: High-level module identification from directory structure and key files.
+    loss_notes:
+    - Omitted detailed implementation of individual modules.
+    - Omitted historical planning documents.
+  quality_checks:
+  - name: Module names match codebase
+    passed: true
+  - name: Relationships verified by reading imports/calls
+    passed: true
+  - name: External dependencies labeled
+    passed: true
+  - name: Map is concise and relevant
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs: []
+  previous_blocks: []
+  context_digest: 3fd8e231d648fc9f633993926e1fb01296bb57471bb2c95e9f1defd943591dd6
+soul_ref: org/soul.md

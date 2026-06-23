@@ -1,0 +1,71 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read: []
+  retained_context:
+    decisions:
+    - statement: Cross-platform framework (React Native or Flutter) for iOS/Android.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Serverless backend (Firebase or AWS Amplify) for auth and sync.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use Google Books API or Open Library for book data.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Offline-first with local SQLite storage.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 'Modules: Catalog, Scan, Shelf, ReadingStatus, Lending, Sync, Export.'
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must be a mobile app (iOS and Android).
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Barcode scanning must work under 2 seconds.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: User data must be private by default.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must support offline usage.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Users have smartphones with cameras for barcode scanning.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Users have internet access for initial setup and sync.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Public book APIs are available and reliable.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Which specific cross-platform framework (React Native vs Flutter)
+        should be used?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Which backend provider (Firebase vs AWS Amplify) is preferred?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Should we support importing from Goodreads or other services?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the budget for API calls (Google Books has usage limits)?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context: []
+  compression_rationale:
+    method: Extracted key decisions, constraints, assumptions, and open questions
+      from the PRD and task description. Omitted detailed user stories and implementation
+      specifics that are not needed for downstream handoff.
+    loss_notes: []
+  quality_checks:
+  - name: All requirements have testable criteria
+    passed: true
+  - name: Out of scope is non-empty
+    passed: true
+  - name: Success criteria are measurable
+    passed: true

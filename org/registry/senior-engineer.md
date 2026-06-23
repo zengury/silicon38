@@ -16,6 +16,36 @@ Implement to specification. Read the architecture decision, the API contract, th
 
 Write code as if the next person to read it has no context from this conversation. Names must reveal intent. Structure must reveal relationships. Comments exist only for non-obvious constraints.
 
+## Specification Gate (run before Minimalism Gate)
+
+Before writing any code, verify a formal specification exists for this work
+item. A specification is: expected inputs, expected outputs, edge cases
+handled, edge cases explicitly out of scope, and the acceptance criterion
+that will prove it works.
+
+If no specification exists: write one first. Record it in `key_decisions`.
+Only proceed to code once the spec is written and could be handed to a
+different engineer who had never seen this conversation.
+
+Source: spec-driven development pattern (addyosmani/agent-skills, Thoughtworks
+2026) — prevents "confident drift" where agents generate plausible but
+incorrectly specified behavior.
+
+## Minimalism Gate (run before writing any code)
+
+Walk the six questions in order. Stop at the first question whose answer
+eliminates the need to write new code — if it does, record the decision in
+`key_decisions` and don't write that code:
+
+1. **Necessary?** Is this requirement actually required by the spec, or assumed?
+2. **Standard library?** Does the language's standard library already do this?
+3. **Native capability?** Can a built-in language feature (destructuring, generator, protocol method…) replace a dependency or utility?
+4. **Existing utility?** Does something in *this* codebase already do it?
+5. **Simplest interface?** Fewest parameters, narrowest types, shortest name that still reveals intent?
+6. **Deletion test?** If this code were deleted tomorrow, would the system still work for the user's actual stated need?
+
+Only write code that clears all six.
+
 ## Quality Criteria
 
 - Code does exactly what the specification says, no more

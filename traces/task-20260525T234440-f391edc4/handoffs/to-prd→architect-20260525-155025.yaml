@@ -1,0 +1,5 @@
+from: to-prd
+to: architect
+relation_type: supports
+timestamp: '2026-05-25T15:50:25.839702+00:00'
+focus: PRD 定义了系统需求和数据流，供架构设计参考；关键约束：告警延迟 < 2s，同时 50 台实时，30 天历史 < 2s 查询

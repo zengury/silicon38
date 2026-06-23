@@ -1,0 +1,5 @@
+from: to-prd
+to: to-issues
+relation_type: triggers
+timestamp: '2026-05-25T15:50:25.807201+00:00'
+focus: PRD 包含 19 条 user stories 和明确的 P0/P1/P2 优先级，按垂直切片分解为独立交付的任务

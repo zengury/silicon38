@@ -1,0 +1,12 @@
+artifact_id: to-prd-mobile-client-v1
+producer: to-prd
+type: document
+version: 1
+status: draft
+created_at: "2026-05-24T23:38:00+08:00"
+superseded_by: null
+content_ref: artifacts/to-prd-mobile-client-v1.md
+consumers:
+  - to-issues
+  - architect
+  - ux-researcher-designer

@@ -17,6 +17,20 @@ Refactor is behavior-preserving transformation. If behavior changes, it is not a
 
 Identify the specific problem the refactor solves. "This code is messy" is not a problem statement. "This module has 6 callers, 3 of which duplicate the same validation logic, causing the fourth to miss it" is a problem statement. Refactor toward that specific improvement, nothing else.
 
+## Minimalism Gate (run before each refactor move)
+
+A refactor that makes code smaller is strictly better than one that makes it
+larger, all else equal. Before extracting, abstracting, or renaming — ask:
+
+1. **Necessary?** Does this duplication actually cause harm, or is it incidental similarity?
+2. **Deletion first?** Can the problem be solved by *deleting* code rather than reorganizing it?
+3. **Inline over extract?** Is a well-named local variable clearer than a new function?
+4. **Existing abstraction?** Does a construct already in this codebase express the pattern?
+5. **Smallest step?** Is there a smaller refactor move that resolves the same problem?
+6. **Deletion test?** If this new abstraction were deleted, would a future engineer recreate it naturally — or just use the concrete form?
+
+If the answer to #2 or #6 is "they'd delete it again" — don't create the abstraction.
+
 ## Quality Criteria
 
 - Tests are green before and after — behavior is demonstrably preserved

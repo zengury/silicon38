@@ -1,0 +1,140 @@
+from: to-issues
+to: senior-engineer
+relation_type: thompson_sample
+timestamp: '2026-06-06T12:35:17.419720+00:00'
+focus: Thompson sample α=337.4 β=5.0 [validated:triggers]
+artifact_refs: &id001
+- to-issues-decomposition-v1
+deliverable:
+  producer: to-issues
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: to-issues-decomposition-v1
+    producer: to-issues
+    type: decomposition
+    version: 1
+    status: draft
+    content_ref: artifacts/to-issues-decomposition-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260606T123359Z-47218acf
+  from: to-issues
+  to: senior-engineer
+  relation_type: thompson_sample
+  focus: Thompson sample α=337.4 β=5.0 [validated:triggers]
+  source:
+    producer_role: to-issues
+    context_compression_report_ref: artifacts/to-issues-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/to-prd→to-issues-20260606-123438.yaml
+      context_digest: cd0eecc112ac115f69dddfae43d5501162e69538aa1f465188054d348ff0bad1
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: 'App name: Bookshelf'
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 'Core feature: photo-based AI recognition to digitize physical bookshelves'
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 'Monetization: $1.99/month subscription'
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 'Social features: shelf similarity matching and communication'
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 'Initial platform: iOS using SwiftUI'
+      source: to-prd-prd-v1
+      impact: Affects downstream node execution.
+    - statement: 'AI recognition: cloud-based LLM (GPT-4o)'
+      source: to-prd-prd-v1
+      impact: Affects downstream node execution.
+    - statement: 'Backend: Node.js/Express with PostgreSQL'
+      source: to-prd-prd-v1
+      impact: Affects downstream node execution.
+    - statement: 'Authentication: email/password and OAuth (Google, Apple)'
+      source: to-prd-prd-v1
+      impact: Affects downstream node execution.
+    - statement: 'Subscription: Apple In-App Purchase for iOS'
+      source: to-prd-prd-v1
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must be mobile app (iOS/Android)
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: No manual book entry
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Digital shelf must mirror physical layout
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Initial release iOS only
+      source: to-prd-prd-v1
+      impact: Constrains downstream node execution.
+    - statement: English only for initial release
+      source: to-prd-prd-v1
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: AI can accurately recognize books from photos and summarize content
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Users have multiple shelves with books
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Users are willing to pay $1.99/month
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Target platform first? (iOS decided)
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Accuracy threshold for recognition? (90%+)
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Multilingual support? (deferred)
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Minimum social feature? (shelf sharing + messaging)
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Privacy concerns?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed technical architecture
+    reason: background_only
+  - source: Specific AI model selection details
+    reason: background_only
+  - source: Exact UI mockups
+    reason: background_only
+  - source: Marketing strategy
+    reason: background_only
+  - source: Out of scope items
+    reason: background_only
+  compression_rationale:
+    method: Extracted key decisions, constraints, assumptions, and open questions
+      from PRD and handoff. Omitted implementation details not needed for issue decomposition.
+    loss_notes: []
+  quality_checks:
+  - name: All issues have acceptance criteria
+    passed: true
+  - name: Dependency graph is acyclic
+    passed: true
+  - name: No issue is blocked by an unspecified dependency
+    passed: true
+  - name: Each issue is independently completable
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - to-prd-prd-v1
+  - triage-analysis-v1
+  previous_blocks:
+  - ref: handoffs/to-prd→to-issues-20260606-123438.yaml
+    from: to-prd
+    to: to-issues
+    relation_type: thompson_sample
+    focus: Thompson sample α=367.4 β=3.9 [validated:triggers]
+    context_digest: cd0eecc112ac115f69dddfae43d5501162e69538aa1f465188054d348ff0bad1
+    deliverable_artifact_refs:
+    - to-prd-prd-v1
+  context_digest: b4dabb92a88d268101e87b1fd808e8dd03625491cf42ab594c255e6e579d6752

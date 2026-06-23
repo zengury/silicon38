@@ -1,0 +1,7 @@
+from: architect
+to: senior-engineer
+relation_type: triggers
+timestamp: '2026-05-25T19:00:37.003895+00:00'
+focus: 'Implement Phase 1 of ADR: split schema, add tests, add engine __init__.py'
+artifact_refs:
+- architect-document-v1

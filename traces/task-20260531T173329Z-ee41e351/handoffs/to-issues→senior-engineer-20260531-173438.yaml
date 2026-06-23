@@ -1,0 +1,100 @@
+from: to-issues
+to: senior-engineer
+relation_type: thompson_sample
+timestamp: '2026-05-31T17:34:38.320227+00:00'
+focus: Thompson sample α=336.8 β=4.7 [validated:triggers]
+artifact_refs: &id001
+- to-issues-decomposition-v1
+deliverable:
+  producer: to-issues
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: to-issues-decomposition-v1
+    producer: to-issues
+    type: decomposition
+    version: 1
+    status: draft
+    content_ref: artifacts/to-issues-decomposition-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260531T173329Z-ee41e351
+  from: to-issues
+  to: senior-engineer
+  relation_type: thompson_sample
+  focus: Thompson sample α=336.8 β=4.7 [validated:triggers]
+  source:
+    producer_role: to-issues
+    context_compression_report_ref: artifacts/to-issues-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/to-prd→to-issues-20260531-173414.yaml
+      context_digest: 2782f4eb410f3ef9385da61f67a389189b96b0ebef0f108f62d081c3b089c8c8
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Task is a refactoring/enhancement.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Scope excludes new features and full rewrites.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Cannot write files or execute commands.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: No access to external issue tracker.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Codebase is likely in a modern language (e.g., Python, TypeScript).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Existing tests may be absent or minimal.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Exact directory structure and languages.
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Existing test coverage and frameworks.
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Coding standards or architectural guidelines.
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Priority between immediate deduplication vs. long-term refactoring.
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed codebase analysis (not yet performed).
+    reason: background_only
+  - source: Specific instances of duplicate code.
+    reason: background_only
+  compression_rationale:
+    method: Extracted key decisions, constraints, and open questions from the task
+      description and triage analysis. Omitted speculative details and non-essential
+      information.
+    loss_notes:
+    - No loss of critical information; only omitted unverified details.
+  quality_checks:
+  - name: independent_issues_present
+    passed: true
+  - name: dependencies_named
+    passed: true
+  - name: acceptance_criteria_specified
+    passed: true
+  - name: dependency_graph_acyclic
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - to-prd-prd-v1
+  - triage-analysis-v1
+  previous_blocks:
+  - ref: handoffs/to-prd→to-issues-20260531-173414.yaml
+    from: to-prd
+    to: to-issues
+    relation_type: thompson_sample
+    focus: Thompson sample α=366.8 β=3.5 [validated:triggers]
+    context_digest: 2782f4eb410f3ef9385da61f67a389189b96b0ebef0f108f62d081c3b089c8c8
+    deliverable_artifact_refs:
+    - to-prd-prd-v1
+  context_digest: 117f1dcc7d14f827e92fe1d166e13684e0a086a31db898e16905178d4b596452

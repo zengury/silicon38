@@ -1,0 +1,79 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→senior-engineer-20260601-110040.yaml
+      context_digest: 388f29e2f52b029cb86f6109486227203ec3b48d152ea5d7da592b6a34af6508
+  retained_context:
+    decisions:
+    - statement: All features directly supporting install, brand independence, and
+        user guidance are KEEP
+      source: scope-prosecutor
+      impact: Determined scope of implementation
+    - statement: Introduce manastone CLI wrapper to hide pi brand
+      source: architect
+      impact: Drove engine path design and manastone-chat wrapper changes
+    - statement: Single install script bundles all dependencies including pi engine
+      source: architect
+      impact: Drove install.sh silent npm install --prefix design
+    - statement: User guidance via manastone doctor and inline help
+      source: architect
+      impact: Drove doctor updates and GETTING_STARTED.md creation
+    - statement: Centralized BRAND constant in runtime/constants.py
+      source: architect
+      impact: Drove constants.py additions and brand_audit.py
+    constraints:
+    - statement: Must hide pi brand and present Manastone as independent
+      source: scope-prosecutor
+      impact: All user-facing strings use 'conversation engine' or 'engine'; engine
+        path is hidden
+    - statement: Install must include all dependencies (pi coding agent)
+      source: scope-prosecutor
+      impact: install.sh installs engine to ~/.manastone/engine/ in phase 2
+    - statement: User guidance must be optimized for clarity
+      source: scope-prosecutor
+      impact: Reordered next-steps (chat first), added GETTING_STARTED.md, rich help
+        section
+    assumptions:
+    - statement: The pi coding agent CLI accepts --prefix npm install without issues
+      source: senior-engineer
+      risk: npm install --prefix may differ from -g in behavior; needs real-robot
+        test
+    - statement: Users have Node.js and npm available (checked in phase 1)
+      source: senior-engineer
+      risk: Already validated by install.sh prerequisites check
+    open_questions:
+    - statement: What specific user guidance materials are needed beyond the install
+        script?
+      source: architect
+      owner: code-reviewer
+    - statement: How will brand independence be audited across all touchpoints?
+      source: architect
+      owner: code-reviewer
+  omitted_context:
+  - source: Detailed file contents beyond the 11 modified/created files
+    reason: background_only
+  - source: roboonto/ directory internals (not affected by this change)
+    reason: background_only
+  - source: pilot/skills/ content (not affected by this change)
+    reason: background_only
+  - source: docs/ directory content (internal documentation, skipped by audit)
+    reason: background_only
+  compression_rationale:
+    method: Focused on the four architecture decisions from the ADR and the three
+      scope constraints. Omitted roboonto internals, skills, and docs as they are
+      not affected by this implementation. Retained all decisions, constraints, assumptions,
+      and open questions from the handoff chain.
+    loss_notes:
+    - Specific line numbers of pi references in unchanged files are omitted (captured
+      by brand_audit.py)
+    - docs/ directory content details omitted (internal, not user-facing)
+  quality_checks:
+  - name: all_tests_pass
+    passed: true
+  - name: brand_audit_clean
+    passed: true
+  - name: code_compiles
+    passed: true
+  - name: shell_syntax_valid
+    passed: true

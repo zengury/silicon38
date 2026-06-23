@@ -1,0 +1,65 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→security-engineer-20260530-131049.yaml
+      context_digest: fd1480b9fd416dd788ea3b679bd9ab62483c277fd86b97ade5f635407f92cf3e
+  retained_context:
+    decisions:
+    - statement: Hardcoded JWT secret must be moved to environment variable.
+      source: security-engineer
+      impact: Prevents token forgery.
+    - statement: Outdated dependencies must be updated.
+      source: security-engineer
+      impact: Reduces supply chain risk.
+    - statement: Mock files must be excluded from production builds.
+      source: security-engineer
+      impact: Prevents exposure of test endpoints.
+    - statement: Security headers must be added to Nginx.
+      source: security-engineer
+      impact: Hardens perimeter.
+    constraints:
+    - statement: Limited access to backend source code; some findings are inferred.
+      source: security-engineer
+      impact: May miss vulnerabilities in backend logic.
+    - statement: Dependency scanning was not exhaustive; only direct dependencies
+        reviewed.
+      source: security-engineer
+      impact: Transitive vulnerabilities may exist.
+    assumptions:
+    - statement: JWT secret is hardcoded in token.ts.
+      source: security-engineer
+      risk: Confirmed by file review.
+    - statement: Mock files are not excluded from production builds.
+      source: security-engineer
+      risk: Needs verification.
+    open_questions:
+    - statement: What is the exact JWT signing algorithm and key management strategy?
+      source: security-engineer
+      owner: runtime
+    - statement: Are there any other hardcoded secrets in the codebase?
+      source: security-engineer
+      owner: runtime
+    - statement: What is the deployment environment for the admin frontend?
+      source: security-engineer
+      owner: runtime
+  omitted_context:
+  - source: Detailed backend source code (not available).
+    reason: background_only
+  - source: Frontend component details beyond auth.
+    reason: background_only
+  compression_rationale:
+    method: Focused on findings with concrete exploitability; omitted low-risk items
+      and non-security details.
+    loss_notes:
+    - Backend-specific vulnerabilities not fully assessed due to limited access.
+    - Transitive dependency vulnerabilities not enumerated.
+  quality_checks:
+  - name: Findings have specific location and exploitability
+    passed: true
+  - name: Verdict is actionable
+    passed: true
+  - name: Remediations are concrete
+    passed: true
+  - name: No false positives reported
+    passed: true

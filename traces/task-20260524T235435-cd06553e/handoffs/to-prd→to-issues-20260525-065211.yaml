@@ -1,0 +1,5 @@
+from: to-prd
+to: to-issues
+relation_type: triggers
+timestamp: '2026-05-25T06:52:11.814916+00:00'
+focus: 21 user stories → decompose into implementation issues

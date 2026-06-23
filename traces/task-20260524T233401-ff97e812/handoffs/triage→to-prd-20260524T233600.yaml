@@ -1,0 +1,7 @@
+handoff_id: triage→to-prd-20260524T233600
+from: triage
+to: to-prd
+type: triggers
+timestamp: "2026-05-24T23:36:00+08:00"
+context: "需要产出移动端 PRD：对话交互、工作流查看、技能浏览、知识库访问 — PWA/响应式 Web App 方案"
+artifact_ref: triage-analysis-v1

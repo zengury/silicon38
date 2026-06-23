@@ -1,0 +1,87 @@
+context_compression_report:
+  input_scope:
+    artifacts_read:
+      - artifact_id: product-vision-anchor-product-vision-statement-v1
+        used: true
+        why: "vision statement constrains all architecture decisions; out-of-scope-forever defines hard boundaries"
+      - artifact_id: to-prd-prd-v1
+        used: true
+        why: "PRD defines tech stack decisions, user stories, and platform constraints"
+      - artifact_id: scope-prosecutor-scope-verdict-v1
+        used: true
+        why: "KEEP/DEFER verdicts determine which subsystems to build vs defer"
+      - artifact_id: caveman-analysis-v1
+        used: true
+        why: "simplification decisions remove Redis cluster, OAuth complexity, cosine similarity from v1"
+    handoffs_read:
+      - ref: "handoffs/product-vision-anchor→architect-20260606-124603.yaml"
+        context_digest: "3dc1067f830eb96642a99fafb19c4dff0cf1baf1c655e747c47592de54968721"
+      - ref: "handoffs/to-prd→architect-20260606-124603.yaml"
+        context_digest: "f6f087fd9c605f3e2fce1a1b80341918c66b1dfd642793925ab4793362a6fd9d"
+      - ref: "handoffs/caveman→architect-20260606-124623.yaml"
+        context_digest: "5408de9189915031b8377ccac50e00e8a8be567ad4de86c670e50135137256e6"
+  retained_context:
+    decisions:
+      - statement: "Modular monolith: Node.js/Express with clear module boundaries (auth, shelves, books, recognition, subscriptions)"
+        source: "architect"
+        impact: "single deployable, no inter-service network calls, extract services only when scaling demands"
+      - statement: "PostgreSQL as single data store with full-text search"
+        source: "architect"
+        impact: "no Elasticsearch, no separate search service; GIN index on title+author"
+      - statement: "BullMQ + Redis for async recognition job queue"
+        source: "architect"
+        impact: "photo processing is async; mobile polls job status; single Redis instance sufficient"
+      - statement: "Presigned S3 URLs for upload; server-side GPT-4o proxy"
+        source: "architect"
+        impact: "mobile never holds S3 or OpenAI credentials; photos not stored by OpenAI"
+      - statement: "5-table schema: users, shelves, books, recognition_jobs, subscriptions"
+        source: "architect"
+        impact: "simple, normalized, recoverable; UUID PKs; 1-based positions"
+    constraints:
+      - statement: "iOS only, SwiftUI MVVM pattern"
+        source: "to-prd"
+        impact: "no cross-platform abstraction layer needed; Swift-native APIs"
+      - statement: "Photo input only, no manual entry"
+        source: "semantic_node_executor"
+        impact: "recognition pipeline is single point of data ingestion; no fallback CRUD for books"
+      - statement: "English only, no i18n"
+        source: "to-prd"
+        impact: "no localization infrastructure"
+      - statement: "No social features in v1"
+        source: "scope-prosecutor"
+        impact: "no WebSocket, no matching engine, no push notifications"
+    assumptions:
+      - statement: "GPT-4o Vision can recognize books from shelf photos with 90%+ accuracy"
+        source: "to-prd"
+        risk: "core assumption — prototype must validate before full pipeline build"
+      - statement: "Single Redis instance sufficient for BullMQ at v1 scale"
+        source: "architect"
+        risk: "if job volume exceeds memory, may need Redis Cluster or dedicated queue service"
+    open_questions:
+      - statement: "Exact GPT-4o Vision latency for shelf photos?"
+        source: "architect"
+        owner: runtime
+      - statement: "S3 provider: AWS S3, Cloudflare R2, or Backblaze B2?"
+        source: "architect"
+        owner: runtime
+  omitted_context:
+    - source: "Detailed TypeScript interface definitions"
+      reason: background_only
+    - source: "SwiftUI implementation patterns"
+      reason: background_only
+    - source: "Specific npm package choices (beyond Knex, BullMQ, Zod, bcrypt)"
+      reason: background_only
+  compression_rationale:
+    method: "Extracted load-bearing architecture decisions (monolith pattern, data model, AI pipeline, auth, deployment) and their downstream impact. Omitted implementation-level code snippets and package choices."
+    loss_notes: []
+  quality_checks:
+    - name: "Every structural decision has a stated rationale"
+      passed: true
+    - name: "Alternatives rejected are documented"
+      passed: true
+    - name: "Data flows are explicit (photo → S3 → queue → GPT-4o → DB → poll)"
+      passed: true
+    - name: "Failure modes identified (GPT-4o timeout, partial recognition, unparseable response)"
+      passed: true
+    - name: "Design can be implemented incrementally"
+      passed: true

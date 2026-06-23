@@ -1,0 +1,82 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→api-designer-20260530-092812.yaml
+      context_digest: 24f37fcc2a60427effe5813b62d67c202f34a76a17b2bacdc138b9d09d1efe2f
+  retained_context:
+    decisions:
+    - statement: Adopt Modular Monolith architecture
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Extract shared frontend library from portal and admin
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Defer backend refactoring until source is available
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Backend source code is not present in workspace
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Only Dockerfile and docker-compose references available for backend
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Frontend code has significant duplication between portal and admin
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Backend is a FastAPI application based on Dockerfile and docker-compose
+        references
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: EMQX is used for MQTT messaging to robots
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: MySQL is the primary database
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Redis is used for caching
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Minio is used for object storage
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Where is the backend source code?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What are the exact API endpoints and data models?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How is authentication/authorization implemented?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the robot-side software architecture?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Is there a CI/CD pipeline?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the Dify AI Platform integration scope?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file listings for frontend admin (300+ files truncated)
+    reason: background_only
+  - source: Artifact files in /Users/ZQ/roboease/artifacts/ (release reports, plans)
+      - not relevant for API design
+    reason: background_only
+  compression_rationale:
+    method: Selective inclusion based on relevance to API contract design. Retained
+      architectural decisions, constraints, and assumptions that directly impact API
+      shape. Omitted detailed frontend component trees and artifact files as they
+      are not needed for interface design.
+    loss_notes: []
+  quality_checks:
+  - name: All upstream decisions and constraints are captured
+    passed: true
+  - name: Assumptions are explicitly documented with risk
+    passed: true
+  - name: Open questions are carried forward
+    passed: true

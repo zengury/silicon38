@@ -1,0 +1,11 @@
+vision_statement: "An operator of a Unitree G1 or Agibot X2 humanoid robot who needs to create a guided tour of a physical space without programming or teleoperation uses this product to demonstrate the tour path and narration once via voice commands, so they feel confident the robot will faithfully replay the tour without hallucinating waypoints or narration, unlike manual waypoint programming or teleoperation which are time-consuming, error-prone, and require technical expertise."
+target_user: "Operator of a Unitree G1 or Agibot X2 humanoid robot who needs to create a guided tour of a physical space without programming or teleoperation"
+primary_job: "Demonstrate a physical tour path and narration once via voice commands, and have the robot autonomously replay the tour faithfully"
+emotional_promise: "Confident that the robot will faithfully replay the tour without hallucinating waypoints or narration"
+beating_alternative: "Manual waypoint programming or teleoperation, which are time-consuming, error-prone, and require technical expertise"
+out_of_scope_forever: "This product will never generate waypoints or narration autonomously, edit tours after recording, support multi-tour simultaneous guiding, provide a GUI, or handle dynamic obstacle avoidance during guiding."
+vision_test: |
+  A downstream node can test its output by asking:
+  "Does my output help an operator of a Unitree G1 or Agibot X2 humanoid robot demonstrate a physical tour path and narration once via voice commands, and have the robot autonomously replay the tour faithfully?
+   Does it reinforce the operator's confidence that the robot will faithfully replay the tour without hallucinating waypoints or narration?
+   Does it avoid generating waypoints or narration autonomously, editing tours after recording, supporting multi-tour simultaneous guiding, providing a GUI, or handling dynamic obstacle avoidance during guiding?"

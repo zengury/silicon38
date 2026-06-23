@@ -1,0 +1,8 @@
+from: senior-frontend
+to: code-reviewer
+relation_type: triggers
+timestamp: '2026-05-25T16:58:11.561099+00:00'
+focus: Evaluate interface spec for self-consistency and adherence to architect + api
+  + ui constraints.
+artifact_refs:
+- senior-frontend-interface-spec-v1

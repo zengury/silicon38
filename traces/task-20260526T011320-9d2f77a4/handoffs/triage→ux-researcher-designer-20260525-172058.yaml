@@ -1,0 +1,8 @@
+from: triage
+to: ux-researcher-designer
+relation_type: may_trigger
+timestamp: '2026-05-25T17:20:58.928089+00:00'
+focus: User-facing fleet monitoring dashboard for ops engineers. PRD and architecture
+  ready as context.
+artifact_refs:
+- triage-analysis-v1

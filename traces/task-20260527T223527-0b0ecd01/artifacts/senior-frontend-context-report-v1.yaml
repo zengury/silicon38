@@ -1,0 +1,124 @@
+context_compression_report:
+  input_scope:
+    artifacts_read:
+      - artifact_id: ux-researcher-designer-ux-spec-v1
+        used: true
+        why: "Primary UX contract for the 3D operations surface, visual semantics, interaction model, accessibility, replay controls, and MVP acceptance criteria."
+      - artifact_id: prototype-plan-v1
+        used: true
+        why: "Primary implementation plan for the Three.js replay prototype, handoff block behavior, concept layers, and snapshot data shape."
+      - artifact_id: architect-architecture-v1
+        used: true
+        why: "Data boundary and local read-only architecture guidance for snapshot-first rendering, polling, and static fallback."
+      - artifact_id: triage-analysis-v1
+        used: true
+        why: "Upstream scope, risk, done conditions, and requirement that browser verification confirms a nonblank Three.js canvas."
+    handoffs_read:
+      - ref: "handoffs/prototype→senior-frontend-20260527-145528.yaml"
+        context_digest: "2b2d3b97f2465c9d9e7da65a3d5e330386853a9081cac377930e94b49f32acf1"
+
+  retained_context:
+    decisions:
+      - statement: "The visualizer should first prove replay and inspection through a normalized snapshot before production realtime transport."
+        source: "prototype-plan-v1 and handoffs/prototype→senior-frontend-20260527-145528.yaml"
+        impact: "Implemented `/api/snapshot?task_id=latest` loading with local Graph/Ledger YAML fallback instead of building a websocket/SSE backend in this node."
+      - statement: "Graph, Policy, Ledger, Runtime, and Learning must remain visible as the five top-level operating concepts."
+        source: "ux-researcher-designer-ux-spec-v1 and org/CONTEXT_BLOCK.md"
+        impact: "Added persistent 3D concept anchors and left-rail concept filtering for the five control planes."
+      - statement: "Handoff blocks must be inspectable payloads, not decorative particles."
+        source: "ux-researcher-designer-ux-spec-v1 and prototype-plan-v1"
+        impact: "Implemented animated handoff objects with inspector sections for deliverable refs, context digest, retained context, omissions, and digest chain."
+      - statement: "The first runnable view should render the full current organization."
+        source: "ux-researcher-designer-ux-spec-v1"
+        impact: "Rendered all 35 nodes and all 122 typed relation edges from the current Graph files."
+      - statement: "The UI should observe and explain Silicon Org but not execute or mutate it."
+        source: "architect-architecture-v1 and ux-researcher-designer-ux-spec-v1"
+        impact: "No graph editing, node execution, or ledger write controls were added."
+      - statement: "The live snapshot server returns run facts under top-level taskId plus trace.manifest, trace.state, trace.events, trace.handoffs, and trace.artifacts."
+        source: "tools/org_viz_server.py and Runtime integration feedback"
+        impact: "Updated `visualizer/app.js` so live API mode keeps task id, node states, convergence, events, handoffs, and artifacts."
+      - statement: "The same frontend normalization path must support both the live snapshot API shape and the static replay fallback shape."
+        source: "senior-frontend runtime integration fix"
+        impact: "Mapped top-level taskId and trace.manifest/state/events/handoffs/artifacts into the normalized UI state so live mode preserves Ledger facts."
+    constraints:
+      - statement: "Displayed operational truth must come from Graph files, Ledger traces, or a normalized snapshot API."
+        source: "org/CONTEXT_BLOCK.md, org/RUNTIME.md, architect-architecture-v1"
+        impact: "The implementation uses API data first, then repository YAML sources, and labels the fallback as replay/demo rather than invented live truth."
+      - statement: "Context-only relation types must not appear as direct activation routes."
+        source: "org/CONTEXT_BLOCK.md, org/RUNTIME.md, ux-researcher-designer-ux-spec-v1"
+        impact: "Relation styling and inspector copy distinguish activation-capable edges from supports/constrains/complements/augments/precedes."
+      - statement: "No build step should be required for this frontend execution."
+        source: "user instruction to senior-frontend"
+        impact: "Implemented plain `index.html`, `styles.css`, and `app.js` with vendored browser dependencies under `visualizer/vendor/`."
+      - statement: "The node may only alter the visualizer files and senior-frontend artifacts."
+        source: "user instruction to senior-frontend"
+        impact: "No unrelated files were edited."
+      - statement: "The integration fix may only update `visualizer/app.js` plus refreshed senior-frontend artifacts."
+        source: "Runtime blocking integration issue"
+        impact: "The fix was limited to snapshot normalization in `visualizer/app.js` and these two artifact files."
+      - statement: "Soul-bearing visual work should preserve operational clarity over spectacle."
+        source: "org/soul.md and prototype→senior-frontend handoff soul_ref"
+        impact: "Used a stable deterministic layout, restrained motion, readable panels, and evidence-first inspection."
+    assumptions:
+      - statement: "A static local server from the repository root is acceptable for the no-build prototype."
+        source: "prototype-plan-v1 and architect-architecture-v1"
+        risk: "Production packaging may move raw YAML parsing behind `tools/visualizer_snapshot.py` or another snapshot adapter."
+      - statement: "Polling `/api/snapshot?task_id=latest` every few seconds is sufficient for the initial live/replay boundary."
+        source: "architect-architecture-v1"
+        risk: "True live runtime streaming may later require SSE, websocket, or LangGraph event hooks."
+      - statement: "Headless Chrome with software WebGL is a reasonable automated smoke test for canvas creation in this environment."
+        source: "triage-analysis-v1"
+        risk: "A normal browser verification pass should still be run by delivery-prover for interaction quality."
+    open_questions:
+      - statement: "Should production keep browser-side YAML fallback or require the snapshot adapter for all non-demo data?"
+        source: "senior-frontend implementation"
+        owner: "architect"
+      - statement: "Should live mode graduate from polling to SSE/websocket after the snapshot adapter exists?"
+        source: "architect-architecture-v1 and prototype-plan-v1"
+        owner: "architect"
+      - statement: "Should future UI design system work replace the prototype symbols with canonical icon components?"
+        source: "senior-frontend implementation"
+        owner: "ui-design-system"
+
+  omitted_context:
+    - source: "Full generic senior-frontend skill examples for React and Next.js"
+      reason: irrelevant
+    - source: "Full org/RUNTIME.md command examples"
+      reason: background_only
+    - source: "Prototype plan recommendation for Vite/React package"
+      reason: superseded
+    - source: "Architect future endpoints beyond `/api/snapshot` and `/api/tasks`"
+      reason: background_only
+    - source: "Detailed PRD issue decomposition not needed for this node's owned files"
+      reason: background_only
+    - source: "Unrelated visualizer server internals outside the response shape needed by the frontend"
+      reason: background_only
+
+  compression_rationale:
+    method: "Retained only upstream decisions and constraints that directly changed the frontend file structure, data loading strategy, visual semantics, interaction model, and verification behavior."
+    loss_notes:
+      - "Full protocol command syntax was not retained because this node only implemented the visual frontend and wrote its node artifacts."
+      - "Detailed future server API contracts were compressed to the two endpoints required by the user instruction."
+      - "Design guidance was converted into implementation-level behavior rather than copied as prose."
+
+  quality_checks:
+    - name: "cites_exact_upstream_handoff_ref"
+      passed: true
+    - name: "cites_exact_upstream_context_digest"
+      passed: true
+    - name: "lists_all_artifacts_read_with_usage"
+      passed: true
+    - name: "retains_five_concept_model"
+      passed: true
+    - name: "preserves_activation_vs_context_edge_semantics"
+      passed: true
+    - name: "records_omissions_and_rationale"
+      passed: true
+    - name: "yaml_parseable"
+      passed: true
+    - name: "live_api_trace_shape_preserved"
+      passed: true
+    - name: "live_snapshot_shape_preserved"
+      passed: true
+    - name: "no_external_script_requests"
+      passed: true

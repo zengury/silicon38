@@ -1,0 +1,46 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read: []
+  retained_context:
+    decisions:
+    - statement: Classify as enhancement (refactoring)
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Priority high
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: No code modification during triage
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must use read-only tools
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Codebase is primarily one language
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Existing tests may exist
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Primary language?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Existing tests?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Module structure?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context: []
+  compression_rationale:
+    method: Extract key decisions, constraints, and open questions from triage analysis.
+      Omit verbose descriptions and template boilerplate.
+    loss_notes: []
+  quality_checks:
+  - name: scope_boundary_present
+    passed: true
+  - name: done_condition_present
+    passed: true

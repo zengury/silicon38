@@ -1,0 +1,86 @@
+from: to-prd
+to: caveman
+relation_type: evaluates
+timestamp: '2026-05-31T17:09:55.708452+00:00'
+focus: Activate caveman from to-prd
+artifact_refs: &id001
+- to-prd-prd-v1
+deliverable:
+  producer: to-prd
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: to-prd-prd-v1
+    producer: to-prd
+    type: prd
+    version: 1
+    status: draft
+    content_ref: artifacts/to-prd-prd-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260531T170908Z-b241b4ee
+  from: to-prd
+  to: caveman
+  relation_type: evaluates
+  focus: Activate caveman from to-prd
+  source:
+    producer_role: to-prd
+    context_compression_report_ref: artifacts/to-prd-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/triage→to-prd-20260531-170924.yaml
+      context_digest: 7b3c4b15b4a636e8e6c02de10bdb2702f0f817754713b97f3f90c76ed1246c73
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Classify as enhancement (refactoring)
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Priority high
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: No code modification during triage
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must use read-only tools
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Codebase is primarily one language
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Existing tests may exist
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Primary language?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Existing tests?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Module structure?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context: []
+  compression_rationale:
+    method: Extract key decisions, constraints, and open questions from triage analysis.
+      Omit verbose descriptions and template boilerplate.
+    loss_notes: []
+  quality_checks:
+  - name: scope_boundary_present
+    passed: true
+  - name: done_condition_present
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - triage-analysis-v1
+  previous_blocks:
+  - ref: handoffs/triage→to-prd-20260531-170924.yaml
+    from: triage
+    to: to-prd
+    relation_type: thompson_sample
+    focus: Thompson sample α=273.0 β=7.2 [validated:triggers]
+    context_digest: 7b3c4b15b4a636e8e6c02de10bdb2702f0f817754713b97f3f90c76ed1246c73
+    deliverable_artifact_refs:
+    - triage-analysis-v1
+  context_digest: 2c154594763fba715a767870545de45a75631e142a3b28820325dc32885f392b

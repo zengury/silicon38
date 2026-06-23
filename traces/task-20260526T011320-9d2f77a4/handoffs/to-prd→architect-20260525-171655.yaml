@@ -1,0 +1,8 @@
+from: to-prd
+to: architect
+relation_type: may_trigger
+timestamp: '2026-05-25T17:16:55.817875+00:00'
+focus: PRD defines data architecture (normalization layer, schema, alert engine) and
+  UI modules - architecture decisions needed
+artifact_refs:
+- to-prd-document-v1

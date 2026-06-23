@@ -1,0 +1,5 @@
+from: ux-researcher-designer
+to: ui-design-system
+relation_type: supports
+timestamp: '2026-05-25T06:52:11.893059+00:00'
+focus: 3 personas + 3 journey maps → design system tokens and component specs

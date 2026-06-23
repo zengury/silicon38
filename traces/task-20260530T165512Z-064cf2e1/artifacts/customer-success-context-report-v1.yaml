@@ -1,0 +1,84 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→customer-success-20260530-165635.yaml
+      context_digest: b0bcb0d341904303dd89365e19778f92494431136420033c0d9e77e99327a147
+  retained_context:
+    decisions:
+    - statement: Use Adapter pattern for data normalization
+      source: architect
+      impact: Affects data ingestion layer design.
+    - statement: Backend Node.js + Express + WebSocket + PostgreSQL + Redis
+      source: architect
+      impact: Affects technology stack and deployment.
+    - statement: Frontend React + TypeScript + ECharts + react-grid-layout + react-i18next
+      source: architect
+      impact: Affects frontend implementation.
+    - statement: Alert engine rule-based with configurable thresholds
+      source: architect
+      impact: Affects alerting subsystem.
+    - statement: Collaboration via WebSocket
+      source: architect
+      impact: Affects real-time messaging design.
+    - statement: Export via Puppeteer and exceljs
+      source: architect
+      impact: Affects export service.
+    - statement: Theme via CSS variables, i18n via react-i18next
+      source: architect
+      impact: Affects frontend styling and localization.
+    constraints:
+    - statement: Initial support for 10 robots
+      source: PRD
+      impact: Scales architecture for horizontal growth.
+    - statement: Data format unification required
+      source: PRD
+      impact: Adapter pattern mandatory.
+    - statement: Support dark/light theme, multi-language, draggable layout
+      source: PRD
+      impact: Frontend must implement these features.
+    - statement: Data retention 30 days
+      source: PRD
+      impact: PostgreSQL schema and cleanup jobs.
+    assumptions:
+    - statement: Robots report via HTTP/WebSocket
+      source: PRD
+      risk: May need to support other protocols.
+    - statement: Ops team uses desktop browser
+      source: PRD
+      risk: Mobile responsiveness not critical.
+    - statement: Alert notification only in-app initially
+      source: PRD
+      risk: May need email/SMS later.
+    open_questions:
+    - statement: Alert notification channels beyond in-app?
+      source: architect
+      owner: runtime
+    - statement: Role-based access control needed?
+      source: architect
+      owner: runtime
+    - statement: Maximum robot scale?
+      source: architect
+      owner: runtime
+  omitted_context:
+  - source: Specific file paths and code snippets
+    reason: background_only
+  - source: Third-party library versions
+    reason: background_only
+  compression_rationale:
+    method: Retained all architectural decisions, constraints, and assumptions from
+      PRD and handoff. Omitted implementation details that are not load-bearing.
+    loss_notes:
+    - Omitted specific file paths as they may change.
+    - Omitted library versions; to be decided during development.
+  quality_checks:
+  - name: All structural decisions have stated rationale
+    passed: true
+  - name: Alternatives considered documented
+    passed: true
+  - name: Design can be implemented incrementally
+    passed: true
+  - name: Data flows explicit
+    passed: true
+  - name: Failure modes identified
+    passed: true

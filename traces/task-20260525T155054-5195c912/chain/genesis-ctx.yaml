@@ -1,0 +1,17 @@
+block_id: genesis
+task_id: task-20260525T155054-5195c912
+node: genesis
+timestamp: '2026-05-25T07:50:54.192211+00:00'
+prev_block: null
+original_task: 'Robot Fleet Ops Dashboard: real-time monitoring web panel for humanoid
+  robot fleets — real-time telemetry, heterogeneous data normalization, fleet overview
+  dashboard, alerts, 30-day history, config panel, engineer collaboration, PDF/Excel
+  reports, dark/light themes, i18n, draggable layouts'
+task_type: architecture
+entry_nodes:
+- triage
+- caveman
+- zoom-out
+- ux-researcher-designer
+chain: []
+active_constraints: []

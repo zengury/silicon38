@@ -1,0 +1,8 @@
+from: triage
+to: to-prd
+relation_type: triggers
+timestamp: '2026-05-25T17:15:30.809565+00:00'
+focus: 9 requirements need translation to testable PRD with acceptance criteria; scope
+  boundary defined by triage; caveman identified unnecessary complexity to defer
+artifact_refs:
+- triage-analysis-v1

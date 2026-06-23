@@ -1,0 +1,127 @@
+from: ux-researcher-designer
+to: prototype
+relation_type: triggers
+timestamp: '2026-05-30T12:51:08.504055+00:00'
+focus: Activate prototype from ux-researcher-designer
+artifact_refs: &id001
+- ux-researcher-designer-ux-spec-v1
+deliverable:
+  producer: ux-researcher-designer
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: ux-researcher-designer-ux-spec-v1
+    producer: ux-researcher-designer
+    type: ux-spec
+    version: 1
+    status: draft
+    content_ref: artifacts/ux-researcher-designer-ux-spec-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260530T122917Z-1ae65489
+  from: ux-researcher-designer
+  to: prototype
+  relation_type: triggers
+  focus: Activate prototype from ux-researcher-designer
+  source:
+    producer_role: ux-researcher-designer
+    context_compression_report_ref: artifacts/ux-researcher-designer-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/caveman→ux-researcher-designer-20260530-125034.yaml
+      context_digest: 50b69e2fae17a44e48c35b04e67ce826a1207559a7928c49a716e2ae9b1d3778
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Modular monolith with clear layer boundaries
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Consolidate backend configuration into core.config
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Standardize API versioning under /api/v1/
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use SQLModel for ORM
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Separate domain logic from infrastructure
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Extract shared frontend components
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Complete cloud Docker profile
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Document robot communication protocol
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Backend must remain a single deployable unit
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Shared database requires careful schema management
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Robot communication protocol must be documented
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Team size is small (<10 developers)
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Domain boundaries are still evolving
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Rapid iteration is prioritized
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the exact database schema?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How do robots communicate (MQTT topics, WebSocket messages)?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the CI/CD pipeline?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the testing strategy?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file contents of individual source files (not needed for UX design)
+    reason: background_only
+  - source: Historical artifact versions (v1-v7) — not relevant for current analysis
+    reason: background_only
+  compression_rationale:
+    method: Retain architectural decisions and constraints that impact UX design;
+      omit implementation details.
+    loss_notes:
+    - Omitted detailed implementation of individual modules
+    - Omitted historical planning documents
+  quality_checks:
+  - name: Personas grounded in observable behavior
+    passed: true
+  - name: Design decisions traceable to user needs
+    passed: true
+  - name: Spec covers all user scenarios in scope
+    passed: true
+  - name: Usability risks named and mitigated
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - architect-architecture-v1
+  - caveman-analysis-v1
+  - zoom-out-context-map-v1
+  previous_blocks:
+  - ref: handoffs/caveman→ux-researcher-designer-20260530-125034.yaml
+    from: caveman
+    to: ux-researcher-designer
+    relation_type: may_trigger
+    focus: first-principles analysis identifies the core user moment, removes UX complexity,
+      or changes interaction priorities
+    context_digest: 50b69e2fae17a44e48c35b04e67ce826a1207559a7928c49a716e2ae9b1d3778
+    deliverable_artifact_refs:
+    - caveman-analysis-v1
+  context_digest: d2dfade5901f5201f3e1e1e823bcd97e57ea3f9c8f938c002cfdc4c69554b62a
+soul_ref: org/soul.md

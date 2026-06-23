@@ -1,0 +1,90 @@
+from: to-prd
+to: product-vision-anchor
+relation_type: triggers
+timestamp: '2026-05-31T07:05:35.581798+00:00'
+focus: Activate product-vision-anchor from to-prd
+artifact_refs: &id001
+- to-prd-prd-v1
+deliverable:
+  producer: to-prd
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: to-prd-prd-v1
+    producer: to-prd
+    type: prd
+    version: 1
+    status: draft
+    content_ref: artifacts/to-prd-prd-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260531T070508Z-22282f67
+  from: to-prd
+  to: product-vision-anchor
+  relation_type: triggers
+  focus: Activate product-vision-anchor from to-prd
+  source:
+    producer_role: to-prd
+    context_compression_report_ref: artifacts/to-prd-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/triage→to-prd-20260531-070519.yaml
+      context_digest: 39653c200c24a1a460c395fc8251c92ece515ee2331c0d3214c3542175effd75
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Task is a refactoring/enhancement, not a bug fix.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Scope excludes new features and API changes.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must not break existing functionality.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must maintain backward compatibility.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Codebase has significant duplication and poor structure.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: User wants to improve maintainability and testability.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Preferred module structure?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Existing tests to preserve?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Target test coverage?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Dependency constraints?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context: []
+  compression_rationale:
+    method: Extracted key decisions, constraints, assumptions, and open questions
+      from the triage handoff and analysis artifact. Omitted detailed codebase exploration
+      as none was performed.
+    loss_notes: []
+  quality_checks:
+  - name: scope_boundary_present
+    passed: true
+  - name: done_condition_present
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - triage-analysis-v1
+  previous_blocks:
+  - ref: handoffs/triage→to-prd-20260531-070519.yaml
+    from: triage
+    to: to-prd
+    relation_type: triggers
+    focus: Activate to-prd from triage
+    context_digest: 39653c200c24a1a460c395fc8251c92ece515ee2331c0d3214c3542175effd75
+    deliverable_artifact_refs:
+    - triage-analysis-v1
+  context_digest: a377f3346aeef7834a70e26d0e0f04329d79ce8119fd16e5b7c263da4b477232

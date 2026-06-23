@@ -1,0 +1,119 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→database-engineer-20260530-100712.yaml
+      context_digest: f86faff60208ed92f0494ec7a49d4ec1501819f509cdb35fb5e5bdd57168ca4a
+  retained_context:
+    decisions:
+    - statement: Target MySQL 8.0 (confirmed by docker-compose — not PostgreSQL)
+      source: docker-compose.yaml + architect handoff
+      impact: All SQL uses MySQL 8.0 syntax (utf8mb4, JSON type, CHECK constraints,
+        online DDL)
+    - statement: Adopt Modular Monolith architecture with strict domain boundaries
+      source: architect handoff
+      impact: FK constraints enforce domain boundaries at DB level; no cross-domain
+        joins without explicit FK
+    - statement: Use BIGINT AUTO_INCREMENT for all PKs (replacing VARCHAR Snowflake
+        IDs)
+      source: this node
+      impact: Smaller B-tree indexes, faster comparisons, sequential insert performance
+    - statement: Use deleted_at DATETIME NULL for soft-delete (replacing del_flag
+        CHAR)
+      source: this node
+      impact: Enables TTL-based hard-delete cleanup; single column replaces flag +
+        timestamp
+    - statement: No Alembic — raw SQL migrations with portable Python runner
+      source: this node
+      impact: Zero new dependencies; DBAs can inspect/replay .sql files directly
+    constraints:
+    - statement: MySQL 8.0 only — no PostgreSQL migration planned
+      source: docker-compose.yaml
+      impact: All SQL syntax validated for MySQL 8.0 (not PostgreSQL)
+    - statement: Team size <10 — migrations must be simple and reviewable
+      source: architect handoff
+      impact: Runner is 224 lines; .sql files are plain DDL; no ORM code-gen
+    - statement: Existing production data must be preserved during migration
+      source: architect handoff
+      impact: Documented expand-contract pattern; data migration step for ID conversion
+    - statement: Backward-compatibility re-exports (db/database.py) must be maintained
+      source: architect handoff
+      impact: Table names preserved; only column types/names improved
+    - statement: Robot planning backend has separate SQLite schema — not in scope
+      source: workspace evidence
+      impact: Migration files target only the main MySQL database
+    assumptions:
+    - statement: The codebase is a multi-tenant robot management platform using MySQL
+        + MQTT + JWT
+      source: architect + workspace
+      risk: Confirmed by evidence
+    - statement: No Alembic or migration framework currently exists — greenfield migration
+        setup
+      source: workspace (dbscripts/migrations/ empty)
+      risk: Confirmed by evidence
+    - statement: Current production uses VARCHAR Snowflake IDs — data conversion needed
+      source: dbscripts/raas.sql primary key definitions
+      risk: Medium — need actual prod data to confirm ID scheme
+    - statement: Plaintext passwords exist in legacy — must be hashed/encrypted before
+        production
+      source: dbscripts/raas.sql INSERT statements
+      risk: High — security critical
+    - statement: Frontend mocks imply tables (sys_dept, sys_config, notice_user_read)
+        missing from legacy DDL
+      source: frontend/admin/mock/*.mock.ts
+      risk: Low — added as new tables in 001_baseline_schema
+    open_questions:
+    - statement: What is the current production data volume per table?
+      source: architect handoff
+      owner: devops-engineer
+    - statement: How are Snowflake VARCHAR IDs generated in the legacy codebase?
+      source: this node
+      owner: senior-engineer
+    - statement: Does application code have hard-coded `del_flag = '1'` string comparisons?
+      source: this node
+      owner: senior-engineer
+    - statement: What is the exact MQTT topic structure?
+      source: architect handoff
+      owner: runtime
+    - statement: What is the testing strategy?
+      source: architect handoff
+      owner: senior-engineer
+  omitted_context:
+  - source: Frontend component hierarchy (Vue 3 admin + portal)
+    reason: background_only
+  - source: CI/CD pipeline details (GitHub Actions)
+    reason: background_only
+  - source: Dify AI platform integration specifics
+    reason: background_only
+  - source: Robot planning backend details (Flask/SQLite)
+    reason: background_only
+  - source: Detailed captcha/dashboard INSERT sample data
+    reason: background_only
+  - source: Detailed DML file contents beyond action_library_info bootstrap
+    reason: background_only
+  compression_rationale:
+    method: 'Schema-focused extraction: retained every table name, column name, index
+      name, and FK name referenced in the deliverable. Omitted frontend component
+      trees, CI/CD pipeline details, and robot planning backend specifics as they
+      do not affect the database design. Preserved all architect handoff decisions
+      and constraints that constrain schema shape.'
+    loss_notes:
+    - Action library JSON payload contents omitted — schema only stores as JSON column
+    - Frontend mock route structures abstracted to table existence checks
+    - Specific robot hardware types (xiaqi, xialan, xingxingxia) captured as CHECK
+      constraint values
+  quality_checks:
+  - name: Every migration has paired up + down
+    passed: true
+  - name: Every index references a specific query pattern
+    passed: true
+  - name: Every nullable column has documented reason
+    passed: true
+  - name: Foreign key constraints are explicit
+    passed: true
+  - name: Rollback strategy is documented
+    passed: true
+  - name: Zero-downtime migration strategy present
+    passed: true
+  - name: Runner syntax valid (Python ast.parse)
+    passed: true

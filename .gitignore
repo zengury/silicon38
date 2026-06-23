@@ -32,20 +32,6 @@ org/.env.local
 # Desktop runtime config (per-machine, not source)
 .desktop_runtime/
 
-# Traces from task runs (sensitive / project-specific, not for public repo)
-traces/
-
-# Devlogs (development history, not for public repo)
-devlog/
-DEVLOG-*.md
-
-# Task artifacts (project-specific, not for public repo)
-artifacts/
-
-# Robot specific config (per-project, not source)
-pi/
-.pi/
-
 # Local/generated strategy search runs
 .snakes_runs/
 

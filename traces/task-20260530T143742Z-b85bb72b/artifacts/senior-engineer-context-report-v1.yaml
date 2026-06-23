@@ -1,0 +1,100 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→senior-engineer-20260530-143900.yaml
+      context_digest: 4d99a40bb74663182d658f3fe49800843be350b12123face15e9dd283567a9ad
+  retained_context:
+    decisions:
+    - statement: Adopt modular monolith with clear service boundaries using FastAPI
+        APIRouter
+      source: architect
+      impact: 'Guided the layer structure: core → ports → infrastructure → application
+        → domain (services) → api'
+    - statement: Standardize API layer with versioned endpoints (/api/v1/)
+      source: architect
+      impact: API prefix already in main.py; confirmed working with all route registrations
+    - statement: Implement centralized configuration management
+      source: architect
+      impact: Created core/config.py as single settings source; deprecated config/setting.py
+    - statement: Add comprehensive logging and error handling
+      source: architect
+      impact: Created infrastructure/observability/ modules; core/exception_handlers.py
+    - statement: Use SHA-256 password hashing for backward compatibility
+      source: senior-engineer (v7)
+      impact: core/security.py uses SHA-256 to match existing user records
+    - statement: Keep legacy entity names unchanged from existing code
+      source: senior-engineer (v7)
+      impact: infrastructure/db/entities.py uses same class names as original imports
+    - statement: BaseCRUDRepository supports direct instantiation with entity class
+        argument
+      source: senior-engineer
+      impact: 4 library services (action, expression, voice, knowledge) work without
+        named subclasses
+    constraints:
+    - statement: Backend uses FastAPI and SQLModel
+      source: architect assumptions
+      impact: All entities use SQLModel; repositories use Session; DI references SQL
+        implementations
+    - statement: Team size is small (<10 developers)
+      source: architect assumptions
+      impact: Simple patterns preferred — no CQRS, no event sourcing, single container
+    - statement: Cannot access robot-side code without additional permissions
+      source: architect constraints
+      impact: Backend scope limited to admin/portal API; robot services unchanged
+    - statement: MySQL 8.0 required for production; SQLite only for dev/test
+      source: database engineer
+      impact: connection.py auto-detects SQLite and skips MySQL-specific pool params
+    assumptions:
+    - statement: The existing service layer code is correctly refactored and only
+        needs infrastructure modules created
+      source: senior-engineer
+      risk: Assumption validated — all 19 service/API modules import successfully
+        after infrastructure creation
+    - statement: SHA-256 hashing is intentional for backward compatibility, not a
+        security oversight
+      source: senior-engineer
+      risk: Low — documented in code and prior artifacts; bcrypt migration planned
+        for Phase 2
+    open_questions:
+    - statement: Should the 9 remaining high-Session-count services be refactored
+        to use repositories?
+      source: senior-engineer
+      owner: code-reviewer
+    - statement: What is the migration strategy from SHA-256 to bcrypt password hashing?
+      source: senior-engineer
+      owner: security-engineer
+    - statement: Should the MQTT client move from common/ to infrastructure/mqtt/?
+      source: senior-engineer
+      owner: architect
+  omitted_context:
+  - source: Detailed file-by-file listing of frontend components
+    reason: background_only
+  - source: Historical artifact contents (release plans, ops plans)
+    reason: background_only
+  - source: Dockerfile and docker-compose contents
+    reason: background_only
+  - source: Exact dependency versions in requirements.txt
+    reason: background_only
+  compression_rationale:
+    method: 'Semantic compression: retained architectural decisions, constraints,
+      and module dependency graph; omitted frontend details, Docker config, historical
+      artifacts, and exact dependency versions'
+    loss_notes:
+    - Lost granularity of individual Vue components and frontend state management
+      details
+    - Lost exact Docker build steps and environment configurations
+    - Lost historical artifact document structure (retained only decision/conclusion
+      content)
+    - Lost exact SQL INSERT data records (retained only table schemas)
+  quality_checks:
+  - name: Module imports verified via Python import test
+    passed: true
+  - name: All 71 unit tests pass
+    passed: true
+  - name: DI container wiring verified
+    passed: true
+  - name: Architecture layers correctly separated
+    passed: true
+  - name: Backward compatibility with db/database.py maintained
+    passed: true

@@ -1,0 +1,7 @@
+from: ux-researcher-designer
+to: ui-design-system
+relation_type: supports
+timestamp: '2026-05-25T16:41:29.159140+00:00'
+focus: Encode the three palette/density/motion constraints into tokens; nothing more.
+artifact_refs:
+- ux-researcher-designer-interaction-design-v1

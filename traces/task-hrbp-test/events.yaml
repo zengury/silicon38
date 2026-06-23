@@ -1,0 +1,73 @@
+task_id: task-hrbp-test
+events:
+- event_id: ev-001
+  timestamp: '2026-05-30T12:09:00.705645+00:00'
+  event_type: task_started
+  payload:
+    detail: hrbp test
+- event_id: ev-002
+  timestamp: '2026-05-30T12:09:08.950699+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'triage: activated'
+- event_id: ev-003
+  timestamp: '2026-05-30T12:09:09.022769+00:00'
+  event_type: context_report_registered
+  payload:
+    role: triage
+    ref: artifacts/triage-context-report-v1.yaml
+    digest: 6469fc75978e96cf952c94dc9e1fa64e4f6bd06a2e4dd41ff068bc8ac1dc3e7f
+- event_id: ev-004
+  timestamp: '2026-05-30T12:09:09.057846+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'triage: completed'
+- event_id: ev-005
+  timestamp: '2026-05-30T12:09:09.285162+00:00'
+  event_type: activation_decision
+  payload:
+    from: triage
+    to: ux-researcher-designer
+    relation_type: may_trigger
+    decision: defer
+    detail: Candidate score 0.40 is below activation threshold 0.50; deferred for
+      later policy review.
+    decision_quality:
+      reason_chars: 90
+      requires_review: true
+- event_id: ev-006
+  timestamp: '2026-05-30T12:09:09.430550+00:00'
+  event_type: activation_decision
+  payload:
+    from: triage
+    to: prototype
+    relation_type: may_trigger
+    decision: defer
+    detail: Candidate score 0.35 is below activation threshold 0.50; deferred for
+      later policy review.
+    decision_quality:
+      reason_chars: 90
+      requires_review: true
+- event_id: ev-007
+  timestamp: '2026-05-30T12:09:09.566500+00:00'
+  event_type: activation_decision
+  payload:
+    from: triage
+    to: improve-codebase-architecture
+    relation_type: may_trigger
+    decision: defer
+    detail: Candidate score 0.25 is below activation threshold 0.50; deferred for
+      later policy review.
+    decision_quality:
+      reason_chars: 90
+      requires_review: true
+- event_id: ev-008
+  timestamp: '2026-05-30T12:09:09.862160+00:00'
+  event_type: activation_decision
+  payload:
+    from: triage
+    to: diagnose
+    relation_type: triggers
+    decision: activate
+    detail: task reports a bug, broken behavior, error, regression, incident, or performance
+      symptom

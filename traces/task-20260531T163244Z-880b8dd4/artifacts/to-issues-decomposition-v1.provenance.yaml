@@ -1,0 +1,8 @@
+artifact_id: to-issues-decomposition-v1
+producer: to-issues
+task_id: task-20260531T163244Z-880b8dd4
+version: 1
+timestamp: '2026-05-31T16:33:43.901456+00:00'
+input_artifacts: []
+quality_checks: []
+status: draft

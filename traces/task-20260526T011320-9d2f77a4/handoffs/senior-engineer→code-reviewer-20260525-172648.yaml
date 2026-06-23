@@ -1,0 +1,9 @@
+from: senior-engineer
+to: code-reviewer
+relation_type: triggers
+timestamp: '2026-05-25T17:26:48.411470+00:00'
+focus: 'Single-file HTML demo (53KB) implementing full fleet dashboard: 6 robot simulators,
+  DataNormalizer with 3 adapters, AlertEngine, charts, map, detail panel, config panel,
+  comments, theme toggle, export'
+artifact_refs:
+- senior-engineer-demo-v1

@@ -1,0 +1,11 @@
+vision_statement: "A developer maintaining the roboease codebase who faces high maintenance costs due to duplication and unclear modules uses this product to systematically refactor code into a modular, testable structure so they feel confident and productive, unlike ad-hoc manual refactoring which lacks systematic duplication detection and incremental safety."
+target_user: "Developer maintaining the roboease codebase"
+primary_job: "Systematically refactor code to eliminate duplication, improve modularity, and enhance testability without changing external behavior"
+emotional_promise: "Confident and productive"
+beating_alternative: "Ad-hoc manual refactoring which lacks systematic duplication detection and incremental safety"
+out_of_scope_forever: "Adding new features, rewriting the entire codebase, performance optimization unrelated to duplication, changes to external APIs or user-facing behavior, database schema changes, UI/UX changes"
+vision_test: |
+  A downstream node can test its output by asking:
+  "Does my output help the developer maintaining the roboease codebase systematically refactor code to eliminate duplication, improve modularity, and enhance testability without changing external behavior?
+   Does it reinforce confidence and productivity?
+   Does it avoid adding new features, rewriting the entire codebase, performance optimization unrelated to duplication, changes to external APIs or user-facing behavior, database schema changes, UI/UX changes?"

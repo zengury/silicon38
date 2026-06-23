@@ -1,0 +1,65 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read: []
+  retained_context:
+    decisions:
+    - statement: Task is an enhancement, not a bug.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Scope includes install experience, brand audit, and user guidance.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Pi internals are out of scope.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Cannot modify Pi source code.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must maintain compatibility.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Branding changes must not break existing configs.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: User wants manastone to be a standalone product with Pi as a hidden
+        dependency.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: The repository is the primary source of truth for installation.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Exact relationship between manastone and Pi.
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Legal constraints on hiding Pi branding.
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Target user persona.
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed robot ontology files (not relevant to installation/branding).
+    reason: background_only
+  - source: Test fixtures and test code (not relevant to triage).
+    reason: background_only
+  - source: Skill definitions (out of scope).
+    reason: background_only
+  compression_rationale:
+    method: Relevance filtering – retained only artifacts and decisions directly related
+      to installation, branding, and user guidance. Omitted robot-specific files,
+      tests, and skills as they are out of scope.
+    loss_notes:
+    - No loss of critical information for the triage task.
+  quality_checks:
+  - name: scope_boundary_present
+    passed: true
+  - name: done_condition_present
+    passed: true
+  - name: blocking_questions_identified
+    passed: true
+  - name: recommended_agents_specified
+    passed: true

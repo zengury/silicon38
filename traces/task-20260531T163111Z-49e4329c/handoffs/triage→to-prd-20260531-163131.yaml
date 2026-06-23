@@ -1,0 +1,85 @@
+from: triage
+to: to-prd
+relation_type: triggers
+timestamp: '2026-05-31T16:31:31.243333+00:00'
+focus: Activate to-prd from triage
+artifact_refs: &id001
+- triage-analysis-v1
+deliverable:
+  producer: triage
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: triage-analysis-v1
+    producer: triage
+    type: analysis
+    version: 1
+    status: draft
+    content_ref: artifacts/triage-analysis-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260531T163111Z-49e4329c
+  from: triage
+  to: to-prd
+  relation_type: triggers
+  focus: Activate to-prd from triage
+  source:
+    producer_role: triage
+    context_compression_report_ref: artifacts/triage-context-report-v1.yaml
+    input_handoffs: []
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Task is enhancement/refactoring, not bug.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 'Recommended agents: code_analyzer, architect, quality_engineer.'
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: No code changes during triage.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must respect ADRs and out-of-scope knowledge base.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Codebase is primarily one language (to be confirmed).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: User wants actionable recommendations, not implementation.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Primary language?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Existing tests?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Architectural constraints?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Desired module structure?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed code analysis (not yet performed).
+    reason: background_only
+  - source: Specific duplicate code locations (unknown).
+    reason: background_only
+  compression_rationale:
+    method: Focused on triage output and blocking questions; omitted speculative details.
+    loss_notes: []
+  quality_checks:
+  - name: problem_statement_falsifiable
+    passed: true
+  - name: scope_boundary_present
+    passed: true
+  - name: recommended_agents_derived_from_problem
+    passed: true
+  - name: blocking_questions_specific
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs: []
+  previous_blocks: []
+  context_digest: 9650975bd32d4b64fa1e9cb9d885c4938489a69724069128ad4ab536c1633428

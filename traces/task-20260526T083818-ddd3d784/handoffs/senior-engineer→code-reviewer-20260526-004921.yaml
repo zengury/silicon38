@@ -1,0 +1,8 @@
+from: senior-engineer
+to: code-reviewer
+relation_type: triggers
+timestamp: '2026-05-26T00:49:21.900251+00:00'
+focus: 'Review all 12 changed files for code quality: factory.py design, config init/access
+  pattern, server refactors, orchestrator keyword extraction, pyproject.toml cleanup'
+artifact_refs:
+- senior-engineer-code-v1

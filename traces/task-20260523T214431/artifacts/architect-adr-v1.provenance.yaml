@@ -1,0 +1,17 @@
+artifact_id: architect-adr-v1
+type: document
+producer: architect
+version: 1
+status: draft
+superseded_by: null
+created_at: "2026-05-23T21:48:00+08:00"
+content_ref: artifacts/architect-adr-v1.md
+summary: "8 ADRs covering: native SwiftUI, thin client, module decomposition, data flow, persistence, Strategy House rendering, 3D graph, WebSocket reconnection"
+decisions:
+  - decision: "Zero-dependency app — all Apple system frameworks"
+    rationale: "Every needed capability (SceneKit, Core Graphics, URLSession, Keychain) is built into iOS 17+. No third-party libraries needed."
+  - decision: "7 deep modules with clean interfaces"
+    rationale: "BackendClient (network), ChatViewModel (conversation), GraphViewModel (3D data), StrategyHouseRenderer (PNG), ProjectStore, SettingsStore, App (composition)."
+  - decision: "Unidirectional data flow via @Published ObservableObjects"
+    rationale: "Sufficient for 3-tab app complexity. No external state management library needed."
+consumers_pending: [senior-engineer, senior-frontend, api-designer, devops-engineer]

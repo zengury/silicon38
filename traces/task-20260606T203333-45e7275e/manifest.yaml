@@ -1,0 +1,16 @@
+task_id: task-20260606T203333-45e7275e
+timestamp_start: '2026-06-06T12:33:37.511194+00:00'
+timestamp_end: null
+task_summary: 'bookshelf: mobile app for digitizing personal bookshelves via photo-based
+  AI recognition, virtual shelf mirroring, search, and social shelf similarity'
+task_type: feature
+entry_nodes:
+- scope-prosecutor
+terminal_nodes: []
+outcome: null
+context_block:
+  ref: org/CONTEXT_BLOCK.md
+  sha256: d82dc247c04f8cd2e797dd394ecd8d9cd927f1e194f2800d4fcf1e2be41f2a66
+artifact_index: []
+context_report_index: []
+handoff_trail: []

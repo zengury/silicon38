@@ -1,0 +1,61 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/to-prd→scope-prosecutor-20260531-172214.yaml
+      context_digest: 944acbd2e49377768b54c52a8cd4db7bbb6c197797dabeef28c9f6dc4b88137c
+  retained_context:
+    decisions:
+    - statement: Adopt feature-based module structure
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use static analysis for duplicate detection
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Introduce dependency injection for testability
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Incremental refactoring with backward compatibility
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must maintain backward compatibility
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Refactoring must be incremental to avoid long-lived branches
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Codebase is at /Users/ZQ/roboease and is accessible
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Task is a general refactoring request
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the primary programming language(s) in the codebase?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Are there existing tests? If so, what framework?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Is there a preferred module structure (e.g., feature-based, layered)?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Are there any constraints (e.g., must maintain backward compatibility)?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Triage analysis details not relevant to scope prosecution
+    reason: background_only
+  - source: Background information on task origin
+    reason: background_only
+  compression_rationale:
+    method: Retained all decisions, constraints, assumptions, and open questions from
+      the PRD and handoff. Omitted background-only information.
+    loss_notes: []
+  quality_checks:
+  - name: every_feature_has_verdict
+    passed: true
+  - name: core_statement_present
+    passed: true

@@ -1,0 +1,19 @@
+artifact_id: ux-researcher-designer-uxspec-v1
+type: document
+producer: ux-researcher-designer
+version: 1
+status: draft
+superseded_by: null
+created_at: "2026-05-23T21:46:00+08:00"
+content_ref: artifacts/ux-researcher-designer-uxspec-v1.md
+summary: "UX research synthesis with 3 personas, journey map, screen architecture, edge cases, and heuristic assessment for iOS mobile client"
+decisions:
+  - decision: "3 personas (Power User, Consumer, Business)"
+    rationale: "Cover the full range: existing desktop users, new mobile-first users, and team/stakeholder presenters."
+  - decision: "Chat-first onboarding"
+    rationale: "New project opens directly to chat. Graph and analysis show placeholders until nodes exist."
+  - decision: "Settings required only on first launch"
+    rationale: "Reduce friction. Remember backend URL and API key after first configuration."
+  - decision: "No AI on device"
+    rationale: "Consistent with existing architecture. Client is a presenter, not a processor."
+consumers_pending: [ui-design-system, prototype, apple-hig-expert]

@@ -1,0 +1,110 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→api-designer-20260530-094358.yaml
+      context_digest: 7b8a6e6f85d879afe6c863bb4922f61aaab5442576992928741b7d3f0d095b2a
+  retained_context:
+    decisions:
+    - statement: Adopt Modular Monolith for backend.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use Layered Architecture with DDD tactical patterns.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Keep frontend as two separate SPAs.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 'Backend modules: auth, user, robot, video, mqtt, admin, shared.'
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use REST API + WebSocket for frontend-backend communication.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: MQTT for robot communication.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Video streaming via WebSocket on port 8765.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Backend source code not available in workspace.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Robot agent code not available.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Shared package not explored.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Team size is small (<10 developers).
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Domain boundaries are not fully understood.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Backend is FastAPI-based.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Video server runs on port 8765.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: MQTT is used for robot communication.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Frontends use @roboease/shared workspace package.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Rapid iteration is a priority.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the exact backend framework structure?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What does @roboease/shared contain?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How are robot agents implemented and deployed?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What are the exact API endpoints and data models?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed frontend component hierarchy (not needed for API design).
+    reason: background_only
+  - source: Image assets (not relevant).
+    reason: background_only
+  - source: Artifact files (release plans, ops plans) as they are not code.
+    reason: background_only
+  - source: pnpm-lock.yaml (dependency lock file, not structural).
+    reason: background_only
+  compression_rationale:
+    method: 'Top-down abstraction: used architect''s ADR for module boundaries and
+      data flows. Focused on load-bearing decisions for API contract design. Omitted
+      deep component details and non-code artifacts.'
+    loss_notes:
+    - Backend source code not read; only inferred from Dockerfile and compose.
+    - Robot agent code not read.
+    - Shared package not read.
+  quality_checks:
+  - name: schema_examples_present
+    passed: true
+  - name: error_contract_present
+    passed: true
+  - name: Every interface element has a clear, caller-oriented name
+    passed: true
+  - name: Nullable, optional, and required fields are explicit and intentional
+    passed: true
+  - name: No god object parameters
+    passed: true
+  - name: Error conditions are typed, not stringly-typed
+    passed: true
+  - name: API can be used correctly without reading implementation
+    passed: true
+  - name: Versioning strategy is stated
+    passed: true
+  - name: No breaking changes to existing contracts without explicit justification
+    passed: true

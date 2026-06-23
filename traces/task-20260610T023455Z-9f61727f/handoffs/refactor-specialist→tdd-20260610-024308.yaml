@@ -1,0 +1,119 @@
+from: refactor-specialist
+to: tdd
+relation_type: thompson_sample
+timestamp: '2026-06-10T02:43:08.802461+00:00'
+focus: Thompson sample α=265.5 β=7.5 [validated:triggers]
+artifact_refs: &id001
+- refactor-specialist-refactor-v1
+deliverable:
+  producer: refactor-specialist
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: refactor-specialist-refactor-v1
+    producer: refactor-specialist
+    type: refactor
+    version: 1
+    status: draft
+    content_ref: artifacts/refactor-specialist-refactor-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260610T023455Z-9f61727f
+  from: refactor-specialist
+  to: tdd
+  relation_type: thompson_sample
+  focus: Thompson sample α=265.5 β=7.5 [validated:triggers]
+  source:
+    producer_role: refactor-specialist
+    context_compression_report_ref: artifacts/refactor-specialist-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/zoom-out→refactor-specialist-20260610-023514.yaml
+      context_digest: 2f354a313f096903291d1ec949f9090b9c7e4ef4021804d578513b7c83ca9208
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Created create_library_crud_router factory in shared/crud_router.py
+        to eliminate 4-way CRUD duplication
+      source: refactor-specialist
+      impact: All library-type CRUD endpoints now generated from single factory. Adding
+        a new library type requires ~15 lines instead of ~80.
+    - statement: Knowledge library retains custom create_with_dify endpoint outside
+        the factory
+      source: refactor-specialist
+      impact: Custom Dify integration endpoint preserved unchanged.
+    - statement: Task endpoints (inspection/inventory) and screen project endpoints
+        left for future refactor iterations
+      source: refactor-specialist
+      impact: 16 duplicate pairs remain in task endpoints; 5 in screen project endpoints.
+    constraints:
+    - statement: Task endpoints have domain-specific robot interaction logic requiring
+        deeper analysis before unification
+      source: refactor-specialist
+      impact: Constrains downstream refactor scope
+    - statement: Screen project admin vs portal have different security scopes — authorization
+        differences must be preserved
+      source: refactor-specialist
+      impact: Constrains downstream refactor scope
+    - statement: No integration/API-level tests exist for the refactored endpoints
+        — behavioral verification via service layer unit tests + factory unit tests
+      source: refactor-specialist
+      impact: Constrains confidence assessment
+    assumptions:
+    - statement: The unused Request classes (ExpressionLibraryRequest, etc.) in the
+        original library files were never referenced externally
+      source: refactor-specialist
+      risk: Low — they were local-only classes with no imports found elsewhere
+    - statement: All library services follow the same BaseEntityService pattern (page,
+        getById, create, update, delete)
+      source: refactor-specialist
+      risk: Verified by reading each service file
+    open_questions:
+    - statement: Should knowledge_library get an official/list endpoint like the other
+        3 libraries?
+      source: refactor-specialist
+      owner: product
+    - statement: Can file upload/download duplication (api/portal/file.py vs api/admin/file.py)
+        be unified?
+      source: refactor-specialist
+      owner: refactor-specialist
+  omitted_context:
+  - source: Robot module duplications (xialan_api vs xiaqi_api) — in robot/ directory,
+      out of scope for backend refactor
+    reason: background_only
+  - source: Exact file contents of unchanged service files (action_library_service.py,
+      voice_library_service.py, etc.)
+    reason: background_only
+  - source: Device.py internal duplication (update_device vs update_device_info) —
+      same-file near-miss, lower impact
+    reason: background_only
+  compression_rationale:
+    method: Semantic summarization of refactoring decisions, scope boundaries, and
+      remaining duplication targets. Preserved all architectural decisions and downstream
+      handoff targets. Omitted implementation details of unchanged files and out-of-scope
+      robot code.
+    loss_notes:
+    - Specific line numbers of remaining duplicates not included (available in duplicates-report.json)
+    - Router factory implementation details not included (available in shared/crud_router.py)
+  quality_checks:
+  - name: Tests green before and after
+    passed: true
+  - name: Route paths identical to originals
+    passed: true
+  - name: Duplicate detector confirms library CRUD eliminated
+    passed: true
+  - name: main.py imports still work
+    passed: true
+  - name: Behavior preservation via 152 passing tests
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - zoom-out-context-map-v1
+  previous_blocks:
+  - ref: handoffs/zoom-out→refactor-specialist-20260610-023514.yaml
+    from: zoom-out
+    to: refactor-specialist
+    relation_type: thompson_sample
+    focus: Thompson sample α=122.0 β=6.2 [validated:supports]
+    context_digest: 2f354a313f096903291d1ec949f9090b9c7e4ef4021804d578513b7c83ca9208
+    deliverable_artifact_refs:
+    - zoom-out-context-map-v1
+  context_digest: 706e4f9ce3ea1560a84ae9e63e3658c5a6e69386e39ed4bf3c6cdadfb7c2ce51

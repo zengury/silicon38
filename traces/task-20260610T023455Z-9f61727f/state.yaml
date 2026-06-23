@@ -1,0 +1,200 @@
+task_id: task-20260610T023455Z-9f61727f
+task_status: delivered
+node_states:
+  zoom-out:
+    status: completed
+    updated_at: '2026-06-10T02:35:12.990897+00:00'
+    activated_at: '2026-06-10T02:35:12.834828+00:00'
+    completed_at: '2026-06-10T02:35:12.990897+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - zoom-out-context-map-v1
+    blocked_reason: null
+    entry_node: true
+  architect:
+    status: completed
+    updated_at: '2026-06-10T02:35:34.714507+00:00'
+    activated_at: '2026-06-10T02:35:34.438870+00:00'
+    completed_at: '2026-06-10T02:35:34.714507+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - architect-architecture-v1
+    blocked_reason: null
+  improve-codebase-architecture:
+    status: completed
+    updated_at: '2026-06-10T02:41:36.572742+00:00'
+    activated_at: '2026-06-10T02:41:36.253220+00:00'
+    completed_at: '2026-06-10T02:41:36.572742+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - improve-codebase-architecture-architecture-improvement-v1
+    blocked_reason: null
+  refactor-specialist:
+    status: completed
+    updated_at: '2026-06-10T02:43:06.406509+00:00'
+    activated_at: '2026-06-10T02:43:06.207850+00:00'
+    completed_at: '2026-06-10T02:43:06.406509+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - refactor-specialist-refactor-v1
+    blocked_reason: null
+  code-reviewer:
+    status: completed
+    updated_at: '2026-06-10T02:43:23.319394+00:00'
+    activated_at: '2026-06-10T02:43:23.057867+00:00'
+    completed_at: '2026-06-10T02:43:23.319394+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - code-reviewer-review-v1
+    blocked_reason: null
+  tdd:
+    status: completed
+    updated_at: '2026-06-10T02:43:26.709691+00:00'
+    activated_at: '2026-06-10T02:43:26.429851+00:00'
+    completed_at: '2026-06-10T02:43:26.709691+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - tdd-evaluation-v1
+    blocked_reason: null
+  graph-topologist:
+    status: completed
+    updated_at: '2026-06-10T02:45:06.138907+00:00'
+    activated_at: '2026-06-10T02:45:05.833525+00:00'
+    completed_at: '2026-06-10T02:45:06.138907+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - graph-topologist-topology-review-v1
+    blocked_reason: null
+  hrbp:
+    status: completed
+    updated_at: '2026-06-10T02:45:06.649086+00:00'
+    activated_at: '2026-06-10T02:45:06.296464+00:00'
+    completed_at: '2026-06-10T02:45:06.649086+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - hrbp-talent-evaluation-v1
+    blocked_reason: null
+artifact_registry:
+  zoom-out-context-map-v1:
+    type: context-map
+    producer: zoom-out
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/zoom-out-context-map-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-10T02:35:12.878460+00:00'
+  architect-architecture-v1:
+    type: architecture
+    producer: architect
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/architect-architecture-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-10T02:35:34.494324+00:00'
+  improve-codebase-architecture-architecture-improvement-v1:
+    type: architecture-improvement
+    producer: improve-codebase-architecture
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/improve-codebase-architecture-architecture-improvement-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-10T02:41:36.318638+00:00'
+  refactor-specialist-refactor-v1:
+    type: refactor
+    producer: refactor-specialist
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/refactor-specialist-refactor-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-10T02:43:06.253533+00:00'
+  code-reviewer-review-v1:
+    type: review
+    producer: code-reviewer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/code-reviewer-review-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-10T02:43:23.120374+00:00'
+  tdd-evaluation-v1:
+    type: evaluation
+    producer: tdd
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/tdd-evaluation-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-10T02:43:26.498202+00:00'
+  graph-topologist-topology-review-v1:
+    type: topology-review
+    producer: graph-topologist
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/graph-topologist-topology-review-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-10T02:45:05.909407+00:00'
+  hrbp-talent-evaluation-v1:
+    type: talent-evaluation
+    producer: hrbp
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/hrbp-talent-evaluation-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-10T02:45:06.391124+00:00'
+context_compression_reports:
+  zoom-out:
+    ref: artifacts/zoom-out-context-report-v1.yaml
+    registered_at: '2026-06-10T02:35:12.933987+00:00'
+    digest: c9620a6c023a85658cd8cc358c985d19025e4ebe76d7674dc897e2e408ee2a7c
+    status: valid
+  architect:
+    ref: artifacts/architect-context-report-v1.yaml
+    registered_at: '2026-06-10T02:35:34.630047+00:00'
+    digest: 72fd36f99aff04218d1530d0d94fd13ce8af527593454b757049cf26bd82ba49
+    status: valid
+  improve-codebase-architecture:
+    ref: artifacts/improve-codebase-architecture-context-report-v1.yaml
+    registered_at: '2026-06-10T02:41:36.474379+00:00'
+    digest: 688b118067db86cae1e83baeccc428b99fe6143e99e81f88072df7152f00176c
+    status: valid
+  refactor-specialist:
+    ref: artifacts/refactor-specialist-context-report-v1.yaml
+    registered_at: '2026-06-10T02:43:06.342079+00:00'
+    digest: e25c94fb17fe503f24935bccfa14ffc40eeddaea06f305765472ec87ffebb768
+    status: valid
+  code-reviewer:
+    ref: artifacts/code-reviewer-context-report-v1.yaml
+    registered_at: '2026-06-10T02:43:23.238312+00:00'
+    digest: f430eea0544a73bf790a9f789273d64a95b3a655d3648d5cab981ef4dcdcf7a2
+    status: valid
+  tdd:
+    ref: artifacts/tdd-context-report-v1.yaml
+    registered_at: '2026-06-10T02:43:26.621793+00:00'
+    digest: 80da707c1391d984d6aca031ab4ce25ac30711f9ad19352419e6c4ce7142b267
+    status: valid
+  graph-topologist:
+    ref: artifacts/graph-topologist-context-report-v1.yaml
+    registered_at: '2026-06-10T02:45:06.046177+00:00'
+    digest: 5183291f30ccc763760edfae75838239f00b2e0d5125f863fd47220769514fd8
+    status: valid
+  hrbp:
+    ref: artifacts/hrbp-context-report-v1.yaml
+    registered_at: '2026-06-10T02:45:06.549644+00:00'
+    digest: 6d1aad28035e522cea701346dd840415dd45c4f22b06684a785e2a57820f763b
+    status: valid
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: true
+  all_loops_resolved: true
+  all_blocking_evals_resolved: true
+  all_joins_passed: true
+  all_artifacts_resolved: false
+  no_undecided_activation_candidates: false
+timestamp_end: '2026-06-10T02:45:05.729120+00:00'

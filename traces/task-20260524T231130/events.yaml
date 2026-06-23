@@ -1,0 +1,7 @@
+task_id: task-20260524T231130
+events:
+  - event_id: ev-001
+    timestamp: "2026-05-24T23:11:30+08:00"
+    event_type: task_started
+    payload:
+      detail: "重构 TeamUp — 修复自执行卡顿 + Cyberpunk UI 改造"

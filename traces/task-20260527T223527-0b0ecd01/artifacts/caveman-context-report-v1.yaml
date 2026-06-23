@@ -1,0 +1,78 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read: []
+  retained_context:
+    decisions:
+      - statement: "Visualizer should use Ledger-derived run snapshots as the source of truth."
+        source: "caveman first-principles reduction of the user request"
+        impact: "Downstream implementation should render facts from ontology and traces, not private Runtime narration."
+      - statement: "The 3D scene should expose five primary Silicon Org concepts: Graph, Policy, Ledger, Runtime, and Learning."
+        source: "org/CONTEXT_BLOCK.md and user request"
+        impact: "The UI must include organizational control planes, not only agent nodes."
+      - statement: "Minimum viable version should replay an existing trace before adding live runtime transport."
+        source: "caveman analysis"
+        impact: "Downstream architecture can share one snapshot schema for trace replay and future realtime polling."
+      - statement: "Handoff blocks must be visible objects carrying deliverable metadata and compressed context-block data."
+        source: "user explicitly asked to show block transfer and block contents"
+        impact: "The visualization should animate handoff blocks and provide an inspector for deliverable plus context summary."
+    constraints:
+      - statement: "Entry node: no upstream artifacts or handoffs were read."
+        source: "entry-node execution context"
+        impact: "This context report declares empty input_scope lists."
+      - statement: "Do not create new top-level concepts beyond Graph, Ledger, Policy, Runtime, and Learning."
+        source: "org/CONTEXT_BLOCK.md"
+        impact: "Keep the visualization vocabulary aligned with Silicon Org's current conceptual model."
+      - statement: "Ledger facts, not private runtime reasoning, must drive the visual state."
+        source: "org/RUNTIME.md"
+        impact: "Node status, handoff trails, artifact refs, and context digests should come from trace files."
+      - statement: "Activation-capable paths are triggers, satisfied may_trigger, and reverse evaluates; context-only relations cannot activate nodes alone."
+        source: "org/RUNTIME.md and ontology relation semantics"
+        impact: "The 3D graph must visually distinguish activation, evaluation, and context-only edges."
+    assumptions:
+      - statement: "Three.js is acceptable for the first frontend prototype."
+        source: "user request"
+        risk: "If the final runtime embeds elsewhere, the data adapter should stay framework-neutral."
+      - statement: "A trace-to-snapshot adapter can normalize YAML graph and trace files for the UI."
+        source: "caveman analysis"
+        risk: "If traces differ across versions, the adapter needs tolerant parsing and clear fallback states."
+      - statement: "Stable deterministic layout is more useful than uncontrolled physics for operational understanding."
+        source: "caveman analysis"
+        risk: "A force simulation could obscure the organization model during operations monitoring."
+      - statement: "Live updates can later reuse the same normalized snapshot schema."
+        source: "caveman analysis"
+        risk: "Realtime streaming should not fork the frontend data model."
+    open_questions:
+      - statement: "Should the first demo load one canonical trace or allow trace selection?"
+        source: "caveman analysis"
+        owner: "ux-researcher-designer"
+      - statement: "Should the app be a static local viewer or a dev-server frontend package?"
+        source: "caveman analysis"
+        owner: "architect"
+      - statement: "Which recent trace best demonstrates node activation, handoffs, gates, and learning?"
+        source: "caveman analysis"
+        owner: "architect"
+  omitted_context:
+    - source: "Full contents of org/RUNTIME.md, ontology/nodes.yaml, and ontology/relations.yaml"
+      reason: "background_only"
+    - source: "Detailed React state management and build-tooling choices"
+      reason: "irrelevant"
+    - source: "Full file-by-file visualizer architecture"
+      reason: "irrelevant"
+  compression_rationale:
+    method: "Compressed protocol and graph context into user outcome, non-negotiable semantics, minimum viable scope, and downstream design constraints."
+    loss_notes:
+      - "Exact node registry text omitted; retained requirement to render current graph nodes."
+      - "Exact relation list omitted; retained typed-edge semantics and activation legality."
+      - "Exact runtime command syntax omitted; retained Ledger-as-truth and policy gate semantics."
+  quality_checks:
+    - name: "entry_node_scope_has_no_artifact_inputs"
+      passed: true
+    - name: "entry_node_scope_has_no_handoff_inputs"
+      passed: true
+    - name: "retains_core_five_concepts"
+      passed: true
+    - name: "keeps_ledger_as_source_of_truth"
+      passed: true
+    - name: "identifies_minimum_viable_version"
+      passed: true

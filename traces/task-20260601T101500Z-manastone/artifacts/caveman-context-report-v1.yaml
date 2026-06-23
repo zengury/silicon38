@@ -1,0 +1,70 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read: []
+  retained_context:
+    decisions:
+    - statement: Manastone must be standalone brand, hide Pi.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Install must be single command, no flags.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Zero-config startup required.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: One entry point for all interactions.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Robot-specific packs still needed for different hardware.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Safety checks cannot be removed.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Diagnostics engine is valuable.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: User has no prior knowledge of Pi or robot agent systems.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: User wants to talk to robot immediately after install.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Current complexity is barrier to adoption.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: How to auto-detect robot model during install?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the default behavior when no config exists?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Should we remove pack selection entirely or hide it behind advanced
+        flag?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Internal architecture section references (ARCHITECTURE § 3.4 etc.)
+    reason: background_only
+  - source: Detailed file list beyond key files
+    reason: background_only
+  - source: Specific test fixtures and examples
+    reason: background_only
+  compression_rationale:
+    method: 'First-principles stripping: identify core user goal (talk to robot),
+      remove all abstractions not serving that goal directly.'
+    loss_notes:
+    - Lost detailed knowledge of internal module structure.
+    - Lost specific version numbers and changelog history.
+    - Lost test infrastructure details.
+  quality_checks:
+  - name: non-engineer test
+    passed: true
+  - name: minimum viable version simpler than current
+    passed: true
+  - name: complexity justified vs unnecessary
+    passed: true

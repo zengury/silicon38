@@ -1,0 +1,21 @@
+schema: silicon_org.artifact_provenance.v1
+artifact_id: ui-design-system-design-spec-v1
+artifact_type: spec
+producer_role: ui-design-system
+task_id: task-20260530T165512Z-064cf2e1
+generated_at: 2026-05-31T00:00:00Z
+input_artifacts:
+  - to-prd-prd-v1
+  - ux-researcher-designer-ux-spec-v1
+  - architect-architecture-v1
+input_handoffs:
+  - handoffs/ux-researcher-designer→ui-design-system-20260530-165637.yaml
+tools_used:
+  - design_token_generator.py (--style modern, brand #2563EB)
+quality_gates:
+  - component_states_present: true
+  - accessibility_notes_present: true
+evidence:
+  - WCAG contrast audit (all text/background pairs)
+  - Token generation via deterministic script
+  - Component states: default, hover, active, focus, disabled, loading, error, empty

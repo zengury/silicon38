@@ -1,0 +1,134 @@
+task_id: task-20260524T233401-ff97e812
+task_status: settled
+node_states:
+  triage:
+    status: completed
+    activated_at: "2026-05-24T23:34:01+08:00"
+    completed_at: "2026-05-24T23:36:00+08:00"
+    iteration: 1
+    output_artifact_ids:
+      - triage-analysis-v1
+  caveman:
+    status: completed
+    activated_at: "2026-05-24T23:34:01+08:00"
+    completed_at: "2026-05-24T23:36:00+08:00"
+    iteration: 1
+    output_artifact_ids:
+      - caveman-analysis-v1
+  zoom-out:
+    status: completed
+    activated_at: "2026-05-24T23:36:00+08:00"
+    completed_at: "2026-05-24T23:38:00+08:00"
+    iteration: 1
+    output_artifact_ids:
+      - zoom-out-module-map-v1
+  to-prd:
+    status: completed
+    activated_at: "2026-05-24T23:36:00+08:00"
+    completed_at: "2026-05-24T23:38:00+08:00"
+    iteration: 1
+    output_artifact_ids:
+      - to-prd-mobile-client-v1
+  architect:
+    status: completed
+    activated_at: "2026-05-24T23:38:00+08:00"
+    completed_at: "2026-05-24T23:40:00+08:00"
+    iteration: 1
+    output_artifact_ids:
+      - architect-adr-v1
+  ux-researcher-designer:
+    status: completed
+    activated_at: "2026-05-24T23:38:00+08:00"
+    completed_at: "2026-05-24T23:40:00+08:00"
+    iteration: 1
+    output_artifact_ids:
+      - ux-mobile-spec-v1
+  to-issues:
+    status: completed
+    activated_at: "2026-05-24T23:38:00+08:00"
+    completed_at: "2026-05-24T23:40:00+08:00"
+    iteration: 1
+    output_artifact_ids:
+      - to-issues-decomposition-v1
+artifact_registry:
+  triage-analysis-v1:
+    type: analysis
+    producer: triage
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/triage-analysis-v1.md
+    consumers_pending:
+      - zoom-out
+      - architect
+      - to-prd
+  caveman-analysis-v1:
+    type: analysis
+    producer: caveman
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/caveman-analysis-v1.md
+    consumers_pending:
+      - architect
+      - refactor-specialist
+  zoom-out-module-map-v1:
+    type: analysis
+    producer: zoom-out
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/zoom-out-module-map-v1.md
+    consumers_pending:
+      - architect
+      - improve-codebase-architecture
+  to-prd-mobile-client-v1:
+    type: document
+    producer: to-prd
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/to-prd-mobile-client-v1.md
+    consumers_pending:
+      - to-issues
+      - architect
+      - ux-researcher-designer
+  architect-adr-v1:
+    type: document
+    producer: architect
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/architect-adr-v1.md
+    consumers_pending:
+      - senior-engineer
+      - code-reviewer
+  ux-mobile-spec-v1:
+    type: document
+    producer: ux-researcher-designer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/ux-mobile-spec-v1.md
+    consumers_pending:
+      - senior-frontend
+      - ui-design-system
+  to-issues-decomposition-v1:
+    type: document
+    producer: to-issues
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/to-issues-decomposition-v1.md
+    consumers_pending:
+      - senior-engineer
+      - senior-frontend
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: true
+  all_loops_resolved: true
+  all_blocking_evals_resolved: false
+  all_joins_passed: false
+  any_unresolved_artifacts: false
+  settled_at: "2026-05-24T23:45:00+08:00"

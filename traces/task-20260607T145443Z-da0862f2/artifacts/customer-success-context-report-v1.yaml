@@ -1,0 +1,84 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→customer-success-20260607-145717.yaml
+      context_digest: e5be081d2c35889257b0cc15bd9039431827761df8d764fe174b766ec724cf8d
+  retained_context:
+    decisions:
+    - statement: Tour system implemented as new app module under pilot/apps/tour/
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Voice-only operator interface using platform TTS/STT
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Anti-hallucination enforced by fixed grammar and no generative data
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Persistence via JSONL files in ~/.manastone/tours/
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 'State machine with three states: IDLE, TEACHING, GUIDING'
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Confirmation required for state transitions
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must work on Unitree G1 and Agibot X2 robots
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Voice-only interface, no GUI
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must not hallucinate waypoints or narration
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must persist tours across reboots
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Platform provides speech-to-text and text-to-speech capabilities
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Robot provides odometry-based pose recording and navigation
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Operator has physical access to robot during teaching
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What specific STT/TTS engine will be used? (macOS built-in, cloud
+        API, etc.)
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How is audio narration stored? (file path, format, duration limits?)
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the maximum number of waypoints per tour?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How does the robot handle navigation failure during guiding? (stop
+        and wait, retry, abort?)
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file list of entire repository (irrelevant to customer success
+      plan)
+    reason: background_only
+  - source: Bootstrap and packaging details (not needed for customer-facing plan)
+    reason: background_only
+  - source: Existing skill files and robot-specific configurations (out of scope)
+    reason: background_only
+  - source: Architecture diagram and internal module details (not customer-facing)
+    reason: background_only
+  compression_rationale:
+    method: 'Semantic filtering: retained only context directly relevant to customer
+      success planning (product capabilities, constraints, assumptions). Omitted internal
+      architecture details, code structure, and unrelated files.'
+    loss_notes: []
+  quality_checks:
+  - 'decision_record_present: true'
+  - 'constraints_named: true'
+  - 'assumptions_explicit: true'
+  - 'open_questions_carried: true'

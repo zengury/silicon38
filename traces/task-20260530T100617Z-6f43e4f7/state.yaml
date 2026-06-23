@@ -1,0 +1,178 @@
+task_id: task-20260530T100617Z-6f43e4f7
+task_status: delivered
+node_states:
+  zoom-out:
+    status: completed
+    updated_at: '2026-05-30T10:06:38.630390+00:00'
+    activated_at: '2026-05-30T10:06:38.516000+00:00'
+    completed_at: '2026-05-30T10:06:38.630390+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - zoom-out-context-map-v1
+    blocked_reason: null
+    entry_node: true
+  architect:
+    status: completed
+    updated_at: '2026-05-30T10:07:09.513916+00:00'
+    activated_at: '2026-05-30T10:07:09.341809+00:00'
+    completed_at: '2026-05-30T10:07:09.513916+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - architect-architecture-v1
+    blocked_reason: null
+  security-engineer:
+    status: completed
+    updated_at: '2026-05-30T10:07:51.930421+00:00'
+    activated_at: '2026-05-30T10:07:51.660484+00:00'
+    completed_at: '2026-05-30T10:07:51.930421+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - security-engineer-evaluation-v1
+    blocked_reason: null
+  devops-engineer:
+    status: completed
+    updated_at: '2026-05-30T10:12:55.597583+00:00'
+    activated_at: '2026-05-30T10:12:55.329701+00:00'
+    completed_at: '2026-05-30T10:12:55.597583+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - devops-engineer-ops-plan-v1
+    blocked_reason: null
+  database-engineer:
+    status: completed
+    updated_at: '2026-05-30T10:17:25.186487+00:00'
+    activated_at: '2026-05-30T10:17:24.831105+00:00'
+    completed_at: '2026-05-30T10:17:25.186487+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - database-engineer-data-design-v1
+    blocked_reason: null
+  senior-engineer:
+    status: completed
+    updated_at: '2026-05-30T10:22:36.635975+00:00'
+    activated_at: '2026-05-30T10:22:36.259083+00:00'
+    completed_at: '2026-05-30T10:22:36.635975+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - senior-engineer-implementation-v1
+    blocked_reason: null
+  graph-topologist:
+    status: completed
+    updated_at: '2026-05-30T10:22:48.769970+00:00'
+    activated_at: '2026-05-30T10:22:48.355623+00:00'
+    completed_at: '2026-05-30T10:22:48.769970+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - graph-topologist-topology-review-v1
+    blocked_reason: null
+artifact_registry:
+  zoom-out-context-map-v1:
+    type: context-map
+    producer: zoom-out
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/zoom-out-context-map-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T10:06:38.546625+00:00'
+  architect-architecture-v1:
+    type: architecture
+    producer: architect
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/architect-architecture-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T10:07:09.378742+00:00'
+  security-engineer-evaluation-v1:
+    type: evaluation
+    producer: security-engineer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/security-engineer-evaluation-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T10:07:51.707759+00:00'
+  devops-engineer-ops-plan-v1:
+    type: ops-plan
+    producer: devops-engineer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/devops-engineer-ops-plan-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T10:12:55.386290+00:00'
+  database-engineer-data-design-v1:
+    type: data-design
+    producer: database-engineer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/database-engineer-data-design-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T10:17:24.903829+00:00'
+  senior-engineer-implementation-v1:
+    type: implementation
+    producer: senior-engineer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/senior-engineer-implementation-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T10:22:36.339435+00:00'
+  graph-topologist-topology-review-v1:
+    type: topology-review
+    producer: graph-topologist
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/graph-topologist-topology-review-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T10:22:48.444100+00:00'
+context_compression_reports:
+  zoom-out:
+    ref: artifacts/zoom-out-context-report-v1.yaml
+    registered_at: '2026-05-30T10:06:38.588529+00:00'
+    digest: e1a90b679ab324208232f61fb2270dd808457017f85ef18f3eeca95b16123ddb
+    status: valid
+  architect:
+    ref: artifacts/architect-context-report-v1.yaml
+    registered_at: '2026-05-30T10:07:09.462711+00:00'
+    digest: 35baec23723877c1aeb137e128bccdc336bd532d7b1f1033a126aa20caa631f3
+    status: valid
+  security-engineer:
+    ref: artifacts/security-engineer-context-report-v1.yaml
+    registered_at: '2026-05-30T10:07:51.849810+00:00'
+    digest: 8b9d0ec912d6e5c4806c351ac3120267446a8ef0a52329d993f53e394058fec9
+    status: valid
+  devops-engineer:
+    ref: artifacts/devops-engineer-context-report-v1.yaml
+    registered_at: '2026-05-30T10:12:55.521396+00:00'
+    digest: 5be44bea5c1658e63ab816d2a7784d4ff3901bd6825c8bb80b9d2c7d97baa80d
+    status: valid
+  database-engineer:
+    ref: artifacts/database-engineer-context-report-v1.yaml
+    registered_at: '2026-05-30T10:17:25.084459+00:00'
+    digest: c1c89080d80b7ca1e6ca92efa7591ba8447a6eee36bc79c9c4f8ba1bcbb91178
+    status: valid
+  senior-engineer:
+    ref: artifacts/senior-engineer-context-report-v1.yaml
+    registered_at: '2026-05-30T10:22:36.525582+00:00'
+    digest: 84eaa259afdfddb4acfda0b5ba9e8703b524f9eea80f4caedab7171fbaa87834
+    status: valid
+  graph-topologist:
+    ref: artifacts/graph-topologist-context-report-v1.yaml
+    registered_at: '2026-05-30T10:22:48.662222+00:00'
+    digest: 5183291f30ccc763760edfae75838239f00b2e0d5125f863fd47220769514fd8
+    status: valid
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: false
+  all_loops_resolved: false
+  all_blocking_evals_resolved: false
+  all_joins_passed: false
+  all_artifacts_resolved: false
+  no_undecided_activation_candidates: false
+  settled_at: null
+timestamp_end: '2026-05-30T10:22:48.230689+00:00'

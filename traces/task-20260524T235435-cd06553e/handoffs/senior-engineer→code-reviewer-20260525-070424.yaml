@@ -1,0 +1,5 @@
+from: senior-engineer
+to: code-reviewer
+relation_type: triggers
+timestamp: '2026-05-25T07:04:24.973213+00:00'
+focus: BFF scaffold + pipeline code → code review

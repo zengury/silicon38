@@ -1,0 +1,159 @@
+context_compression_report:
+  input_scope:
+    artifacts_read:
+    - artifact_id: to-prd-prd-v1
+      used: true
+      why: Primary PRD under review for scope, acceptance criteria, realtime promises,
+        non-goals, and verification requirements.
+      ref: artifacts/to-prd-prd-v1.md
+      sha256: c9e63af72a94bbabd0394b85a52678a1eca123d8d345eadd6e672e29f779274c
+    - artifact_id: architect-architecture-v1
+      used: true
+      why: Primary architecture under review for source-of-truth boundaries, snapshot
+        API, replay/polling model, and adapter responsibilities.
+      ref: artifacts/architect-architecture-v1.md
+      sha256: b8565faa4c5a46e0eee3d38f8f84b678503aa0a14e92befb12c2ecdf0613f634
+    - artifact_id: ux-researcher-designer-ux-spec-v1
+      used: true
+      why: Primary UX artifact under review for operational clarity, visual semantics,
+        context-block inspection, accessibility, and first viewport complexity.
+      ref: artifacts/ux-researcher-designer-ux-spec-v1.md
+      sha256: 0d58e32d0a1464bd0c35a0ec615951fbbfc4a71afee907331b292718a75ca78b
+    - artifact_id: triage-analysis-v1
+      used: true
+      why: Upstream task classification and risk framing used to verify scope, done
+        conditions, and explicit warnings about spectacle, stale facts, and verification.
+      ref: artifacts/triage-analysis-v1.md
+      sha256: 18c5bfcdcba05ad20ed5cc18f0bdf77d2ad29f06627f554f64abe8c2d11fabc6
+    - artifact_id: caveman-analysis-v1
+      used: true
+      why: Upstream first-principles reduction used to validate the five-concept model,
+        MVP cuts, and the warning against building gorgeous 3D before honest replay.
+      ref: artifacts/caveman-analysis-v1.md
+      sha256: 9d377276c261ad04235b5bc03718b93f9001879aa2e8ab3f0d1dea5be9da23d3
+    handoffs_read:
+    - ref: handoffs/to-prd→grill-me-20260527-145528.yaml
+      context_digest: b6b70dc53d8ead13c39d3707ac0703011bb5d87fbf0aeed0ddd7619c77980f83
+      file_sha256: f54729e6502f4cd4817b53527de27f505acb7821a05df461bfe1681dddb0e096
+    - ref: handoffs/architect→grill-me-20260527-145529.yaml
+      context_digest: c243bbc3de95a2226ecd5d2be20b4b6852f956b18052fac64f7885641ce71b7e
+      file_sha256: 1b85c6ade0ce296ccaaff755bbca97db4996dffdfd6836c50e69de4a511a832d
+    - ref: handoffs/ux-researcher-designer→grill-me-20260527-145529.yaml
+      context_digest: 546e03008153f5cbec8ffebe4c2697cce2b19dfcf2e3bc63b89c30d6f1d31b10
+      file_sha256: 964432ec8f77d4f582f27a15614774a392c2e9bcb6f5f85c28bcc8c845afa829
+  retained_context:
+    decisions:
+    - statement: 'Verdict is ISSUES_TO_ADDRESS: the design direction is sound but
+        must tighten trace completeness, digest verification, handoff semantics, visual
+        level-of-detail, and delivery verification before implementation.'
+      source: grill-me-review-v1
+      impact: Downstream architect, UX, prototype, frontend, and delivery-prover work
+        should address these gates before convergence.
+    - statement: Ledger-derived snapshots remain the correct source of truth for the
+        visualizer.
+      source: to-prd-prd-v1, architect-architecture-v1, ux-researcher-designer-ux-spec-v1
+      impact: The UI must continue to render only Graph/Ledger-backed operational
+        facts or mark missing facts as not recorded.
+    - statement: The visualizer should remain read-only in v1.
+      source: architect-architecture-v1 and ux-researcher-designer-ux-spec-v1
+      impact: No graph editing, node execution, policy mutation, artifact approval,
+        or learning updates should be exposed from the first UI.
+    - statement: Operator-default level-of-detail is required.
+      source: grill-me-review-v1
+      impact: The first viewport should emphasize active causal paths, candidates,
+        gates, recent handoffs, and evidence chains before showing full topology detail.
+    constraints:
+    - statement: The current trace is still propagating, not delivered.
+      source: traces/task-20260527T223527-0b0ecd01/manifest.yaml and state.yaml
+      impact: Any demo or replay based on this trace must be labeled in-progress/not
+        converged rather than complete.
+    - statement: Digest integrity must not be implied unless verification has actually
+        run.
+      source: org/CONTEXT_BLOCK.md, org/HARNESS.md, and grill-me-review-v1
+      impact: Snapshot adapter should expose verified/missing/mismatch/not_checked
+        status for context-block chains.
+    - statement: Handoff animation must distinguish durable facts from replay reconstruction.
+      source: events.yaml, handoff files, and grill-me-review-v1
+      impact: A handoff file can drive replay animation, but the UI cannot claim live
+        receipt or consumption without a corresponding fact.
+    - statement: Browser and canvas verification must be a concrete delivery gate.
+      source: to-prd-prd-v1 AC11 and grill-me-review-v1
+      impact: Delivery should require graph count assertions, nonblank canvas pixel
+        checks, desktop/mobile screenshots, inspector interaction checks, reduced-motion
+        behavior, and source-ref coverage.
+    - statement: If artifact content is served over HTTP, local read-only status is
+        not enough to skip file-safety constraints.
+      source: architect-architecture-v1 API proposal and grill-me-review-v1
+      impact: API must restrict reads to manifest-registered refs and reject path
+        traversal, or security-engineer should be reactivated.
+    assumptions:
+    - statement: A Three.js scene is still justified if it explains handoff movement,
+        policy gates, and evidence chains rather than acting as decorative topology.
+      source: caveman-analysis-v1, PRD, architecture, UX
+      risk: Without LOD and evidence-first defaults, the visualizer becomes spectacle
+        over operational clarity.
+    - statement: The first implementation will include a snapshot adapter/server or
+        static export boundary before frontend components consume data.
+      source: architect-architecture-v1
+      risk: If frontend components parse raw YAML directly, schema drift and provenance
+        handling will spread through the UI.
+    - statement: Demo, replay, and live modes can share one normalized snapshot schema.
+      source: PRD and UX
+      risk: Mode labels must prevent generated demo data from being mistaken for durable
+        Ledger truth.
+    open_questions:
+    - statement: Which trace becomes the canonical demo fixture?
+      source: to-prd-prd-v1, architect-architecture-v1, ux-researcher-designer-ux-spec-v1,
+        grill-me-review-v1
+      owner: architect/prototype
+    - statement: Will artifact content be served over HTTP or only metadata?
+      source: architect-architecture-v1 and grill-me-review-v1
+      owner: api-designer/senior-engineer
+    - statement: Will digest verification run in v1 or be surfaced as not_checked
+        until later?
+      source: ux-researcher-designer-ux-spec-v1 and grill-me-review-v1
+      owner: senior-engineer
+  omitted_context:
+  - source: Full prose of org/RUNTIME.md
+    reason: background_only
+  - source: Full prose of org/CONTEXT_BLOCK.md
+    reason: background_only
+  - source: Complete relation inventory from ontology/relations.yaml
+    reason: background_only
+  - source: Full UX component descriptions that do not affect the review findings
+    reason: irrelevant
+  - source: Repeated statements across PRD, architecture, and UX that Ledger is source
+      of truth
+    reason: duplicate
+  compression_rationale:
+    method: Retained only review findings that change downstream action, source-truth
+      constraints, unresolved decisions, and exact handoff/artifact provenance needed
+      by later nodes.
+    loss_notes:
+    - Minor wording/style concerns were omitted because they do not affect implementation
+      legality, verification, or conceptual integrity.
+    - The full artifact bodies were not restated; downstream nodes should read the
+      source artifacts when implementing revisions.
+    - Unicode handoff refs are preserved exactly as the Ledger wrote them.
+  quality_checks:
+  - name: all_grill_me_input_handoffs_read
+    passed: true
+  - name: exact_context_digests_recorded_for_each_input_handoff
+    passed: true
+  - name: primary_prd_architecture_and_ux_artifacts_read
+    passed: true
+  - name: upstream_triage_and_caveman_artifacts_read_for_context
+    passed: true
+  - name: retained_required_changes_are_actionable
+    passed: true
+  - name: verdict_recorded
+    passed: true
+  verdict: ISSUES_TO_ADDRESS
+  permits_downstream:
+  - Proceed with implementation only after architecture/UX/prototype absorb required
+    changes or explicitly record why a finding is deferred.
+  blocks_downstream:
+  - Do not present the current propagating trace as a completed canonical demo.
+  - Do not claim digest verification without adapter-computed verification status.
+  - Do not deliver the Three.js frontend without concrete browser/canvas/source-truth
+    verification.

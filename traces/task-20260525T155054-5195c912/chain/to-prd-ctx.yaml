@@ -1,0 +1,43 @@
+block_id: to-prd
+task_id: task-20260525T155054-5195c912
+node: to-prd
+layer: 1
+timestamp: '2026-05-25T07:56:59.712769+00:00'
+prev_block: ux-researcher-designer-ctx.yaml
+original_task: 'Robot Fleet Ops Dashboard: real-time monitoring web panel for humanoid
+  robot fleets — real-time telemetry, heterogeneous data normalization, fleet overview
+  dashboard, alerts, 30-day history, config panel, engineer collaboration, PDF/Excel
+  reports, dark/light themes, i18n, draggable layouts'
+task_type: architecture
+entry_nodes:
+- triage
+- caveman
+- zoom-out
+- ux-researcher-designer
+chain:
+- node: triage
+  layer: 1
+  chain_entry: '12 requirements, 8 domains, P0-P2 priority: normalize→show→alert first,
+    then config/history/collaboration/export/theming/layout'
+  constraints: []
+- node: caveman
+  layer: 1
+  chain_entry: 'Core loop: ingest→normalize→show must work Week 1. Alert state machine
+    IS the architecture. Config requires audit trail.'
+  constraints: []
+- node: zoom-out
+  layer: 1
+  chain_entry: '9 modules, 3 databases (PostgreSQL ops, TimescaleDB telemetry, Redis
+    real-time). Data flow: MQTT→normalize→Redis Streams→TSDB+WebSocket fan-out.'
+  constraints: []
+- node: ux-researcher-designer
+  layer: 2
+  chain_entry: '3 personas (operator/manager/on-call), core interaction: alert state
+    machine→toast+sound+badge, draggable grid layout+collapsible sidebar'
+  constraints: []
+- node: to-prd
+  layer: 1
+  chain_entry: '24 user stories P0-P2, 9 modules (3 Deep: pipeline+alert+config).
+    P0: 12 stories for Week 1 core loop.'
+  constraints: []
+active_constraints: []

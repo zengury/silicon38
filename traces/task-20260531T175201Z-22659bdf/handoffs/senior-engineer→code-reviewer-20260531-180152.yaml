@@ -1,0 +1,129 @@
+from: senior-engineer
+to: code-reviewer
+relation_type: triggers
+timestamp: '2026-05-31T18:01:52.707330+00:00'
+focus: Activate code-reviewer from senior-engineer
+artifact_refs: &id001
+- senior-engineer-implementation-v1
+deliverable:
+  producer: senior-engineer
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: senior-engineer-implementation-v1
+    producer: senior-engineer
+    type: implementation
+    version: 1
+    status: draft
+    content_ref: artifacts/senior-engineer-implementation-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260531T175201Z-22659bdf
+  from: senior-engineer
+  to: code-reviewer
+  relation_type: triggers
+  focus: Activate code-reviewer from senior-engineer
+  source:
+    producer_role: senior-engineer
+    context_compression_report_ref: artifacts/senior-engineer-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/to-issues→senior-engineer-20260531-175303.yaml
+      context_digest: 31c6751e508efb36bd3c2125e2022cc44232143d944ba21bfa3f735e539363bb
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: 'Implemented 6 issues in dependency order: 1 (static analysis) →
+        2 (shared utilities) → 3 (feature structure) → 4 (JSDoc) → 5 (tests) → 6 (incremental
+        pattern)'
+      source: senior-engineer
+      impact: Foundation (jscpd, eslint config, operation helper) enables all subsequent
+        refactoring work
+    - statement: Used backward-compatible shim pattern for feature migration
+      source: senior-engineer
+      impact: Existing imports continue to work; modules can migrate incrementally
+    - statement: operation() context manager instruments but does not suppress exceptions
+      source: senior-engineer
+      impact: Callers retain control over error handling; metrics/logging are side
+        effects
+    constraints:
+    - statement: Must not introduce new features
+      source: to-issues
+      impact: All changes are structural only; no new API endpoints or UI components
+    - statement: Must preserve existing behavior
+      source: to-issues
+      impact: 129/129 tests pass; backward-compatible shims for robot API
+    - statement: Codebase is at /Users/ZQ/roboease
+      source: to-issues
+      impact: All paths relative to monorepo root
+    - statement: Write scope limited to product_code_scoped
+      source: senior-engineer harness
+      impact: No changes to CI/CD config, docker, or infrastructure code
+    assumptions:
+    - statement: pnpm workspace hoists eslint plugins to root node_modules (for shared
+        ESLint config)
+      source: senior-engineer
+      risk: If hoisting is disabled, admin/portal would need separate eslint plugin
+        installs in shared package
+    - statement: jscpd will be installed via pnpm install before running detect-duplicates
+      source: senior-engineer
+      risk: Low — standard pnpm workflow
+    - statement: Robot feature colocation pattern applies equally to task, agent,
+        synergy modules
+      source: senior-engineer
+      risk: Each module may have unique import patterns requiring adaptation
+    open_questions:
+    - statement: Should admin/portal eslint.config.ts be updated to use the shared
+        base config? Requires pnpm hoisting verification
+      source: senior-engineer
+      owner: code-reviewer
+    - statement: Which module should be refactored next using the feature colocation
+        pattern?
+      source: senior-engineer
+      owner: to-issues
+    - statement: Should operation() context manager be retroactively applied to existing
+        services?
+      source: senior-engineer
+      owner: senior-engineer (next pass)
+  omitted_context:
+  - source: Detailed per-service analysis of try/except patterns in all 25+ backend
+      services
+    reason: background_only
+  - source: Robot module Vue views migration into features/robot/views/
+    reason: background_only
+  - source: Full jscpd duplicate detection report
+    reason: background_only
+  compression_rationale:
+    method: Retained all architectural decisions (3) and constraints (4) as they form
+      the contract for downstream nodes. Assumptions and open questions preserved
+      for code-reviewer validation. Omitted tactical details (per-service analysis)
+      recoverable from implementation.md artifact.
+    loss_notes:
+    - No loss of critical information
+    - Per-service try/except patterns are recoverable from codebase on next pass
+    - jscpd report can be regenerated from .jscpd.json config
+  quality_checks:
+  - name: All 6 issues have acceptance criteria verified
+    passed: true
+  - name: Test suite passes (129/129)
+    passed: true
+  - name: No breaking changes to existing imports
+    passed: true
+  - name: Backward-compatible shims in place
+    passed: true
+  - name: Dependency graph respected (Issue 2 blocked by Issue 1, Issue 3 blocked
+      by Issue 2)
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - to-issues-decomposition-v1
+  - to-prd-prd-v1
+  - triage-analysis-v1
+  previous_blocks:
+  - ref: handoffs/to-issues→senior-engineer-20260531-175303.yaml
+    from: to-issues
+    to: senior-engineer
+    relation_type: thompson_sample
+    focus: Thompson sample α=336.8 β=4.7 [validated:triggers]
+    context_digest: 31c6751e508efb36bd3c2125e2022cc44232143d944ba21bfa3f735e539363bb
+    deliverable_artifact_refs:
+    - to-issues-decomposition-v1
+  context_digest: 095e40936b9162583673b0c2b1f716ecbe563c7bb436eb931bd0d3c44fbecc27

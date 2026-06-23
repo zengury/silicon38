@@ -1,0 +1,226 @@
+task_id: task-20260601T101500Z-manastone
+task_status: delivered
+node_states:
+  triage:
+    status: completed
+    updated_at: '2026-06-01T10:07:26.626519+00:00'
+    activated_at: '2026-06-01T10:07:26.515542+00:00'
+    completed_at: '2026-06-01T10:07:26.626519+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - triage-analysis-v1
+    blocked_reason: null
+    entry_node: true
+  scope-prosecutor:
+    status: completed
+    updated_at: '2026-06-01T10:07:45.856073+00:00'
+    activated_at: '2026-06-01T10:07:45.725213+00:00'
+    completed_at: '2026-06-01T10:07:45.856073+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - scope-prosecutor-scope-verdict-v1
+    blocked_reason: null
+    entry_node: true
+  caveman:
+    status: completed
+    updated_at: '2026-06-01T10:08:01.570257+00:00'
+    activated_at: '2026-06-01T10:08:01.377952+00:00'
+    completed_at: '2026-06-01T10:08:01.570257+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - caveman-analysis-v1
+    blocked_reason: null
+    entry_node: true
+  product-vision-anchor:
+    status: completed
+    updated_at: '2026-06-01T10:08:09.470889+00:00'
+    activated_at: '2026-06-01T10:08:09.290351+00:00'
+    completed_at: '2026-06-01T10:08:09.470889+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - product-vision-anchor-product-vision-statement-v1
+    blocked_reason: null
+  architect:
+    status: completed
+    updated_at: '2026-06-01T10:08:35.639671+00:00'
+    activated_at: '2026-06-01T10:08:35.366299+00:00'
+    completed_at: '2026-06-01T10:08:35.639671+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - architect-architecture-v1
+    blocked_reason: null
+  epic-design:
+    status: completed
+    updated_at: '2026-06-01T10:17:26.081784+00:00'
+    activated_at: '2026-06-01T10:17:25.507974+00:00'
+    completed_at: '2026-06-01T10:17:26.081784+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - epic-design-experience-design-v1
+    blocked_reason: null
+  apple-hig-expert:
+    status: completed
+    updated_at: '2026-06-01T10:18:09.355829+00:00'
+    activated_at: '2026-06-01T10:18:08.978264+00:00'
+    completed_at: '2026-06-01T10:18:09.355829+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - apple-hig-expert-platform-review-v1
+    blocked_reason: null
+  graph-topologist:
+    status: completed
+    updated_at: '2026-06-01T10:27:22.014515+00:00'
+    activated_at: '2026-06-01T10:27:21.670224+00:00'
+    completed_at: '2026-06-01T10:27:22.014515+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - graph-topologist-topology-review-v1
+    blocked_reason: null
+  hrbp:
+    status: completed
+    updated_at: '2026-06-01T10:27:22.545103+00:00'
+    activated_at: '2026-06-01T10:27:22.174496+00:00'
+    completed_at: '2026-06-01T10:27:22.545103+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - hrbp-talent-evaluation-v1
+    blocked_reason: null
+artifact_registry:
+  triage-analysis-v1:
+    type: analysis
+    producer: triage
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/triage-analysis-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-01T10:07:26.548046+00:00'
+  scope-prosecutor-scope-verdict-v1:
+    type: scope-verdict
+    producer: scope-prosecutor
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/scope-prosecutor-scope-verdict-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-01T10:07:45.767180+00:00'
+  caveman-analysis-v1:
+    type: analysis
+    producer: caveman
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/caveman-analysis-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-01T10:08:01.438860+00:00'
+  product-vision-anchor-product-vision-statement-v1:
+    type: product-vision-statement
+    producer: product-vision-anchor
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/product-vision-anchor-product-vision-statement-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-01T10:08:09.338673+00:00'
+  architect-architecture-v1:
+    type: architecture
+    producer: architect
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/architect-architecture-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-01T10:08:35.442005+00:00'
+  epic-design-experience-design-v1:
+    type: experience-design
+    producer: epic-design
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/epic-design-experience-design-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-01T10:17:25.652395+00:00'
+  apple-hig-expert-platform-review-v1:
+    type: platform-review
+    producer: apple-hig-expert
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/apple-hig-expert-platform-review-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-01T10:18:09.079846+00:00'
+  graph-topologist-topology-review-v1:
+    type: topology-review
+    producer: graph-topologist
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/graph-topologist-topology-review-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-01T10:27:21.757583+00:00'
+  hrbp-talent-evaluation-v1:
+    type: talent-evaluation
+    producer: hrbp
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/hrbp-talent-evaluation-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-01T10:27:22.275513+00:00'
+context_compression_reports:
+  triage:
+    ref: artifacts/triage-context-report-v1.yaml
+    registered_at: '2026-06-01T10:07:26.588790+00:00'
+    digest: 4629cd2d6a86b9c859a42f6c1690c24fcdc26c67e110fe3d45363d16d57a4761
+    status: valid
+  scope-prosecutor:
+    ref: artifacts/scope-prosecutor-context-report-v1.yaml
+    registered_at: '2026-06-01T10:07:45.808546+00:00'
+    digest: f39feb3b81676e60a8bb77656a022c6b921041c916f09d5379766311f87ed9a1
+    status: valid
+  caveman:
+    ref: artifacts/caveman-context-report-v1.yaml
+    registered_at: '2026-06-01T10:08:01.508851+00:00'
+    digest: 16d9c85ae8fe3802e80bfe623e82eeac795cc21c9860b961b7b2f2b5c5b84784
+    status: valid
+  product-vision-anchor:
+    ref: artifacts/product-vision-anchor-context-report-v1.yaml
+    registered_at: '2026-06-01T10:08:09.411714+00:00'
+    digest: 64d2e5536cff4cc6913000f02e4d7123b454ac3dac247a20cc80690d8d531fd7
+    status: valid
+  architect:
+    ref: artifacts/architect-context-report-v1.yaml
+    registered_at: '2026-06-01T10:08:35.547945+00:00'
+    digest: 02d32c0a062d7fd64ee3a1e533f83bd1a007207997ff75cd4ab1a8e458615aae
+    status: valid
+  epic-design:
+    ref: artifacts/epic-design-context-report-v1.yaml
+    registered_at: '2026-06-01T10:17:25.893762+00:00'
+    digest: 86c7a67829423403501588b915695d64da1febeef8969185125f97d590963a70
+    status: valid
+  apple-hig-expert:
+    ref: artifacts/apple-hig-expert-context-report-v1.yaml
+    registered_at: '2026-06-01T10:18:09.239359+00:00'
+    digest: f3ab38ea78db72e1cb4c425cb017dd1efcf1e28b384f60dfd39b28bd94db14a9
+    status: valid
+  graph-topologist:
+    ref: artifacts/graph-topologist-context-report-v1.yaml
+    registered_at: '2026-06-01T10:27:21.911032+00:00'
+    digest: 5183291f30ccc763760edfae75838239f00b2e0d5125f863fd47220769514fd8
+    status: valid
+  hrbp:
+    ref: artifacts/hrbp-context-report-v1.yaml
+    registered_at: '2026-06-01T10:27:22.432882+00:00'
+    digest: 6d1aad28035e522cea701346dd840415dd45c4f22b06684a785e2a57820f763b
+    status: valid
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: false
+  all_loops_resolved: false
+  all_blocking_evals_resolved: false
+  all_joins_passed: false
+  all_artifacts_resolved: false
+  no_undecided_activation_candidates: false
+  settled_at: null
+timestamp_end: '2026-06-01T10:27:21.547942+00:00'

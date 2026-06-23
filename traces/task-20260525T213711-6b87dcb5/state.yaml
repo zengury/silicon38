@@ -1,0 +1,30 @@
+task_id: task-20260525T213711-6b87dcb5
+task_status: propagating
+node_states:
+  caveman:
+    status: completed
+    updated_at: '2026-05-25T13:43:10.707945+00:00'
+    completed_at: '2026-05-25T13:43:10.707945+00:00'
+  to-prd:
+    status: activated
+    updated_at: '2026-05-25T13:47:55.919173+00:00'
+    entry_node: true
+artifact_registry:
+  caveman-analysis-v1:
+    type: analysis
+    producer: caveman
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/caveman-output-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-25T13:43:10.667479+00:00'
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: false
+  all_loops_resolved: false
+  all_blocking_evals_resolved: false
+  all_joins_passed: false
+  any_unresolved_artifacts: false
+  settled_at: null

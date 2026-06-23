@@ -1,0 +1,116 @@
+from: product-vision-anchor
+to: epic-design
+relation_type: thompson_sample
+timestamp: '2026-05-31T16:33:54.699346+00:00'
+focus: Thompson sample α=97.2 β=3.2 [validated:constrains]
+artifact_refs: &id001
+- product-vision-anchor-product-vision-statement-v1
+deliverable:
+  producer: product-vision-anchor
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: product-vision-anchor-product-vision-statement-v1
+    producer: product-vision-anchor
+    type: product-vision-statement
+    version: 1
+    status: draft
+    content_ref: artifacts/product-vision-anchor-product-vision-statement-v1.yaml
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260531T163244Z-880b8dd4
+  from: product-vision-anchor
+  to: epic-design
+  relation_type: thompson_sample
+  focus: Thompson sample α=97.2 β=3.2 [validated:constrains]
+  source:
+    producer_role: product-vision-anchor
+    context_compression_report_ref: artifacts/product-vision-anchor-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/to-prd→product-vision-anchor-20260531-163320.yaml
+      context_digest: 32f1ddd87c967fe8211b21a0c68969eba043fe8cc3c2eb87694f67d8633405da
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Task is a refactoring task for roboease codebase at /Users/ZQ/roboease
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Adopt feature-based module structure
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use static analysis to identify duplicates
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Extract interfaces for testability
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Incremental refactoring per module
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: No external behavior changes
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must not change external behavior
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: 'Codebase path: /Users/ZQ/roboease'
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Existing tests must be preserved
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: User wants to improve maintainability and testability
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Existing tests may exist but are not guaranteed
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Team will confirm preferred module structure
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Preferred module structure (feature-based vs layer-based)?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Existing test preservation requirements?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Risk tolerance for refactoring?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: General triage instructions
+    reason: background_only
+  - source: Non-essential details from handoffs
+    reason: background_only
+  compression_rationale:
+    method: Extracted only task-relevant information for vision synthesis; omitted
+      general instructions and non-essential details.
+    loss_notes: []
+  quality_checks:
+  - name: Vision statement is falsifiable
+    passed: true
+  - name: Vision statement names specific target user and situation
+    passed: true
+  - name: Vision statement names alternative being beaten
+    passed: true
+  - name: Vision statement avoids abstract filler
+    passed: true
+  - name: Out of scope forever defined
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - to-prd-prd-v1
+  - triage-analysis-v1
+  previous_blocks:
+  - ref: handoffs/to-prd→product-vision-anchor-20260531-163320.yaml
+    from: to-prd
+    to: product-vision-anchor
+    relation_type: thompson_sample
+    focus: Thompson sample α=196.2 β=4.2 [validated:triggers]
+    context_digest: 32f1ddd87c967fe8211b21a0c68969eba043fe8cc3c2eb87694f67d8633405da
+    deliverable_artifact_refs:
+    - to-prd-prd-v1
+  context_digest: d315606fee6a0425feb6de7b7bea43c918cb839ca2cc1eebcbd7a2e8f18dbf81
+soul_ref: org/soul.md

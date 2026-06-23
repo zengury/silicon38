@@ -1,0 +1,8 @@
+artifact_id: to-prd-prd-v1
+producer: to-prd
+task_id: task-20260531T163244Z-880b8dd4
+version: 1
+timestamp: '2026-05-31T16:33:18.817151+00:00'
+input_artifacts: []
+quality_checks: []
+status: draft

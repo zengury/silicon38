@@ -1,0 +1,5 @@
+from: ui-design-system
+to: senior-frontend
+relation_type: constrains
+timestamp: '2026-05-25T07:04:24.872688+00:00'
+focus: 'hard constraints: 10 component specs + design tokens → frontend implementation'

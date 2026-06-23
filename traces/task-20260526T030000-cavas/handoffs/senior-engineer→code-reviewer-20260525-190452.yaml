@@ -1,0 +1,7 @@
+from: senior-engineer
+to: code-reviewer
+relation_type: triggers
+timestamp: '2026-05-25T19:04:52.309405+00:00'
+focus: 'Review all Phase 1 changes: file splits, tests, imports'
+artifact_refs:
+- senior-engineer-code-v1

@@ -1,0 +1,9 @@
+from: zoom-out
+to: architect
+relation_type: may_trigger
+timestamp: '2026-05-26T00:40:57.454209+00:00'
+focus: 'Architecture work identified: server boilerplate duplication, hardcoded thresholds
+  vs schema-driven design, global singleton patterns, stale ui.py, missing DI — architect
+  must design refactoring plan before implementation'
+artifact_refs:
+- zoom-out-analysis-v1

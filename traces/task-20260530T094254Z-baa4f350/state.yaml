@@ -1,0 +1,408 @@
+task_id: task-20260530T094254Z-baa4f350
+task_status: delivered
+node_states:
+  zoom-out:
+    status: completed
+    updated_at: '2026-05-30T09:43:32.552736+00:00'
+    activated_at: '2026-05-30T09:43:32.430723+00:00'
+    completed_at: '2026-05-30T09:43:32.552736+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - zoom-out-context-map-v1
+    blocked_reason: null
+    entry_node: true
+  architect:
+    status: completed
+    updated_at: '2026-05-30T09:43:57.431424+00:00'
+    activated_at: '2026-05-30T09:43:57.247538+00:00'
+    completed_at: '2026-05-30T09:43:57.431424+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - architect-architecture-v1
+    blocked_reason: null
+  security-engineer:
+    status: completed
+    updated_at: '2026-05-30T09:44:34.165808+00:00'
+    activated_at: '2026-05-30T09:44:33.912842+00:00'
+    completed_at: '2026-05-30T09:44:34.165808+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - security-engineer-evaluation-v1
+    blocked_reason: null
+  api-designer:
+    status: completed
+    updated_at: '2026-05-30T09:44:47.184635+00:00'
+    activated_at: '2026-05-30T09:44:46.833636+00:00'
+    completed_at: '2026-05-30T09:44:47.184635+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - api-designer-contract-v1
+    blocked_reason: null
+  devops-engineer:
+    status: completed
+    updated_at: '2026-05-30T09:49:19.486817+00:00'
+    activated_at: '2026-05-30T09:49:19.211117+00:00'
+    completed_at: '2026-05-30T09:49:19.486817+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - devops-engineer-ops-plan-v1
+    blocked_reason: null
+  database-engineer:
+    status: completed
+    updated_at: '2026-05-30T09:51:53.353032+00:00'
+    activated_at: '2026-05-30T09:51:53.035858+00:00'
+    completed_at: '2026-05-30T09:51:53.353032+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - database-engineer-data-design-v1
+    blocked_reason: null
+  senior-engineer:
+    status: completed
+    updated_at: '2026-05-30T09:55:02.500539+00:00'
+    activated_at: '2026-05-30T09:55:02.124526+00:00'
+    completed_at: '2026-05-30T09:55:02.500539+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - senior-engineer-implementation-v1
+    blocked_reason: null
+  delivery-prover:
+    status: completed
+    updated_at: '2026-05-30T09:55:28.447586+00:00'
+    activated_at: '2026-05-30T09:55:27.905924+00:00'
+    completed_at: '2026-05-30T09:55:28.447586+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - delivery-prover-proof-v1
+    blocked_reason: null
+  code-reviewer:
+    status: completed
+    updated_at: '2026-05-30T09:55:32.090957+00:00'
+    activated_at: '2026-05-30T09:55:31.500522+00:00'
+    completed_at: '2026-05-30T09:55:32.090957+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - code-reviewer-review-v1
+    blocked_reason: null
+  tdd:
+    status: completed
+    updated_at: '2026-05-30T09:55:34.876030+00:00'
+    activated_at: '2026-05-30T09:55:34.348333+00:00'
+    completed_at: '2026-05-30T09:55:34.876030+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - tdd-evaluation-v1
+    blocked_reason: null
+  release-manager:
+    status: completed
+    updated_at: '2026-05-30T10:01:18.861386+00:00'
+    activated_at: '2026-05-30T10:01:18.377193+00:00'
+    completed_at: '2026-05-30T10:01:18.861386+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - release-manager-release-plan-v1
+    blocked_reason: null
+  observability-engineer:
+    status: completed
+    updated_at: '2026-05-30T10:04:05.894084+00:00'
+    activated_at: '2026-05-30T10:04:05.325438+00:00'
+    completed_at: '2026-05-30T10:04:05.894084+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - observability-engineer-observability-v1
+    blocked_reason: null
+  handoff:
+    status: completed
+    updated_at: '2026-05-30T10:04:29.236895+00:00'
+    activated_at: '2026-05-30T10:04:28.623684+00:00'
+    completed_at: '2026-05-30T10:04:29.236895+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - handoff-handoff-v1
+    blocked_reason: null
+  dependency-auditor:
+    status: completed
+    updated_at: '2026-05-30T10:04:50.952939+00:00'
+    activated_at: '2026-05-30T10:04:50.304597+00:00'
+    completed_at: '2026-05-30T10:04:50.952939+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - dependency-auditor-dependency-audit-v1
+    blocked_reason: null
+  technical-writer:
+    status: completed
+    updated_at: '2026-05-30T10:04:55.950800+00:00'
+    activated_at: '2026-05-30T10:04:55.245913+00:00'
+    completed_at: '2026-05-30T10:04:55.950800+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - technical-writer-doc-v1
+    blocked_reason: null
+  graph-topologist:
+    status: completed
+    updated_at: '2026-05-30T10:04:57.274211+00:00'
+    activated_at: '2026-05-30T10:04:56.513172+00:00'
+    completed_at: '2026-05-30T10:04:57.274211+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - graph-topologist-topology-review-v1
+    blocked_reason: null
+  hrbp:
+    status: completed
+    updated_at: '2026-05-30T12:09:40.668569+00:00'
+    activated_at: '2026-05-30T12:09:39.791688+00:00'
+    completed_at: '2026-05-30T12:09:40.668569+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - hrbp-talent-evaluation-v1
+    blocked_reason: null
+artifact_registry:
+  zoom-out-context-map-v1:
+    type: context-map
+    producer: zoom-out
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/zoom-out-context-map-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T09:43:32.464403+00:00'
+  architect-architecture-v1:
+    type: architecture
+    producer: architect
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/architect-architecture-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T09:43:57.285380+00:00'
+  security-engineer-evaluation-v1:
+    type: evaluation
+    producer: security-engineer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/security-engineer-evaluation-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T09:44:33.961118+00:00'
+  api-designer-contract-v1:
+    type: contract
+    producer: api-designer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/api-designer-contract-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T09:44:46.887924+00:00'
+  devops-engineer-ops-plan-v1:
+    type: ops-plan
+    producer: devops-engineer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/devops-engineer-ops-plan-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T09:49:19.274559+00:00'
+  database-engineer-data-design-v1:
+    type: data-design
+    producer: database-engineer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/database-engineer-data-design-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T09:51:53.102287+00:00'
+  senior-engineer-implementation-v1:
+    type: implementation
+    producer: senior-engineer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/senior-engineer-implementation-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T09:55:02.210407+00:00'
+  delivery-prover-proof-v1:
+    type: proof
+    producer: delivery-prover
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/delivery-prover-proof-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T09:55:28.037240+00:00'
+  code-reviewer-review-v1:
+    type: review
+    producer: code-reviewer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/code-reviewer-review-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T09:55:31.646871+00:00'
+  tdd-evaluation-v1:
+    type: evaluation
+    producer: tdd
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/tdd-evaluation-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T09:55:34.468507+00:00'
+  release-manager-release-plan-v1:
+    type: release-plan
+    producer: release-manager
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/release-manager-release-plan-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T10:01:18.486098+00:00'
+  observability-engineer-observability-v1:
+    type: observability
+    producer: observability-engineer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/observability-engineer-observability-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T10:04:05.455285+00:00'
+  handoff-handoff-v1:
+    type: handoff
+    producer: handoff
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/handoff-handoff-v1.yaml
+    consumers_pending: []
+    registered_at: '2026-05-30T10:04:28.765411+00:00'
+  dependency-auditor-dependency-audit-v1:
+    type: dependency-audit
+    producer: dependency-auditor
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/dependency-auditor-dependency-audit-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T10:04:50.458368+00:00'
+  technical-writer-doc-v1:
+    type: doc
+    producer: technical-writer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/technical-writer-doc-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T10:04:55.405924+00:00'
+  graph-topologist-topology-review-v1:
+    type: topology-review
+    producer: graph-topologist
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/graph-topologist-topology-review-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T10:04:56.677165+00:00'
+  hrbp-talent-evaluation-v1:
+    type: talent-evaluation
+    producer: hrbp
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/hrbp-talent-evaluation-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T12:09:39.964809+00:00'
+context_compression_reports:
+  zoom-out:
+    ref: artifacts/zoom-out-context-report-v1.yaml
+    registered_at: '2026-05-30T09:43:32.512238+00:00'
+    digest: 57dd1c2a79ed1f791358c2eb1f713ac8421cf5488d3f69265870c57ec86b6a37
+    status: valid
+  architect:
+    ref: artifacts/architect-context-report-v1.yaml
+    registered_at: '2026-05-30T09:43:57.374575+00:00'
+    digest: 3278cbd8953159f77decf2dbe2ad4692e92eec07243ea650a37b2c0dbe6e15d6
+    status: valid
+  security-engineer:
+    ref: artifacts/security-engineer-context-report-v1.yaml
+    registered_at: '2026-05-30T09:44:34.099157+00:00'
+    digest: 97a8b89ac2df7e01069b790dca583a51fdbb260432950aebdfbd3aadfcb86abf
+    status: valid
+  api-designer:
+    ref: artifacts/api-designer-context-report-v1.yaml
+    registered_at: '2026-05-30T09:44:47.106709+00:00'
+    digest: 909996900b5280d3c63284c32d31ec5ecc9d70b51ab6b48619a68f4c7061f079
+    status: valid
+  devops-engineer:
+    ref: artifacts/devops-engineer-context-report-v1.yaml
+    registered_at: '2026-05-30T09:49:19.405817+00:00'
+    digest: 4323bdf9d8261456b6740e51cb9666e17a9a505044e11c125da8919f7ccdb8c5
+    status: valid
+  database-engineer:
+    ref: artifacts/database-engineer-context-report-v1.yaml
+    registered_at: '2026-05-30T09:51:53.260368+00:00'
+    digest: 25b158c9d8ebddbb77af384813413aa972f9f2958c37b5104d339fa93b9f864a
+    status: valid
+  senior-engineer:
+    ref: artifacts/senior-engineer-context-report-v1.yaml
+    registered_at: '2026-05-30T09:55:02.388834+00:00'
+    digest: 7841a50d058ddbad8852d30a71f931be5632ae5531480f3d548a233cb4b60409
+    status: valid
+  delivery-prover:
+    ref: artifacts/delivery-prover-context-report-v1.yaml
+    registered_at: '2026-05-30T09:55:28.306820+00:00'
+    digest: 3840d8c551dd124e2981907be5c96b862373572d693868c7a232d341d79fb16a
+    status: valid
+  code-reviewer:
+    ref: artifacts/code-reviewer-context-report-v1.yaml
+    registered_at: '2026-05-30T09:55:31.944817+00:00'
+    digest: d0682d87fc89da4f4db24ef57a24a54e21cea777258c42435115a6f1cb09c109
+    status: valid
+  tdd:
+    ref: artifacts/tdd-context-report-v1.yaml
+    registered_at: '2026-05-30T09:55:34.725681+00:00'
+    digest: ce9400400da0ca859a54d24982951d1e445b6ebc1e8eec8e9f5b4d39a50bbf33
+    status: valid
+  release-manager:
+    ref: artifacts/release-manager-context-report-v1.yaml
+    registered_at: '2026-05-30T10:01:18.717685+00:00'
+    digest: 627f11805708dc1a5b4a313aacabf486c3f117d6e0c18ca5eabe5d0f3fea4f11
+    status: valid
+  observability-engineer:
+    ref: artifacts/observability-engineer-context-report-v1.yaml
+    registered_at: '2026-05-30T10:04:05.725834+00:00'
+    digest: 87eb8dfb878b5d3e9adf663b4f8e064447c6173929784c1734737fe7a38dae2d
+    status: valid
+  handoff:
+    ref: artifacts/handoff-context-report-v1.yaml
+    registered_at: '2026-05-30T10:04:29.061279+00:00'
+    digest: e918d3ad745f5d85f8920f53d849be3aa1ba7b34b6b3011c2434051c5724a4da
+    status: valid
+  dependency-auditor:
+    ref: artifacts/dependency-auditor-context-report-v1.yaml
+    registered_at: '2026-05-30T10:04:50.770082+00:00'
+    digest: eaef318ab8f060dfaab1476b86d37aed5571a88360e9abb236be3fba1533020f
+    status: valid
+  technical-writer:
+    ref: artifacts/technical-writer-context-report-v1.yaml
+    registered_at: '2026-05-30T10:04:55.750960+00:00'
+    digest: 5b25b45863b042d0332f3e230dc41c0ffed7145a3f68b647f7c753757e983ff2
+    status: valid
+  graph-topologist:
+    ref: artifacts/graph-topologist-context-report-v1.yaml
+    registered_at: '2026-05-30T10:04:57.095820+00:00'
+    digest: 5183291f30ccc763760edfae75838239f00b2e0d5125f863fd47220769514fd8
+    status: valid
+  hrbp:
+    ref: artifacts/hrbp-context-report-v1.yaml
+    registered_at: '2026-05-30T12:09:40.471078+00:00'
+    digest: 6d1aad28035e522cea701346dd840415dd45c4f22b06684a785e2a57820f763b
+    status: valid
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: false
+  all_loops_resolved: false
+  all_blocking_evals_resolved: false
+  all_joins_passed: false
+  all_artifacts_resolved: false
+  no_undecided_activation_candidates: false
+  settled_at: null
+timestamp_end: '2026-05-30T10:04:56.289109+00:00'

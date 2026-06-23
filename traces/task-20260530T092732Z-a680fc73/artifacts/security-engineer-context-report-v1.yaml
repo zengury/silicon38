@@ -1,0 +1,75 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→security-engineer-20260530-092813.yaml
+      context_digest: 123c7fa27195a6a22c7058334ea5486626abd9f7c3ad2cd18a2d9ed7f44a4d84
+  retained_context:
+    decisions:
+    - statement: Map focuses on high-level module structure and deployment topology
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Backend source not present in workspace; only Dockerfile and docker-compose
+        references used
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Only workspace files under /Users/ZQ/roboease are available
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Backend implementation code is not included in the workspace
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Backend is a FastAPI application based on Dockerfile and docker-compose
+        references
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: EMQX is used for MQTT messaging to robots
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: MySQL is the primary database
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Redis is used for caching
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Minio is used for object storage
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Where is the backend source code?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What are the exact API endpoints and data models?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How is authentication/authorization implemented?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the robot-side software architecture?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Is there a CI/CD pipeline?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the Dify AI Platform integration scope?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed frontend component tree (not relevant for security evaluation)
+    reason: background_only
+  - source: Artifact files (release reports, plans) - not relevant for security
+    reason: background_only
+  compression_rationale:
+    method: Selective inclusion based on relevance to security evaluation. Retained
+      architecture decisions, constraints, and assumptions that affect security posture.
+      Omitted detailed frontend component trees and artifact files.
+    loss_notes: []
+  quality_checks:
+  - name: All upstream decisions and constraints are captured
+    passed: true
+  - name: Assumptions are explicitly documented with risk
+    passed: true
+  - name: Open questions are carried forward
+    passed: true

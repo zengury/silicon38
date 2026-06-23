@@ -1,0 +1,105 @@
+from: to-issues
+to: senior-engineer
+relation_type: thompson_sample
+timestamp: '2026-05-31T17:22:56.569562+00:00'
+focus: Thompson sample α=336.8 β=4.7 [validated:triggers]
+artifact_refs: &id001
+- to-issues-decomposition-v1
+deliverable:
+  producer: to-issues
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: to-issues-decomposition-v1
+    producer: to-issues
+    type: decomposition
+    version: 1
+    status: draft
+    content_ref: artifacts/to-issues-decomposition-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260531T172123Z-177f104c
+  from: to-issues
+  to: senior-engineer
+  relation_type: thompson_sample
+  focus: Thompson sample α=336.8 β=4.7 [validated:triggers]
+  source:
+    producer_role: to-issues
+    context_compression_report_ref: artifacts/to-issues-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/to-prd→to-issues-20260531-172214.yaml
+      context_digest: 1315f07bdebe52efeaff7421acd4f25c30dec97c3c4acc4be69ba5df8d7fbeb2
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Adopt feature-based module structure.
+      source: to-prd-prd-v1
+      impact: Affects module organization in issues.
+    - statement: Use static analysis for duplicate detection.
+      source: to-prd-prd-v1
+      impact: Drives Issue 1.
+    - statement: Introduce dependency injection for testability.
+      source: to-prd-prd-v1
+      impact: Drives Issue 4.
+    - statement: Incremental refactoring with backward compatibility.
+      source: to-prd-prd-v1
+      impact: Constrains all issues.
+    constraints:
+    - statement: Must maintain backward compatibility.
+      source: to-prd-prd-v1
+      impact: All issues must preserve public APIs.
+    - statement: Refactoring must be incremental.
+      source: to-prd-prd-v1
+      impact: Issues are small and reversible.
+    assumptions:
+    - statement: Codebase is at /Users/ZQ/roboease and is accessible.
+      source: handoff
+      risk: Assumption may need review.
+    - statement: Task is a general refactoring request.
+      source: handoff
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Primary language?
+      source: handoff
+      owner: runtime
+    - statement: Existing tests?
+      source: handoff
+      owner: runtime
+    - statement: Preferred module structure?
+      source: handoff
+      owner: runtime
+    - statement: Backward compatibility constraints?
+      source: handoff
+      owner: runtime
+  omitted_context:
+  - source: to-prd-prd-v1
+    reason: background_only
+  compression_rationale:
+    method: Retained all decisions, constraints, assumptions, and open questions from
+      the PRD and handoff. Omitted detailed implementation decisions that are not
+      necessary for issue decomposition.
+    loss_notes:
+    - Omitted specific tool recommendations (e.g., jscpd, Jest) as they are implementation
+      details.
+  quality_checks:
+  - name: independent_issues_present
+    passed: true
+  - name: dependencies_named
+    passed: true
+  - name: acceptance_criteria_present
+    passed: true
+  - name: dependency_graph_acyclic
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - to-prd-prd-v1
+  - triage-analysis-v1
+  previous_blocks:
+  - ref: handoffs/to-prd→to-issues-20260531-172214.yaml
+    from: to-prd
+    to: to-issues
+    relation_type: thompson_sample
+    focus: Thompson sample α=366.8 β=3.5 [validated:triggers]
+    context_digest: 1315f07bdebe52efeaff7421acd4f25c30dec97c3c4acc4be69ba5df8d7fbeb2
+    deliverable_artifact_refs:
+    - to-prd-prd-v1
+  context_digest: 42066c8934835facaa27c94edf46ae752c9dd0dfe5bde864b125c12fedd515dd

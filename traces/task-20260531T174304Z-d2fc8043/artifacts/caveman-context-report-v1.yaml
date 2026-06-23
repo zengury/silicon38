@@ -1,0 +1,70 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/to-prd→caveman-20260531-174340.yaml
+      context_digest: c79d52e6d5d7c82a3dba0f1f32ac3eee9d1bc362e53a9bb8ec24e5e70e35a898
+  retained_context:
+    decisions:
+    - statement: Task is a codebase improvement (enhancement) not a bug.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Priority set to high due to impact on maintainability.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use incremental refactoring (Strangler Fig pattern) to avoid long-lived
+        branches.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Extract deep modules for common functionality.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Prioritize elimination of exact duplicates first.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: No write access to the codebase.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must respect existing ADRs and out-of-scope decisions.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: The codebase is primarily one language (to be confirmed).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Existing tests may be present (to be confirmed).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the primary programming language(s)?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Are there existing tests and what framework?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Any architectural constraints?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Desired outcome metrics?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed user stories (overkill for this task).
+    reason: background_only
+  - source: Testing decisions and coverage targets (premature).
+    reason: background_only
+  - source: Module extraction and boundary decisions (defer after dedup).
+    reason: background_only
+  - source: Architectural constraints beyond ADR respect.
+    reason: background_only
+  compression_rationale:
+    method: Retained core problem, key decisions, constraints, and open questions.
+      Omitted detailed implementation plans, user stories, and testing targets as
+      unnecessary for first-principles analysis.
+    loss_notes: []
+  quality_checks:
+  - name: Required fields present
+    passed: true
+  - name: Context compression valid
+    passed: true

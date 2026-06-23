@@ -1,0 +1,76 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→senior-engineer-20260530-092812.yaml
+      context_digest: 80556ebcf739a24bbd53fa8532eab0db4539a74d30ce9f0cb64ac73a402e2154
+  retained_context:
+    decisions:
+    - statement: Adopt Modular Monolith architecture with strict module boundaries
+      source: architect.architect-architecture-v1
+      impact: Focus on frontend modularization; backend deferred
+    - statement: Extract shared frontend library from portal and admin to reduce duplication
+      source: architect.architect-architecture-v1
+      impact: Created @roboease/shared package as the shared library
+    - statement: 'Implement incrementally: shared lib → refactor apps → optimize Docker
+        → add health checks'
+      source: architect.architect-architecture-v1
+      impact: Execution order matched the plan exactly
+    constraints:
+    - statement: Backend source code is not present in workspace
+      source: architect.architect-architecture-v1
+      impact: Backend refactoring deferred; only frontend and Docker changes made
+    - statement: Only Dockerfile and docker-compose references available for backend
+      source: architect.architect-architecture-v1
+      impact: Backend assumptions (FastAPI, EMQX, MySQL, Redis) not validated
+    - statement: Frontend has significant duplication between portal and admin
+      source: architect.architect-architecture-v1
+      impact: Shared package addresses this directly
+    assumptions:
+    - statement: Backend is FastAPI with JWT authentication
+      source: architect.architect-architecture-v1
+      risk: Moderate — auth flow assumptions drive token management design
+    - statement: Portal and admin talk to the same backend API with different result
+        code formats
+      source: senior-engineer implementation analysis
+      risk: Low — confirmed by comparing existing request.ts implementations
+    open_questions:
+    - statement: Where is the backend source code located?
+      source: architect.architect-architecture-v1
+      owner: runtime
+    - statement: What is the authentication/authorization mechanism?
+      source: architect.architect-architecture-v1
+      owner: runtime
+    - statement: Is there an existing CI/CD pipeline?
+      source: architect.architect-architecture-v1
+      owner: runtime
+    - statement: Does the portal have a user store module? (referenced but not in
+        workspace listing)
+      source: senior-engineer implementation analysis
+      owner: runtime
+  omitted_context:
+  - source: semantic_node_executor
+    reason: background_only
+  - source: semantic_node_executor
+    reason: background_only
+  - source: semantic_node_executor
+    reason: background_only
+  compression_rationale:
+    method: Selective inclusion based on relevance to frontend implementation. Retained
+      architecture decisions about modularization, shared library extraction, and
+      Docker optimization. Omitted detailed component trees, robot hardware code,
+      and prior artifacts as they don't affect the shared package API design.
+    loss_notes:
+    - Excluded portal's full SPA component tree — not needed since only utils/api/auth
+      layers changed
+    - Excluded admin's 30+ API modules — they import the unchanged request.ts default
+      export, so no per-file changes needed
+  quality_checks:
+  - name: All upstream architecture decisions implemented
+    passed: true
+  - name: No new compilation errors introduced
+    passed: true
+  - name: Backward compatibility maintained for all consumers
+    passed: true
+  - name: Docker builds updated for workspace structure
+    passed: true

@@ -1,0 +1,217 @@
+task_id: task-20260531T172123Z-177f104c
+timestamp_start: '2026-05-31T17:21:24.227435+00:00'
+timestamp_end: null
+task_summary: 优化重构 /Users/ZQ/roboease 代码库：消除重复代码、改善模块结构、提升可维护性和可测试性
+task_type: general
+entry_nodes:
+- triage
+terminal_nodes:
+- triage
+- to-prd
+- scope-prosecutor
+- to-issues
+- caveman
+- senior-engineer
+- code-reviewer
+- tdd
+- delivery-prover
+- handoff
+outcome: null
+context_block:
+  ref: org/CONTEXT_BLOCK.md
+  sha256: d82dc247c04f8cd2e797dd394ecd8d9cd927f1e194f2800d4fcf1e2be41f2a66
+artifact_index:
+- artifact_id: triage-analysis-v1
+  type: analysis
+  producer: triage
+  version: 1
+  status: draft
+  path: artifacts/triage-analysis-v1.md
+  ref: artifacts/triage-analysis-v1.md
+  provenance_ref: artifacts/triage-analysis-v1.provenance.yaml
+- artifact_id: to-prd-prd-v1
+  type: prd
+  producer: to-prd
+  version: 1
+  status: draft
+  path: artifacts/to-prd-prd-v1.md
+  ref: artifacts/to-prd-prd-v1.md
+  provenance_ref: artifacts/to-prd-prd-v1.provenance.yaml
+- artifact_id: scope-prosecutor-scope-verdict-v1
+  type: scope-verdict
+  producer: scope-prosecutor
+  version: 1
+  status: draft
+  path: artifacts/scope-prosecutor-scope-verdict-v1.md
+  ref: artifacts/scope-prosecutor-scope-verdict-v1.md
+  provenance_ref: artifacts/scope-prosecutor-scope-verdict-v1.provenance.yaml
+- artifact_id: to-issues-decomposition-v1
+  type: decomposition
+  producer: to-issues
+  version: 1
+  status: draft
+  path: artifacts/to-issues-decomposition-v1.md
+  ref: artifacts/to-issues-decomposition-v1.md
+  provenance_ref: artifacts/to-issues-decomposition-v1.provenance.yaml
+- artifact_id: caveman-analysis-v1
+  type: analysis
+  producer: caveman
+  version: 1
+  status: draft
+  path: artifacts/caveman-analysis-v1.md
+  ref: artifacts/caveman-analysis-v1.md
+  provenance_ref: artifacts/caveman-analysis-v1.provenance.yaml
+- artifact_id: senior-engineer-implementation-v1
+  type: implementation
+  producer: senior-engineer
+  version: 1
+  status: draft
+  path: artifacts/senior-engineer-implementation-v1.md
+  ref: artifacts/senior-engineer-implementation-v1.md
+  provenance_ref: artifacts/senior-engineer-implementation-v1.provenance.yaml
+- artifact_id: code-reviewer-review-v1
+  type: review
+  producer: code-reviewer
+  version: 1
+  status: draft
+  path: artifacts/code-reviewer-review-v1.md
+  ref: artifacts/code-reviewer-review-v1.md
+  provenance_ref: artifacts/code-reviewer-review-v1.provenance.yaml
+- artifact_id: tdd-evaluation-v1
+  type: evaluation
+  producer: tdd
+  version: 1
+  status: draft
+  path: artifacts/tdd-evaluation-v1.md
+  ref: artifacts/tdd-evaluation-v1.md
+  provenance_ref: artifacts/tdd-evaluation-v1.provenance.yaml
+- artifact_id: delivery-prover-proof-v1
+  type: proof
+  producer: delivery-prover
+  version: 1
+  status: draft
+  path: artifacts/delivery-prover-proof-v1.md
+  ref: artifacts/delivery-prover-proof-v1.md
+  provenance_ref: artifacts/delivery-prover-proof-v1.provenance.yaml
+- artifact_id: handoff-handoff-v1
+  type: handoff
+  producer: handoff
+  version: 1
+  status: draft
+  path: artifacts/handoff-handoff-v1.yaml
+  ref: artifacts/handoff-handoff-v1.yaml
+  provenance_ref: artifacts/handoff-handoff-v1.provenance.yaml
+context_report_index:
+- role: triage
+  ref: artifacts/triage-context-report-v1.yaml
+  digest: 5761957c57c72e1d52d656e224998d65adfa03ad084fa1e16794299e3a9d4f2a
+  status: valid
+- role: to-prd
+  ref: artifacts/to-prd-context-report-v1.yaml
+  digest: 708914357a6e7ee6a488ad8ebb4fd398560abca9e062201ca92b3ef1ea9f13af
+  status: valid
+- role: scope-prosecutor
+  ref: artifacts/scope-prosecutor-context-report-v1.yaml
+  digest: 7bb2eb00ee83d2ca57f7cf3f4cd30e92820f7898bc5740b9cd97aef53a0b5514
+  status: valid
+- role: to-issues
+  ref: artifacts/to-issues-context-report-v1.yaml
+  digest: ed0a58e40fddf95942066c5533a8c8ff4ebf0545a57425ebe7586202a441a489
+  status: valid
+- role: caveman
+  ref: artifacts/caveman-context-report-v1.yaml
+  digest: c898b163dc8bf5dd0a5a8f383bfbd6d8c301e43a04ac8778700dfc4a173b587e
+  status: valid
+- role: senior-engineer
+  ref: artifacts/senior-engineer-context-report-v1.yaml
+  digest: 0ea15846f7b8acea07ef6a964a155b53044167ce1180d4a57d1c6a39dcf3f4e6
+  status: valid
+- role: code-reviewer
+  ref: artifacts/code-reviewer-context-report-v1.yaml
+  digest: 5c3dc124b8c430d93330c9c97efe9bbd9c9f5cd340a80caf2cc3143c49d65a9d
+  status: valid
+- role: tdd
+  ref: artifacts/tdd-context-report-v1.yaml
+  digest: 939b58283656a2d2a045dffe834b9fe149c074c4d8893620ef46ce55272f019e
+  status: valid
+- role: delivery-prover
+  ref: artifacts/delivery-prover-context-report-v1.yaml
+  digest: 66ce8edf3f28b3f4fa14f8e7ebc6d380df30717b3b601f484fdfd2fa5f4e085a
+  status: valid
+- role: handoff
+  ref: artifacts/handoff-context-report-v1.yaml
+  digest: 600d156d08486c94839ccd9e223e4339c0475960fa09826f56b669a8f58fc260
+  status: valid
+handoff_trail:
+- ref: handoffs/triage→to-prd-20260531-172147.yaml
+  from: triage
+  to: to-prd
+  relation_type: thompson_sample
+  timestamp: '2026-05-31T17:21:47.499149+00:00'
+  artifact_refs:
+  - triage-analysis-v1
+  context_block_digest: 4d430461188c8bdcb28cf6ba91198c07de3a2fb82b605126ac1b20dbd9799639
+- ref: handoffs/to-prd→to-issues-20260531-172214.yaml
+  from: to-prd
+  to: to-issues
+  relation_type: thompson_sample
+  timestamp: '2026-05-31T17:22:14.177884+00:00'
+  artifact_refs:
+  - to-prd-prd-v1
+  context_block_digest: 1315f07bdebe52efeaff7421acd4f25c30dec97c3c4acc4be69ba5df8d7fbeb2
+- ref: handoffs/to-prd→caveman-20260531-172214.yaml
+  from: to-prd
+  to: caveman
+  relation_type: evaluates
+  timestamp: '2026-05-31T17:22:14.442473+00:00'
+  artifact_refs:
+  - to-prd-prd-v1
+  context_block_digest: c74dae5861391ed3ab6a0c6140f42ec671f951a5340c9e506c9c3a88cbec0c8b
+- ref: handoffs/to-prd→scope-prosecutor-20260531-172214.yaml
+  from: to-prd
+  to: scope-prosecutor
+  relation_type: evaluates
+  timestamp: '2026-05-31T17:22:14.733164+00:00'
+  artifact_refs:
+  - to-prd-prd-v1
+  context_block_digest: 944acbd2e49377768b54c52a8cd4db7bbb6c197797dabeef28c9f6dc4b88137c
+- ref: handoffs/to-issues→senior-engineer-20260531-172256.yaml
+  from: to-issues
+  to: senior-engineer
+  relation_type: thompson_sample
+  timestamp: '2026-05-31T17:22:56.569562+00:00'
+  artifact_refs:
+  - to-issues-decomposition-v1
+  context_block_digest: 42066c8934835facaa27c94edf46ae752c9dd0dfe5bde864b125c12fedd515dd
+- ref: handoffs/senior-engineer→code-reviewer-20260531-173136.yaml
+  from: senior-engineer
+  to: code-reviewer
+  relation_type: triggers
+  timestamp: '2026-05-31T17:31:36.259616+00:00'
+  artifact_refs:
+  - senior-engineer-implementation-v1
+  context_block_digest: 63af73bb42e1bc424754fa67aa7b5293fb36b766781210d9ed9de484f60132c7
+- ref: handoffs/senior-engineer→tdd-20260531-173136.yaml
+  from: senior-engineer
+  to: tdd
+  relation_type: evaluates
+  timestamp: '2026-05-31T17:31:36.889085+00:00'
+  artifact_refs:
+  - senior-engineer-implementation-v1
+  context_block_digest: b082eb34c8bee111cd5f3c263587c3295c75058f30aec16f722b969004f4009f
+- ref: handoffs/senior-engineer→delivery-prover-20260531-173137.yaml
+  from: senior-engineer
+  to: delivery-prover
+  relation_type: triggers
+  timestamp: '2026-05-31T17:31:37.622076+00:00'
+  artifact_refs:
+  - senior-engineer-implementation-v1
+  context_block_digest: d2140d3c1406fffe998bd491e898355bebe54d71605da80e3f416c02f89ad4c8
+- ref: handoffs/code-reviewer→handoff-20260531-173228.yaml
+  from: code-reviewer
+  to: handoff
+  relation_type: may_trigger
+  timestamp: '2026-05-31T17:32:28.900338+00:00'
+  artifact_refs:
+  - code-reviewer-review-v1
+  context_block_digest: e0c660b1e8e120086cb525f217417ec180ee044f37d283f497fcae22c447a451

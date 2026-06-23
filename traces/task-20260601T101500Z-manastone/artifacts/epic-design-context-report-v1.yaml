@@ -1,0 +1,102 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/product-vision-anchor→epic-design-20260601-100836.yaml
+      context_digest: ff65b124d2e83fb1a028688b7b11d39239ec33da762c8c5d91860d08ecc8a2af
+  retained_context:
+    decisions:
+    - statement: Focus on install experience and brand independence as core v1 scope.
+      source: product-vision-anchor
+      impact: Constrained epic-design output to install flow redesign and Pi brand
+        audit.
+    - statement: Defer broad multi-level functionality audit to post-v1.
+      source: product-vision-anchor
+      impact: Audited only user-visible brand leakage; deferred deep internal refactoring
+        analysis.
+    - statement: Zero Pi branding across all user-facing surfaces.
+      source: epic-design (this node)
+      impact: Produced 34-point leakage inventory, remediation map, and brand-independent
+        landing page.
+    - statement: install.sh absorbs init + env-check + probe into single guided flow.
+      source: epic-design (this node)
+      impact: Redesigned install experience eliminates multi-step confusion.
+    - statement: manastone chat as unified conversation command replacing pi CLI.
+      source: epic-design (this node)
+      impact: Eliminates pi command from user vocabulary.
+    constraints:
+    - statement: Must hide Pi brand from end users.
+      source: product-vision-anchor
+      impact: Every output artifact (HTML, docs, tokens) is Pi-free.
+    - statement: Install must include all dependencies (Pi coding agent) automatically.
+      source: product-vision-anchor
+      impact: Silent install mechanism in redesigned install.sh spec.
+    - statement: Environment is noisy; work must be low-profile and precise.
+      source: product-vision-anchor
+      impact: Deliverables are self-contained, well-scoped, no noisy dependencies.
+    - statement: Write scope is frontend_experience_scoped.
+      source: node harness
+      impact: Cannot modify install.sh, Python files, or npm packages. Produced design
+        spec and HTML.
+    assumptions:
+    - statement: Pi coding agent is a required dependency for Manastone's agent capabilities.
+      source: product-vision-anchor
+      risk: Medium — if engine is replaceable, branding concern diminishes.
+    - statement: Users are new to Manastone and need clear guidance.
+      source: product-vision-anchor
+      risk: Low — validated by vision statement targeting 'new robot operator who
+        just unboxed.'
+    - statement: Brand independence is achievable without breaking upstream compatibility.
+      source: product-vision-anchor
+      risk: Medium — depends on pi engine's extension protocol and license terms.
+    - statement: '@mariozechner/pi-coding-agent npm package can be aliased/wrapped
+        but not renamed.'
+      source: epic-design (this node)
+      risk: Low — npm global install with alias is standard practice.
+    open_questions:
+    - statement: Can we alias the pi CLI binary without breaking the extension registration
+        protocol?
+      source: epic-design (this node)
+      owner: runtime
+    - statement: Does the pi coding agent license permit silent redistribution under
+        a different brand name?
+      source: epic-design (this node)
+      owner: runtime
+    - statement: What is the exact OpenClaw-Pi relationship model and how closely
+        should Manastone follow it?
+      source: product-vision-anchor
+      owner: runtime
+    - statement: What specific Pi branding currently leaks into the user experience?
+        (answered — 34 points found)
+      source: product-vision-anchor
+      owner: resolved
+  omitted_context:
+  - source: Detailed workspace file listings (200+ files in manastone/)
+    reason: background_only
+  - source: RoboOnto internal code (importers, API, tests, skills)
+    reason: background_only
+  - source: GitHub Actions CI, CHANGELOG.md history, devlog archives
+    reason: background_only
+  - source: Prior node execution details (Thompson sample parameters, score computation)
+    reason: background_only
+  compression_rationale:
+    method: semantic_filtering
+    loss_notes:
+    - Omitted ~190 files with no brand relevance (RoboOnto internals, tests, CI).
+    - Omitted operational metadata (Thompson sample scores, runner pool details).
+    - Retained all Pi brand references, install UX gaps, and product vision constraints.
+    - Retained existing visual language (orchestrator HTML color tokens) for design
+      continuity.
+  quality_checks:
+  - name: vision_falsifiable
+    passed: true
+  - name: out_of_scope_defined
+    passed: true
+  - name: brand_audit_complete
+    passed: true
+  - name: no_pi_brand_leakage_in_output
+    passed: true
+  - name: reduced_motion_present
+    passed: true
+  - name: performance_budget_named
+    passed: true

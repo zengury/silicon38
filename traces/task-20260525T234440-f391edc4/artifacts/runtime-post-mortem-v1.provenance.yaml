@@ -1,0 +1,8 @@
+artifact_id: runtime-post-mortem-v1
+producer: runtime
+task_id: task-20260525T234440-f391edc4
+version: 1
+timestamp: '2026-05-25T16:57:54.039640+00:00'
+input_artifacts: []
+quality_checks: []
+status: approved

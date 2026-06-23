@@ -1,0 +1,101 @@
+context_compression_report:
+  input_scope:
+    artifacts_read:
+    - artifact_id: zoom-out-context-map-v1
+      path: artifacts/zoom-out-context-map-v1.md
+      used: true
+      why: Provided initial module map and call relationships for the roboease codebase;
+        used to validate findings against the upstream zoom-out's observations about
+        duplicated utilities and large pipeline files.
+    handoffs_read:
+    - ref: handoffs/zoom-out→improve-codebase-architecture-20260610-023514.yaml
+      context_digest: 168c3e1411afe50637e03a7c22a727d01bfe9e53e976ac75971916e4dd50b0ec
+  retained_context:
+    decisions:
+    - statement: Focus on src/ directory as primary area of interest.
+      source: zoom-out context map
+      impact: Expanded scope to full roboease codebase (backend/, robot/, frontend/)
+        since actual codebase structure differs significantly from the context map's
+        simplified view.
+    - statement: Identified utils/helpers.py as candidate for deduplication.
+      source: zoom-out context map
+      impact: Confirmed pattern; discovered much larger duplication in robot modules
+        (9 service pairs) that the context map didn't capture.
+    constraints:
+    - statement: Timeboxed to one iteration; deep analysis deferred.
+      source: zoom-out
+      impact: Analysis focused on structural patterns visible from file contents rather
+        than runtime profiling. All findings are based on static code analysis.
+    - statement: No access to runtime or database; static analysis only.
+      source: zoom-out
+      impact: N+1 query problem identified through code pattern analysis; confirmed
+        by reading TaskBaseService source but not verified with query logs. Database
+        schema assumptions based on SQLModel entity definitions.
+    assumptions:
+    - statement: Codebase structure is representative of actual architecture.
+      source: zoom-out
+      risk: LOW — verified by reading actual source files across backend/, robot/,
+        and frontend/ directories. The zoom-out's simplified map undercounted the
+        robot/ module tree.
+    - statement: No hidden modules outside src/ are critical.
+      source: zoom-out
+      risk: CONFIRMED FALSE — the robot/ directory contains 150+ Python files across
+        6+ robot variant modules that are central to the system. The zoom-out context
+        map underreported this.
+    - statement: Robot API modules (xiaqi, xialan, lingxi, nezha) serve different
+        robots but share identical interaction protocols.
+      source: improve-codebase-architecture analysis
+      risk: LOW — verified by reading service files; xiaqi_api and xialan_api differ
+        only in base URLs and logging verbosity.
+    open_questions:
+    - statement: Are there any other duplicated utilities beyond helpers.py?
+      source: zoom-out
+      owner: runtime
+    - statement: What is the exact scope of the pipeline's responsibilities?
+      source: zoom-out
+      owner: runtime
+    - statement: Are nezha_api, lingxi_api, and planning/backend services also candidates
+        for capability extraction, or do they differ enough from xiaqi/xialan to warrant
+        separate treatment?
+      source: improve-codebase-architecture
+      owner: runtime
+    - statement: Do the six shallow entity services (action_library, expression_library,
+        voice_library, knowledge_library, dict, device) have planned domain logic
+        additions, or should they be inlined?
+      source: improve-codebase-architecture
+      owner: runtime
+  omitted_context:
+  - source: Detailed file contents of frontend admin/ and portal/ directories
+    reason: background_only
+  - source: Third-party library versions and dependency trees
+    reason: background_only
+  - source: robot/agent/core/pipeline.py full implementation details
+    reason: irrelevant
+  - source: robot/agent/hardware/ and robot/agent/voice/ subsystem internals
+    reason: background_only
+  compression_rationale:
+    method: 'Semantic compression: identified 6 distinct architectural problems through
+      cross-module comparison and pattern analysis. Retained only findings that (a)
+      cite specific code locations, (b) propose independently executable improvements,
+      and (c) affect downstream decisions. Omitted frontend details (well-structured,
+      no urgent problems), hardware driver internals (not architectural), and granular
+      implementation details of service methods that follow consistent patterns.'
+    loss_notes:
+    - Frontend architecture assessed as healthy — shared module provides good abstractions
+      consumed by admin and portal; no structural problems to report.
+    - Robot agent core (pipeline, registry, interfaces) follows clean hexagonal architecture
+      with port/adapter pattern — no problems found.
+    - Omitted detailed comparison of nezha_api and lingxi_api service files; they
+      follow the same controller/services/models pattern but use ROS2 instead of HTTP
+      RPC — may be a separate candidate.
+  quality_checks:
+  - name: Module existence verified
+    passed: true
+  - name: Cross-module duplication confirmed by source inspection
+    passed: true
+  - name: Every problem cites specific file paths
+    passed: true
+  - name: Every improvement is independently executable
+    passed: true
+  - name: Deletion test applied to shallow modules
+    passed: true

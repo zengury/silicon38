@@ -1,0 +1,57 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/triage→to-prd-20260610-090536.yaml
+      context_digest: 0092644b4eeb68fabaed09855636997f79b08797bc9e1beffdef1b054ca042d8
+  retained_context:
+    decisions:
+    - statement: Focus on top-level modules for initial map.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use codebase's own module names and domain terms.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Only top-level structure was examined; deeper analysis requires reading
+        individual files.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: External dependency versions are not verified.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Codebase structure is representative of actual module responsibilities.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: External dependencies are correctly identified from imports.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What specific duplicate code patterns exist?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Are there any circular dependencies?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the current test coverage?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file-level analysis
+    reason: background_only
+  - source: Specific duplicate code locations
+    reason: background_only
+  - source: Test coverage metrics
+    reason: background_only
+  compression_rationale:
+    method: Retained high-level scope and decisions from triage; omitted file-level
+      details as PRD only needs problem statement and scope.
+    loss_notes:
+    - File-level dependencies and internal module structure are not captured.
+    - Exact duplicate code instances are not identified.
+  quality_checks:
+  - name: Scope boundary present
+    passed: true
+  - name: Done condition present
+    passed: true

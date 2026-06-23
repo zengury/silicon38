@@ -1,0 +1,8 @@
+artifact_id: code-reviewer-review-v1
+producer: code-reviewer
+task_id: task-20260530T122917Z-1ae65489
+version: 1
+timestamp: '2026-05-30T12:42:04.906914+00:00'
+input_artifacts: []
+quality_checks: []
+status: draft

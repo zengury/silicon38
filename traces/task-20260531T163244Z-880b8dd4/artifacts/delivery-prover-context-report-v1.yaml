@@ -1,0 +1,98 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/senior-engineer→delivery-prover-20260531-163959.yaml
+      context_digest: dd2138846515c64c0e39b8490d6ba756d735ca2910232eaa8eb1a1eb7bb793dd
+  retained_context:
+    decisions:
+    - statement: Task is a codebase refactoring — eliminate duplicates, improve module
+        structure, enhance maintainability and testability
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Adopt feature-based module structure (deferred — current layer-based
+        structure preserved)
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Pilot module approach — refactor one module completely before bulk
+        rollout
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Incremental refactoring per module, each on own branch with PR review
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must not change external API behavior
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Codebase path is /Users/ZQ/roboease
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Existing tests must be preserved
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: User wants to improve maintainability without disrupting running
+        systems
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: The existing common/audit.py pattern (used by device_service.py)
+        is the intended direction
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Pilot module approach is correct — validate before scaling
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: MQTT broker is accessible and the mqtt_request_reply utility will
+        work in production
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: When will Unit-of-Work abstraction be available to eliminate last
+        direct Session?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Should robot/ and backend/ MQTT clients be unified into shared package?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Which module should be the next pilot for duplicate consolidation
+        (agent_service, dictService, menuService)?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Are there integration tests that exercise MQTT request-reply path
+        end-to-end?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: General triage instructions and non-essential PRD background
+    reason: background_only
+  - source: Thompson sampling details from handoff chain
+    reason: background_only
+  - source: Context digest hashes (implementation detail)
+    reason: background_only
+  - source: Issue sizing estimates (S/M/L) — not relevant to implementation decisions
+    reason: background_only
+  - source: Dependency graph details beyond Issue 7 scope
+    reason: background_only
+  compression_rationale:
+    method: Extracted only task-relevant implementation constraints and decisions
+      from the upstream artifacts. Omitted triage boilerplate, statistical sampling
+      details, and issue sizing metadata. Retained all constraints that directly governed
+      implementation choices (no external API changes, preserve tests, pilot module
+      approach).
+    loss_notes:
+    - PRD details about user-facing goals omitted — not needed for backend refactoring
+      implementation
+    - Thompson sampling weights and scores removed — implementation doesn't use them
+    - Full dependency graph removed — only Issue 7 dependency chain retained
+  quality_checks:
+  - name: Every retained decision has a source
+    passed: true
+  - name: Every constraint maps to an implementation guard
+    passed: true
+  - name: No implementation detail leaked from omitted context
+    passed: true
+  - name: Open questions are actionable with named owners
+    passed: true
+  - name: Compression is lossless for implementation-critical information
+    passed: true

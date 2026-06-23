@@ -1,0 +1,86 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/api-designer→tdd-20260530-124145.yaml
+      context_digest: 7795d054e1cbb182750c71495e5e6d36b24dcfb672768a17ac3fa1688e78ed18
+  retained_context:
+    decisions:
+    - statement: Modular monolith with clear layer boundaries
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Consolidate backend configuration into core.config
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Standardize API versioning under /api/v1/
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use SQLModel for ORM
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Separate domain logic from infrastructure
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Extract shared frontend components
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Complete cloud Docker profile
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Document robot communication protocol
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Backend must remain a single deployable unit for now
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Shared database requires careful schema management
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Robot communication protocol must be documented
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: The codebase is a monorepo with backend, frontend, and Docker configs
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: The primary database is MySQL, with Redis for caching
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Team size is small (<10 developers)
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the exact database schema?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How do robots communicate (MQTT topics, WebSocket messages)?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the CI/CD pipeline?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the testing strategy?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file contents of individual source files (not needed for test
+      planning)
+    reason: background_only
+  - source: Historical artifact versions (v1-v7) — not relevant for current test design
+    reason: background_only
+  compression_rationale:
+    method: Extracted architectural decisions and constraints relevant to test design
+      from the api-designer handoff and API contract.
+    loss_notes:
+    - Omitted detailed implementation of individual modules
+    - Omitted historical planning documents
+  quality_checks:
+  - name: Test plan covers all endpoints in API contract
+    passed: true
+  - name: Test names describe behavior, not implementation
+    passed: true
+  - name: Tests use public HTTP interface only
+    passed: true
+  - name: No test is coupled to implementation details
+    passed: true

@@ -1,0 +1,104 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/senior-engineer→observability-engineer-20260530-095504.yaml
+      context_digest: a9d593b978955423fa07e4cb4260c624a343ee3b5094a22aa10b3c529874d887
+  retained_context:
+    decisions:
+    - statement: Adopt structured_log() wrapper over loguru for all new log entries
+      source: observability-engineer
+      impact: All instrumented services use structured_log() with key-value context
+    - statement: Add ObservabilityMiddleware for correlation IDs and per-request logging
+      source: observability-engineer
+      impact: Every HTTP request gets a correlation ID; response latency tracked in
+        metrics
+    - statement: Fix critical PII leak in captchaService.py
+      source: observability-engineer
+      impact: SMTP password no longer logged in plaintext
+    - statement: REDMetrics for agent_create Dify API calls
+      source: observability-engineer
+      impact: Dify API latency and errors are now measurable
+    - statement: Health endpoint at /health, /health/detail, /metrics
+      source: observability-engineer
+      impact: Ops can monitor DB health and request metrics without external tools
+    constraints:
+    - statement: No new external dependencies (prometheus_client, opentelemetry, etc.)
+      source: observability-engineer
+      impact: In-process metrics; JSON format ready for Prometheus scraping later
+    - statement: Must not break existing loguru configuration in log_setting.py
+      source: observability-engineer
+      impact: structured_log() wraps logger.bind() — backward compatible
+    - statement: 11 services not instrumented in this pass
+      source: senior-engineer handoff
+      impact: Scope limited to 6 refactored services + infrastructure package
+    assumptions:
+    - statement: Prometheus/Grafana will be configured by devops-engineer
+      source: observability-engineer
+      risk: Low — metrics format is Prometheus-compatible JSON
+    - statement: Correlation IDs will be sufficient without full distributed tracing
+      source: observability-engineer
+      risk: Medium — traces would give richer causality chains for Dify API calls
+    - statement: No PII exists in agent names, dict codes, or menu names
+      source: observability-engineer
+      risk: Low — these are configuration data, not user PII
+    open_questions:
+    - statement: Should we introduce a transactional Unit-of-Work pattern?
+      source: userservice.py FIXME (inherited)
+      owner: architect
+    - statement: What is the migration strategy for MD5 → bcrypt?
+      source: security review (inherited)
+      owner: security-team
+    - statement: Should MQTT client move from common/ to infrastructure/mqtt/?
+      source: architecture review (inherited)
+      owner: architect
+    - statement: What is the target SLO for /api/v1 endpoints?
+      source: observability-engineer
+      owner: devops-engineer / product
+    - statement: Should request bodies be logged for non-PII paths?
+      source: observability-engineer
+      owner: security-team / architect
+  omitted_context:
+  - source: Detailed entity model fields from infrastructure/db/entities.py
+    reason: background_only
+  - source: Frontend portal and admin mock data
+    reason: background_only
+  - source: Docker build and deployment specifics
+    reason: background_only
+  - source: Robot planning backend module
+    reason: background_only
+  - source: Synergy service complex multi-entity operations
+    reason: background_only
+  - source: Device service direct Session access patterns
+    reason: background_only
+  compression_rationale:
+    method: 'Focus on the observability signals that matter for operations: HTTP request
+      patterns (RED method), business events (login, agent CRUD, captcha), and external
+      dependency health (Dify API, database). The instrumentation creates a foundation
+      that can be extended incrementally to the remaining 11 services. PII remediation
+      was prioritized because the SMTP password leak in captchaService.py was a production
+      security issue.'
+    loss_notes:
+    - 11 services remain un-instrumented (all documented with specific Session(engine)
+      counts in the senior-engineer handoff).
+    - Dify API calls lack circuit breaker — repeated failures may cause log noise.
+    - No Redis/MQTT/Dify health checks registered (extensible via HealthCheck API).
+    - Request body logging disabled by default — full request visibility requires
+      opt-in per path.
+  quality_checks:
+  - name: All new .py files parse without syntax errors (6 files)
+    passed: true
+  - name: All 64 existing unit tests still pass
+    passed: true
+  - name: No PII in log output (SMTP password leak fixed, email/phone/jwt masked)
+    passed: true
+  - name: Correlation IDs propagate from middleware to log records
+    passed: true
+  - name: Metrics counters increment correctly per service operation
+    passed: true
+  - name: Health endpoint responds with structured status
+    passed: true
+  - name: Alert thresholds defined for all critical signals
+    passed: true
+  - name: Log levels follow standard (DEBUG→local, INFO→ops, WARN→recoverable, ERROR→human)
+    passed: true

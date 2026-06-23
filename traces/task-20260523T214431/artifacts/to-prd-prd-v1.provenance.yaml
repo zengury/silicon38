@@ -1,0 +1,19 @@
+artifact_id: to-prd-prd-v1
+type: document
+producer: to-prd
+version: 1
+status: draft
+superseded_by: null
+created_at: "2026-05-23T21:46:00+08:00"
+content_ref: artifacts/to-prd-prd-v1.md
+summary: "PRD for Strategy Canvas iOS client — native SwiftUI app connecting to existing backend, distributed via TestFlight"
+decisions:
+  - decision: "Native SwiftUI client (thin client)"
+    rationale: "No local AI inference. Backend handles LLM. Client focuses on UI rendering and connectivity."
+  - decision: "3-tab navigation (Chat/Graph/Analysis)"
+    rationale: "Mobile screens too narrow for 5-panel desktop layout. Chat is primary."
+  - decision: "SceneKit for 3D graph"
+    rationale: "Native rendering over WebView wrapping — better performance, gestures, and iOS feel."
+  - decision: "Same WebSocket + REST API"
+    rationale: "Zero backend changes needed. Client is a drop-in mobile consumer of existing API."
+consumers_pending: [architect, ui-design-system, senior-frontend]

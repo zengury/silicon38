@@ -1,0 +1,156 @@
+task_id: task-20260525T235013-4207a413
+timestamp_start: '2026-05-25T15:50:13.475212+00:00'
+timestamp_end: '2026-05-25T17:24:06.820003+00:00'
+task_summary: Robot fleet ops monitoring dashboard — soul-knife discipline
+task_type: feature
+entry_nodes:
+- triage
+- caveman
+- zoom-out
+terminal_nodes:
+- triage
+- caveman
+- zoom-out
+- to-prd
+- architect
+- api-designer
+- ux-researcher-designer
+- ui-design-system
+- senior-frontend
+- code-reviewer
+outcome: null
+artifact_index:
+- artifact_id: triage-classification-v1
+  type: classification
+  producer: triage
+  version: 1
+  path: artifacts/triage-classification-v1.md
+  status: approved
+- artifact_id: caveman-knife-table-v1
+  type: knife-table
+  producer: caveman
+  version: 1
+  path: artifacts/caveman-knife-v1.md
+  status: approved
+- artifact_id: zoom-out-subsystem-map-v1
+  type: subsystem-map
+  producer: zoom-out
+  version: 1
+  path: artifacts/zoom-out-subsystems-v1.md
+  status: approved
+- artifact_id: to-prd-prd-v1
+  type: prd
+  producer: to-prd
+  version: 1
+  path: artifacts/to-prd-prd-v1.md
+  status: approved
+- artifact_id: architect-architecture-v1
+  type: architecture
+  producer: architect
+  version: 1
+  path: artifacts/architect-architecture-v1.md
+  status: approved
+- artifact_id: api-designer-wire-contract-v1
+  type: wire-contract
+  producer: api-designer
+  version: 1
+  path: artifacts/api-wire-contract-v1.md
+  status: approved
+- artifact_id: ux-researcher-designer-interaction-design-v1
+  type: interaction-design
+  producer: ux-researcher-designer
+  version: 1
+  path: artifacts/ux-interaction-design-v1.md
+  status: approved
+- artifact_id: ui-design-system-tokens-v1
+  type: tokens
+  producer: ui-design-system
+  version: 1
+  path: artifacts/ui-tokens-v1.md
+  status: approved
+- artifact_id: senior-frontend-interface-spec-v1
+  type: interface-spec
+  producer: senior-frontend
+  version: 1
+  path: artifacts/frontend-interface-spec-v1.md
+  status: approved
+- artifact_id: code-reviewer-review-v1
+  type: review
+  producer: code-reviewer
+  version: 1
+  status: approved
+  path: artifacts/code-review-v1.md
+  ref: artifacts/code-review-v1.md
+  provenance_ref: artifacts/code-reviewer-review-v1.provenance.yaml
+- artifact_id: api-designer-wire-contract-v2-patch-v1
+  type: wire-contract-v2-patch
+  producer: api-designer
+  version: 1
+  status: approved
+  path: artifacts/api-wire-contract-v2-patch.md
+  ref: artifacts/api-wire-contract-v2-patch.md
+  provenance_ref: artifacts/api-designer-wire-contract-v2-patch-v1.provenance.yaml
+handoff_trail:
+- ref: handoffs/triage→to-prd-20260525-161432.yaml
+  from: triage
+  to: to-prd
+  relation_type: triggers
+  timestamp: '2026-05-25T16:14:32.603366+00:00'
+  artifact_refs:
+  - triage-classification-v1
+- ref: handoffs/to-prd→architect-20260525-162812.yaml
+  from: to-prd
+  to: architect
+  relation_type: supports
+  timestamp: '2026-05-25T16:28:12.054003+00:00'
+  artifact_refs:
+  - to-prd-prd-v1
+- ref: handoffs/to-prd→api-designer-20260525-162812.yaml
+  from: to-prd
+  to: api-designer
+  relation_type: supports
+  timestamp: '2026-05-25T16:28:12.159845+00:00'
+  artifact_refs:
+  - to-prd-prd-v1
+- ref: handoffs/to-prd→ux-researcher-designer-20260525-162812.yaml
+  from: to-prd
+  to: ux-researcher-designer
+  relation_type: supports
+  timestamp: '2026-05-25T16:28:12.262354+00:00'
+  artifact_refs:
+  - to-prd-prd-v1
+- ref: handoffs/ux-researcher-designer→ui-design-system-20260525-164129.yaml
+  from: ux-researcher-designer
+  to: ui-design-system
+  relation_type: supports
+  timestamp: '2026-05-25T16:41:29.159140+00:00'
+  artifact_refs:
+  - ux-researcher-designer-interaction-design-v1
+- ref: handoffs/ui-design-system→senior-frontend-20260525-164654.yaml
+  from: ui-design-system
+  to: senior-frontend
+  relation_type: constrains
+  timestamp: '2026-05-25T16:46:54.253564+00:00'
+  artifact_refs:
+  - ui-design-system-tokens-v1
+- ref: handoffs/senior-frontend→code-reviewer-20260525-165811.yaml
+  from: senior-frontend
+  to: code-reviewer
+  relation_type: triggers
+  timestamp: '2026-05-25T16:58:11.561099+00:00'
+  artifact_refs:
+  - senior-frontend-interface-spec-v1
+- ref: handoffs/code-reviewer→senior-engineer-20260525-171312.yaml
+  from: code-reviewer
+  to: senior-engineer
+  relation_type: may_trigger
+  timestamp: '2026-05-25T17:13:12.199926+00:00'
+  artifact_refs:
+  - code-reviewer-review-v1
+- ref: handoffs/architect→api-designer-20260525-171332.yaml
+  from: architect
+  to: api-designer
+  relation_type: triggers
+  timestamp: '2026-05-25T17:13:32.162833+00:00'
+  artifact_refs:
+  - architect-architecture-v1

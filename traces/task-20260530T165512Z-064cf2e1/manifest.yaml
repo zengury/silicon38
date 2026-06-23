@@ -1,0 +1,383 @@
+task_id: task-20260530T165512Z-064cf2e1
+timestamp_start: '2026-05-30T16:55:14.315448+00:00'
+timestamp_end: '2026-05-30T17:25:26.356379+00:00'
+task_summary: 机器人车队运维监控面板：实时显示每台机器人电量、关节温度、CPU、网络延迟、当前任务、地理位置。数据格式不统一需归一化。总览仪表盘(环形图、折线图、热力图)。异常告警(摔倒、关节失联、电量过低)。30天历史曲线。配置面板(告警阈值、采样频率、重连策略)。工程师协作(留言、@同事、我在处理标记)。导出报表(PDF/Excel)。暗色/亮色主题、多语言、可拖拽布局。输出架构方案+主界面设计+demo。
+task_type: feature
+entry_nodes:
+- to-prd
+terminal_nodes:
+- to-prd
+- to-issues
+- caveman
+- ux-researcher-designer
+- architect
+- devops-engineer
+- customer-success
+- api-designer
+- ui-design-system
+- prototype
+- senior-engineer
+- security-engineer
+- code-reviewer
+- tdd
+- release-manager
+- graph-topologist
+- hrbp
+outcome:
+  status: partial
+  decoder_notes: Graph propagation exhausted — no more legal candidates.
+  quality_signal:
+    source: runtime_decoder
+    value: 0.5
+    detail: Graph propagation exhausted — no more legal candidates.
+context_block:
+  ref: org/CONTEXT_BLOCK.md
+  sha256: d82dc247c04f8cd2e797dd394ecd8d9cd927f1e194f2800d4fcf1e2be41f2a66
+artifact_index:
+- artifact_id: to-prd-prd-v1
+  type: prd
+  producer: to-prd
+  version: 1
+  status: draft
+  path: artifacts/to-prd-prd-v1.md
+  ref: artifacts/to-prd-prd-v1.md
+  provenance_ref: artifacts/to-prd-prd-v1.provenance.yaml
+- artifact_id: to-issues-decomposition-v1
+  type: decomposition
+  producer: to-issues
+  version: 1
+  status: draft
+  path: artifacts/to-issues-decomposition-v1.md
+  ref: artifacts/to-issues-decomposition-v1.md
+  provenance_ref: artifacts/to-issues-decomposition-v1.provenance.yaml
+- artifact_id: caveman-analysis-v1
+  type: analysis
+  producer: caveman
+  version: 1
+  status: draft
+  path: artifacts/caveman-analysis-v1.md
+  ref: artifacts/caveman-analysis-v1.md
+  provenance_ref: artifacts/caveman-analysis-v1.provenance.yaml
+- artifact_id: ux-researcher-designer-ux-spec-v1
+  type: ux-spec
+  producer: ux-researcher-designer
+  version: 1
+  status: draft
+  path: artifacts/ux-researcher-designer-ux-spec-v1.md
+  ref: artifacts/ux-researcher-designer-ux-spec-v1.md
+  provenance_ref: artifacts/ux-researcher-designer-ux-spec-v1.provenance.yaml
+- artifact_id: architect-architecture-v1
+  type: architecture
+  producer: architect
+  version: 1
+  status: draft
+  path: artifacts/architect-architecture-v1.md
+  ref: artifacts/architect-architecture-v1.md
+  provenance_ref: artifacts/architect-architecture-v1.provenance.yaml
+- artifact_id: customer-success-customer-plan-v1
+  type: customer-plan
+  producer: customer-success
+  version: 1
+  status: draft
+  path: artifacts/customer-success-customer-plan-v1.md
+  ref: artifacts/customer-success-customer-plan-v1.md
+  provenance_ref: artifacts/customer-success-customer-plan-v1.provenance.yaml
+- artifact_id: api-designer-contract-v1
+  type: contract
+  producer: api-designer
+  version: 1
+  status: draft
+  path: artifacts/api-designer-contract-v1.md
+  ref: artifacts/api-designer-contract-v1.md
+  provenance_ref: artifacts/api-designer-contract-v1.provenance.yaml
+- artifact_id: devops-engineer-ops-plan-v1
+  type: ops-plan
+  producer: devops-engineer
+  version: 1
+  status: draft
+  path: artifacts/devops-engineer-ops-plan-v1.md
+  ref: artifacts/devops-engineer-ops-plan-v1.md
+  provenance_ref: artifacts/devops-engineer-ops-plan-v1.provenance.yaml
+- artifact_id: ui-design-system-spec-v1
+  type: spec
+  producer: ui-design-system
+  version: 1
+  status: draft
+  path: artifacts/ui-design-system-spec-v1.md
+  ref: artifacts/ui-design-system-spec-v1.md
+  provenance_ref: artifacts/ui-design-system-spec-v1.provenance.yaml
+- artifact_id: prototype-plan-v1
+  type: plan
+  producer: prototype
+  version: 1
+  status: draft
+  path: artifacts/prototype-plan-v1.md
+  ref: artifacts/prototype-plan-v1.md
+  provenance_ref: artifacts/prototype-plan-v1.provenance.yaml
+- artifact_id: senior-engineer-implementation-v1
+  type: implementation
+  producer: senior-engineer
+  version: 1
+  status: draft
+  path: artifacts/senior-engineer-implementation-v1.md
+  ref: artifacts/senior-engineer-implementation-v1.md
+  provenance_ref: artifacts/senior-engineer-implementation-v1.provenance.yaml
+- artifact_id: delivery-prover-proof-v1
+  type: proof
+  producer: delivery-prover
+  version: 1
+  status: draft
+  path: artifacts/delivery-prover-proof-v1.md
+  ref: artifacts/delivery-prover-proof-v1.md
+  provenance_ref: artifacts/delivery-prover-proof-v1.provenance.yaml
+- artifact_id: security-engineer-evaluation-v1
+  type: evaluation
+  producer: security-engineer
+  version: 1
+  status: draft
+  path: artifacts/security-engineer-evaluation-v1.md
+  ref: artifacts/security-engineer-evaluation-v1.md
+  provenance_ref: artifacts/security-engineer-evaluation-v1.provenance.yaml
+- artifact_id: code-reviewer-review-v1
+  type: review
+  producer: code-reviewer
+  version: 1
+  status: draft
+  path: artifacts/code-reviewer-review-v1.md
+  ref: artifacts/code-reviewer-review-v1.md
+  provenance_ref: artifacts/code-reviewer-review-v1.provenance.yaml
+- artifact_id: tdd-evaluation-v1
+  type: evaluation
+  producer: tdd
+  version: 1
+  status: draft
+  path: artifacts/tdd-evaluation-v1.md
+  ref: artifacts/tdd-evaluation-v1.md
+  provenance_ref: artifacts/tdd-evaluation-v1.provenance.yaml
+- artifact_id: release-manager-release-plan-v1
+  type: release-plan
+  producer: release-manager
+  version: 1
+  status: draft
+  path: artifacts/release-manager-release-plan-v1.md
+  ref: artifacts/release-manager-release-plan-v1.md
+  provenance_ref: artifacts/release-manager-release-plan-v1.provenance.yaml
+- artifact_id: graph-topologist-topology-review-v1
+  type: topology-review
+  producer: graph-topologist
+  version: 1
+  status: draft
+  path: artifacts/graph-topologist-topology-review-v1.md
+  ref: artifacts/graph-topologist-topology-review-v1.md
+  provenance_ref: artifacts/graph-topologist-topology-review-v1.provenance.yaml
+- artifact_id: hrbp-talent-evaluation-v1
+  type: talent-evaluation
+  producer: hrbp
+  version: 1
+  status: draft
+  path: artifacts/hrbp-talent-evaluation-v1.md
+  ref: artifacts/hrbp-talent-evaluation-v1.md
+  provenance_ref: artifacts/hrbp-talent-evaluation-v1.provenance.yaml
+context_report_index:
+- role: to-prd
+  ref: artifacts/to-prd-context-report-v1.yaml
+  digest: 49108db194fa5104d3760443432a05b24e34efc3b6a5133b8f39b1a7f05a1b26
+  status: valid
+- role: to-issues
+  ref: artifacts/to-issues-context-report-v1.yaml
+  digest: 9aab2281c9e7841715cab80d90524b2d63621bface211df6a8fa1560e9e78093
+  status: valid
+- role: caveman
+  ref: artifacts/caveman-context-report-v1.yaml
+  digest: 9bad0f681776eb712ce1d7151ae744505491b9205be37ffd5ecb7e1e8bffebca
+  status: valid
+- role: ux-researcher-designer
+  ref: artifacts/ux-researcher-designer-context-report-v1.yaml
+  digest: c0239482d891fc0f71d5de36dac2b3e541e9caaac952b67055e5d441d5059bf0
+  status: valid
+- role: architect
+  ref: artifacts/architect-context-report-v1.yaml
+  digest: 18dbc59ac1e1a7515ad99146cd21f499d759caf2691e11a95c70192b488f90ea
+  status: valid
+- role: customer-success
+  ref: artifacts/customer-success-context-report-v1.yaml
+  digest: c45f8508c2cb410786afd7e945d628c8b1cea500df191a103d60870dadb20062
+  status: valid
+- role: api-designer
+  ref: artifacts/api-designer-context-report-v1.yaml
+  digest: 6f1456c085026e75c55a947b54cb1df7053b9b57fa9f10670dfce326eb5b9ed8
+  status: valid
+- role: devops-engineer
+  ref: artifacts/devops-engineer-context-report-v1.yaml
+  digest: be3e17e86882153229914e61f4f601732c4ca913c987f1a50916ccb64d9b9707
+  status: valid
+- role: ui-design-system
+  ref: artifacts/ui-design-system-context-report-v1.yaml
+  digest: fd575a776a5fc73be19b57b2374e708457603118ef78f8232052348d198973b4
+  status: valid
+- role: prototype
+  ref: artifacts/prototype-context-report-v1.yaml
+  digest: b1385f2207a7a1a9b3876affe24bdbac67ff4acb5ca12f38eb35263a8b9fcbee
+  status: valid
+- role: senior-engineer
+  ref: artifacts/senior-engineer-context-report-v1.yaml
+  digest: b970f1195dfea4e04294dd9c0299dea061773465308814cfaf1ed6d5af6b63cf
+  status: valid
+- role: security-engineer
+  ref: artifacts/security-engineer-context-report-v1.yaml
+  digest: de0d70579a102244ecd36047cff7680bc32f581c3c4f0097a8ad2c28411b8eea
+  status: valid
+- role: code-reviewer
+  ref: artifacts/code-reviewer-context-report-v1.yaml
+  digest: 94b7bbd51bc6766028be5f947ea400789a3b8d209560c780ab4a42d1b3409eda
+  status: valid
+- role: tdd
+  ref: artifacts/tdd-context-report-v1.yaml
+  digest: 1330338605c778bcf640eaadd90d5533111203b03e2ff17e41ae909ee632cd67
+  status: valid
+- role: release-manager
+  ref: artifacts/release-manager-context-report-v1.yaml
+  digest: 19c9eccfff41a2082860d8effc9d45249da69f979a234f79074189a224f089c2
+  status: valid
+- role: graph-topologist
+  ref: artifacts/graph-topologist-context-report-v1.yaml
+  digest: 5183291f30ccc763760edfae75838239f00b2e0d5125f863fd47220769514fd8
+  status: valid
+- role: hrbp
+  ref: artifacts/hrbp-context-report-v1.yaml
+  digest: 6d1aad28035e522cea701346dd840415dd45c4f22b06684a785e2a57820f763b
+  status: valid
+handoff_trail:
+- ref: handoffs/to-prd→architect-20260530-165541.yaml
+  from: to-prd
+  to: architect
+  relation_type: may_trigger
+  timestamp: '2026-05-30T16:55:41.270866+00:00'
+  artifact_refs:
+  - to-prd-prd-v1
+  context_block_digest: 0803cac4b00831d21706da58c88ec65a11bba758b200531d03e0cf1bc2a4f467
+  soul_ref: org/soul.md
+- ref: handoffs/to-prd→to-issues-20260530-165541.yaml
+  from: to-prd
+  to: to-issues
+  relation_type: triggers
+  timestamp: '2026-05-30T16:55:41.632608+00:00'
+  artifact_refs:
+  - to-prd-prd-v1
+  context_block_digest: 980d8e177bdb100655a605c1e64518624ba65e6d7ccfaa13b38aad3a7af9f126
+- ref: handoffs/to-prd→ux-researcher-designer-20260530-165541.yaml
+  from: to-prd
+  to: ux-researcher-designer
+  relation_type: may_trigger
+  timestamp: '2026-05-30T16:55:42.046388+00:00'
+  artifact_refs:
+  - to-prd-prd-v1
+  context_block_digest: 171456c76663afa9fa6c38719d45bdda7dc7a82de2749ba94e828771eeee0ba7
+  soul_ref: org/soul.md
+- ref: handoffs/to-prd→caveman-20260530-165542.yaml
+  from: to-prd
+  to: caveman
+  relation_type: evaluates
+  timestamp: '2026-05-30T16:55:42.519947+00:00'
+  artifact_refs:
+  - to-prd-prd-v1
+  context_block_digest: 7f2be6091c455561b7ee3d240f82b4ff7cf5c7d13dfc30d577759852974874ff
+- ref: handoffs/architect→devops-engineer-20260530-165634.yaml
+  from: architect
+  to: devops-engineer
+  relation_type: may_trigger
+  timestamp: '2026-05-30T16:56:35.012439+00:00'
+  artifact_refs:
+  - architect-architecture-v1
+  context_block_digest: cc74d92bde6d83f6be182247c7661a60c060c2b555c4d8fdb355807aed812ec0
+- ref: handoffs/to-issues→senior-engineer-20260530-165635.yaml
+  from: to-issues
+  to: senior-engineer
+  relation_type: triggers
+  timestamp: '2026-05-30T16:56:35.596206+00:00'
+  artifact_refs:
+  - to-issues-decomposition-v1
+  context_block_digest: 92f0441579c05186630810b1ca58aed8fb5c19585eacada0cf0616efef91a2a4
+- ref: handoffs/architect→customer-success-20260530-165635.yaml
+  from: architect
+  to: customer-success
+  relation_type: may_trigger
+  timestamp: '2026-05-30T16:56:36.235255+00:00'
+  artifact_refs:
+  - architect-architecture-v1
+  context_block_digest: b0bcb0d341904303dd89365e19778f92494431136420033c0d9e77e99327a147
+- ref: handoffs/architect→api-designer-20260530-165636.yaml
+  from: architect
+  to: api-designer
+  relation_type: triggers
+  timestamp: '2026-05-30T16:56:36.944015+00:00'
+  artifact_refs:
+  - architect-architecture-v1
+  context_block_digest: 031f48774377f8857e6c2992927cee0ca77d9bc3327f7ebc2733191c8232f936
+- ref: handoffs/ux-researcher-designer→ui-design-system-20260530-165637.yaml
+  from: ux-researcher-designer
+  to: ui-design-system
+  relation_type: may_trigger
+  timestamp: '2026-05-30T16:56:37.756536+00:00'
+  artifact_refs:
+  - ux-researcher-designer-ux-spec-v1
+  context_block_digest: 0c150cd922930a3ae18ffb910d8b553063a4c00c4789b862f297b83777321d0e
+  soul_ref: org/soul.md
+- ref: handoffs/ux-researcher-designer→prototype-20260530-165638.yaml
+  from: ux-researcher-designer
+  to: prototype
+  relation_type: triggers
+  timestamp: '2026-05-30T16:56:38.662638+00:00'
+  artifact_refs:
+  - ux-researcher-designer-ux-spec-v1
+  context_block_digest: d726e752c97f7d6c8f5c390494951645054784cf453077d798e7fb8649957cd5
+  soul_ref: org/soul.md
+- ref: handoffs/api-designer→tdd-20260530-171346.yaml
+  from: api-designer
+  to: tdd
+  relation_type: triggers
+  timestamp: '2026-05-30T17:13:46.421982+00:00'
+  artifact_refs:
+  - api-designer-contract-v1
+  context_block_digest: d22e83a45b9f69bc906abcef7f20d4b3a89ff287129f7bcd0dd08d9f49b479a7
+- ref: handoffs/prototype→senior-frontend-20260530-171346.yaml
+  from: prototype
+  to: senior-frontend
+  relation_type: may_trigger
+  timestamp: '2026-05-30T17:13:47.413709+00:00'
+  artifact_refs:
+  - prototype-plan-v1
+  context_block_digest: 4c7b726680b895a815aa728f6be3f100998fbdc2909dabee4b4c23b23c531c84
+  soul_ref: org/soul.md
+- ref: handoffs/devops-engineer→security-engineer-20260530-171347.yaml
+  from: devops-engineer
+  to: security-engineer
+  relation_type: triggers
+  timestamp: '2026-05-30T17:13:48.487967+00:00'
+  artifact_refs:
+  - devops-engineer-ops-plan-v1
+  context_block_digest: eeefd9624ec434e585cc5139627b20dec73301badf9fd1cdf9c68819f3a5366b
+- ref: handoffs/senior-engineer→code-reviewer-20260530-171349.yaml
+  from: senior-engineer
+  to: code-reviewer
+  relation_type: triggers
+  timestamp: '2026-05-30T17:13:49.797263+00:00'
+  artifact_refs:
+  - senior-engineer-implementation-v1
+  context_block_digest: ecdf8a5dd154fbdcbb3320815e3ca6d928ecf9ab0cf701944b23305bdbf1c220
+- ref: handoffs/devops-engineer→release-manager-20260530-171350.yaml
+  from: devops-engineer
+  to: release-manager
+  relation_type: triggers
+  timestamp: '2026-05-30T17:13:51.013509+00:00'
+  artifact_refs:
+  - devops-engineer-ops-plan-v1
+  context_block_digest: 96bafd161b3aafc6bae9c4bcafd7e043dd98090d01424907562fcefaf773add6
+- ref: handoffs/senior-engineer→delivery-prover-20260530-171351.yaml
+  from: senior-engineer
+  to: delivery-prover
+  relation_type: triggers
+  timestamp: '2026-05-30T17:13:52.291461+00:00'
+  artifact_refs:
+  - senior-engineer-implementation-v1
+  context_block_digest: ae486781cca47ff5721286efb928f14e234fecc1f8c6a204b22fdb6785501e87

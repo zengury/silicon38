@@ -1,0 +1,9 @@
+from: architect
+to: senior-engineer
+relation_type: triggers
+timestamp: '2026-05-26T00:43:20.054301+00:00'
+focus: 'Implement 7 refactoring steps from ADR-001: typo fix, docstrings, config init
+  separation, server factory, keyword migration, ui.py removal, threshold comments.
+  Steps are independent — any order.'
+artifact_refs:
+- architect-document-v1

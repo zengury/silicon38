@@ -1,0 +1,11 @@
+vision_statement: "A developer maintaining the /Users/ZQ/roboease codebase who faces duplicated code and unclear module structure uses this product to refactor the codebase into a modular, testable architecture so they feel confident and in control, unlike ad-hoc manual refactoring which lacks systematic guidance and risks breaking existing behavior."
+target_user: "A developer maintaining the /Users/ZQ/roboease codebase"
+primary_job: "Refactor the codebase into a modular, testable architecture"
+emotional_promise: "Confident and in control"
+beating_alternative: "Ad-hoc manual refactoring which lacks systematic guidance and risks breaking existing behavior"
+out_of_scope_forever: "Adding new features, changing external APIs, performance optimization beyond natural refactoring, database schema changes, deployment or CI/CD changes, rewriting entire modules from scratch"
+vision_test: |
+  A downstream node can test its output by asking:
+  "Does my output help a developer maintaining the /Users/ZQ/roboease codebase refactor the codebase into a modular, testable architecture?
+   Does it reinforce the feeling of being confident and in control?
+   Does it avoid adding new features, changing external APIs, performance optimization beyond natural refactoring, database schema changes, deployment or CI/CD changes, or rewriting entire modules from scratch?"

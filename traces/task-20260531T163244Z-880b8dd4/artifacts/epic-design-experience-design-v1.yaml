@@ -1,0 +1,116 @@
+schema: silicon_org.blocked_node_report.v1
+role: epic-design
+task_id: task-20260531T163244Z-880b8dd4
+status: blocked
+
+blocking_conditions:
+  - condition: "No narrative brief or product story to design against"
+    detail: >
+      The task is a codebase refactoring task targeting /Users/ZQ/roboease.
+      Objectives: eliminate duplication, improve module structure, enhance
+      maintainability and testability. There is no brand narrative, no visual
+      story, no mood/feeling directive, and no audience description that a
+      cinematic experience designer can translate into scroll-driven scenes,
+      parallax depth, or text animations.
+  - condition: "Product vision excludes UI/UX changes"
+    detail: >
+      Upstream product-vision-anchor explicitly declares out_of_scope_forever:
+      "UI/UX changes". Any immersive design deliverable from epic-design would
+      constitute a UI/UX change, violating the upstream constraint. Proceeding
+      would break the provenance chain.
+
+mismatch_analysis:
+  thompson_sample_score: 0.9768
+  edge_type: constrains
+  edge_strength: 0.85
+  routing_diagnosis: >
+    Thompson sampling conflated edge weight confidence with content fit.
+    The 'constrains' edge from product-vision-anchor to epic-design has
+    high strength (0.85) but this score reflects the edge's structural
+    plausibility, not the task's content match. The sampling algorithm
+    did not validate that the task actually involves visual design work.
+    This is a false positive — the edge is correct (vision constrains
+    design) but inapplicable to this task type.
+
+codebase_frontend_inspection:
+  admin_app: "Vue 3 + Element Plus + UnoCSS admin dashboard (RaaS管理平台)"
+  portal_app: "Vue 3 robot-facing portal"
+  has_existing_ui: true
+  has_design_system: true
+  provided_assets: []
+  narrative_brief: null
+  conclusion: >
+    A functioning admin dashboard and robot portal exist, but the task
+    is refactoring the backend codebase, not redesigning the frontend.
+    The existing UI is utilitarian/admin-focused and does not call for
+    cinematic treatment.
+
+unblock_requirements:
+  - "Task type must be visual/design/marketing (landing page, product site, brand experience)"
+  - "Narrative brief describing mood, audience, emotional arc, and section count"
+  - "Visual assets (product images, brand marks, hero imagery) provided for inspection"
+  - "Reversal of 'out_of_scope_forever: UI/UX changes' constraint in product vision"
+
+failure_protocol_compliance:
+  - check: "Did not proceed on assumption"
+    passed: true
+  - check: "Did not fabricate evidence or design artifacts"
+    passed: true
+  - check: "Reported specific obstacle"
+    passed: true
+  - check: "Named what would unblock"
+    passed: true
+
+recommendation: >
+  Route this task to refactor-specialist or improve-codebase-architecture
+  instead. epic-design should only activate for tasks with explicit visual
+  design intent and provided assets.
+
+completion_report:
+  what_was_done: >
+    Inspected the roboease codebase frontend (/Users/ZQ/roboease/frontend/)
+    and all upstream handoffs. Determined that the task (codebase refactoring)
+    and the product vision (UI/UX changes out of scope forever) make this node
+    inapplicable. No immersive design was produced because it would violate
+    upstream constraints and fabricate work the user did not request.
+    Produced a blocked-node report with routing diagnosis, unblock requirements,
+    and a context compression report for downstream continuity.
+  key_decisions:
+    - decision: "Blocked node — no deliverable produced"
+      rationale: >
+        Two independent blocking conditions: (1) no narrative brief or product
+        story exists for cinematic design, and (2) the product vision explicitly
+        excludes UI/UX changes from scope forever. Producing any visual design
+        artifact would violate the failure protocol (fabricate_evidence,
+        proceed_on_assumption) and the upstream provenance chain.
+    - decision: "Recommended re-route to refactor-specialist"
+      rationale: >
+        The task is a textbook refactoring task. The agent registry includes
+        refactor-specialist ("Technical debt, duplication, clarity improvement
+        without behavior change") which directly matches the task description.
+  handoff_focus:
+    - "This node is blocked. Downstream should NOT expect a visual design deliverable."
+    - "The blocking constraint 'UI/UX changes out of scope forever' must propagate."
+    - "Thompson sampling false positive — Graph Topologist should record this for learning."
+    - "Recommended next node: refactor-specialist or improve-codebase-architecture."
+  open_questions:
+    - "Why did Thompson sampling with score 0.9768 route a refactoring task to epic-design? The constrains edge has strength 0.85 but no content-validation gate."
+    - "Should the routing layer add a task-type filter to prevent visual-design roles from activating on refactoring/bug_fix/internal tasks?"
+  known_constraints:
+    - "UI/UX changes are out of scope forever (product-vision-anchor)"
+    - "Must not change external behavior"
+    - "Codebase path: /Users/ZQ/roboease"
+  confidence_differential: 0.95
+  dissent_if_alone: >
+    If this node were the only one facing the task, it would not have been
+    activated at all. The Thompson sampling algorithm (score 0.9768) created
+    a group-pressure situation where the node was invoked despite zero content
+    fit. Alone, this node would decline with: "This is a code refactoring task.
+    I design cinematic web experiences. Our domains do not intersect on this
+    task. Route me to refactor-specialist." The high confidence_differential
+    (0.95) reflects that the group's routing decision is almost entirely
+    overridden relative to solo judgment.
+  iteration_context: null
+
+producer_output_artifact_refs:
+  - epic-design-blocked-report-v1

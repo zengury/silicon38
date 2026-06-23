@@ -1,0 +1,79 @@
+context_compression_report:
+  input_scope:
+    artifacts_read:
+      - artifact_id: senior-engineer-implementation-v1
+        used: true
+        why: "Primary upstream implementation artifact for the read-only org visualizer snapshot server and its stated validation."
+      - artifact_id: api-designer-contract-v1
+        used: true
+        why: "Defined the intended local visualizer API contract, response shape, policy gates, handoff blocks, and learning/ledger visibility expectations."
+      - artifact_id: architect-architecture-v1
+        used: true
+        why: "Provided the architectural constraint that the visualizer remains a read-only projection of Graph and Ledger truth."
+    handoffs_read:
+      - ref: "handoffs/senior-engineer→code-reviewer-20260527-151241.yaml"
+        context_digest: "7b9c479df828cddeb8c45c44aafb35d7567306fdd77fa2a8c39f28c17ac7e711"
+
+  retained_context:
+    decisions:
+      - statement: "The visualizer must make Graph, Policy, Ledger, Runtime, Learning, node activity, handoffs, and Context Blocks visible from durable repo/trace facts."
+        source: "api-designer-contract-v1, architect-architecture-v1, and handoffs/senior-engineer→code-reviewer-20260527-151241.yaml"
+        impact: "The review treats dropped live Ledger events and handoff/context-block data as blocking correctness failures."
+      - statement: "The snapshot server is read-only and should tolerate malformed older traces without mutating Ledger state."
+        source: "senior-engineer-implementation-v1 and handoffs/senior-engineer→code-reviewer-20260527-151241.yaml"
+        impact: "The review focused on projection correctness, endpoint/data-shape compatibility, and validation behavior rather than mutation safety regressions."
+      - statement: "Policy validation of context compression reports is a hard runtime invariant."
+        source: "org/CONTEXT_BLOCK.md and org/RUNTIME.md as inherited through the senior-engineer handoff context block"
+        impact: "The missing policy CLI and non-mapping list crash were elevated because they weaken context-chain truthfulness."
+    constraints:
+      - statement: "Do not modify implementation files."
+        source: "User instruction to code-reviewer"
+        impact: "Only the two allowed code-reviewer artifact files were written."
+      - statement: "Findings must be severity ordered with file and line references."
+        source: "User instruction to code-reviewer and org/registry/code-reviewer.md"
+        impact: "The review artifact leads with P0/P1/P2 findings and cites exact source lines."
+      - statement: "Context report must use task-relative handoff refs, mapping list items, and allowed omitted_context reasons."
+        source: "User instruction to code-reviewer"
+        impact: "The report cites the exact senior-engineer handoff ref and digest, uses mapping list items, and uses only allowed omission reasons."
+    assumptions:
+      - statement: "The server/frontend live integration path is the delivery path users will try first."
+        source: "senior-engineer-implementation-v1 and senior-frontend implementation notes"
+        risk: "If delivery intentionally uses only the static YAML fallback, the live API finding remains a contract bug but may not reproduce in that fallback mode."
+      - statement: "The absence of a tools/policy.py CLI is in scope even if ledger.py imports policy helpers directly."
+        source: "User-specified validation command"
+        risk: "A separate wrapper may exist later, but the requested command currently exits successfully without validating."
+    open_questions:
+      - statement: "Should implementation align to api-designer-contract-v1 endpoints now or document a smaller v0 snapshot contract?"
+        source: "api-designer-contract-v1 and implemented tools/org_viz_server.py endpoints"
+        owner: "architect"
+
+  omitted_context:
+    - source: "Full text of unrelated skill inventory and workspace skill deletions/additions"
+      reason: irrelevant
+    - source: "Full visual design token details from visualizer/styles.css"
+      reason: background_only
+    - source: "Complete event stream contents beyond counts and shape evidence"
+      reason: background_only
+    - source: "Implementation suggestions that would require editing source files"
+      reason: irrelevant
+
+  compression_rationale:
+    method: "Retained the upstream handoff digest, registered artifacts used for review, source-of-truth constraints, blocking integration failures, and follow-up focus while omitting unrelated workspace churn and detailed visual styling."
+    loss_notes:
+      - "The review artifact contains exact line references and validation evidence, so the context report keeps only the decisions and constraints needed for downstream handoff."
+      - "Raw command output is summarized in the review artifact rather than duplicated here."
+      - "Unregistered senior-frontend artifacts were read for review context but not listed in artifacts_read because Policy source validation requires registered artifact IDs."
+
+  quality_checks:
+    - name: "uses_task_relative_handoff_ref"
+      passed: true
+    - name: "cites_exact_upstream_context_digest"
+      passed: true
+    - name: "uses_mapping_list_items"
+      passed: true
+    - name: "uses_allowed_omitted_context_reasons"
+      passed: true
+    - name: "preserves_five_concept_model"
+      passed: true
+    - name: "records_no_implementation_mutation"
+      passed: true

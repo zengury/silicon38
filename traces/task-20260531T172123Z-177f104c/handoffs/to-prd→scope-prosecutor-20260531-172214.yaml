@@ -1,0 +1,88 @@
+from: to-prd
+to: scope-prosecutor
+relation_type: evaluates
+timestamp: '2026-05-31T17:22:14.733164+00:00'
+focus: Activate scope-prosecutor from to-prd
+artifact_refs: &id001
+- to-prd-prd-v1
+deliverable:
+  producer: to-prd
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: to-prd-prd-v1
+    producer: to-prd
+    type: prd
+    version: 1
+    status: draft
+    content_ref: artifacts/to-prd-prd-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260531T172123Z-177f104c
+  from: to-prd
+  to: scope-prosecutor
+  relation_type: evaluates
+  focus: Activate scope-prosecutor from to-prd
+  source:
+    producer_role: to-prd
+    context_compression_report_ref: artifacts/to-prd-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/triage→to-prd-20260531-172147.yaml
+      context_digest: 4d430461188c8bdcb28cf6ba91198c07de3a2fb82b605126ac1b20dbd9799639
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Triage is the entry node; no prior decisions.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must produce structured work item, not a solution.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Scope must include explicit out-of-scope items.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Codebase is at /Users/ZQ/roboease and is accessible.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Task is a general refactoring request.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Primary language?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Existing tests?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Preferred module structure?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Backward compatibility constraints?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: No prior artifacts or handoffs to compress.
+    reason: background_only
+  compression_rationale:
+    method: Retained all decisions, constraints, assumptions, and open questions from
+      the triage handoff. Omitted background-only information.
+    loss_notes: []
+  quality_checks:
+  - name: scope_boundary_present
+    passed: true
+  - name: done_condition_present
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - triage-analysis-v1
+  previous_blocks:
+  - ref: handoffs/triage→to-prd-20260531-172147.yaml
+    from: triage
+    to: to-prd
+    relation_type: thompson_sample
+    focus: Thompson sample α=273.0 β=7.2 [validated:triggers]
+    context_digest: 4d430461188c8bdcb28cf6ba91198c07de3a2fb82b605126ac1b20dbd9799639
+    deliverable_artifact_refs:
+    - triage-analysis-v1
+  context_digest: 944acbd2e49377768b54c52a8cd4db7bbb6c197797dabeef28c9f6dc4b88137c

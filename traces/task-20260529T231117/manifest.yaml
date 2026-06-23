@@ -1,0 +1,16 @@
+task_id: task-20260529T231117
+timestamp_start: '2026-05-29T15:11:17.339996+00:00'
+timestamp_end: null
+task_summary: 机器人管理平台序曲 — 定义并启动建设
+task_type: ambiguous
+entry_nodes:
+- triage
+terminal_nodes: []
+outcome: null
+artifact_index:
+- artifact_id: triage-analysis-v1
+  type: analysis
+  producer: triage
+  version: 1
+  path: artifacts/triage-analysis-v1.md
+handoff_trail: []

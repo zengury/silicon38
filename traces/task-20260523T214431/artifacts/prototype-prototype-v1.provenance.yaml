@@ -1,0 +1,15 @@
+artifact_id: prototype-prototype-v1
+type: code
+producer: prototype
+version: 1
+status: draft
+superseded_by: null
+created_at: "2026-05-23T21:48:00+08:00"
+content_ref: artifacts/prototype-prototype-v1.md
+summary: "Prototype validating SwiftUI+SceneKit graph rendering (58-60 FPS), WebSocket connectivity, and JSON schema compatibility with web app"
+decisions:
+  - decision: "PROCEED with SwiftUI + SceneKit approach"
+    rationale: "All three tests passed: 3D rendering performance, WebSocket connectivity, schema compatibility."
+  - decision: "Zero third-party dependencies confirmed viable"
+    rationale: "SceneKit, URLSessionWebSocketTask, Core Graphics all meet requirements without external libraries."
+consumers_pending: [architect, senior-frontend]

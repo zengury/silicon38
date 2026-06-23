@@ -1,0 +1,72 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/to-prd→to-issues-20260531-174340.yaml
+      context_digest: ff5705feed37d3ec6ea8550ccabbb973f70c8e4177347de03da0788a5659ff7a
+  retained_context:
+    decisions:
+    - statement: Task is a codebase improvement (enhancement) not a bug.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Priority set to high due to impact on maintainability.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use incremental refactoring (Strangler Fig pattern) to avoid long-lived
+        branches.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Extract deep modules for common functionality.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Prioritize elimination of exact duplicates first.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: No write access to the codebase.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must respect existing ADRs and out-of-scope decisions.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must not introduce new features.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must maintain backward compatibility during transition.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: The codebase is primarily one language (to be confirmed).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Existing tests may be present (to be confirmed).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the primary programming language(s)?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Are there existing tests and what framework?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Any architectural constraints?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Desired outcome metrics?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed scope items from triage analysis.
+    reason: background_only
+  - source: Agent recommendations from triage.
+    reason: background_only
+  compression_rationale:
+    method: Retained key decisions, constraints, assumptions, and open questions from
+      the PRD and handoff. Omitted detailed scope items and agent recommendations
+      as they are not needed for issue decomposition.
+    loss_notes: []
+  quality_checks:
+  - name: Required fields present
+    passed: true
+  - name: Context compression valid
+    passed: true

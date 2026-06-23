@@ -1,0 +1,203 @@
+task_id: task-20260606T204107-ce98e3a3
+task_status: delivered
+node_states:
+  to-prd:
+    status: completed
+    updated_at: '2026-06-06T12:43:50.444668+00:00'
+    activated_at: '2026-06-06T12:43:44.137069+00:00'
+    completed_at: '2026-06-06T12:43:50.444668+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - to-prd-prd-v1
+    blocked_reason: null
+    entry_node: true
+  scope-prosecutor:
+    status: completed
+    updated_at: '2026-06-06T12:44:15.298707+00:00'
+    activated_at: '2026-06-06T12:43:44.318064+00:00'
+    completed_at: '2026-06-06T12:44:15.298707+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - scope-prosecutor-scope-verdict-v1
+    blocked_reason: null
+    entry_node: true
+  caveman:
+    status: completed
+    updated_at: '2026-06-06T12:46:18.675290+00:00'
+    activated_at: '2026-06-06T12:43:44.504710+00:00'
+    completed_at: '2026-06-06T12:46:18.675290+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - caveman-analysis-v1
+    blocked_reason: null
+    entry_node: true
+  product-vision-anchor:
+    status: completed
+    updated_at: '2026-06-06T12:45:44.653771+00:00'
+    activated_at: '2026-06-06T12:44:23.822838+00:00'
+    completed_at: '2026-06-06T12:45:44.653771+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - product-vision-anchor-product-vision-statement-v1
+    blocked_reason: null
+  architect:
+    status: completed
+    updated_at: '2026-06-06T12:48:57.609279+00:00'
+    activated_at: '2026-06-06T12:46:23.698522+00:00'
+    completed_at: '2026-06-06T12:48:57.609279+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - architect-architecture-v1
+    blocked_reason: null
+  ux-researcher-designer:
+    status: completed
+    updated_at: '2026-06-06T12:51:48.203215+00:00'
+    activated_at: '2026-06-06T12:49:12.188638+00:00'
+    completed_at: '2026-06-06T12:51:48.203215+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - ux-researcher-designer-ux-spec-v1
+    blocked_reason: null
+  hrbp:
+    status: completed
+    updated_at: '2026-06-06T12:53:59.197552+00:00'
+    activated_at: '2026-06-06T12:52:51.029087+00:00'
+    completed_at: '2026-06-06T12:53:59.197552+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - hrbp-talent-evaluation-v1
+    blocked_reason: null
+  graph-topologist:
+    status: completed
+    updated_at: '2026-06-06T12:54:08.901920+00:00'
+    activated_at: '2026-06-06T12:52:51.263642+00:00'
+    completed_at: '2026-06-06T12:54:08.901920+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - graph-topologist-topology-review-v1
+    blocked_reason: null
+artifact_registry:
+  scope-prosecutor-scope-verdict-v1:
+    type: scope-verdict
+    producer: scope-prosecutor
+    version: 1
+    status: approved
+    superseded_by: null
+    content_ref: artifacts/scope-prosecutor-scope-verdict-v1.yaml
+    consumers_pending: []
+    registered_at: '2026-06-06T12:41:35.352091+00:00'
+  to-prd-prd-v1:
+    type: prd
+    producer: to-prd
+    version: 1
+    status: approved
+    superseded_by: null
+    content_ref: artifacts/to-prd-prd-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-06T12:43:18.506933+00:00'
+  caveman-analysis-v1:
+    type: analysis
+    producer: caveman
+    version: 1
+    status: approved
+    superseded_by: null
+    content_ref: artifacts/caveman-analysis-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-06T12:43:18.665011+00:00'
+  product-vision-anchor-product-vision-statement-v1:
+    type: product-vision-statement
+    producer: product-vision-anchor
+    version: 1
+    status: approved
+    superseded_by: null
+    content_ref: artifacts/product-vision-anchor-product-vision-statement-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-06T12:45:31.693999+00:00'
+  architect-architecture-v1:
+    type: architecture
+    producer: architect
+    version: 1
+    status: approved
+    superseded_by: null
+    content_ref: artifacts/architect-architecture-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-06T12:48:57.091885+00:00'
+  ux-researcher-designer-ux-spec-v1:
+    type: ux-spec
+    producer: ux-researcher-designer
+    version: 1
+    status: approved
+    superseded_by: null
+    content_ref: artifacts/ux-researcher-designer-ux-spec-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-06T12:51:47.586565+00:00'
+  hrbp-talent-evaluation-v1:
+    type: talent-evaluation
+    producer: hrbp
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/hrbp-talent-evaluation-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-06T12:53:58.613555+00:00'
+  graph-topologist-topology-review-v1:
+    type: topology-review
+    producer: graph-topologist
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/graph-topologist-topology-review-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-06T12:54:08.306845+00:00'
+context_compression_reports:
+  caveman:
+    ref: artifacts/caveman-context-report-v1.yaml
+    registered_at: '2026-06-06T12:43:25.071109+00:00'
+    digest: b12c9ed577429175ffd832ac6e4202bda5771c9b711b3898dd3410ab4656a4e2
+    status: valid
+  to-prd:
+    ref: artifacts/to-prd-context-report-v1.yaml
+    registered_at: '2026-06-06T12:43:50.227142+00:00'
+    digest: 616b0da99d96d13588411a36e45f8dce795895f067078a192f699d4d79eeba47
+    status: valid
+  scope-prosecutor:
+    ref: artifacts/scope-prosecutor-context-report-v1.yaml
+    registered_at: '2026-06-06T12:44:12.017377+00:00'
+    digest: 46a61ebcdd2ae6f2053f9453240ce46095e87cb2dfe19ed33abd95da0c130eee
+    status: valid
+  product-vision-anchor:
+    ref: artifacts/product-vision-anchor-context-report-v1.yaml
+    registered_at: '2026-06-06T12:45:44.457973+00:00'
+    digest: d6b77a580c08386b0c8da461bee5ff16f5ca0550da0ee4983171c7d693e2e758
+    status: valid
+  architect:
+    ref: artifacts/architect-context-report-v1.yaml
+    registered_at: '2026-06-06T12:48:57.399221+00:00'
+    digest: e30a2d17085d9805916ade8d49383f2ba962973ea5af986cf3e2000f98e218b1
+    status: valid
+  ux-researcher-designer:
+    ref: artifacts/ux-researcher-designer-context-report-v1.yaml
+    registered_at: '2026-06-06T12:51:47.985768+00:00'
+    digest: 912526e24b226996f8f4765d68bf9b7c4cd55591f1297b3c31fd88389137c1fd
+    status: valid
+  hrbp:
+    ref: artifacts/hrbp-context-report-v1.yaml
+    registered_at: '2026-06-06T12:53:58.923078+00:00'
+    digest: 60cabdcd9843e570a2cc9d5d82e21205bd9087eb5d005521cc5c14257fe896f0
+    status: valid
+  graph-topologist:
+    ref: artifacts/graph-topologist-context-report-v1.yaml
+    registered_at: '2026-06-06T12:54:08.615712+00:00'
+    digest: 82dbbb0891467f681fc76c323f780a6041fda11206b0b86245e4b76b0630ada6
+    status: valid
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: true
+  all_loops_resolved: true
+  all_blocking_evals_resolved: true
+  all_joins_passed: true
+  all_artifacts_resolved: true
+  no_undecided_activation_candidates: true
+  settled_at: '2026-06-06T12:52:41.764227+00:00'
+timestamp_end: '2026-06-06T12:52:45.823636+00:00'

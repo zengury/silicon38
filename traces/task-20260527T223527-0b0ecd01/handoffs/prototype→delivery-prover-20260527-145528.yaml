@@ -1,0 +1,150 @@
+from: prototype
+to: delivery-prover
+relation_type: triggers
+timestamp: '2026-05-27T14:55:28.645723+00:00'
+focus: verify prototype plan and later runnable demo requirements
+artifact_refs: &id001
+- prototype-plan-v1
+deliverable:
+  producer: prototype
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: prototype-plan-v1
+    producer: prototype
+    type: plan
+    version: 1
+    status: draft
+    content_ref: artifacts/prototype-plan-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260527T223527-0b0ecd01
+  from: prototype
+  to: delivery-prover
+  relation_type: triggers
+  focus: verify prototype plan and later runnable demo requirements
+  source:
+    producer_role: prototype
+    context_compression_report_ref: artifacts/prototype-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/triage→prototype-20260527-144434.yaml
+      context_digest: a81927c22a1c9a22899cec3802a7a8f7f888ca7af0ebdc5bcc278901650fc445
+    input_artifacts:
+    - artifact_id: triage-analysis-v1
+      path: artifacts/triage-analysis-v1.md
+      used: true
+      why: Primary upstream scope, constraints, risks, recommended candidates, and
+        done conditions for the 3D operations visualizer.
+  compressed_context:
+    decisions:
+    - statement: Prototype should validate a Three.js trace replay before full realtime
+        transport.
+      source: handoffs/triage→prototype-20260527-144434.yaml
+      impact: The first demo can use a normalized snapshot from the current trace
+        instead of building websocket/SSE infrastructure first.
+    - statement: The visualization must present Graph, Policy, Ledger, Runtime, and
+        Learning as the primary operating model.
+      source: org/CONTEXT_BLOCK.md and triage-analysis-v1
+      impact: Scene layout should include persistent conceptual layers, not only agent
+        nodes and edges.
+    - statement: Context blocks must be inspectable payloads attached to handoff animations.
+      source: triage-analysis-v1 and handoffs/triage→prototype-20260527-144434.yaml
+      impact: The demo must show retained decisions, constraints, assumptions, omissions,
+        quality checks, and digest references for a handoff block.
+    - statement: The first demo should prioritize operational clarity over spectacle.
+      source: triage-analysis-v1
+      impact: Spatial layout, filters, and inspectors should make semantics legible
+        before adding cinematic effects.
+    constraints:
+    - statement: Only Graph and Ledger facts should be displayed as operational truth.
+      source: org/CONTEXT_BLOCK.md, org/RUNTIME.md, and triage-analysis-v1
+      impact: The prototype data shape must cite graph files, manifest/state/events/artifacts/handoffs,
+        or explicit replay data.
+    - statement: supports, constrains, complements, and augments are context or ordering
+        pressure, not activation edges.
+      source: org/CONTEXT_BLOCK.md, org/RUNTIME.md, and triage-analysis-v1
+      impact: Edge styling must distinguish activation-capable relations from context-only
+        relations.
+    - statement: Activation is dynamic and based on prior outputs.
+      source: org/CONTEXT_BLOCK.md and triage-analysis-v1
+      impact: The UI should show candidates and decisions over time rather than a
+        preselected full route.
+    - statement: The frontend must not replace Silicon Org Policy, Ledger, Graph,
+        Runtime, or Learning.
+      source: triage-analysis-v1
+      impact: The prototype is visualization and inspection only; graph editing and
+        node execution controls are deferred.
+    assumptions:
+    - statement: A static normalized snapshot is enough to prove the first interaction
+        model.
+      source: prototype-plan-v1.md
+      risk: If production requires immediate live streaming, architecture must add
+        realtime transport earlier.
+    - statement: A focused subset of nodes can prove handoff and context-block semantics
+        before all 35 nodes are polished.
+      source: prototype-plan-v1.md
+      risk: The final graph may still need layout work once all 35 nodes and 122 edges
+        are visible.
+    - statement: Three.js with React bindings is an acceptable demo route unless the
+        existing frontend stack says otherwise.
+      source: prototype-plan-v1.md
+      risk: Senior frontend may need to adapt the plan if the repo's frontend stack
+        differs.
+    open_questions:
+    - statement: Which app/package location should host the throwaway demo?
+      source: prototype-plan-v1.md
+      owner: senior-frontend
+    - statement: Should live updates initially use trace polling, SSE, websocket,
+        or LangGraph runtime events?
+      source: prototype-plan-v1.md
+      owner: architect
+    - statement: Should the first demo render all 35 nodes by default or start with
+        a focused operational subset?
+      source: prototype-plan-v1.md
+      owner: ux-researcher-designer
+  omitted_context:
+  - source: full org/RUNTIME.md command examples
+    reason: background_only
+  - source: prototype skill generic terminal-app branch
+    reason: irrelevant
+  - source: triage recommended candidates unrelated to prototype execution details
+    reason: background_only
+  - source: full contents of Graph node and relation files
+    reason: background_only
+  compression_rationale:
+    method: Retained only decisions, constraints, assumptions, and open questions
+      that change downstream UX, architecture, or frontend implementation choices
+      for the 3D operations visualizer.
+    loss_notes:
+    - Exact graph topology was not copied; downstream implementation should read ontology/nodes.yaml
+      and ontology/relations.yaml directly.
+    - Runtime command syntax was not retained except where it affects displayed truth
+      boundaries.
+    - Prototype implementation details were kept at plan level because this node was
+      asked to produce a prototype plan, not production code.
+  quality_checks:
+  - name: cites_exact_handoff_ref_and_digest
+    passed: true
+  - name: cites_upstream_triage_artifact
+    passed: true
+  - name: retains_five_concept_model
+    passed: true
+  - name: preserves_activation_edge_semantics
+    passed: true
+  - name: separates_demo_replay_from_realtime_transport
+    passed: true
+  - name: yaml_parseable
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - triage-analysis-v1
+  previous_blocks:
+  - ref: handoffs/triage→prototype-20260527-144434.yaml
+    from: triage
+    to: prototype
+    relation_type: may_trigger
+    focus: build/play with a minimum viable Three.js trace replay before full realtime
+      transport
+    context_digest: a81927c22a1c9a22899cec3802a7a8f7f888ca7af0ebdc5bcc278901650fc445
+    deliverable_artifact_refs:
+    - triage-analysis-v1
+  context_digest: 2070757f59db6b409e025d2b1ec5ae3ac274d9ddf69380b20dc13fb66ee7c6d6

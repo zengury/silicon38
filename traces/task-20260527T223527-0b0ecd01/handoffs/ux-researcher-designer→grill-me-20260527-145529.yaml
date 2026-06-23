@@ -1,0 +1,191 @@
+from: ux-researcher-designer
+to: grill-me
+relation_type: evaluates
+timestamp: '2026-05-27T14:55:29.840569+00:00'
+focus: stress-test UX clarity and visual semantics
+artifact_refs: &id001
+- ux-researcher-designer-ux-spec-v1
+deliverable:
+  producer: ux-researcher-designer
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: ux-researcher-designer-ux-spec-v1
+    producer: ux-researcher-designer
+    type: ux-spec
+    version: 1
+    status: draft
+    content_ref: artifacts/ux-researcher-designer-ux-spec-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260527T223527-0b0ecd01
+  from: ux-researcher-designer
+  to: grill-me
+  relation_type: evaluates
+  focus: stress-test UX clarity and visual semantics
+  source:
+    producer_role: ux-researcher-designer
+    context_compression_report_ref: artifacts/ux-researcher-designer-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/triage→ux-researcher-designer-20260527-144434.yaml
+      context_digest: b185c9e416e3a26fe95dbe83bc0af2ed927534489141eba4c1ca9d626346848a
+    - ref: handoffs/caveman→ux-researcher-designer-20260527-144434.yaml
+      context_digest: 90427156b43a9897afd79e4b9e1c6e0183e75613adaea5bde19628173dad9d4c
+    input_artifacts:
+    - artifact_id: triage-analysis-v1
+      used: true
+      why: Provided task classification, scope boundaries, risk framing, done conditions,
+        and UX/design candidate focus.
+    - artifact_id: caveman-analysis-v1
+      used: true
+      why: Provided first-principles product shape, minimum viable version, five-concept
+        model, and complexity cuts.
+  compressed_context:
+    decisions:
+    - statement: The visualizer is an internal observability and graph-visualization
+        feature, not a generic dashboard.
+      source: triage-analysis-v1
+      impact: The UX spec centers Silicon Org's own Graph, Ledger, Policy, Runtime,
+        Learning, handoffs, and context blocks.
+    - statement: The UI must use Graph, Ledger, Policy, Runtime, and Learning as the
+        primary conceptual model.
+      source: handoffs/triage→ux-researcher-designer-20260527-144434.yaml context_block
+        b185c9e416e3a26fe95dbe83bc0af2ed927534489141eba4c1ca9d626346848a
+      impact: Information architecture and scene layout avoid adding competing top-level
+        concepts.
+    - statement: Ledger-derived run snapshots should be the source of truth for visual
+        state.
+      source: handoffs/caveman→ux-researcher-designer-20260527-144434.yaml context_block
+        90427156b43a9897afd79e4b9e1c6e0183e75613adaea5bde19628173dad9d4c
+      impact: The spec requires every operational fact to cite Graph or Ledger sources.
+    - statement: Handoff blocks must be visible objects carrying deliverable metadata
+        and context_block data.
+      source: caveman-analysis-v1
+      impact: The UX spec defines moving handoff block objects and a structured block
+        inspector.
+    - statement: MVP should replay existing traces before adding full realtime runtime
+        transport.
+      source: caveman-analysis-v1
+      impact: Realtime controls are designed around shared demo, replay, and live
+        snapshot modes.
+    - statement: The 3D layout should be deterministic rather than uncontrolled physics.
+      source: caveman-analysis-v1
+      impact: The UX spec prioritizes spatial memory and comparable runs.
+    constraints:
+    - statement: Only Graph and Ledger facts should be displayed as operational truth.
+      source: handoffs/triage→ux-researcher-designer-20260527-144434.yaml context_block
+        b185c9e416e3a26fe95dbe83bc0af2ed927534489141eba4c1ca9d626346848a
+      impact: Node status, handoffs, context digests, and decisions are source-cited
+        in the design.
+    - statement: supports, constrains, complements, and augments are context or ordering
+        pressure and must not be shown as direct activation edges.
+      source: handoffs/triage→ux-researcher-designer-20260527-144434.yaml context_block
+        b185c9e416e3a26fe95dbe83bc0af2ed927534489141eba4c1ca9d626346848a
+      impact: Edge visual semantics separate activation-capable relations from context-only
+        relations.
+    - statement: Activation is dynamic and based on prior outputs; do not preselect
+        a whole multi-layer route at task start.
+      source: org/CONTEXT_BLOCK.md
+      impact: The spec shows candidates, decisions, deferrals, gates, and timeline
+        replay rather than one fixed workflow.
+    - statement: Every handoff has both deliverable refs and a digest-linked context_block.
+      source: org/RUNTIME.md and org/HARNESS.md
+      impact: The block inspector includes deliverable, context block, and digest-chain
+        tabs.
+    - statement: The UI must not replace Graph, Policy, Ledger, Runtime, or Learning
+        logic.
+      source: triage-analysis-v1
+      impact: The spec explicitly excludes execution controls and graph editing from
+        v1.
+    assumptions:
+    - statement: A Three.js scene is acceptable and useful for the first visual prototype.
+      source: explicit user request and caveman-analysis-v1
+      risk: If later embedded in a different frontend surface, the normalized snapshot
+        contract should protect the UX from framework churn.
+    - statement: A trace-to-snapshot adapter can normalize YAML Graph and Ledger files.
+      source: caveman-analysis-v1
+      risk: If historical traces differ by schema version, the frontend needs tolerant
+        partial rendering and source warnings.
+    - statement: Operators need replay as much as live status.
+      source: triage-analysis-v1 and caveman-analysis-v1
+      risk: A live-only UI would show current state but fail to explain why the state
+        happened.
+    - statement: The first visualizer should observe rather than control Silicon Org.
+      source: ux-researcher-designer judgment from upstream scope constraints
+      risk: Adding node execution or graph mutation controls in v1 would mix observability
+        with governance and enlarge security/policy scope.
+    open_questions:
+    - statement: Which trace should become the canonical demo fixture for v1?
+      source: caveman-analysis-v1
+      owner: architect
+    - statement: Should live mode use polling first or wait for a runtime event stream
+        adapter?
+      source: ux-researcher-designer-ux-spec-v1
+      owner: architect
+    - statement: Should the first demo allow trace folder selection or ship with one
+        bundled trace?
+      source: caveman-analysis-v1
+      owner: prototype
+  omitted_context:
+  - source: Full text of org/RUNTIME.md
+    reason: background_only
+  - source: Full text of ontology/nodes.yaml
+    reason: background_only
+  - source: Full text of ontology/relations.yaml
+    reason: background_only
+  - source: Full text of AGENTS.md boot sequence
+    reason: background_only
+  - source: Triage recommended candidates not related to UX surface
+    reason: irrelevant
+  - source: Detailed skill workflow templates for personas, journey maps, and usability
+      tests
+    reason: irrelevant
+  compression_rationale:
+    method: Compressed upstream triage and first-principles analysis into actionable
+      UX decisions, hard semantic constraints, source-of-truth rules, and downstream
+      design/architecture questions.
+    loss_notes:
+    - Exact graph node and edge lists were not reproduced; downstream implementation
+      should read Graph files directly for counts and topology.
+    - Exact raw YAML command syntax was omitted; retained user-facing implications
+      for evidence, status, and context-chain inspection.
+    - Detailed product risk prose was condensed into UX-facing constraints and error
+      states.
+  quality_checks:
+  - name: handoff_refs_include_exact_context_digest
+    passed: true
+  - name: upstream_artifacts_read_are_cited
+    passed: true
+  - name: retains_five_concept_model
+    passed: true
+  - name: distinguishes_activation_edges_from_context_edges
+    passed: true
+  - name: keeps_ledger_as_source_of_truth
+    passed: true
+  - name: covers_required_ux_spec_sections
+    passed: true
+  - name: yaml_parseable
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - caveman-analysis-v1
+  - triage-analysis-v1
+  previous_blocks:
+  - ref: handoffs/caveman→ux-researcher-designer-20260527-144434.yaml
+    from: caveman
+    to: ux-researcher-designer
+    relation_type: may_trigger
+    focus: preserve five-concept mental model and avoid spectacle over operational
+      clarity
+    context_digest: 90427156b43a9897afd79e4b9e1c6e0183e75613adaea5bde19628173dad9d4c
+    deliverable_artifact_refs:
+    - caveman-analysis-v1
+  - ref: handoffs/triage→ux-researcher-designer-20260527-144434.yaml
+    from: triage
+    to: ux-researcher-designer
+    relation_type: may_trigger
+    focus: design operator-facing navigation, inspection, and realtime status semantics
+    context_digest: b185c9e416e3a26fe95dbe83bc0af2ed927534489141eba4c1ca9d626346848a
+    deliverable_artifact_refs:
+    - triage-analysis-v1
+  context_digest: 546e03008153f5cbec8ffebe4c2697cce2b19dfcf2e3bc63b89c30d6f1d31b10
+soul_ref: org/soul.md

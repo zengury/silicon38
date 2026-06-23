@@ -1,0 +1,262 @@
+task_id: task-20260601T110000Z-manastone
+timestamp_start: '2026-06-01T10:59:17.689776+00:00'
+timestamp_end: '2026-06-01T11:29:50.418599+00:00'
+task_summary: 对 zengury/manastone 仓库做一次全面调优（位于 /Users/ZQ/manastone）。核心任务：1) 用户入口——新用户安装
+  manastone 即包含所有依赖（pi coding agent），manastone 独立品牌，隐藏 pi 品牌（类似 openclaw 与 pi 关系）；2)
+  多层次功能导致用户不知如何安装和用终端解决问题——需优化安装体验、用户引导；3) 品牌独立性审计和改造。注意：环境嘈杂，工作需低声精准。
+task_type: feature
+entry_nodes:
+- triage
+- scope-prosecutor
+- caveman
+terminal_nodes:
+- triage
+- scope-prosecutor
+- caveman
+- product-vision-anchor
+- architect
+- senior-engineer
+- delivery-prover
+- code-reviewer
+- epic-design
+- senior-frontend
+- graph-topologist
+- hrbp
+- customer-success
+outcome:
+  status: partial
+  decoder_notes: Graph propagation exhausted — no more legal candidates.
+  quality_signal:
+    source: runtime_decoder
+    value: 0.5
+    detail: Graph propagation exhausted — no more legal candidates.
+context_block:
+  ref: org/CONTEXT_BLOCK.md
+  sha256: d82dc247c04f8cd2e797dd394ecd8d9cd927f1e194f2800d4fcf1e2be41f2a66
+artifact_index:
+- artifact_id: triage-analysis-v1
+  type: analysis
+  producer: triage
+  version: 1
+  status: draft
+  path: artifacts/triage-analysis-v1.md
+  ref: artifacts/triage-analysis-v1.md
+  provenance_ref: artifacts/triage-analysis-v1.provenance.yaml
+- artifact_id: scope-prosecutor-scope-verdict-v1
+  type: scope-verdict
+  producer: scope-prosecutor
+  version: 1
+  status: draft
+  path: artifacts/scope-prosecutor-scope-verdict-v1.yaml
+  ref: artifacts/scope-prosecutor-scope-verdict-v1.yaml
+  provenance_ref: artifacts/scope-prosecutor-scope-verdict-v1.provenance.yaml
+- artifact_id: caveman-analysis-v1
+  type: analysis
+  producer: caveman
+  version: 1
+  status: draft
+  path: artifacts/caveman-analysis-v1.md
+  ref: artifacts/caveman-analysis-v1.md
+  provenance_ref: artifacts/caveman-analysis-v1.provenance.yaml
+- artifact_id: product-vision-anchor-product-vision-statement-v1
+  type: product-vision-statement
+  producer: product-vision-anchor
+  version: 1
+  status: draft
+  path: artifacts/product-vision-anchor-product-vision-statement-v1.yaml
+  ref: artifacts/product-vision-anchor-product-vision-statement-v1.yaml
+  provenance_ref: artifacts/product-vision-anchor-product-vision-statement-v1.provenance.yaml
+- artifact_id: architect-architecture-v1
+  type: architecture
+  producer: architect
+  version: 1
+  status: draft
+  path: artifacts/architect-architecture-v1.md
+  ref: artifacts/architect-architecture-v1.md
+  provenance_ref: artifacts/architect-architecture-v1.provenance.yaml
+- artifact_id: senior-engineer-implementation-v1
+  type: implementation
+  producer: senior-engineer
+  version: 1
+  status: draft
+  path: artifacts/senior-engineer-implementation-v1.md
+  ref: artifacts/senior-engineer-implementation-v1.md
+  provenance_ref: artifacts/senior-engineer-implementation-v1.provenance.yaml
+- artifact_id: delivery-prover-proof-v1
+  type: proof
+  producer: delivery-prover
+  version: 1
+  status: draft
+  path: artifacts/delivery-prover-proof-v1.md
+  ref: artifacts/delivery-prover-proof-v1.md
+  provenance_ref: artifacts/delivery-prover-proof-v1.provenance.yaml
+- artifact_id: code-reviewer-review-v1
+  type: review
+  producer: code-reviewer
+  version: 1
+  status: draft
+  path: artifacts/code-reviewer-review-v1.md
+  ref: artifacts/code-reviewer-review-v1.md
+  provenance_ref: artifacts/code-reviewer-review-v1.provenance.yaml
+- artifact_id: epic-design-experience-design-v1
+  type: experience-design
+  producer: epic-design
+  version: 1
+  status: draft
+  path: artifacts/epic-design-experience-design-v1.md
+  ref: artifacts/epic-design-experience-design-v1.md
+  provenance_ref: artifacts/epic-design-experience-design-v1.provenance.yaml
+- artifact_id: senior-frontend-implementation-v1
+  type: implementation
+  producer: senior-frontend
+  version: 1
+  status: draft
+  path: artifacts/senior-frontend-implementation-v1.md
+  ref: artifacts/senior-frontend-implementation-v1.md
+  provenance_ref: artifacts/senior-frontend-implementation-v1.provenance.yaml
+- artifact_id: customer-success-customer-plan-v1
+  type: customer-plan
+  producer: customer-success
+  version: 1
+  status: draft
+  path: artifacts/customer-success-customer-plan-v1.md
+  ref: artifacts/customer-success-customer-plan-v1.md
+  provenance_ref: artifacts/customer-success-customer-plan-v1.provenance.yaml
+- artifact_id: graph-topologist-topology-review-v1
+  type: topology-review
+  producer: graph-topologist
+  version: 1
+  status: draft
+  path: artifacts/graph-topologist-topology-review-v1.md
+  ref: artifacts/graph-topologist-topology-review-v1.md
+  provenance_ref: artifacts/graph-topologist-topology-review-v1.provenance.yaml
+- artifact_id: hrbp-talent-evaluation-v1
+  type: talent-evaluation
+  producer: hrbp
+  version: 1
+  status: draft
+  path: artifacts/hrbp-talent-evaluation-v1.md
+  ref: artifacts/hrbp-talent-evaluation-v1.md
+  provenance_ref: artifacts/hrbp-talent-evaluation-v1.provenance.yaml
+context_report_index:
+- role: triage
+  ref: artifacts/triage-context-report-v1.yaml
+  digest: eea25283a29afcc04bd27a15345325c5ef24548f64e4512ddcaf345d9e70f14b
+  status: valid
+- role: scope-prosecutor
+  ref: artifacts/scope-prosecutor-context-report-v1.yaml
+  digest: 4af68b29f7fcef9e1eca7bade407336be8f1544bef0614de29aeebbc60c8a202
+  status: valid
+- role: caveman
+  ref: artifacts/caveman-context-report-v1.yaml
+  digest: a60e6d2d6bdebb1fdcb4767de2e351697566800abcf51611572d727b27b7fa5b
+  status: valid
+- role: product-vision-anchor
+  ref: artifacts/product-vision-anchor-context-report-v1.yaml
+  digest: 4c121ffb4081cceac76a8614e032aa563b6a3b23819ea7d9d1f9026ffca03923
+  status: valid
+- role: architect
+  ref: artifacts/architect-context-report-v1.yaml
+  digest: 9d1700b333cb19fc7dae06870e9e3ea4db5f37ed37e845678c26f8ae888eef76
+  status: valid
+- role: senior-engineer
+  ref: artifacts/senior-engineer-context-report-v1.yaml
+  digest: 42d93581362a50ce33d6187b74e858072a8e9fa54cb3985f405ed41423f80f15
+  status: valid
+- role: delivery-prover
+  ref: artifacts/delivery-prover-context-report-v1.yaml
+  digest: 2702eb83e82aa86dc56b2194c27f36dc50ea20357156fa95db741ead54b49747
+  status: valid
+- role: code-reviewer
+  ref: artifacts/code-reviewer-context-report-v1.yaml
+  digest: 0dcfae5458333459a531f740588a8b9a6c667fb6aa223b793164fe55fe7a9dce
+  status: valid
+- role: epic-design
+  ref: artifacts/epic-design-context-report-v1.yaml
+  digest: fa7ff72739911fd950e18bfd7e61032d566e446ae8bebd438f171ae56f51138b
+  status: valid
+- role: senior-frontend
+  ref: artifacts/senior-frontend-context-report-v1.yaml
+  digest: bd14e2eb6d92e3cb014f8e6561c2692e9618937155c46192879da9a41e30c45e
+  status: valid
+- role: graph-topologist
+  ref: artifacts/graph-topologist-context-report-v1.yaml
+  digest: 5183291f30ccc763760edfae75838239f00b2e0d5125f863fd47220769514fd8
+  status: valid
+- role: hrbp
+  ref: artifacts/hrbp-context-report-v1.yaml
+  digest: 6d1aad28035e522cea701346dd840415dd45c4f22b06684a785e2a57820f763b
+  status: valid
+- role: customer-success
+  ref: artifacts/customer-success-context-report-v1.yaml
+  digest: 14c5efbdfc0c164dbc4a8298febf375973f574ab15e855de8bbf77a4edfb9780
+  status: valid
+handoff_trail:
+- ref: handoffs/scope-prosecutor→product-vision-anchor-20260601-110005.yaml
+  from: scope-prosecutor
+  to: product-vision-anchor
+  relation_type: thompson_sample
+  timestamp: '2026-06-01T11:00:05.382322+00:00'
+  artifact_refs:
+  - scope-prosecutor-scope-verdict-v1
+  context_block_digest: b8feb8d0f0c45666b72f1dee6053378a050516560aac156ef473cff5684c1d35
+- ref: handoffs/scope-prosecutor→architect-20260601-110017.yaml
+  from: scope-prosecutor
+  to: architect
+  relation_type: thompson_sample
+  timestamp: '2026-06-01T11:00:17.308908+00:00'
+  artifact_refs:
+  - scope-prosecutor-scope-verdict-v1
+  context_block_digest: b4b5188e5ecc296e72b494261e7dbdd2284aca40e1ac8df31fba6fe6742d4cbf
+  soul_ref: org/soul.md
+- ref: handoffs/architect→senior-engineer-20260601-110040.yaml
+  from: architect
+  to: senior-engineer
+  relation_type: thompson_sample
+  timestamp: '2026-06-01T11:00:40.468482+00:00'
+  artifact_refs:
+  - architect-architecture-v1
+  context_block_digest: 388f29e2f52b029cb86f6109486227203ec3b48d152ea5d7da592b6a34af6508
+- ref: handoffs/senior-engineer→delivery-prover-20260601-111241.yaml
+  from: senior-engineer
+  to: delivery-prover
+  relation_type: triggers
+  timestamp: '2026-06-01T11:12:41.800318+00:00'
+  artifact_refs:
+  - senior-engineer-implementation-v1
+  context_block_digest: 0aca1159a186386c67322e5196d3b7ea8510090d9f0a3687aecfa77b0e7808d3
+- ref: handoffs/senior-engineer→code-reviewer-20260601-111258.yaml
+  from: senior-engineer
+  to: code-reviewer
+  relation_type: triggers
+  timestamp: '2026-06-01T11:12:58.179396+00:00'
+  artifact_refs:
+  - senior-engineer-implementation-v1
+  context_block_digest: 5ee46fa68cc523848679b2ce93e71e225c182610b33d30636996e73d56634a78
+- ref: handoffs/product-vision-anchor→epic-design-20260601-111313.yaml
+  from: product-vision-anchor
+  to: epic-design
+  relation_type: thompson_sample
+  timestamp: '2026-06-01T11:13:13.708487+00:00'
+  artifact_refs:
+  - product-vision-anchor-product-vision-statement-v1
+  context_block_digest: 2028ccd4a6b1e6e32ed0fcbd84ab733b9c9dd9bbb3e9a483cc2aaf3a8457e2cc
+  soul_ref: org/soul.md
+- ref: handoffs/epic-design→senior-frontend-20260601-112120.yaml
+  from: epic-design
+  to: senior-frontend
+  relation_type: thompson_sample
+  timestamp: '2026-06-01T11:21:20.422303+00:00'
+  artifact_refs:
+  - epic-design-experience-design-v1
+  context_block_digest: 7087fb7dd13a773c8016f7d58a7f894bd03d40c11858d9320d8cd51a8d488ae4
+  soul_ref: org/soul.md
+- ref: handoffs/architect→customer-success-20260601-112859.yaml
+  from: architect
+  to: customer-success
+  relation_type: thompson_sample
+  timestamp: '2026-06-01T11:28:59.543221+00:00'
+  artifact_refs:
+  - architect-architecture-v1
+  context_block_digest: 52a3c532b6b504d6d8c0a8cb1349b4d0e0eb8150d8fe44fc47abc561279a68f7
+workspace_dir: /Users/ZQ/manastone

@@ -1,0 +1,26 @@
+task_id: task-20260529T231117
+task_status: propagating
+node_states:
+  triage:
+    status: completed
+    updated_at: '2026-05-29T15:12:13.105204+00:00'
+    completed_at: '2026-05-29T15:12:13.105204+00:00'
+artifact_registry:
+  triage-analysis-v1:
+    type: analysis
+    producer: triage
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/triage-analysis-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-29T15:12:13.016814+00:00'
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: false
+  all_loops_resolved: false
+  all_blocking_evals_resolved: false
+  all_joins_passed: false
+  any_unresolved_artifacts: false
+  settled_at: null

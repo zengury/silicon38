@@ -1,0 +1,184 @@
+task_id: task-20260607T145443Z-da0862f2
+timestamp_start: '2026-06-07T14:55:00.530952+00:00'
+timestamp_end: null
+task_summary: '/Users/ZQ/manastone/manastone — Build demonstration-taught guided tour
+  system. Full brief: /Users/ZQ/Downloads/v3_TOUR_BRIEF.md. Two modes (teaching +
+  guiding), voice-only operator interface, anti-hallucination, 5 acceptance steps.'
+task_type: design
+entry_nodes:
+- to-prd
+terminal_nodes:
+- to-prd
+- product-vision-anchor
+- to-issues
+- architect
+- ux-researcher-designer
+- dependency-auditor
+- senior-engineer
+outcome: null
+context_block:
+  ref: org/CONTEXT_BLOCK.md
+  sha256: d82dc247c04f8cd2e797dd394ecd8d9cd927f1e194f2800d4fcf1e2be41f2a66
+artifact_index:
+- artifact_id: to-prd-prd-v1
+  type: prd
+  producer: to-prd
+  version: 1
+  status: draft
+  path: artifacts/to-prd-prd-v1.md
+  ref: artifacts/to-prd-prd-v1.md
+  provenance_ref: artifacts/to-prd-prd-v1.provenance.yaml
+- artifact_id: product-vision-anchor-product-vision-statement-v1
+  type: product-vision-statement
+  producer: product-vision-anchor
+  version: 1
+  status: draft
+  path: artifacts/product-vision-anchor-product-vision-statement-v1.yaml
+  ref: artifacts/product-vision-anchor-product-vision-statement-v1.yaml
+  provenance_ref: artifacts/product-vision-anchor-product-vision-statement-v1.provenance.yaml
+- artifact_id: to-issues-decomposition-v1
+  type: decomposition
+  producer: to-issues
+  version: 1
+  status: draft
+  path: artifacts/to-issues-decomposition-v1.md
+  ref: artifacts/to-issues-decomposition-v1.md
+  provenance_ref: artifacts/to-issues-decomposition-v1.provenance.yaml
+- artifact_id: architect-architecture-v1
+  type: architecture
+  producer: architect
+  version: 1
+  status: draft
+  path: artifacts/architect-architecture-v1.md
+  ref: artifacts/architect-architecture-v1.md
+  provenance_ref: artifacts/architect-architecture-v1.provenance.yaml
+- artifact_id: ux-researcher-designer-ux-spec-v1
+  type: ux-spec
+  producer: ux-researcher-designer
+  version: 1
+  status: draft
+  path: artifacts/ux-researcher-designer-ux-spec-v1.md
+  ref: artifacts/ux-researcher-designer-ux-spec-v1.md
+  provenance_ref: artifacts/ux-researcher-designer-ux-spec-v1.provenance.yaml
+- artifact_id: dependency-auditor-dependency-audit-v1
+  type: dependency-audit
+  producer: dependency-auditor
+  version: 1
+  status: draft
+  path: artifacts/dependency-auditor-dependency-audit-v1.md
+  ref: artifacts/dependency-auditor-dependency-audit-v1.md
+  provenance_ref: artifacts/dependency-auditor-dependency-audit-v1.provenance.yaml
+- artifact_id: customer-success-customer-plan-v1
+  type: customer-plan
+  producer: customer-success
+  version: 1
+  status: draft
+  path: artifacts/customer-success-customer-plan-v1.md
+  ref: artifacts/customer-success-customer-plan-v1.md
+  provenance_ref: artifacts/customer-success-customer-plan-v1.provenance.yaml
+- artifact_id: senior-engineer-implementation-v1
+  type: implementation
+  producer: senior-engineer
+  version: 1
+  status: draft
+  path: artifacts/senior-engineer-implementation-v1.md
+  ref: artifacts/senior-engineer-implementation-v1.md
+  provenance_ref: artifacts/senior-engineer-implementation-v1.provenance.yaml
+context_report_index:
+- role: to-prd
+  ref: artifacts/to-prd-context-report-v1.yaml
+  digest: 29f8b135ee2b5308de66badadac49e689a657c528827af1f205b6b6c17ceb88f
+  status: valid
+- role: product-vision-anchor
+  ref: artifacts/product-vision-anchor-context-report-v1.yaml
+  digest: f94a8e3346450b28cb1c4f6ff7f6649b0296e9db54159478b00dbd4925e8cdef
+  status: valid
+- role: to-issues
+  ref: artifacts/to-issues-context-report-v1.yaml
+  digest: d116cdddb272c4f047018cf5dc0a7c5b951dd5ddbf0d246319eba01a69cff44c
+  status: valid
+- role: architect
+  ref: artifacts/architect-context-report-v1.yaml
+  digest: a85a4fdba104ac74db24a0eefd7e6261326eafbbd5a98efa8047077019f94e36
+  status: valid
+- role: ux-researcher-designer
+  ref: artifacts/ux-researcher-designer-context-report-v1.yaml
+  digest: 94f3149d78337cf56eeb5ea36b99b9b162837e8b1c5bb71c3538121838c03a78
+  status: valid
+- role: dependency-auditor
+  ref: artifacts/dependency-auditor-context-report-v1.yaml
+  digest: d86b53a9194bd024b27cf0ab1fd971e67256da69d8d3dadd115e381fb66c3e06
+  status: valid
+- role: senior-engineer
+  ref: artifacts/senior-engineer-context-report-v1.yaml
+  digest: 564c417a0e174a216788549776ea389337877cdc34f1f164d74f7317fa0a09da
+  status: valid
+handoff_trail:
+- ref: handoffs/to-prd→to-issues-20260607-145549.yaml
+  from: to-prd
+  to: to-issues
+  relation_type: thompson_sample
+  timestamp: '2026-06-07T14:55:49.369982+00:00'
+  artifact_refs:
+  - to-prd-prd-v1
+  context_block_digest: 250319ccac08c05b5a590219dc67d58fe9cec92a8f7658e9786303544fd7e3b3
+- ref: handoffs/to-prd→ux-researcher-designer-20260607-145552.yaml
+  from: to-prd
+  to: ux-researcher-designer
+  relation_type: may_trigger
+  timestamp: '2026-06-07T14:55:52.827108+00:00'
+  artifact_refs:
+  - to-prd-prd-v1
+  context_block_digest: 8d69139d2d64b48b69c2f6735b251ef9c1c42a833bf3835925a0e2c447b74198
+  soul_ref: org/soul.md
+- ref: handoffs/to-prd→architect-20260607-145556.yaml
+  from: to-prd
+  to: architect
+  relation_type: may_trigger
+  timestamp: '2026-06-07T14:55:56.802270+00:00'
+  artifact_refs:
+  - to-prd-prd-v1
+  context_block_digest: 1f97e3168aac3fb594ec82bcb504b5e3c1c75024db9cf63f8b8750b15eb46a9c
+  soul_ref: org/soul.md
+- ref: handoffs/to-prd→product-vision-anchor-20260607-145558.yaml
+  from: to-prd
+  to: product-vision-anchor
+  relation_type: thompson_sample
+  timestamp: '2026-06-07T14:56:00.046342+00:00'
+  artifact_refs:
+  - to-prd-prd-v1
+  context_block_digest: 0faa448cb5870738d2d1abd76531847f189ab25607b21ad0644f4999d39e7734
+- ref: handoffs/to-issues→senior-engineer-20260607-145705.yaml
+  from: to-issues
+  to: senior-engineer
+  relation_type: thompson_sample
+  timestamp: '2026-06-07T14:57:06.918863+00:00'
+  artifact_refs:
+  - to-issues-decomposition-v1
+  context_block_digest: 3ecd89f928a86578f5bdd4005084724ac76fa250620eac6e0771a2077f8fdaf7
+- ref: handoffs/ux-researcher-designer→prototype-20260607-145710.yaml
+  from: ux-researcher-designer
+  to: prototype
+  relation_type: triggers
+  timestamp: '2026-06-07T14:57:12.942525+00:00'
+  artifact_refs:
+  - ux-researcher-designer-ux-spec-v1
+  context_block_digest: ab91b4e13fda992e51588e8a469f02d8e42518c8389bf88fec5da6e115897644
+  soul_ref: org/soul.md
+- ref: handoffs/architect→customer-success-20260607-145717.yaml
+  from: architect
+  to: customer-success
+  relation_type: may_trigger
+  timestamp: '2026-06-07T14:57:19.609728+00:00'
+  artifact_refs:
+  - architect-architecture-v1
+  context_block_digest: e5be081d2c35889257b0cc15bd9039431827761df8d764fe174b766ec724cf8d
+- ref: handoffs/to-issues→dependency-auditor-20260607-145721.yaml
+  from: to-issues
+  to: dependency-auditor
+  relation_type: thompson_sample
+  timestamp: '2026-06-07T14:57:25.755713+00:00'
+  artifact_refs:
+  - to-issues-decomposition-v1
+  context_block_digest: d25093533bd0de1f41ff2c0e4a0dd435cc6b8f3d7f6cbe90bef2c133c0c4a1cc
+workspace_dir: /Users/ZQ/manastone/manastone

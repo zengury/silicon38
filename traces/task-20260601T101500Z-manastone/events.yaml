@@ -1,0 +1,299 @@
+task_id: task-20260601T101500Z-manastone
+events:
+- event_id: ev-001
+  timestamp: '2026-06-01T10:07:07.169980+00:00'
+  event_type: task_started
+  payload:
+    detail: 对 zengury/manastone 仓库做一次全面调优（位于 /Users/ZQ/manastone）。核心任务：1) 用户入口——新用户安装
+      manastone 即包含所有依赖（pi coding agent），manastone 独立品牌，隐藏 pi 品牌（类似 openclaw 与 pi
+      关系）；2) 多层次功能导致用户不知如何安装和用终端解决问题——需优化安装体验、用户引导；3) 品牌独立性审计和改造。注意：环境嘈杂，工作需低声精准。
+- event_id: ev-002
+  timestamp: '2026-06-01T10:07:26.521189+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'triage: activated'
+- event_id: ev-003
+  timestamp: '2026-06-01T10:07:26.603397+00:00'
+  event_type: context_report_registered
+  payload:
+    role: triage
+    ref: artifacts/triage-context-report-v1.yaml
+    digest: 4629cd2d6a86b9c859a42f6c1690c24fcdc26c67e110fe3d45363d16d57a4761
+- event_id: ev-004
+  timestamp: '2026-06-01T10:07:26.633426+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'triage: completed'
+- event_id: ev-005
+  timestamp: '2026-06-01T10:07:26.978472+00:00'
+  event_type: activation_decision
+  payload:
+    from: triage
+    to: diagnose
+    relation_type: triggers
+    decision: defer
+    detail: 'Candidate gated by task_type=feature; allowed task types: [''bug'', ''bug_fix'',
+      ''diagnose'', ''debug'', ''incident'', ''performance''].'
+    decision_quality:
+      reason_chars: 125
+      requires_review: true
+- event_id: ev-006
+  timestamp: '2026-06-01T10:07:27.107680+00:00'
+  event_type: activation_decision
+  payload:
+    from: triage
+    to: ux-researcher-designer
+    relation_type: may_trigger
+    decision: defer
+    detail: Candidate score 0.40 is below activation threshold 0.50; deferred for
+      later policy review.
+    decision_quality:
+      reason_chars: 90
+      requires_review: true
+- event_id: ev-007
+  timestamp: '2026-06-01T10:07:27.235705+00:00'
+  event_type: activation_decision
+  payload:
+    from: triage
+    to: prototype
+    relation_type: may_trigger
+    decision: defer
+    detail: Candidate score 0.35 is below activation threshold 0.50; deferred for
+      later policy review.
+    decision_quality:
+      reason_chars: 90
+      requires_review: true
+- event_id: ev-008
+  timestamp: '2026-06-01T10:07:27.373354+00:00'
+  event_type: activation_decision
+  payload:
+    from: triage
+    to: improve-codebase-architecture
+    relation_type: may_trigger
+    decision: defer
+    detail: 'Candidate gated by task_type=feature; allowed task types: [''refactor'',
+      ''architecture''].'
+    decision_quality:
+      reason_chars: 87
+      requires_review: true
+- event_id: ev-009
+  timestamp: '2026-06-01T10:07:45.736001+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'scope-prosecutor: activated'
+- event_id: ev-010
+  timestamp: '2026-06-01T10:07:45.828760+00:00'
+  event_type: context_report_registered
+  payload:
+    role: scope-prosecutor
+    ref: artifacts/scope-prosecutor-context-report-v1.yaml
+    digest: f39feb3b81676e60a8bb77656a022c6b921041c916f09d5379766311f87ed9a1
+- event_id: ev-011
+  timestamp: '2026-06-01T10:07:45.869709+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'scope-prosecutor: completed'
+- event_id: ev-012
+  timestamp: '2026-06-01T10:08:01.395962+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'caveman: activated'
+- event_id: ev-013
+  timestamp: '2026-06-01T10:08:01.538419+00:00'
+  event_type: context_report_registered
+  payload:
+    role: caveman
+    ref: artifacts/caveman-context-report-v1.yaml
+    digest: 16d9c85ae8fe3802e80bfe623e82eeac795cc21c9860b961b7b2f2b5c5b84784
+- event_id: ev-014
+  timestamp: '2026-06-01T10:08:01.585852+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'caveman: completed'
+- event_id: ev-015
+  timestamp: '2026-06-01T10:08:02.087138+00:00'
+  event_type: activation_decision
+  payload:
+    from: scope-prosecutor
+    to: product-vision-anchor
+    relation_type: thompson_sample
+    decision: activate
+    detail: Thompson sample α=153.2 β=2.8 [validated:constrains]
+- event_id: ev-016
+  timestamp: '2026-06-01T10:08:09.301479+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'product-vision-anchor: activated'
+- event_id: ev-017
+  timestamp: '2026-06-01T10:08:09.438735+00:00'
+  event_type: context_report_registered
+  payload:
+    role: product-vision-anchor
+    ref: artifacts/product-vision-anchor-context-report-v1.yaml
+    digest: 64d2e5536cff4cc6913000f02e4d7123b454ac3dac247a20cc80690d8d531fd7
+- event_id: ev-018
+  timestamp: '2026-06-01T10:08:09.490941+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'product-vision-anchor: completed'
+- event_id: ev-019
+  timestamp: '2026-06-01T10:08:10.016665+00:00'
+  event_type: activation_decision
+  payload:
+    from: product-vision-anchor
+    to: architect
+    relation_type: thompson_sample
+    decision: activate
+    detail: Thompson sample α=153.2 β=2.8 [validated:constrains]
+- event_id: ev-020
+  timestamp: '2026-06-01T10:08:35.387582+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'architect: activated'
+- event_id: ev-021
+  timestamp: '2026-06-01T10:08:35.591434+00:00'
+  event_type: context_report_registered
+  payload:
+    role: architect
+    ref: artifacts/architect-context-report-v1.yaml
+    digest: 02d32c0a062d7fd64ee3a1e533f83bd1a007207997ff75cd4ab1a8e458615aae
+- event_id: ev-022
+  timestamp: '2026-06-01T10:08:35.665829+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'architect: completed'
+- event_id: ev-023
+  timestamp: '2026-06-01T10:08:36.073148+00:00'
+  event_type: activation_decision
+  payload:
+    from: architect
+    to: ui-design-system
+    relation_type: may_trigger
+    decision: defer
+    detail: Candidate score 0.40 is below activation threshold 0.50; deferred for
+      later policy review.
+    decision_quality:
+      reason_chars: 90
+      requires_review: true
+- event_id: ev-024
+  timestamp: '2026-06-01T10:08:36.239310+00:00'
+  event_type: activation_decision
+  payload:
+    from: architect
+    to: grill-me
+    relation_type: may_trigger
+    decision: defer
+    detail: Candidate score 0.40 is below activation threshold 0.50; deferred for
+      later policy review.
+    decision_quality:
+      reason_chars: 90
+      requires_review: true
+- event_id: ev-025
+  timestamp: '2026-06-01T10:08:36.533451+00:00'
+  event_type: activation_decision
+  payload:
+    from: product-vision-anchor
+    to: epic-design
+    relation_type: thompson_sample
+    decision: activate
+    detail: Thompson sample α=144.8 β=3.2 [validated:constrains]
+- event_id: ev-026
+  timestamp: '2026-06-01T10:17:25.545741+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'epic-design: activated'
+- event_id: ev-027
+  timestamp: '2026-06-01T10:17:25.989974+00:00'
+  event_type: context_report_registered
+  payload:
+    role: epic-design
+    ref: artifacts/epic-design-context-report-v1.yaml
+    digest: 86c7a67829423403501588b915695d64da1febeef8969185125f97d590963a70
+- event_id: ev-028
+  timestamp: '2026-06-01T10:17:26.146609+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'epic-design: completed'
+- event_id: ev-029
+  timestamp: '2026-06-01T10:17:27.322074+00:00'
+  event_type: activation_decision
+  payload:
+    from: epic-design
+    to: apple-hig-expert
+    relation_type: thompson_sample
+    decision: activate
+    detail: Thompson sample α=153.7 β=5.1 [learned]
+- event_id: ev-030
+  timestamp: '2026-06-01T10:18:09.006074+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'apple-hig-expert: activated'
+- event_id: ev-031
+  timestamp: '2026-06-01T10:18:09.292415+00:00'
+  event_type: context_report_registered
+  payload:
+    role: apple-hig-expert
+    ref: artifacts/apple-hig-expert-context-report-v1.yaml
+    digest: f3ab38ea78db72e1cb4c425cb017dd1efcf1e28b384f60dfd39b28bd94db14a9
+- event_id: ev-032
+  timestamp: '2026-06-01T10:18:09.404675+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'apple-hig-expert: completed'
+- event_id: ev-033
+  timestamp: '2026-06-01T10:18:10.157527+00:00'
+  event_type: activation_decision
+  payload:
+    from: architect
+    to: senior-engineer
+    relation_type: thompson_sample
+    decision: activate
+    detail: Thompson sample α=318.0 β=5.4 [validated:triggers]
+- event_id: ev-034
+  timestamp: '2026-06-01T10:27:21.577572+00:00'
+  event_type: task_completed
+  payload:
+    detail: Graph propagation exhausted — no more legal candidates.
+    status: partial
+- event_id: ev-035
+  timestamp: '2026-06-01T10:27:21.695080+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'graph-topologist: activated'
+- event_id: ev-036
+  timestamp: '2026-06-01T10:27:21.957683+00:00'
+  event_type: context_report_registered
+  payload:
+    role: graph-topologist
+    ref: artifacts/graph-topologist-context-report-v1.yaml
+    digest: 5183291f30ccc763760edfae75838239f00b2e0d5125f863fd47220769514fd8
+- event_id: ev-037
+  timestamp: '2026-06-01T10:27:22.061188+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'graph-topologist: completed'
+- event_id: ev-038
+  timestamp: '2026-06-01T10:27:22.200706+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'hrbp: activated'
+- event_id: ev-039
+  timestamp: '2026-06-01T10:27:22.488096+00:00'
+  event_type: context_report_registered
+  payload:
+    role: hrbp
+    ref: artifacts/hrbp-context-report-v1.yaml
+    digest: 6d1aad28035e522cea701346dd840415dd45c4f22b06684a785e2a57820f763b
+- event_id: ev-040
+  timestamp: '2026-06-01T10:27:22.592454+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'hrbp: completed'
+- event_id: ev-041
+  timestamp: '2026-06-01T10:27:27.344100+00:00'
+  event_type: learning_snapshot_written
+  payload:
+    ref: learning.yaml
+    role_signal_count: 9
+    relation_signal_count: 5
+    proposal_count: 12

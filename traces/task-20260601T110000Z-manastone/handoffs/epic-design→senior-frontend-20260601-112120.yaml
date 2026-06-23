@@ -1,0 +1,164 @@
+from: epic-design
+to: senior-frontend
+relation_type: thompson_sample
+timestamp: '2026-06-01T11:21:20.422303+00:00'
+focus: Thompson sample α=321.8 β=5.2 [validated:triggers]
+artifact_refs: &id001
+- epic-design-experience-design-v1
+deliverable:
+  producer: epic-design
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: epic-design-experience-design-v1
+    producer: epic-design
+    type: experience-design
+    version: 1
+    status: draft
+    content_ref: artifacts/epic-design-experience-design-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260601T110000Z-manastone
+  from: epic-design
+  to: senior-frontend
+  relation_type: thompson_sample
+  focus: Thompson sample α=321.8 β=5.2 [validated:triggers]
+  source:
+    producer_role: epic-design
+    context_compression_report_ref: artifacts/epic-design-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/product-vision-anchor→epic-design-20260601-111313.yaml
+      context_digest: 2028ccd4a6b1e6e32ed0fcbd84ab733b9c9dd9bbb3e9a483cc2aaf3a8457e2cc
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: All features directly supporting install, brand independence, and
+        user guidance are KEEP.
+      source: scope-prosecutor
+      impact: Constrains epic-design to focus on install experience, onboarding, and
+        brand surfaces.
+    - statement: Internal build tools and daemon deployment are DEFER.
+      source: scope-prosecutor
+      impact: Epic-design does not redesign internal dev tooling UX — focuses on customer-facing
+        touchpoints.
+    - statement: Sim pack placeholder is CUT.
+      source: scope-prosecutor
+      impact: No sim pack onboarding content needed in dashboard.
+    - statement: Onboarding dashboard as primary post-install touchpoint (not just
+        terminal printout).
+      source: epic-design
+      impact: New frontend artifact created at docs/brand/manastone-onboarding.html.
+        install.sh should auto-open it.
+    - statement: Terminal simulator as scene 3 instead of static command reference.
+      source: epic-design
+      impact: Users see what a conversation feels like before typing. Reduces anxiety
+        about natural-language interface.
+    - statement: Zero CDN dependencies (vanilla JS only, no GSAP).
+      source: epic-design
+      impact: Onboarding page works on air-gapped robot networks. Acceptable trade-off
+        vs GSAP smoothness.
+    - statement: URL parameter (?robot=) for robot model personalization.
+      source: epic-design
+      impact: install.sh can personalize the dashboard without a backend — passes
+        detected model via query string.
+    constraints:
+    - statement: Must hide pi brand and present Manastone as independent.
+      source: product-vision-anchor
+      impact: Zero Pi references in all user-visible text, labels, commands, and paths
+        in the dashboard.
+    - statement: Install must include all dependencies (pi coding agent).
+      source: product-vision-anchor
+      impact: Dashboard assumes engine is already installed — no engine install instructions
+        needed.
+    - statement: User guidance must be optimized for clarity.
+      source: product-vision-anchor
+      impact: Dashboard uses 4-scene narrative arc (Celebration → Orientation → Preview
+        → Mastery) to guide the user step by step.
+    - statement: Write scope is frontend_experience_scoped.
+      source: harness
+      impact: This node creates HTML/CSS/JS only. install.sh modifications and Python
+        changes are handoff items.
+    - statement: Air-gapped robot networks — page must work without internet.
+      source: epic-design
+      impact: No CDN fonts, no external JS libraries, no API calls. All assets inline.
+    assumptions:
+    - statement: The core value is a robot agent platform with natural language control
+        and diagnosis.
+      source: product-vision-anchor
+      risk: Assumption may need review.
+    - statement: Target users are robotics engineers who have purchased a Unitree
+        G1 or Agibot X2.
+      source: product-vision-anchor
+      risk: Assumption may need review.
+    - statement: A browser exists on the target system to render the onboarding dashboard.
+      source: epic-design
+      risk: Headless robot setups may not have a browser. install.sh should fall back
+        to terminal-only UX if no browser detected.
+    open_questions:
+    - statement: What specific user guidance materials are needed beyond the install
+        script?
+      source: product-vision-anchor
+      owner: runtime
+    - statement: How will brand independence be audited across all touchpoints?
+      source: product-vision-anchor
+      owner: runtime
+    - statement: Should install.sh auto-open the onboarding HTML in a browser, or
+        print a URL path only?
+      source: epic-design
+      owner: senior-frontend
+    - statement: What robot model display strings should be canonical?
+      source: epic-design
+      owner: product-vision-anchor
+    - statement: Should we add an interactive simulated-conversation mode to the terminal
+        preview?
+      source: epic-design
+      owner: senior-frontend
+  omitted_context:
+  - source: Detailed file contents beyond bootstrap/install.sh, bootstrap/README.md,
+      pilot/coding-agent/package.json, README.md, GETTING_STARTED.md, runtime/types.py,
+      and docs/brand/.
+    reason: background_only
+  - source: Python runtime source files (runtime/composer.py, runtime/safety/, runtime/io/daemon.py,
+      etc.).
+    reason: background_only
+  - source: RoboOnto importers, tests, and CLI handlers.
+    reason: background_only
+  - source: Archive architecture documents and dev logs.
+    reason: background_only
+  compression_rationale:
+    method: 'Focused on experience-design-relevant artifacts: the product vision statement
+      (target user, emotional promise), scope verdict (KEEP/DEFER/CUT decisions),
+      existing brand design docs (BRAND_EXPERIENCE_DESIGN.md, manastone-landing.html),
+      and the install flow (install.sh, README.md, GETTING_STARTED.md). Omitted Python
+      internals, test fixtures, ontology files, and archive docs as they have no bearing
+      on the cinematic onboarding experience design.'
+    loss_notes:
+    - Orchestrator web UI (pilot/orchestrator/web/) was read for context but not redesigned
+      — it serves a different purpose (task orchestration, not onboarding).
+    - Brand audit script (scripts/brand_audit.py) was read to validate zero-leakage
+      of the onboarding page but its full logic is not retained.
+  quality_checks:
+  - name: immersive_value_justified
+    passed: true
+  - name: performance_risk_named
+    passed: true
+  - name: brand_independence_verified
+    passed: true
+  - name: accessibility_fallback_present
+    passed: true
+  - name: design_tokens_applied
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - product-vision-anchor-product-vision-statement-v1
+  - scope-prosecutor-scope-verdict-v1
+  previous_blocks:
+  - ref: handoffs/product-vision-anchor→epic-design-20260601-111313.yaml
+    from: product-vision-anchor
+    to: epic-design
+    relation_type: thompson_sample
+    focus: Thompson sample α=145.4 β=3.6 [validated:constrains]
+    context_digest: 2028ccd4a6b1e6e32ed0fcbd84ab733b9c9dd9bbb3e9a483cc2aaf3a8457e2cc
+    deliverable_artifact_refs:
+    - product-vision-anchor-product-vision-statement-v1
+  context_digest: 7087fb7dd13a773c8016f7d58a7f894bd03d40c11858d9320d8cd51a8d488ae4
+soul_ref: org/soul.md

@@ -1,0 +1,8 @@
+artifact_id: tdd-evaluation-v1
+producer: tdd
+task_id: task-20260530T143742Z-b85bb72b
+version: 1
+timestamp: '2026-05-30T14:55:04.120529+00:00'
+input_artifacts: []
+quality_checks: []
+status: draft

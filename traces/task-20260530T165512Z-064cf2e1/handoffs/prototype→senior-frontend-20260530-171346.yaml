@@ -1,0 +1,58 @@
+from: prototype
+to: senior-frontend
+relation_type: may_trigger
+timestamp: '2026-05-30T17:13:47.413709+00:00'
+focus: prototype finding is proceed and a runnable demo is requested
+artifact_refs: &id001
+- prototype-plan-v1
+deliverable:
+  producer: prototype
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: prototype-plan-v1
+    producer: prototype
+    type: plan
+    version: 1
+    status: draft
+    content_ref: artifacts/prototype-plan-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260530T165512Z-064cf2e1
+  from: prototype
+  to: senior-frontend
+  relation_type: may_trigger
+  focus: prototype finding is proceed and a runnable demo is requested
+  source:
+    producer_role: prototype
+    context_compression_report_ref: artifacts/prototype-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/ux-researcher-designer→prototype-20260530-165638.yaml
+      context_digest: d726e752c97f7d6c8f5c390494951645054784cf453077d798e7fb8649957cd5
+    input_artifacts: []
+  compressed_context:
+    decisions: []
+    constraints: []
+    assumptions: []
+    open_questions: []
+  omitted_context: []
+  compression_rationale:
+    method: semantic_node_executor_normalized
+    loss_notes: []
+  quality_checks:
+  - name: semantic_executor_schema_normalized
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - to-prd-prd-v1
+  - ux-researcher-designer-ux-spec-v1
+  previous_blocks:
+  - ref: handoffs/ux-researcher-designer→prototype-20260530-165638.yaml
+    from: ux-researcher-designer
+    to: prototype
+    relation_type: triggers
+    focus: Activate prototype from ux-researcher-designer
+    context_digest: d726e752c97f7d6c8f5c390494951645054784cf453077d798e7fb8649957cd5
+    deliverable_artifact_refs:
+    - ux-researcher-designer-ux-spec-v1
+  context_digest: 4c7b726680b895a815aa728f6be3f100998fbdc2909dabee4b4c23b23c531c84
+soul_ref: org/soul.md

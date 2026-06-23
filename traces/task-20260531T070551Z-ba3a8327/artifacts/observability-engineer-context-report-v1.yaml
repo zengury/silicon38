@@ -1,0 +1,130 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/senior-engineer→observability-engineer-20260531-071325.yaml
+      context_digest: a0d2e3f1a73b6d58d28bd79486e26177c3bc33474cfac19c77caed054184acd4
+  retained_context:
+    decisions:
+    - statement: v4 instruments BaseCRUDRepository base class — one change covers
+        all 15 repositories
+      source: observability-engineer v4
+      impact: Every save/update/soft_delete/search operation across all entities now
+        emits structured logs + timing + error metrics
+    - statement: robot_ext_info_service and screenProjectService are now fully instrumented
+      source: observability-engineer v4
+      impact: Closes 2 of the 10 remaining un-instrumented services from v3 technical
+        debt
+    - statement: MQTT screen publish path (sendToRobot) is now observable
+      source: observability-engineer v4
+      impact: Last MQTT blind spot closed — all MQTT paths now tracked
+    - statement: Audit helpers emit WARNING when current_user=None
+      source: observability-engineer v4
+      impact: Anonymous entity creation/update paths become visible across all services
+    - statement: DI container lazy-load timing tracked for all 14 repositories
+      source: observability-engineer v4
+      impact: Startup initialization errors visible; instantiation latency measured
+    - statement: Two-layer PII protection continued from v3
+      source: observability-engineer v3 (inherited)
+      impact: All new structured_log calls benefit from PII masking
+    - statement: Correlation IDs propagate via logger.contextualize()
+      source: observability-engineer v3 (inherited)
+      impact: All new structured_log calls carry request correlation IDs
+    constraints:
+    - statement: No new external dependencies added
+      source: observability-engineer v1 (inherited)
+      impact: In-process metrics only; Prometheus scraping via HTTP
+    - statement: Must not break existing loguru configuration
+      source: observability-engineer v1 (inherited)
+      impact: structured_log() wraps loguru — backward compatible
+    - statement: PII masking must not scan values longer than 500 chars
+      source: observability-engineer v3 (inherited)
+      impact: Long payloads truncated on log hot path
+    - statement: Repository DEBUG logs are not emitted in production by default
+      source: observability-engineer v4
+      impact: High-volume CRUD operations do not flood production logs; errors always
+        emit
+    - statement: 8 services remain un-instrumented at the service level
+      source: observability-engineer v4
+      impact: Partially covered by base repo instrumentation; non-repo paths still
+        blind
+    assumptions:
+    - statement: All 15 repositories inherit from BaseCRUDRepository
+      source: observability-engineer v4 (verified by code inspection)
+      risk: 'Low — confirmed: every concrete repository extends BaseCRUDRepository'
+    - statement: time.perf_counter() overhead is negligible on DB operations
+      source: observability-engineer v4
+      risk: Low — <1µs on typical 5-50ms DB operations
+    - statement: Screen project names logged in structured_log are operational metadata,
+        not PII
+      source: observability-engineer v4
+      risk: Low — project names are user-defined but typically course/training names
+    open_questions:
+    - statement: What is the acceptable repository search latency SLO per entity?
+      source: observability-engineer v4
+      owner: devops-engineer
+    - statement: Should anonymous audit operations block the request?
+      source: observability-engineer v4
+      owner: security-engineer
+    - statement: Should the 8 remaining services be prioritized by user-facing impact?
+      source: observability-engineer v4
+      owner: senior-engineer
+  omitted_context:
+  - source: Detailed entity field definitions from infrastructure/db/entities.py
+    reason: background_only
+  - source: Frontend portal and admin source code
+    reason: background_only
+  - source: Docker build, compose, and deployment configurations
+    reason: background_only
+  - source: Robot planning backend module
+    reason: background_only
+  - source: 8 remaining un-instrumented services (action_library, expression_library,
+      voice_library, knowledge_library, extractLogs, face_recognition, logAnalysis,
+      permission)
+    reason: background_only
+  - source: Individual repository implementations (5 new repos from senior-engineer)
+    reason: background_only
+  - source: Exact Python package versions
+    reason: background_only
+  compression_rationale:
+    method: 'Focus on the v4 delta: base repository instrumentation (highest leverage),
+      two remaining service instrumentations (robot_ext_info, screenProject), audit
+      helpers, and DI container. The v3 infrastructure (PII masking, correlation IDs,
+      RED metrics, health checks) is inherited and unchanged.'
+    loss_notes:
+    - 8 services remain un-instrumented (partially covered by base repo instrumentation)
+    - No Redis/Dify health checks (API extensible via HealthCheck.register())
+    - In-process metrics lost on restart (prometheus push-gateway needed)
+    - No distributed tracing (correlation IDs are foundation only)
+    - Individual repository methods not separately tracked (e.g., find_by_robot_code_and_ext_type)
+      — only base class operations
+  quality_checks:
+  - name: All 90 existing tests pass with v4 instrumentation
+    passed: true
+  - name: All modified files import without errors
+    passed: true
+  - name: BaseCRUDRepository save/update/soft_delete/search instrumented
+    passed: true
+  - name: common/audit.py populate_creation and populate_update instrumented
+    passed: true
+  - name: DI container lazy-loads tracked with timing
+    passed: true
+  - name: robot_ext_info_service.py — all bare logger calls replaced
+    passed: true
+  - name: screenProjectService.py — all bare logger calls replaced
+    passed: true
+  - name: MQTT publish path (sendToRobot) now tracked
+    passed: true
+  - name: New metrics counters registered (20 new)
+    passed: true
+  - name: No PII in new structured_log calls (inherits v3 PII masking)
+    passed: true
+  - name: Alert thresholds defined for all new signals
+    passed: true
+  - name: Log levels follow standard (DEBUG→repo ops, INFO→service ops, WARN→recoverable,
+      ERROR→human attention)
+    passed: true
+  - name: signals_named completion gate satisfied
+    passed: true
+  - name: alert_thresholds_or_non_alert_reason gate satisfied
+    passed: true

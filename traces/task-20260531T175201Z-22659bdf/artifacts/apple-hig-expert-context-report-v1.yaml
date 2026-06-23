@@ -1,0 +1,59 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/epic-design→apple-hig-expert-20260531-180223.yaml
+      context_digest: de1925cb280926c20584f386e65b4fa228d3b6cb5d702799069bc0a0de81c00b
+  retained_context:
+    decisions:
+    - statement: Task is a refactoring task, not a design task.
+      source: epic-design blocked report
+      impact: No Apple-platform UI to review
+    - statement: epic-design correctly blocked itself due to missing narrative brief
+        and design tokens.
+      source: epic-design blocked report
+      impact: No upstream design artifact exists for HIG evaluation
+    constraints:
+    - statement: Must not introduce new features.
+      source: upstream handoff
+      impact: No UI changes to evaluate
+    - statement: Must preserve existing behavior.
+      source: upstream handoff
+      impact: No room for visual overhaul
+    assumptions:
+    - statement: Codebase is at /Users/ZQ/roboease and contains no Apple-platform
+        targets.
+      source: epic-design blocked report
+      risk: Verified — codebase is backend-heavy with web frontend
+    open_questions:
+    - statement: Should the epic-design→apple-hig-expert edge have a task-type gate?
+      source: self (apple-hig-expert analysis)
+      owner: graph-topologist
+  omitted_context:
+  - source: Detailed codebase module structure
+    reason: background_only
+  - source: Specific duplicate code instances
+    reason: irrelevant
+  - source: Issue dependency graph
+    reason: irrelevant
+  compression_rationale:
+    method: Filtered by platform relevance. Retained only the task classification
+      and codebase platform assessment that proved the mismatch. Omitted all code-structure
+      details irrelevant to an Apple HIG review node.
+    loss_notes:
+    - No loss of information relevant to HIG review — omitted details belong to code-reviewer/improve-codebase-architecture
+      nodes
+    - The mismatch diagnosis is retained for downstream routing correction
+  quality_checks:
+  - name: Input scope complete (all handoffs and artifacts accounted)
+    passed: true
+  - name: Retained decisions have source citations
+    passed: true
+  - name: Retained constraints have impact statements
+    passed: true
+  - name: Omitted context has reason labels
+    passed: true
+  - name: No hard constraints omitted
+    passed: true
+  - name: Compression rationale documented
+    passed: true

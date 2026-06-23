@@ -1,0 +1,5 @@
+from: ux-researcher-designer
+to: architect
+relation_type: supports
+timestamp: '2026-05-25T15:50:25.871491+00:00'
+focus: UX spec 定义了信息架构、组件库存和核心用户旅程；告警响应路径是架构性能预算的硬约束

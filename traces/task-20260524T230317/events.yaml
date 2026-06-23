@@ -1,0 +1,7 @@
+task_id: task-20260524T230317
+events:
+  - event_id: ev-001
+    timestamp: "2026-05-24T23:03:17+08:00"
+    event_type: task_started
+    payload:
+      detail: "Refactor HR Assistant codebase — optimize UI per Silicon Org design principles and fix code quality issues across Next.js frontend, Python backend, and legacy chat.html"

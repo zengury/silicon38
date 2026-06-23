@@ -1,0 +1,90 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→customer-success-20260601-112859.yaml
+      context_digest: 52a3c532b6b504d6d8c0a8cb1349b4d0e0eb8150d8fe44fc47abc561279a68f7
+  retained_context:
+    decisions:
+    - statement: All features directly supporting install, brand independence, and
+        user guidance are KEEP.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Internal build tools and daemon deployment are DEFER.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Sim pack placeholder is CUT.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Introduce manastone CLI wrapper to hide pi brand.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Single install script bundles all dependencies.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: User guidance via manastone doctor and inline help.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Centralized BRAND constant in runtime/constants.py.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must hide pi brand and present Manastone as independent.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Install must include all dependencies (pi coding agent).
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: User guidance must be optimized for clarity.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Internal build tools and daemon deployment are deferred to v1.1.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: The requirements list provided is complete for the scope reduction
+        task.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: The core value is a robot agent platform with natural language control
+        and diagnosis.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Target customer is a small/medium business with 1-3 robots and 3
+        operators.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Current workflow is manual diagnosis and control.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What specific user guidance materials are needed beyond the install
+        script?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How will brand independence be audited across all touchpoints?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file contents beyond bootstrap/README.md and pyproject.toml excerpts.
+    reason: background_only
+  - source: Prior analysis or client rationale (per input contract).
+    reason: background_only
+  - source: Internal engineering details not relevant to customer success.
+    reason: background_only
+  compression_rationale:
+    method: Focused on architect decisions and constraints relevant to customer onboarding,
+      brand independence, and user guidance. Ignored extraneous file listings and
+      code details not pertinent to customer success planning.
+    loss_notes: []
+  quality_checks:
+  - name: every_kpi_has_baseline_and_target
+    passed: true
+  - name: training_plan_names_specific_roles
+    passed: true
+  - name: roi_calculation_shows_assumptions
+    passed: true
+  - name: onboarding_guide_plain_language
+    passed: true
+  - name: brand_audit_checklist_present
+    passed: true

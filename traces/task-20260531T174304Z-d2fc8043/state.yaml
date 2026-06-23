@@ -1,0 +1,154 @@
+task_id: task-20260531T174304Z-d2fc8043
+task_status: propagating
+node_states:
+  triage:
+    status: completed
+    updated_at: '2026-05-31T17:43:17.481639+00:00'
+    activated_at: '2026-05-31T17:43:17.361045+00:00'
+    completed_at: '2026-05-31T17:43:17.481639+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - triage-analysis-v1
+    blocked_reason: null
+    entry_node: true
+  to-prd:
+    status: completed
+    updated_at: '2026-05-31T17:43:38.888684+00:00'
+    activated_at: '2026-05-31T17:43:38.731895+00:00'
+    completed_at: '2026-05-31T17:43:38.888684+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - to-prd-prd-v1
+    blocked_reason: null
+  scope-prosecutor:
+    status: completed
+    updated_at: '2026-05-31T17:43:51.293087+00:00'
+    activated_at: '2026-05-31T17:43:51.097914+00:00'
+    completed_at: '2026-05-31T17:43:51.293087+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - scope-prosecutor-scope-verdict-v1
+    blocked_reason: null
+  caveman:
+    status: completed
+    updated_at: '2026-05-31T17:44:03.528460+00:00'
+    activated_at: '2026-05-31T17:44:03.300083+00:00'
+    completed_at: '2026-05-31T17:44:03.528460+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - caveman-analysis-v1
+    blocked_reason: null
+  to-issues:
+    status: completed
+    updated_at: '2026-05-31T17:44:15.047232+00:00'
+    activated_at: '2026-05-31T17:44:14.804911+00:00'
+    completed_at: '2026-05-31T17:44:15.047232+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - to-issues-decomposition-v1
+    blocked_reason: null
+  senior-engineer:
+    status: completed
+    updated_at: '2026-05-31T17:51:54.952313+00:00'
+    activated_at: '2026-05-31T17:51:54.678925+00:00'
+    completed_at: '2026-05-31T17:51:54.952313+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - senior-engineer-implementation-v1
+    blocked_reason: null
+artifact_registry:
+  triage-analysis-v1:
+    type: analysis
+    producer: triage
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/triage-analysis-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T17:43:17.394169+00:00'
+  to-prd-prd-v1:
+    type: prd
+    producer: to-prd
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/to-prd-prd-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T17:43:38.774479+00:00'
+  scope-prosecutor-scope-verdict-v1:
+    type: scope-verdict
+    producer: scope-prosecutor
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/scope-prosecutor-scope-verdict-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T17:43:51.146122+00:00'
+  caveman-analysis-v1:
+    type: analysis
+    producer: caveman
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/caveman-analysis-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T17:44:03.356072+00:00'
+  to-issues-decomposition-v1:
+    type: decomposition
+    producer: to-issues
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/to-issues-decomposition-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T17:44:14.866228+00:00'
+  senior-engineer-implementation-v1:
+    type: implementation
+    producer: senior-engineer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/senior-engineer-implementation-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T17:51:54.753719+00:00'
+context_compression_reports:
+  triage:
+    ref: artifacts/triage-context-report-v1.yaml
+    registered_at: '2026-05-31T17:43:17.436071+00:00'
+    digest: b70643c5dfd5e60008f8b38f911ca1b559c4bb495daacf12506312cc8d2863d0
+    status: valid
+  to-prd:
+    ref: artifacts/to-prd-context-report-v1.yaml
+    registered_at: '2026-05-31T17:43:38.840646+00:00'
+    digest: cdcf435cc848b94d1003db705563594bcb4473c55087194ac0411552694dace8
+    status: valid
+  scope-prosecutor:
+    ref: artifacts/scope-prosecutor-context-report-v1.yaml
+    registered_at: '2026-05-31T17:43:51.230822+00:00'
+    digest: 158a2f86e396d1555e88f4aeed857a1a546d39524efbc087c494993142dd86f3
+    status: valid
+  caveman:
+    ref: artifacts/caveman-context-report-v1.yaml
+    registered_at: '2026-05-31T17:44:03.454087+00:00'
+    digest: c958053e07e6157382ae3466b565c6ff0f61c26e8c050f24f0af0822e06c09da
+    status: valid
+  to-issues:
+    ref: artifacts/to-issues-context-report-v1.yaml
+    registered_at: '2026-05-31T17:44:14.962117+00:00'
+    digest: 114cfa0bbdbc098a94ee6da406d7d11383d0f0dec0059e98a2260083ee560b49
+    status: valid
+  senior-engineer:
+    ref: artifacts/senior-engineer-context-report-v1.yaml
+    registered_at: '2026-05-31T17:51:54.866974+00:00'
+    digest: 47db45544a5e6085f08974f70867653f6b185d1f0bb452643a7b00fcafaedd7b
+    status: valid
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: false
+  all_loops_resolved: false
+  all_blocking_evals_resolved: false
+  all_joins_passed: false
+  all_artifacts_resolved: false
+  no_undecided_activation_candidates: false
+  settled_at: null

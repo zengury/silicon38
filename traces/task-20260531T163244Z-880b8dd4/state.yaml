@@ -1,0 +1,339 @@
+task_id: task-20260531T163244Z-880b8dd4
+task_status: delivered
+node_states:
+  triage:
+    status: completed
+    updated_at: '2026-05-31T16:32:59.732865+00:00'
+    activated_at: '2026-05-31T16:32:59.624427+00:00'
+    completed_at: '2026-05-31T16:32:59.732865+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - triage-analysis-v1
+    blocked_reason: null
+    entry_node: true
+  to-prd:
+    status: completed
+    updated_at: '2026-05-31T16:33:18.939068+00:00'
+    activated_at: '2026-05-31T16:33:18.771198+00:00'
+    completed_at: '2026-05-31T16:33:18.939068+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - to-prd-prd-v1
+    blocked_reason: null
+  product-vision-anchor:
+    status: completed
+    updated_at: '2026-05-31T16:33:33.106984+00:00'
+    activated_at: '2026-05-31T16:33:32.900238+00:00'
+    completed_at: '2026-05-31T16:33:33.106984+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - product-vision-anchor-product-vision-statement-v1
+    blocked_reason: null
+  to-issues:
+    status: completed
+    updated_at: '2026-05-31T16:33:44.065987+00:00'
+    activated_at: '2026-05-31T16:33:43.837950+00:00'
+    completed_at: '2026-05-31T16:33:44.065987+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - to-issues-decomposition-v1
+    blocked_reason: null
+  caveman:
+    status: completed
+    updated_at: '2026-05-31T16:33:52.958301+00:00'
+    activated_at: '2026-05-31T16:33:52.720539+00:00'
+    completed_at: '2026-05-31T16:33:52.958301+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - caveman-analysis-v1
+    blocked_reason: null
+  architect:
+    status: completed
+    updated_at: '2026-05-31T16:34:18.299244+00:00'
+    activated_at: '2026-05-31T16:34:18.009494+00:00'
+    completed_at: '2026-05-31T16:34:18.299244+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - architect-architecture-v1
+    blocked_reason: null
+  epic-design:
+    status: completed
+    updated_at: '2026-05-31T16:37:25.209862+00:00'
+    activated_at: '2026-05-31T16:37:24.901826+00:00'
+    completed_at: '2026-05-31T16:37:25.209862+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - epic-design-experience-design-v1
+    blocked_reason: null
+  senior-engineer:
+    status: completed
+    updated_at: '2026-05-31T16:39:57.560522+00:00'
+    activated_at: '2026-05-31T16:39:57.109711+00:00'
+    completed_at: '2026-05-31T16:39:57.560522+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - senior-engineer-implementation-v1
+    blocked_reason: null
+  delivery-prover:
+    status: completed
+    updated_at: '2026-05-31T16:40:29.139580+00:00'
+    activated_at: '2026-05-31T16:40:28.685821+00:00'
+    completed_at: '2026-05-31T16:40:29.139580+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - delivery-prover-proof-v1
+    blocked_reason: null
+  code-reviewer:
+    status: completed
+    updated_at: '2026-05-31T16:40:36.591324+00:00'
+    activated_at: '2026-05-31T16:40:36.156457+00:00'
+    completed_at: '2026-05-31T16:40:36.591324+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - code-reviewer-review-v1
+    blocked_reason: null
+  devops-engineer:
+    status: completed
+    updated_at: '2026-05-31T16:46:43.199304+00:00'
+    activated_at: '2026-05-31T16:46:42.774343+00:00'
+    completed_at: '2026-05-31T16:46:43.199304+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - devops-engineer-ops-plan-v1
+    blocked_reason: null
+  senior-frontend:
+    status: completed
+    updated_at: '2026-05-31T16:52:52.993063+00:00'
+    activated_at: '2026-05-31T16:52:52.472332+00:00'
+    completed_at: '2026-05-31T16:52:52.993063+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - senior-frontend-implementation-v1
+    blocked_reason: null
+  graph-topologist:
+    status: completed
+    updated_at: '2026-05-31T16:52:54.194827+00:00'
+    activated_at: '2026-05-31T16:52:53.571298+00:00'
+    completed_at: '2026-05-31T16:52:54.194827+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - graph-topologist-topology-review-v1
+    blocked_reason: null
+  hrbp:
+    status: completed
+    updated_at: '2026-05-31T16:52:55.071310+00:00'
+    activated_at: '2026-05-31T16:52:54.454443+00:00'
+    completed_at: '2026-05-31T16:52:55.071310+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - hrbp-talent-evaluation-v1
+    blocked_reason: null
+artifact_registry:
+  triage-analysis-v1:
+    type: analysis
+    producer: triage
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/triage-analysis-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T16:32:59.656654+00:00'
+  to-prd-prd-v1:
+    type: prd
+    producer: to-prd
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/to-prd-prd-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T16:33:18.814142+00:00'
+  product-vision-anchor-product-vision-statement-v1:
+    type: product-vision-statement
+    producer: product-vision-anchor
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/product-vision-anchor-product-vision-statement-v1.yaml
+    consumers_pending: []
+    registered_at: '2026-05-31T16:33:32.948034+00:00'
+  to-issues-decomposition-v1:
+    type: decomposition
+    producer: to-issues
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/to-issues-decomposition-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T16:33:43.897225+00:00'
+  caveman-analysis-v1:
+    type: analysis
+    producer: caveman
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/caveman-analysis-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T16:33:52.780993+00:00'
+  architect-architecture-v1:
+    type: architecture
+    producer: architect
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/architect-architecture-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T16:34:18.081120+00:00'
+  epic-design-experience-design-v1:
+    type: experience-design
+    producer: epic-design
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/epic-design-experience-design-v1.yaml
+    consumers_pending: []
+    registered_at: '2026-05-31T16:37:24.977724+00:00'
+  senior-engineer-implementation-v1:
+    type: implementation
+    producer: senior-engineer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/senior-engineer-implementation-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T16:39:57.216847+00:00'
+  delivery-prover-proof-v1:
+    type: proof
+    producer: delivery-prover
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/delivery-prover-proof-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T16:40:28.803609+00:00'
+  code-reviewer-review-v1:
+    type: review
+    producer: code-reviewer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/code-reviewer-review-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T16:40:36.260033+00:00'
+  devops-engineer-ops-plan-v1:
+    type: ops-plan
+    producer: devops-engineer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/devops-engineer-ops-plan-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T16:46:42.878681+00:00'
+  senior-frontend-implementation-v1:
+    type: implementation
+    producer: senior-frontend
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/senior-frontend-implementation-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T16:52:52.617887+00:00'
+  graph-topologist-topology-review-v1:
+    type: topology-review
+    producer: graph-topologist
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/graph-topologist-topology-review-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T16:52:53.724392+00:00'
+  hrbp-talent-evaluation-v1:
+    type: talent-evaluation
+    producer: hrbp
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/hrbp-talent-evaluation-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T16:52:54.596919+00:00'
+context_compression_reports:
+  triage:
+    ref: artifacts/triage-context-report-v1.yaml
+    registered_at: '2026-05-31T16:32:59.695318+00:00'
+    digest: 80d56ab456492ea730a81190063e5300f5491bfa65755b03d9c500488187698f
+    status: valid
+  to-prd:
+    ref: artifacts/to-prd-context-report-v1.yaml
+    registered_at: '2026-05-31T16:33:18.887388+00:00'
+    digest: 6bf4f2a7079e170d8585e1116d10098f4d0651f4fcc1171db8b503785e00b715
+    status: valid
+  product-vision-anchor:
+    ref: artifacts/product-vision-anchor-context-report-v1.yaml
+    registered_at: '2026-05-31T16:33:33.041414+00:00'
+    digest: 82ec5b942528eb2900664005b5c6ac4a228923d6006fb24eac9b7a5561dad732
+    status: valid
+  to-issues:
+    ref: artifacts/to-issues-context-report-v1.yaml
+    registered_at: '2026-05-31T16:33:43.994908+00:00'
+    digest: 8a02a4d443353146d2fdfc9c7fc59c380c5eb3fb94012f591ddd8f684194dfef
+    status: valid
+  caveman:
+    ref: artifacts/caveman-context-report-v1.yaml
+    registered_at: '2026-05-31T16:33:52.884567+00:00'
+    digest: ee30f9abd03d68fe5f86edd74b34a8fc72193d3b1a65bc8b3d695662f815fe7b
+    status: valid
+  architect:
+    ref: artifacts/architect-context-report-v1.yaml
+    registered_at: '2026-05-31T16:34:18.212758+00:00'
+    digest: 5091ce710bb86eef16d1452931c2509dacb9c5c1e0b0e57afc76a38595c7d40a
+    status: valid
+  epic-design:
+    ref: artifacts/epic-design-context-report-v1.yaml
+    registered_at: '2026-05-31T16:37:25.113900+00:00'
+    digest: b2f635c5e80616821a53170099e806017d09bb1b9a396300a6f3e3271868c663
+    status: valid
+  senior-engineer:
+    ref: artifacts/senior-engineer-context-report-v1.yaml
+    registered_at: '2026-05-31T16:39:57.427387+00:00'
+    digest: e34c28aa15ca662a760bb6f9a6e38dfa2d8c3483868ceafa13cb820eda814161
+    status: valid
+  delivery-prover:
+    ref: artifacts/delivery-prover-context-report-v1.yaml
+    registered_at: '2026-05-31T16:40:29.002509+00:00'
+    digest: fc0966500c7eb518a591a63823cb12eafdbdc78402b3ddbd7cb2cbd9aa136c68
+    status: valid
+  code-reviewer:
+    ref: artifacts/code-reviewer-context-report-v1.yaml
+    registered_at: '2026-05-31T16:40:36.454233+00:00'
+    digest: ae2e063e3ef0fa9e80ee62d1540c7ebedd3d3c970d8e02bede9aa997d2bc4681
+    status: valid
+  devops-engineer:
+    ref: artifacts/devops-engineer-context-report-v1.yaml
+    registered_at: '2026-05-31T16:46:43.067139+00:00'
+    digest: 0d6c0ea1c3b5f9dbcd466296bf0186c232b01fdf126e7430425453bba0cb59e3
+    status: valid
+  senior-frontend:
+    ref: artifacts/senior-frontend-context-report-v1.yaml
+    registered_at: '2026-05-31T16:52:52.826197+00:00'
+    digest: 07b25e35206fa416b3e8a5100d7d434df79133c8c2a99d2f37d58dc79e73a3b4
+    status: valid
+  graph-topologist:
+    ref: artifacts/graph-topologist-context-report-v1.yaml
+    registered_at: '2026-05-31T16:52:54.016352+00:00'
+    digest: 5183291f30ccc763760edfae75838239f00b2e0d5125f863fd47220769514fd8
+    status: valid
+  hrbp:
+    ref: artifacts/hrbp-context-report-v1.yaml
+    registered_at: '2026-05-31T16:52:54.892098+00:00'
+    digest: 6d1aad28035e522cea701346dd840415dd45c4f22b06684a785e2a57820f763b
+    status: valid
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: false
+  all_loops_resolved: false
+  all_blocking_evals_resolved: false
+  all_joins_passed: false
+  all_artifacts_resolved: false
+  no_undecided_activation_candidates: false
+  settled_at: null
+timestamp_end: '2026-05-31T16:52:53.360977+00:00'

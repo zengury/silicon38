@@ -1,0 +1,55 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read: []
+  retained_context:
+    decisions:
+    - statement: Map focuses on top-level module structure and external dependencies.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Only files listed in workspace code were available; backend source
+        not fully explored.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Backend is a single Python FastAPI service based on requirements.txt.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Admin panel is based on vue3-element-admin template.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the exact backend module structure?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What are the robot-side services (star_walker, planning-backend)?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the authentication flow?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the database schema?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the deployment environment?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file listings beyond key files.
+    reason: background_only
+  - source: Artifact planning documents (not code).
+    reason: background_only
+  compression_rationale:
+    method: Top-down structural mapping; only included modules with clear responsibilities
+      and verified relationships.
+    loss_notes:
+    - Backend internal modules not enumerated due to limited file access.
+    - Robot-side services not explored.
+  quality_checks:
+  - name: Module existence verified
+    passed: true
+  - name: Relationships verified by imports/configs
+    passed: true
+  - name: Domain vocabulary used
+    passed: true

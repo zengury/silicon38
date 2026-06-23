@@ -1,0 +1,13 @@
+task_id: task-20260526T000025-12edd070
+timestamp_start: '2026-05-25T16:00:47.513132+00:00'
+timestamp_end: null
+task_summary: Architecture, core interface design, and runnable demo for humanoid
+  robot fleet operations monitoring
+task_type: architecture
+entry_nodes:
+- zoom-out
+- architect
+terminal_nodes: []
+outcome: null
+artifact_index: []
+handoff_trail: []

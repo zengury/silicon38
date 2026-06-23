@@ -1,0 +1,115 @@
+from: triage
+to: to-prd
+relation_type: triggers
+timestamp: '2026-05-27T14:44:34.026809+00:00'
+focus: turn 3D realtime org visualizer request into product requirements and acceptance
+  criteria
+artifact_refs: &id001
+- triage-analysis-v1
+deliverable:
+  producer: triage
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: triage-analysis-v1
+    producer: triage
+    type: analysis
+    version: 1
+    status: draft
+    content_ref: artifacts/triage-analysis-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260527T223527-0b0ecd01
+  from: triage
+  to: to-prd
+  relation_type: triggers
+  focus: turn 3D realtime org visualizer request into product requirements and acceptance
+    criteria
+  source:
+    producer_role: triage
+    context_compression_report_ref: artifacts/triage-context-report-v1.yaml
+    input_handoffs: []
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Classify the request as a feature for internal observability, graph
+        visualization, realtime operations UI, and developer experience.
+      source: 'explicit user request: build a Three.js realtime Silicon Org 3D operations
+        visualizer'
+      impact: Downstream nodes should design and implement a runnable visualization
+        product, not only documentation.
+    - statement: Use Graph, Ledger, Policy, Runtime, and Learning as the primary conceptual
+        model.
+      source: org/CONTEXT_BLOCK.md
+      impact: The UI hierarchy and explanatory layers should reinforce Silicon Org's
+        current five-concept model.
+    - statement: Recommend UX/design/prototype/architecture before frontend implementation.
+      source: triage-analysis-v1.md
+      impact: The graph should propagate toward product, UX, prototype, and architecture
+        work before coding the full frontend.
+    constraints:
+    - statement: Only Graph and Ledger facts should be displayed as operational truth;
+        Runtime private reasoning is not fact until written to Ledger.
+      source: org/CONTEXT_BLOCK.md and org/RUNTIME.md
+      impact: The frontend must cite graph or trace sources for displayed state and
+        avoid inventing hidden runtime facts.
+    - statement: supports, constrains, complements, and augments are context or ordering
+        pressure and must not be shown as direct activation edges.
+      source: org/CONTEXT_BLOCK.md and org/RUNTIME.md
+      impact: Visual edge semantics must distinguish activation-capable relations
+        from context-only relations.
+    - statement: Activation is dynamic and based on prior outputs; do not preselect
+        a whole multi-layer route at task start.
+      source: org/CONTEXT_BLOCK.md
+      impact: The visualization should show candidates, decisions, deferrals, and
+        trace playback rather than a fixed workflow path.
+    - statement: Every handoff has both deliverable refs and a digest-linked context_block.
+      source: org/HARNESS.md and org/RUNTIME.md
+      impact: Handoff animation should include inspectable payloads for deliverable
+        metadata and context compression.
+    assumptions:
+    - statement: A first version can use trace polling or simulated trace playback
+        before full realtime streaming.
+      source: triage-analysis-v1.md
+      risk: If true realtime is required immediately, downstream architecture must
+        add event-stream plumbing earlier.
+    - statement: The 3D scene should prioritize operational clarity over spectacle.
+      source: triage-analysis-v1.md
+      risk: A visually impressive but semantically weak scene would fail the user's
+        continuity and operations goal.
+    - statement: No blocking user question is required before downstream graph propagation.
+      source: triage-analysis-v1.md
+      risk: Downstream UX or architecture nodes may still surface targeted decisions
+        around data source, framework, or layout.
+    open_questions: []
+  omitted_context:
+  - source: full text of ontology/nodes.yaml
+    reason: background_only
+  - source: full text of ontology/relations.yaml
+    reason: background_only
+  - source: full text of org/RUNTIME.md
+    reason: background_only
+  - source: triage skill issue-tracker workflow details
+    reason: irrelevant
+  compression_rationale:
+    method: Retained only task-shaping decisions, non-negotiable Silicon Org constraints,
+      downstream activation guidance, and risk-bearing assumptions.
+    loss_notes:
+    - Specific node and edge lists were not copied in full; downstream agents should
+      read ontology files directly when they need exact graph data.
+    - Issue-tracker triage mechanics were omitted because this run is a Silicon Org
+      node artifact, not a GitHub issue triage.
+  quality_checks:
+  - name: entry_node_scope_empty
+    passed: true
+  - name: retains_non_negotiable_context_block_constraints
+    passed: true
+  - name: distinguishes_activation_edges_from_context_edges
+    passed: true
+  - name: no_blocking_questions_for_next_graph_pass
+    passed: true
+  - name: yaml_parseable
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs: []
+  previous_blocks: []
+  context_digest: 6cd1b49c5a5163e76e9d64f2603178a27b64cf84ff2487664a1387c2277a8ea7

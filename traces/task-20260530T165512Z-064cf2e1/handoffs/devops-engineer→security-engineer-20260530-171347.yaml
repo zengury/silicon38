@@ -1,0 +1,168 @@
+from: devops-engineer
+to: security-engineer
+relation_type: triggers
+timestamp: '2026-05-30T17:13:48.487967+00:00'
+focus: Activate security-engineer from devops-engineer
+artifact_refs: &id001
+- devops-engineer-ops-plan-v1
+deliverable:
+  producer: devops-engineer
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: devops-engineer-ops-plan-v1
+    producer: devops-engineer
+    type: ops-plan
+    version: 1
+    status: draft
+    content_ref: artifacts/devops-engineer-ops-plan-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260530T165512Z-064cf2e1
+  from: devops-engineer
+  to: security-engineer
+  relation_type: triggers
+  focus: Activate security-engineer from devops-engineer
+  source:
+    producer_role: devops-engineer
+    context_compression_report_ref: artifacts/devops-engineer-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/architect→devops-engineer-20260530-165634.yaml
+      context_digest: cc74d92bde6d83f6be182247c7661a60c060c2b555c4d8fdb355807aed812ec0
+    input_artifacts:
+    - artifact_id: architect-architecture-v1
+      path: artifacts/architect-architecture-v1.md
+      used: true
+      why: Architecture decisions (stacks, patterns, data flows) directly drive infrastructure
+        choices — which services need containers, what databases to provision, what
+        ports to expose, what dependencies each service has.
+  compressed_context:
+    decisions:
+    - statement: Backend Node.js + Express + WebSocket + PostgreSQL + Redis
+      source: architect-architecture-v1
+      impact: Drives container selection — Node.js backend container, PostgreSQL 16
+        container, Redis 7 container. Defines three separate Dockerfiles and docker-compose
+        service topology.
+    - statement: Frontend React + TypeScript + ECharts + react-grid-layout + react-i18next
+      source: architect-architecture-v1
+      impact: Drives frontend build pipeline — npm ci + tsc + npm test + npm build
+        into Nginx-served static assets.
+    - statement: Export via Puppeteer and exceljs on server
+      source: architect-architecture-v1
+      impact: Requires Chromium binary in Docker — drives Puppeteer-specific Dockerfile
+        with alpine chromium package, separate export-worker service.
+    - statement: Data retention 30 days
+      source: to-prd-prd-v1
+      impact: PostgreSQL schema uses time-series partitioning by day. Partition cleanup
+        enforces retention. Backup retention aligns with 30-day window.
+    - statement: Alert engine rule-based with configurable thresholds
+      source: architect-architecture-v1
+      impact: Alert configs seeded in init.sql. Thresholds exposed as environment
+        variables for runtime tuning without redeploy.
+    - statement: Collaboration via WebSocket
+      source: architect-architecture-v1
+      impact: WebSocket proxy configured in Nginx with long read timeout. Health check
+        includes WebSocket upgrade test.
+    - statement: Adapter pattern for data normalization
+      source: architect-architecture-v1
+      impact: No infra impact — adapters are application-layer concerns. Noted for
+        completeness.
+    constraints:
+    - statement: Initial support for 10 robots
+      source: to-prd-prd-v1
+      impact: Resource sizing (2 backend replicas, 1 export worker, db.t4g.medium
+        RDS, cache.t4g.micro) conservatively sized. Scales horizontally when robot
+        count grows.
+    - statement: Data retention 30 days
+      source: to-prd-prd-v1
+      impact: PostgreSQL partition strategy enforces this. Backup retention policy
+        aligned (daily 7-day + weekly 30-day).
+    - statement: Support dark/light theme, multi-language, draggable layout
+      source: to-prd-prd-v1
+      impact: No infra impact. Frontend-only concern.
+    - statement: Data format unification required
+      source: to-prd-prd-v1
+      impact: No infra impact. Adapter pattern handles this in backend application
+        layer.
+    assumptions:
+    - statement: Robots report via HTTP/WebSocket
+      source: to-prd-prd-v1
+      risk: If robots use different protocols (MQTT, gRPC, raw TCP), a protocol gateway
+        or sidecar may be needed upstream of the backend.
+    - statement: Ops team uses desktop browser
+      source: to-prd-prd-v1
+      risk: No mobile app requirements simplify deployment (no mobile CI/CD needed).
+    - statement: Alert notification only in-app initially
+      source: to-prd-prd-v1
+      risk: No email/SMS gateway integration needed now. If external notifications
+        are added, the export worker or a new notification service would need SMTP/SNS
+        secrets.
+    open_questions:
+    - statement: Alert notification channels beyond in-app?
+      source: architect-architecture-v1
+      owner: runtime
+    - statement: Role-based access control needed?
+      source: architect-architecture-v1
+      owner: runtime
+    - statement: Maximum robot scale?
+      source: architect-architecture-v1
+      owner: runtime
+    - statement: Cloud provider and region?
+      source: devops-engineer
+      owner: runtime
+    - statement: Monitoring stack choice (Prometheus/Grafana vs cloud-native)?
+      source: devops-engineer
+      owner: runtime
+  omitted_context:
+  - source: caveman-analysis-v1
+    reason: irrelevant
+  - source: to-issues-decomposition-v1
+    reason: background_only
+  - source: ux-researcher-designer-ux-spec-v1
+    reason: irrelevant
+  - source: Specific file paths from architect artifact
+    reason: background_only
+  - source: Library version numbers
+    reason: background_only
+  compression_rationale:
+    method: Retained all architecture decisions that map to infrastructure choices
+      (which services need containers, what databases to provision, what ports to
+      expose). Retained all PRD constraints that drive resource sizing (robot count,
+      data retention). Omitted UX design specs and issue decomposition as they have
+      no bearing on CI/CD or deployment topology. Omitted specific library versions
+      — they are captured in package.json lockfiles and will be baked into Docker
+      images during CI.
+    loss_notes:
+    - Omitted caveman analysis — challenges assumptions but does not change infrastructure
+      requirements.
+    - Omitted issue decomposition — useful for sprint planning but irrelevant to CI/CD
+      pipeline design.
+    - Omitted UX specifications — frontend-only concern with no infrastructure impact.
+    - Omitted specific file paths from architecture ADR — may change during implementation.
+  quality_checks:
+  - name: All retained decisions cite a source artifact or handoff
+    passed: true
+  - name: No hard constraint omitted
+    passed: true
+  - name: All environment variables mapped to secrets where applicable
+    passed: true
+  - name: Every Dockerfile matches an architect-level service decision
+    passed: true
+  - name: Rollback procedure defined and testable
+    passed: true
+  - name: No secrets embedded in any configuration file
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - architect-architecture-v1
+  - to-prd-prd-v1
+  previous_blocks:
+  - ref: handoffs/architect→devops-engineer-20260530-165634.yaml
+    from: architect
+    to: devops-engineer
+    relation_type: may_trigger
+    focus: task involves deployment to an external platform or requires CI/CD delivery
+      pipeline
+    context_digest: cc74d92bde6d83f6be182247c7661a60c060c2b555c4d8fdb355807aed812ec0
+    deliverable_artifact_refs:
+    - architect-architecture-v1
+  context_digest: eeefd9624ec434e585cc5139627b20dec73301badf9fd1cdf9c68819f3a5366b

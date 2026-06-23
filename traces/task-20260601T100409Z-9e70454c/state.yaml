@@ -1,0 +1,86 @@
+task_id: task-20260601T100409Z-9e70454c
+task_status: delivered
+node_states:
+  triage:
+    status: completed
+    updated_at: '2026-06-01T10:04:31.081771+00:00'
+    activated_at: '2026-06-01T10:04:30.850101+00:00'
+    completed_at: '2026-06-01T10:04:31.081771+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - triage-analysis-v1
+    blocked_reason: null
+    entry_node: true
+  graph-topologist:
+    status: completed
+    updated_at: '2026-06-01T10:05:33.340188+00:00'
+    activated_at: '2026-06-01T10:05:32.950654+00:00'
+    completed_at: '2026-06-01T10:05:33.340188+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - graph-topologist-topology-review-v1
+    blocked_reason: null
+  hrbp:
+    status: completed
+    updated_at: '2026-06-01T10:05:34.040136+00:00'
+    activated_at: '2026-06-01T10:05:33.600805+00:00'
+    completed_at: '2026-06-01T10:05:34.040136+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - hrbp-talent-evaluation-v1
+    blocked_reason: null
+artifact_registry:
+  triage-analysis-v1:
+    type: analysis
+    producer: triage
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/triage-analysis-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-01T10:04:30.916370+00:00'
+  graph-topologist-topology-review-v1:
+    type: topology-review
+    producer: graph-topologist
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/graph-topologist-topology-review-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-01T10:05:33.064775+00:00'
+  hrbp-talent-evaluation-v1:
+    type: talent-evaluation
+    producer: hrbp
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/hrbp-talent-evaluation-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-01T10:05:33.720177+00:00'
+context_compression_reports:
+  triage:
+    ref: artifacts/triage-context-report-v1.yaml
+    registered_at: '2026-06-01T10:04:30.999868+00:00'
+    digest: 0fb3c9874101687b6c4b6daccf7e0e9e52ad1714ccde8521ca616fdf9e532c67
+    status: valid
+  graph-topologist:
+    ref: artifacts/graph-topologist-context-report-v1.yaml
+    registered_at: '2026-06-01T10:05:33.208897+00:00'
+    digest: 5183291f30ccc763760edfae75838239f00b2e0d5125f863fd47220769514fd8
+    status: valid
+  hrbp:
+    ref: artifacts/hrbp-context-report-v1.yaml
+    registered_at: '2026-06-01T10:05:33.874423+00:00'
+    digest: 6d1aad28035e522cea701346dd840415dd45c4f22b06684a785e2a57820f763b
+    status: valid
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: false
+  all_loops_resolved: false
+  all_blocking_evals_resolved: false
+  all_joins_passed: false
+  all_artifacts_resolved: false
+  no_undecided_activation_candidates: false
+  settled_at: null
+timestamp_end: '2026-06-01T10:05:32.799094+00:00'

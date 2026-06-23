@@ -1,0 +1,17 @@
+artifact_id: ui-design-system-design-v1
+type: document
+producer: ui-design-system
+version: 1
+status: draft
+superseded_by: null
+created_at: "2026-05-23T21:48:00+08:00"
+content_ref: artifacts/ui-design-system-design-v1.md
+summary: "Design system specification with color/typography/spacing/motion tokens, 8 component specs with all states, accessibility matrix, cross-platform consistency notes"
+decisions:
+  - decision: "All colors use iOS semantic colors for UI chrome, brand colors only for graph nodes"
+    rationale: "Dark Mode and accessibility require semantic colors. Node colors are the brand identity."
+  - decision: "8pt spacing grid with 44pt minimum tap targets"
+    rationale: "Apple HIG requirement + consistent visual rhythm."
+  - decision: "SF Symbols for all icons"
+    rationale: "Native, accessible, automatically adapts to Dynamic Type and bold text."
+consumers_pending: [senior-frontend, epic-design]

@@ -1,0 +1,17 @@
+artifact_id: to-issues-issues-v1
+type: document
+producer: to-issues
+version: 1
+status: draft
+superseded_by: null
+created_at: "2026-05-23T21:48:00+08:00"
+content_ref: artifacts/to-issues-issues-v1.md
+summary: "21 issues decomposed from PRD — 19 AFK, 2 HITL, with dependency graph and acceptance criteria"
+decisions:
+  - decision: "21 tracer-bullet issues in dependency order"
+    rationale: "Each issue cuts through all layers (schema, API, UI, test). No horizontal slices."
+  - decision: "First issue is Xcode project scaffold (HITL)"
+    rationale: "Requires Apple Developer account setup which is a human-in-the-loop decision."
+  - decision: "Zero third-party dependencies — app uses only Apple system frameworks"
+    rationale: "Simplifies review, reduces maintenance, aligns with architecture decisions."
+consumers_pending: [senior-engineer, senior-frontend]

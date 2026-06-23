@@ -1,0 +1,676 @@
+task_id: task-20260530T122917Z-1ae65489
+events:
+- event_id: ev-001
+  timestamp: '2026-05-30T12:29:18.219631+00:00'
+  event_type: task_started
+  payload:
+    detail: /Users/ZQ/roboease 优化重构这个代码
+- event_id: ev-002
+  timestamp: '2026-05-30T12:29:36.198560+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'zoom-out: activated'
+- event_id: ev-003
+  timestamp: '2026-05-30T12:29:36.306998+00:00'
+  event_type: context_report_registered
+  payload:
+    role: zoom-out
+    ref: artifacts/zoom-out-context-report-v1.yaml
+    digest: cef3235b7d6c544aacd8e874bd34e5b7b075dfaab71781d788b617d44bfeaa66
+- event_id: ev-004
+  timestamp: '2026-05-30T12:29:36.344218+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'zoom-out: completed'
+- event_id: ev-005
+  timestamp: '2026-05-30T12:29:36.753412+00:00'
+  event_type: activation_decision
+  payload:
+    from: zoom-out
+    to: architect
+    relation_type: may_trigger
+    decision: activate
+    detail: context map identifies architecture work as part of the deliverable
+- event_id: ev-006
+  timestamp: '2026-05-30T12:30:06.089942+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'architect: activated'
+- event_id: ev-007
+  timestamp: '2026-05-30T12:30:06.207955+00:00'
+  event_type: context_report_registered
+  payload:
+    role: architect
+    ref: artifacts/architect-context-report-v1.yaml
+    digest: 7c733355e94336012da3041b9e49495d06d9cc5bd1f471386550739b1fd62762
+- event_id: ev-008
+  timestamp: '2026-05-30T12:30:06.246636+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'architect: completed'
+- event_id: ev-009
+  timestamp: '2026-05-30T12:30:06.461760+00:00'
+  event_type: activation_decision
+  payload:
+    from: architect
+    to: customer-success
+    relation_type: may_trigger
+    decision: defer
+    detail: 'Candidate gated by task_type=refactor; allowed task types: [''feature'',
+      ''design'', ''launch''].'
+    decision_quality:
+      reason_chars: 91
+      requires_review: true
+- event_id: ev-010
+  timestamp: '2026-05-30T12:30:06.594041+00:00'
+  event_type: activation_decision
+  payload:
+    from: architect
+    to: ux-researcher-designer
+    relation_type: may_trigger
+    decision: defer
+    detail: 'Candidate gated by task_type=refactor; allowed task types: [''feature'',
+      ''design'', ''launch''].'
+    decision_quality:
+      reason_chars: 91
+      requires_review: true
+- event_id: ev-011
+  timestamp: '2026-05-30T12:30:06.716609+00:00'
+  event_type: activation_decision
+  payload:
+    from: architect
+    to: ui-design-system
+    relation_type: may_trigger
+    decision: defer
+    detail: 'Candidate gated by task_type=refactor; allowed task types: [''feature'',
+      ''design'', ''launch''].'
+    decision_quality:
+      reason_chars: 91
+      requires_review: true
+- event_id: ev-012
+  timestamp: '2026-05-30T12:30:06.852249+00:00'
+  event_type: activation_decision
+  payload:
+    from: architect
+    to: grill-me
+    relation_type: may_trigger
+    decision: defer
+    detail: Candidate score 0.40 is below activation threshold 0.50; deferred for
+      later policy review.
+    decision_quality:
+      reason_chars: 90
+      requires_review: true
+- event_id: ev-013
+  timestamp: '2026-05-30T12:30:07.755420+00:00'
+  event_type: activation_decision
+  payload:
+    from: architect
+    to: senior-engineer
+    relation_type: triggers
+    decision: activate
+    detail: Activate senior-engineer from architect
+- event_id: ev-014
+  timestamp: '2026-05-30T12:30:08.068911+00:00'
+  event_type: activation_decision
+  payload:
+    from: architect
+    to: security-engineer
+    relation_type: may_trigger
+    decision: activate
+    detail: architecture touches auth, claim concurrency, persisted config, or external
+      write endpoints
+- event_id: ev-015
+  timestamp: '2026-05-30T12:30:08.451177+00:00'
+  event_type: activation_decision
+  payload:
+    from: architect
+    to: database-engineer
+    relation_type: triggers
+    decision: activate
+    detail: Activate database-engineer from architect
+- event_id: ev-016
+  timestamp: '2026-05-30T12:30:08.840712+00:00'
+  event_type: activation_decision
+  payload:
+    from: architect
+    to: devops-engineer
+    relation_type: may_trigger
+    decision: activate
+    detail: task involves deployment to an external platform or requires CI/CD delivery
+      pipeline
+- event_id: ev-017
+  timestamp: '2026-05-30T12:30:09.275390+00:00'
+  event_type: activation_decision
+  payload:
+    from: architect
+    to: api-designer
+    relation_type: triggers
+    decision: activate
+    detail: Activate api-designer from architect
+- event_id: ev-018
+  timestamp: '2026-05-30T12:30:37.999404+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'security-engineer: activated'
+- event_id: ev-019
+  timestamp: '2026-05-30T12:30:38.216147+00:00'
+  event_type: context_report_registered
+  payload:
+    role: security-engineer
+    ref: artifacts/security-engineer-context-report-v1.yaml
+    digest: 59b78886fae399743794923a289374231afe26985e9e6e65f8764bae7ea156b3
+- event_id: ev-020
+  timestamp: '2026-05-30T12:30:38.281970+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'security-engineer: completed'
+- event_id: ev-021
+  timestamp: '2026-05-30T12:30:47.942480+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'api-designer: activated'
+- event_id: ev-022
+  timestamp: '2026-05-30T12:30:48.168942+00:00'
+  event_type: context_report_registered
+  payload:
+    role: api-designer
+    ref: artifacts/api-designer-context-report-v1.yaml
+    digest: b083b90722bc28202a1a4c3689ea404f51029b9b7dcf8a9380958e5ebdeea7cd
+- event_id: ev-023
+  timestamp: '2026-05-30T12:30:48.241532+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'api-designer: completed'
+- event_id: ev-024
+  timestamp: '2026-05-30T12:39:09.774318+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'devops-engineer: activated'
+- event_id: ev-025
+  timestamp: '2026-05-30T12:39:10.120310+00:00'
+  event_type: context_report_registered
+  payload:
+    role: devops-engineer
+    ref: artifacts/devops-engineer-context-report-v1.yaml
+    digest: f45c7ba6320446b2315ada2062755224712a3a6c0b005cea5ce9fce8b2fd4ac8
+- event_id: ev-026
+  timestamp: '2026-05-30T12:39:10.238005+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'devops-engineer: completed'
+- event_id: ev-027
+  timestamp: '2026-05-30T12:41:38.377618+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'senior-engineer: activated'
+- event_id: ev-028
+  timestamp: '2026-05-30T12:41:38.581246+00:00'
+  event_type: context_report_registered
+  payload:
+    role: senior-engineer
+    ref: artifacts/senior-engineer-context-report-v1.yaml
+    digest: 54750dc817d0ad6336413a0e054c1bd456bd99bce8fc22d6b499d4d03c47ed0c
+- event_id: ev-029
+  timestamp: '2026-05-30T12:41:38.661153+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'senior-engineer: completed'
+- event_id: ev-030
+  timestamp: '2026-05-30T12:41:42.120552+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'database-engineer: activated'
+- event_id: ev-031
+  timestamp: '2026-05-30T12:41:42.376235+00:00'
+  event_type: context_report_registered
+  payload:
+    role: database-engineer
+    ref: artifacts/database-engineer-context-report-v1.yaml
+    digest: bfaeb0f137b6a0fa272b5f9132eea4a4b397762617499396b091694ae787b544
+- event_id: ev-032
+  timestamp: '2026-05-30T12:41:42.473229+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'database-engineer: completed'
+- event_id: ev-033
+  timestamp: '2026-05-30T12:41:43.043360+00:00'
+  event_type: activation_decision
+  payload:
+    from: api-designer
+    to: grill-me
+    relation_type: may_trigger
+    decision: defer
+    detail: Candidate score 0.35 is below activation threshold 0.50; deferred for
+      later policy review.
+    decision_quality:
+      reason_chars: 90
+      requires_review: true
+- event_id: ev-034
+  timestamp: '2026-05-30T12:41:43.204252+00:00'
+  event_type: activation_decision
+  payload:
+    from: senior-engineer
+    to: performance-engineer
+    relation_type: may_trigger
+    decision: defer
+    detail: Candidate score 0.30 is below activation threshold 0.50; deferred for
+      later policy review.
+    decision_quality:
+      reason_chars: 90
+      requires_review: true
+- event_id: ev-035
+  timestamp: '2026-05-30T12:41:44.386113+00:00'
+  event_type: activation_decision
+  payload:
+    from: senior-engineer
+    to: observability-engineer
+    relation_type: triggers
+    decision: activate
+    detail: Activate observability-engineer from senior-engineer
+- event_id: ev-036
+  timestamp: '2026-05-30T12:41:44.880232+00:00'
+  event_type: activation_decision
+  payload:
+    from: senior-engineer
+    to: code-reviewer
+    relation_type: triggers
+    decision: activate
+    detail: Activate code-reviewer from senior-engineer
+- event_id: ev-037
+  timestamp: '2026-05-30T12:41:45.335529+00:00'
+  event_type: activation_decision
+  payload:
+    from: senior-engineer
+    to: delivery-prover
+    relation_type: triggers
+    decision: activate
+    detail: Activate delivery-prover from senior-engineer
+- event_id: ev-038
+  timestamp: '2026-05-30T12:41:45.877581+00:00'
+  event_type: activation_decision
+  payload:
+    from: api-designer
+    to: tdd
+    relation_type: triggers
+    decision: activate
+    detail: Activate tdd from api-designer
+- event_id: ev-039
+  timestamp: '2026-05-30T12:41:46.453676+00:00'
+  event_type: activation_decision
+  payload:
+    from: devops-engineer
+    to: release-manager
+    relation_type: triggers
+    decision: activate
+    detail: Activate release-manager from devops-engineer
+- event_id: ev-040
+  timestamp: '2026-05-30T12:42:04.839710+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'code-reviewer: activated'
+- event_id: ev-041
+  timestamp: '2026-05-30T12:42:05.105832+00:00'
+  event_type: context_report_registered
+  payload:
+    role: code-reviewer
+    ref: artifacts/code-reviewer-context-report-v1.yaml
+    digest: fed7492381fbe598c5a130d3cce43037763100a264ac7777dd55d99f079c4e13
+- event_id: ev-042
+  timestamp: '2026-05-30T12:42:05.202669+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'code-reviewer: completed'
+- event_id: ev-043
+  timestamp: '2026-05-30T12:42:09.745559+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'tdd: activated'
+- event_id: ev-044
+  timestamp: '2026-05-30T12:42:10.039180+00:00'
+  event_type: context_report_registered
+  payload:
+    role: tdd
+    ref: artifacts/tdd-context-report-v1.yaml
+    digest: 16257829b01a180014ed9715d0126fce5c9e2de5c24f8238bf942036bd513275
+- event_id: ev-045
+  timestamp: '2026-05-30T12:42:10.168844+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'tdd: completed'
+- event_id: ev-046
+  timestamp: '2026-05-30T12:42:11.186091+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'delivery-prover: activated'
+- event_id: ev-047
+  timestamp: '2026-05-30T12:42:11.493644+00:00'
+  event_type: context_report_registered
+  payload:
+    role: delivery-prover
+    ref: artifacts/delivery-prover-context-report-v1.yaml
+    digest: 17c392ab43a50f627268c82ee663386171918cbf4b243c4c6d6429b89c62f37b
+- event_id: ev-048
+  timestamp: '2026-05-30T12:42:11.610507+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'delivery-prover: completed'
+- event_id: ev-049
+  timestamp: '2026-05-30T12:49:32.950798+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'release-manager: activated'
+- event_id: ev-050
+  timestamp: '2026-05-30T12:49:33.309905+00:00'
+  event_type: context_report_registered
+  payload:
+    role: release-manager
+    ref: artifacts/release-manager-context-report-v1.yaml
+    digest: f0cc8393bd6f0a7b38477991095fa53bc982edf64868fc523175bcdd1dcb5747
+- event_id: ev-051
+  timestamp: '2026-05-30T12:49:33.434743+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'release-manager: completed'
+- event_id: ev-052
+  timestamp: '2026-05-30T12:49:47.612965+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'observability-engineer: activated'
+- event_id: ev-053
+  timestamp: '2026-05-30T12:49:47.923887+00:00'
+  event_type: context_report_registered
+  payload:
+    role: observability-engineer
+    ref: artifacts/observability-engineer-context-report-v1.yaml
+    digest: feb5606a89b615d576aa95a0aaff084c95c293165be0e5e5ef33d376ab6ea04a
+- event_id: ev-054
+  timestamp: '2026-05-30T12:49:48.063625+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'observability-engineer: completed'
+- event_id: ev-055
+  timestamp: '2026-05-30T12:49:48.699875+00:00'
+  event_type: activation_decision
+  payload:
+    from: delivery-prover
+    to: senior-frontend
+    relation_type: may_trigger
+    decision: defer
+    detail: 'Candidate gated by verdict=unknown; allowed verdicts: [''FAIL_WITH_ISSUES'',
+      ''BLOCKED''].'
+    decision_quality:
+      reason_chars: 86
+      requires_review: true
+- event_id: ev-056
+  timestamp: '2026-05-30T12:49:49.994462+00:00'
+  event_type: activation_decision
+  payload:
+    from: architect
+    to: caveman
+    relation_type: evaluates
+    decision: activate
+    detail: Activate caveman from architect
+- event_id: ev-057
+  timestamp: '2026-05-30T12:49:50.769757+00:00'
+  event_type: activation_decision
+  payload:
+    from: devops-engineer
+    to: dependency-auditor
+    relation_type: evaluates
+    decision: activate
+    detail: Activate dependency-auditor from devops-engineer
+- event_id: ev-058
+  timestamp: '2026-05-30T12:49:51.520943+00:00'
+  event_type: activation_decision
+  payload:
+    from: code-reviewer
+    to: handoff
+    relation_type: may_trigger
+    decision: activate
+    detail: task leaves follow-up work, unresolved questions, or context that must
+      transfer to another session
+- event_id: ev-059
+  timestamp: '2026-05-30T12:49:52.403133+00:00'
+  event_type: activation_decision
+  payload:
+    from: code-reviewer
+    to: technical-writer
+    relation_type: may_trigger
+    decision: activate
+    detail: approved work changes public behavior, API contracts, operating protocol,
+      or user-facing documentation
+- event_id: ev-060
+  timestamp: '2026-05-30T12:50:13.764531+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'handoff: activated'
+- event_id: ev-061
+  timestamp: '2026-05-30T12:50:14.133800+00:00'
+  event_type: context_report_registered
+  payload:
+    role: handoff
+    ref: artifacts/handoff-context-report-v1.yaml
+    digest: b0b9c672e007afcc5c5249d4c2499d618b792c115af11227371a6dcf5c20ff8a
+- event_id: ev-062
+  timestamp: '2026-05-30T12:50:14.274697+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'handoff: completed'
+- event_id: ev-063
+  timestamp: '2026-05-30T12:50:18.469584+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'caveman: activated'
+- event_id: ev-064
+  timestamp: '2026-05-30T12:50:18.880103+00:00'
+  event_type: context_report_registered
+  payload:
+    role: caveman
+    ref: artifacts/caveman-context-report-v1.yaml
+    digest: 3e9beb97cb5773ec123eee1847260fe060d5b5e0bba5e7f553c89af5a18f7c7e
+- event_id: ev-065
+  timestamp: '2026-05-30T12:50:19.047898+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'caveman: completed'
+- event_id: ev-066
+  timestamp: '2026-05-30T12:50:21.288634+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'technical-writer: activated'
+- event_id: ev-067
+  timestamp: '2026-05-30T12:50:21.729549+00:00'
+  event_type: context_report_registered
+  payload:
+    role: technical-writer
+    ref: artifacts/technical-writer-context-report-v1.yaml
+    digest: f2f1c3eafe351c15ecf8b4155c2cb48fa6f2205c0ccdc5122f89e931bf1e6e14
+- event_id: ev-068
+  timestamp: '2026-05-30T12:50:21.904869+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'technical-writer: completed'
+- event_id: ev-069
+  timestamp: '2026-05-30T12:50:32.140857+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'dependency-auditor: activated'
+- event_id: ev-070
+  timestamp: '2026-05-30T12:50:32.566806+00:00'
+  event_type: context_report_registered
+  payload:
+    role: dependency-auditor
+    ref: artifacts/dependency-auditor-context-report-v1.yaml
+    digest: 60ea878d2715d6c51bea9e007d864e6829e543b12eae26eb4de3392b3809c2fe
+- event_id: ev-071
+  timestamp: '2026-05-30T12:50:32.747631+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'dependency-auditor: completed'
+- event_id: ev-072
+  timestamp: '2026-05-30T12:50:34.067843+00:00'
+  event_type: activation_decision
+  payload:
+    from: caveman
+    to: to-prd
+    relation_type: may_trigger
+    decision: activate
+    detail: first-principles analysis changes product scope, cuts features, or clarifies
+      the one core user outcome
+- event_id: ev-073
+  timestamp: '2026-05-30T12:50:34.903637+00:00'
+  event_type: activation_decision
+  payload:
+    from: caveman
+    to: ux-researcher-designer
+    relation_type: may_trigger
+    decision: activate
+    detail: first-principles analysis identifies the core user moment, removes UX
+      complexity, or changes interaction priorities
+- event_id: ev-074
+  timestamp: '2026-05-30T12:50:59.326462+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'to-prd: activated'
+- event_id: ev-075
+  timestamp: '2026-05-30T12:50:59.796817+00:00'
+  event_type: context_report_registered
+  payload:
+    role: to-prd
+    ref: artifacts/to-prd-context-report-v1.yaml
+    digest: 7931d6bcd102ca4e6d60b77c86eba8cd0a3035da3c8446c396e8754c61a9cbe7
+- event_id: ev-076
+  timestamp: '2026-05-30T12:50:59.970623+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'to-prd: completed'
+- event_id: ev-077
+  timestamp: '2026-05-30T12:51:05.735605+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'ux-researcher-designer: activated'
+- event_id: ev-078
+  timestamp: '2026-05-30T12:51:06.199997+00:00'
+  event_type: context_report_registered
+  payload:
+    role: ux-researcher-designer
+    ref: artifacts/ux-researcher-designer-context-report-v1.yaml
+    digest: bfb6bc5b7ba16b97537e07a3061b725f8fa5e23871cfb223a7a0b1d47f22e575
+- event_id: ev-079
+  timestamp: '2026-05-30T12:51:06.366559+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'ux-researcher-designer: completed'
+- event_id: ev-080
+  timestamp: '2026-05-30T12:51:06.729736+00:00'
+  event_type: activation_decision
+  payload:
+    from: to-prd
+    to: grill-me
+    relation_type: may_trigger
+    decision: defer
+    detail: Candidate score 0.30 is below activation threshold 0.50; deferred for
+      later policy review.
+    decision_quality:
+      reason_chars: 90
+      requires_review: true
+- event_id: ev-081
+  timestamp: '2026-05-30T12:51:07.722324+00:00'
+  event_type: activation_decision
+  payload:
+    from: to-prd
+    to: to-issues
+    relation_type: triggers
+    decision: activate
+    detail: Activate to-issues from to-prd
+- event_id: ev-082
+  timestamp: '2026-05-30T12:51:08.607212+00:00'
+  event_type: activation_decision
+  payload:
+    from: ux-researcher-designer
+    to: prototype
+    relation_type: triggers
+    decision: activate
+    detail: Activate prototype from ux-researcher-designer
+- event_id: ev-083
+  timestamp: '2026-05-30T12:51:29.008572+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'to-issues: activated'
+- event_id: ev-084
+  timestamp: '2026-05-30T12:51:29.551735+00:00'
+  event_type: context_report_registered
+  payload:
+    role: to-issues
+    ref: artifacts/to-issues-context-report-v1.yaml
+    digest: 26f485b0b3beaebe9fdba2ce71ccc2d96ba42f69c17ef23123d2a3796dda4f0c
+- event_id: ev-085
+  timestamp: '2026-05-30T12:51:29.733410+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'to-issues: completed'
+- event_id: ev-086
+  timestamp: '2026-05-30T12:58:36.239505+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'prototype: activated'
+- event_id: ev-087
+  timestamp: '2026-05-30T12:58:36.871595+00:00'
+  event_type: context_report_registered
+  payload:
+    role: prototype
+    ref: artifacts/prototype-context-report-v1.yaml
+    digest: 399e378f8e36a15ae2d399b1d344591891d3ea959013014e2e19daa211f40efe
+- event_id: ev-088
+  timestamp: '2026-05-30T12:58:37.097955+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'prototype: completed'
+- event_id: ev-089
+  timestamp: '2026-05-30T12:58:37.456435+00:00'
+  event_type: task_completed
+  payload:
+    detail: LangGraph-native runtime stopped at explicit max_role_executions=20.
+    status: partial
+- event_id: ev-090
+  timestamp: '2026-05-30T12:58:37.698315+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'graph-topologist: activated'
+- event_id: ev-091
+  timestamp: '2026-05-30T12:58:38.356473+00:00'
+  event_type: context_report_registered
+  payload:
+    role: graph-topologist
+    ref: artifacts/graph-topologist-context-report-v1.yaml
+    digest: 5183291f30ccc763760edfae75838239f00b2e0d5125f863fd47220769514fd8
+- event_id: ev-092
+  timestamp: '2026-05-30T12:58:38.570409+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'graph-topologist: completed'
+- event_id: ev-093
+  timestamp: '2026-05-30T12:58:38.821995+00:00'
+  event_type: node_activated
+  payload:
+    detail: 'hrbp: activated'
+- event_id: ev-094
+  timestamp: '2026-05-30T12:58:39.488165+00:00'
+  event_type: context_report_registered
+  payload:
+    role: hrbp
+    ref: artifacts/hrbp-context-report-v1.yaml
+    digest: 6d1aad28035e522cea701346dd840415dd45c4f22b06684a785e2a57820f763b
+- event_id: ev-095
+  timestamp: '2026-05-30T12:58:39.702195+00:00'
+  event_type: node_completed
+  payload:
+    detail: 'hrbp: completed'
+- event_id: ev-096
+  timestamp: '2026-05-30T12:58:42.284931+00:00'
+  event_type: learning_snapshot_written
+  payload:
+    ref: learning.yaml
+    role_signal_count: 22
+    relation_signal_count: 19
+    proposal_count: 12

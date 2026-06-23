@@ -1,0 +1,53 @@
+handoff:
+  task_description: "Refactor and optimize the RoboEase codebase (backend Python/FastAPI, frontend Vue/TypeScript) to improve maintainability, performance, and code quality. The refactoring has completed Iteration 4 (modular monolith with DDD bounded contexts, repository pattern, core module, API versioning). Next steps focus on addressing remaining technical debt."
+  completed:
+    - "Created core/ module with centralized config, security, exception handlers, and DI container"
+    - "Implemented repository pattern (BaseCRUDRepository) and port/adapter interfaces"
+    - "Refactored 7 high-impact services (auth, user, enterprise, agent, app, dataset, model) to use repositories"
+    - "Fixed critical bugs: auth.py captcha validation, menuService.py import error"
+    - "API versioning under /api/v1/ prefix"
+    - "All 64 unit tests passing"
+  in_progress:
+    - item: "Address FIXMEs in services/userservice.py (multi-entity creation, login)"
+      state: "Identified, not started"
+      what_remains: "Implement Unit-of-Work pattern or transactional wrapper for multi-entity operations; refactor login to use repository"
+    - item: "Refactor enterprise_service.py to remove direct Session usage"
+      state: "Identified, not started"
+      what_remains: "Introduce query service or repository method for cross-entity joins"
+    - item: "Migrate MD5 password hashing to bcrypt/Argon2"
+      state: "Planned, not started"
+      what_remains: "Design versioned hash format, implement migration script, update all user records"
+    - item: "Refactor remaining 4 library services (action, expression, knowledge, etc.) to use BaseCRUDRepository"
+      state: "Identified, not started"
+      what_remains: "Apply repository pattern to each service, update DI container"
+    - item: "Move MQTT client from common/ to infrastructure/mqtt/"
+      state: "Identified, not started"
+      what_remains: "Relocate module, update imports, verify connectivity"
+  decisions:
+    - decision: "Adopt Modular Monolith with DDD bounded contexts"
+      rationale: "Team size <10; simpler than microservices; clear domain separation without distributed system complexity"
+      alternatives_rejected: ["Microservices (too complex for small team)", "Monolithic without structure (would lead to spaghetti)"]
+    - decision: "Separate domain from infrastructure using ports and adapters"
+      rationale: "Enables testability and future extraction of bounded contexts into separate services if needed"
+      alternatives_rejected: ["Direct dependency on ORM throughout services"]
+    - decision: "Centralized configuration via core.config.settings"
+      rationale: "Single source of truth for all config; avoids scattered env reads"
+      alternatives_rejected: ["Per-module config files"]
+    - decision: "Standardized error handling via exception handlers in core/"
+      rationale: "Consistent API error responses; reduces boilerplate"
+      alternatives_rejected: ["Try/except in every endpoint"]
+    - decision: "API versioning under /api/v1/"
+      rationale: "Backward compatibility for existing clients; clear upgrade path"
+      alternatives_rejected: ["No versioning", "Header-based versioning"]
+  blockers: []
+  open_questions:
+    - "Should we introduce a transactional Unit-of-Work pattern for multi-entity operations?"
+    - "What is the migration strategy for MD5 → bcrypt? (versioned hash, gradual upgrade?)"
+    - "Should MQTT client move from common/ to infrastructure/mqtt/?"
+    - "Should remaining 4 library services use BaseCRUDRepository?"
+  next_action: "Open a draft PR with the current refactoring changes (Iteration 4) for team review, then begin addressing FIXMEs in userservice.py by implementing a Unit-of-Work pattern."
+  artifact_refs:
+    - "artifacts/code-reviewer-review-v1.md"
+    - "artifacts/senior-engineer-implementation-v4.md"
+    - "artifacts/architect-architecture-v1.md"
+    - "artifacts/zoom-out-context-map-v1.md"

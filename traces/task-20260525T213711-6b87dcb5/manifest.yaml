@@ -1,0 +1,18 @@
+task_id: task-20260525T213711-6b87dcb5
+timestamp_start: '2026-05-25T13:37:23.519435+00:00'
+timestamp_end: null
+task_summary: Fleet ops dashboard for humanoid robot fleet — realtime monitor, alerts,
+  history, config, collaboration
+task_type: feature
+entry_nodes:
+- caveman
+- to-prd
+terminal_nodes: []
+outcome: null
+artifact_index:
+- artifact_id: caveman-analysis-v1
+  type: analysis
+  producer: caveman
+  version: 1
+  path: artifacts/caveman-output-v1.md
+handoff_trail: []

@@ -1,0 +1,112 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→senior-engineer-20260530-100711.yaml
+      context_digest: 857a8d016d2bfe629af30038e7d19dd0734e1a4250f6aaa40cdda7f88650f28a
+  retained_context:
+    decisions:
+    - statement: Adopt Modular Monolith with DDD bounded contexts.
+      source: architect
+      impact: All refactoring follows module boundaries defined in ADR.
+    - statement: Separate domain from infrastructure using ports and adapters.
+      source: architect
+      impact: 10 port interfaces created; 9 repository adapters wired via DI container.
+    - statement: Centralized configuration via core.config.settings.
+      source: architect
+      impact: core/config.py Settings singleton created; all 8 broken imports fixed.
+    - statement: Standardized error handling via exception handlers.
+      source: architect
+      impact: 5 exception handlers registered for ValueError, FileNotFoundError, PermissionError,
+        DomainError, generic Exception.
+    - statement: API versioning under /api/v1/.
+      source: architect
+      impact: Maintained from prior refactoring iterations.
+    - statement: Enforce strict module boundaries via package conventions.
+      source: architect
+      impact: 'Module structure: core/, api/, services/, infrastructure/, schemas/,
+        config/ (legacy).'
+    constraints:
+    - statement: Team size is small (<10 developers).
+      source: semantic_node_executor
+      impact: Simple patterns preferred; pragmatic trade-offs documented.
+    - statement: Backend uses FastAPI with SQLModel ORM.
+      source: semantic_node_executor
+      impact: Repository implementations use SQLModel Session patterns.
+    - statement: Existing SQLModel entities couple domain and persistence.
+      source: semantic_node_executor
+      impact: Full separation requires phased migration.
+    - statement: Backward-compatibility re-exports must be maintained.
+      source: architect
+      impact: db/database.py preserves re-exports from infrastructure.db.*.
+    - statement: Legacy config modules (config/setting.py, config/dbconfig.py) need
+        migration.
+      source: architect
+      impact: core/config.py wraps config/setting.py as Settings singleton.
+    assumptions:
+    - statement: The codebase is a multi-tenant robot management platform.
+      source: semantic_node_executor
+      risk: Low — confirmed by entity schemas with enterprise_id fields.
+    - statement: MQTT is used for robot communication.
+      source: semantic_node_executor
+      risk: Low — confirmed by common/mqtt_client.py and service usage.
+    - statement: JWT is used for authentication.
+      source: semantic_node_executor
+      risk: Low — confirmed by services/auth_util.py JWT implementation.
+    - statement: MD5 password hashing is acceptable for current scope.
+      source: implementation observation
+      risk: Medium — production should migrate to bcrypt.
+    - statement: SQLite fallback is safe for development and tests.
+      source: implementation decision
+      risk: Low — only used when DATABASE_URL is unset.
+    open_questions:
+    - statement: Should we introduce a transactional Unit-of-Work pattern?
+      source: userservice.py FIXME
+      owner: architect
+    - statement: What is the migration strategy for MD5 → bcrypt?
+      source: security review
+      owner: security-team
+    - statement: Should MQTT client move from common/ to infrastructure/mqtt/?
+      source: architecture review
+      owner: architect
+    - statement: Should the remaining 9 services with direct Session be refactored?
+      source: implementation observation
+      owner: senior-engineer
+    - statement: What is the exact MQTT topic structure?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed analysis of synergy_service.py and device_service.py internals
+    reason: background_only
+  - source: Frontend admin mock data patterns and alignment with backend API contracts
+    reason: background_only
+  - source: Docker image build specifics and CI/CD pipeline configuration
+    reason: background_only
+  - source: Robot planning backend module
+    reason: background_only
+  - source: Dify API integration details beyond token service
+    reason: background_only
+  compression_rationale:
+    method: Focus on structural changes that complete the modular monolith pattern.
+      Prioritized creating missing infrastructure layers that unblock the entire codebase,
+      then refactoring high-pattern-reuse services. Remaining direct Session usage
+      is documented as technical debt with clear migration paths. Omitted non-impacted
+      modules and external integration details.
+    loss_notes:
+    - ~40 remaining direct Session(engine) calls in 9 services (all documented with
+      migration path)
+    - No integration tests due to missing external dependencies (MySQL, Redis, MQTT)
+    - Dify integration specifics not mapped
+  quality_checks:
+  - name: All 111 Python files pass AST syntax validation
+    passed: true
+  - name: All 65 module imports resolve correctly
+    passed: true
+  - name: Repository ports match implementations (10 interfaces verified)
+    passed: true
+  - name: DI container includes all 9 repository properties
+    passed: true
+  - name: No broken imports from missing modules
+    passed: true
+  - name: 58 unit tests passing (0 failures)
+    passed: true

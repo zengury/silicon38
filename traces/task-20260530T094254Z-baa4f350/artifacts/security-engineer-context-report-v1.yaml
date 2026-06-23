@@ -1,0 +1,88 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→security-engineer-20260530-094359.yaml
+      context_digest: d9fe41f7ce45740c9ce2307310eb10a0fe38ff139a222957111593f189deb3e9
+  retained_context:
+    decisions:
+    - statement: Adopt Modular Monolith for backend.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use Layered Architecture with DDD tactical patterns.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Keep frontend as two separate SPAs.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Backend source code not available in workspace.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Robot agent code not available.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Shared package not explored.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Backend is FastAPI-based (from DOCKERFILE).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Video server runs on port 8765 (from docker-compose).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: MQTT is used for robot communication (from docker-compose env vars).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Frontends use @roboease/shared workspace package.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Team size is small (<10 developers).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Rapid iteration is a priority.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the exact backend framework structure?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What does @roboease/shared contain?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How are robot agents implemented and deployed?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What are the exact API endpoints and data models?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed frontend component hierarchy (not needed for security review).
+    reason: background_only
+  - source: Image assets (not relevant for security).
+    reason: background_only
+  - source: Artifact files (release plans, ops plans) as they are not code.
+    reason: background_only
+  - source: pnpm-lock.yaml (dependency lock file, not structural).
+    reason: background_only
+  compression_rationale:
+    method: 'Focused on security-relevant files: docker-compose for configuration
+      exposure, frontend API code for input handling, nginx config for TLS/headers,
+      package.json for dependency vulnerabilities. Omitted non-code artifacts and
+      deep frontend component details.'
+    loss_notes:
+    - Backend source code not read; only inferred from Dockerfile and compose.
+    - Robot agent code not read.
+    - Shared package not read.
+  quality_checks:
+  - name: All input paths considered
+    passed: true
+  - name: Data stores checked for unauthorized access
+    passed: true
+  - name: Dependencies audited for known vulnerabilities
+    passed: true
+  - name: Findings ranked by exploitability
+    passed: true
+  - name: False positives avoided
+    passed: true

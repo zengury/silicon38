@@ -1,0 +1,200 @@
+task_id: task-20260606T123359Z-47218acf
+task_status: delivered
+node_states:
+  triage:
+    status: completed
+    updated_at: '2026-06-06T12:34:16.089923+00:00'
+    activated_at: '2026-06-06T12:34:15.958369+00:00'
+    completed_at: '2026-06-06T12:34:16.089923+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - triage-analysis-v1
+    blocked_reason: null
+    entry_node: true
+  to-prd:
+    status: completed
+    updated_at: '2026-06-06T12:34:36.746116+00:00'
+    activated_at: '2026-06-06T12:34:36.549185+00:00'
+    completed_at: '2026-06-06T12:34:36.746116+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - to-prd-prd-v1
+    blocked_reason: null
+  scope-prosecutor:
+    status: completed
+    updated_at: '2026-06-06T12:34:50.716078+00:00'
+    activated_at: '2026-06-06T12:34:50.447648+00:00'
+    completed_at: '2026-06-06T12:34:50.716078+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - scope-prosecutor-scope-verdict-v1
+    blocked_reason: null
+  caveman:
+    status: completed
+    updated_at: '2026-06-06T12:34:53.227209+00:00'
+    activated_at: '2026-06-06T12:34:52.933948+00:00'
+    completed_at: '2026-06-06T12:34:53.227209+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - caveman-analysis-v1
+    blocked_reason: null
+  to-issues:
+    status: completed
+    updated_at: '2026-06-06T12:35:15.562564+00:00'
+    activated_at: '2026-06-06T12:35:15.240612+00:00'
+    completed_at: '2026-06-06T12:35:15.562564+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - to-issues-decomposition-v1
+    blocked_reason: null
+  api-designer:
+    status: completed
+    updated_at: '2026-06-06T12:35:49.099878+00:00'
+    activated_at: '2026-06-06T12:35:48.748639+00:00'
+    completed_at: '2026-06-06T12:35:49.099878+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - api-designer-contract-v1
+    blocked_reason: null
+  graph-topologist:
+    status: completed
+    updated_at: '2026-06-06T12:36:30.307771+00:00'
+    activated_at: '2026-06-06T12:36:29.900783+00:00'
+    completed_at: '2026-06-06T12:36:30.307771+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - graph-topologist-topology-review-v1
+    blocked_reason: null
+  hrbp:
+    status: completed
+    updated_at: '2026-06-06T12:36:30.915326+00:00'
+    activated_at: '2026-06-06T12:36:30.484309+00:00'
+    completed_at: '2026-06-06T12:36:30.915326+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - hrbp-talent-evaluation-v1
+    blocked_reason: null
+artifact_registry:
+  triage-analysis-v1:
+    type: analysis
+    producer: triage
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/triage-analysis-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-06T12:34:15.993342+00:00'
+  to-prd-prd-v1:
+    type: prd
+    producer: to-prd
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/to-prd-prd-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-06T12:34:36.596240+00:00'
+  scope-prosecutor-scope-verdict-v1:
+    type: scope-verdict
+    producer: scope-prosecutor
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/scope-prosecutor-scope-verdict-v1.yaml
+    consumers_pending: []
+    registered_at: '2026-06-06T12:34:50.509465+00:00'
+  caveman-analysis-v1:
+    type: analysis
+    producer: caveman
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/caveman-analysis-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-06T12:34:53.006514+00:00'
+  to-issues-decomposition-v1:
+    type: decomposition
+    producer: to-issues
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/to-issues-decomposition-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-06T12:35:15.319187+00:00'
+  api-designer-contract-v1:
+    type: contract
+    producer: api-designer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/api-designer-contract-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-06T12:35:48.840662+00:00'
+  graph-topologist-topology-review-v1:
+    type: topology-review
+    producer: graph-topologist
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/graph-topologist-topology-review-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-06T12:36:29.999828+00:00'
+  hrbp-talent-evaluation-v1:
+    type: talent-evaluation
+    producer: hrbp
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/hrbp-talent-evaluation-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-06T12:36:30.591274+00:00'
+context_compression_reports:
+  triage:
+    ref: artifacts/triage-context-report-v1.yaml
+    registered_at: '2026-06-06T12:34:16.041090+00:00'
+    digest: 40c7bc510671bd18f2852c15f6fa966d2ec5090903c2b4681fcf09fc8d503096
+    status: valid
+  to-prd:
+    ref: artifacts/to-prd-context-report-v1.yaml
+    registered_at: '2026-06-06T12:34:36.682862+00:00'
+    digest: 153b59ed2502a0911fa4c471e8f892510c71b9ae7a630107cf1a0819a982160a
+    status: valid
+  scope-prosecutor:
+    ref: artifacts/scope-prosecutor-context-report-v1.yaml
+    registered_at: '2026-06-06T12:34:50.633550+00:00'
+    digest: 398c4a378932b2c79dd5acc6afd9bfcf282ef886be234277b5c642cd69f88e7e
+    status: valid
+  caveman:
+    ref: artifacts/caveman-context-report-v1.yaml
+    registered_at: '2026-06-06T12:34:53.138187+00:00'
+    digest: a1acaf9bbebff04e7774597641a364b959e45607ef01346ee2370a6ca9d68c87
+    status: valid
+  to-issues:
+    ref: artifacts/to-issues-context-report-v1.yaml
+    registered_at: '2026-06-06T12:35:15.459389+00:00'
+    digest: ea7dd48ca17fa87b0a0a54bda5e91347fd5c28752994f0cc102eb55d8470b4d8
+    status: valid
+  api-designer:
+    ref: artifacts/api-designer-context-report-v1.yaml
+    registered_at: '2026-06-06T12:35:48.996373+00:00'
+    digest: fc1ed8dbfefd1d505c9647c94e08823819b6f5ba34d952d9a27127509c46765b
+    status: valid
+  graph-topologist:
+    ref: artifacts/graph-topologist-context-report-v1.yaml
+    registered_at: '2026-06-06T12:36:30.194216+00:00'
+    digest: 5183291f30ccc763760edfae75838239f00b2e0d5125f863fd47220769514fd8
+    status: valid
+  hrbp:
+    ref: artifacts/hrbp-context-report-v1.yaml
+    registered_at: '2026-06-06T12:36:30.793710+00:00'
+    digest: 6d1aad28035e522cea701346dd840415dd45c4f22b06684a785e2a57820f763b
+    status: valid
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: true
+  all_loops_resolved: true
+  all_blocking_evals_resolved: true
+  all_joins_passed: true
+  all_artifacts_resolved: false
+  no_undecided_activation_candidates: false
+timestamp_end: '2026-06-06T12:36:29.764151+00:00'

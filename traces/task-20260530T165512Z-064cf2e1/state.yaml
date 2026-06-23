@@ -1,0 +1,426 @@
+task_id: task-20260530T165512Z-064cf2e1
+task_status: delivered
+node_states:
+  to-prd:
+    status: completed
+    updated_at: '2026-05-30T16:55:39.913523+00:00'
+    activated_at: '2026-05-30T16:55:39.735625+00:00'
+    completed_at: '2026-05-30T16:55:39.913523+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - to-prd-prd-v1
+    blocked_reason: null
+    entry_node: true
+  to-issues:
+    status: completed
+    updated_at: '2026-05-30T16:56:09.777908+00:00'
+    activated_at: '2026-05-30T16:56:09.501814+00:00'
+    completed_at: '2026-05-30T16:56:09.777908+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - to-issues-decomposition-v1
+    blocked_reason: null
+  caveman:
+    status: completed
+    updated_at: '2026-05-30T16:56:21.511144+00:00'
+    activated_at: '2026-05-30T16:56:21.195510+00:00'
+    completed_at: '2026-05-30T16:56:21.511144+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - caveman-analysis-v1
+    blocked_reason: null
+  ux-researcher-designer:
+    status: completed
+    updated_at: '2026-05-30T16:56:22.323307+00:00'
+    activated_at: '2026-05-30T16:56:21.995609+00:00'
+    completed_at: '2026-05-30T16:56:22.323307+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - ux-researcher-designer-ux-spec-v1
+    blocked_reason: null
+  architect:
+    status: completed
+    updated_at: '2026-05-30T16:56:32.576358+00:00'
+    activated_at: '2026-05-30T16:56:32.200073+00:00'
+    completed_at: '2026-05-30T16:56:32.576358+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - architect-architecture-v1
+    blocked_reason: null
+  devops-engineer:
+    status: completed
+    updated_at: '2026-05-30T17:00:32.969435+00:00'
+    activated_at: '2026-05-30T16:57:21.050236+00:00'
+    completed_at: '2026-05-30T17:00:32.969435+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - devops-engineer-ops-plan-v1
+    blocked_reason: null
+  customer-success:
+    status: completed
+    updated_at: '2026-05-30T16:57:28.092494+00:00'
+    activated_at: '2026-05-30T16:57:27.571882+00:00'
+    completed_at: '2026-05-30T16:57:28.092494+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - customer-success-customer-plan-v1
+    blocked_reason: null
+  api-designer:
+    status: completed
+    updated_at: '2026-05-30T16:57:58.998841+00:00'
+    activated_at: '2026-05-30T16:57:58.459102+00:00'
+    completed_at: '2026-05-30T16:57:58.998841+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - api-designer-contract-v1
+    blocked_reason: null
+  ui-design-system:
+    status: completed
+    updated_at: '2026-05-30T17:02:38.193866+00:00'
+    activated_at: '2026-05-30T17:02:37.583955+00:00'
+    completed_at: '2026-05-30T17:02:38.193866+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - ui-design-system-spec-v1
+    blocked_reason: null
+  prototype:
+    status: completed
+    updated_at: '2026-05-30T17:03:20.830419+00:00'
+    activated_at: '2026-05-30T17:03:20.185730+00:00'
+    completed_at: '2026-05-30T17:03:20.830419+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - prototype-plan-v1
+    blocked_reason: null
+  senior-engineer:
+    status: completed
+    updated_at: '2026-05-30T17:13:42.436245+00:00'
+    activated_at: '2026-05-30T17:13:41.750557+00:00'
+    completed_at: '2026-05-30T17:13:42.436245+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - senior-engineer-implementation-v1
+    blocked_reason: null
+  delivery-prover:
+    status: activated
+    updated_at: '2026-05-30T17:14:09.656937+00:00'
+    activated_at: '2026-05-30T17:14:09.656937+00:00'
+    completed_at: null
+    iteration: 1
+    output_artifact_ids:
+    - delivery-prover-proof-v1
+    blocked_reason: null
+  security-engineer:
+    status: completed
+    updated_at: '2026-05-30T17:14:23.424402+00:00'
+    activated_at: '2026-05-30T17:14:22.570788+00:00'
+    completed_at: '2026-05-30T17:14:23.424402+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - security-engineer-evaluation-v1
+    blocked_reason: null
+  code-reviewer:
+    status: completed
+    updated_at: '2026-05-30T17:14:25.654640+00:00'
+    activated_at: '2026-05-30T17:14:24.795513+00:00'
+    completed_at: '2026-05-30T17:14:25.654640+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - code-reviewer-review-v1
+    blocked_reason: null
+  tdd:
+    status: completed
+    updated_at: '2026-05-30T17:14:29.316737+00:00'
+    activated_at: '2026-05-30T17:14:28.278168+00:00'
+    completed_at: '2026-05-30T17:14:29.316737+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - tdd-evaluation-v1
+    blocked_reason: null
+  release-manager:
+    status: completed
+    updated_at: '2026-05-30T17:18:36.097781+00:00'
+    activated_at: '2026-05-30T17:18:35.166896+00:00'
+    completed_at: '2026-05-30T17:18:36.097781+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - release-manager-release-plan-v1
+    blocked_reason: null
+  graph-topologist:
+    status: completed
+    updated_at: '2026-05-30T17:25:28.197137+00:00'
+    activated_at: '2026-05-30T17:25:26.749803+00:00'
+    completed_at: '2026-05-30T17:25:28.197137+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - graph-topologist-topology-review-v1
+    blocked_reason: null
+  hrbp:
+    status: completed
+    updated_at: '2026-05-30T17:25:30.210721+00:00'
+    activated_at: '2026-05-30T17:25:28.699630+00:00'
+    completed_at: '2026-05-30T17:25:30.210721+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - hrbp-talent-evaluation-v1
+    blocked_reason: null
+artifact_registry:
+  to-prd-prd-v1:
+    type: prd
+    producer: to-prd
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/to-prd-prd-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T16:55:39.784680+00:00'
+  to-issues-decomposition-v1:
+    type: decomposition
+    producer: to-issues
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/to-issues-decomposition-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T16:56:09.557519+00:00'
+  caveman-analysis-v1:
+    type: analysis
+    producer: caveman
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/caveman-analysis-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T16:56:21.260736+00:00'
+  ux-researcher-designer-ux-spec-v1:
+    type: ux-spec
+    producer: ux-researcher-designer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/ux-researcher-designer-ux-spec-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T16:56:22.071372+00:00'
+  architect-architecture-v1:
+    type: architecture
+    producer: architect
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/architect-architecture-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T16:56:32.284767+00:00'
+  customer-success-customer-plan-v1:
+    type: customer-plan
+    producer: customer-success
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/customer-success-customer-plan-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T16:57:27.687081+00:00'
+  api-designer-contract-v1:
+    type: contract
+    producer: api-designer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/api-designer-contract-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T16:57:58.577870+00:00'
+  devops-engineer-ops-plan-v1:
+    type: ops-plan
+    producer: devops-engineer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/devops-engineer-ops-plan-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T17:00:23.375207+00:00'
+  ui-design-system-spec-v1:
+    type: spec
+    producer: ui-design-system
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/ui-design-system-spec-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T17:02:37.725368+00:00'
+  prototype-plan-v1:
+    type: plan
+    producer: prototype
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/prototype-plan-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T17:03:20.354065+00:00'
+  senior-engineer-implementation-v1:
+    type: implementation
+    producer: senior-engineer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/senior-engineer-implementation-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T17:13:41.921700+00:00'
+  delivery-prover-proof-v1:
+    type: proof
+    producer: delivery-prover
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/delivery-prover-proof-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T17:14:09.841297+00:00'
+  security-engineer-evaluation-v1:
+    type: evaluation
+    producer: security-engineer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/security-engineer-evaluation-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T17:14:22.760865+00:00'
+  code-reviewer-review-v1:
+    type: review
+    producer: code-reviewer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/code-reviewer-review-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T17:14:25.001287+00:00'
+  tdd-evaluation-v1:
+    type: evaluation
+    producer: tdd
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/tdd-evaluation-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T17:14:28.508966+00:00'
+  release-manager-release-plan-v1:
+    type: release-plan
+    producer: release-manager
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/release-manager-release-plan-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T17:18:35.387643+00:00'
+  graph-topologist-topology-review-v1:
+    type: topology-review
+    producer: graph-topologist
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/graph-topologist-topology-review-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T17:25:27.035684+00:00'
+  hrbp-talent-evaluation-v1:
+    type: talent-evaluation
+    producer: hrbp
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/hrbp-talent-evaluation-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-30T17:25:29.028401+00:00'
+context_compression_reports:
+  to-prd:
+    ref: artifacts/to-prd-context-report-v1.yaml
+    registered_at: '2026-05-30T16:55:39.846527+00:00'
+    digest: 49108db194fa5104d3760443432a05b24e34efc3b6a5133b8f39b1a7f05a1b26
+    status: valid
+  to-issues:
+    ref: artifacts/to-issues-context-report-v1.yaml
+    registered_at: '2026-05-30T16:56:09.697368+00:00'
+    digest: 9aab2281c9e7841715cab80d90524b2d63621bface211df6a8fa1560e9e78093
+    status: valid
+  caveman:
+    ref: artifacts/caveman-context-report-v1.yaml
+    registered_at: '2026-05-30T16:56:21.415229+00:00'
+    digest: 9bad0f681776eb712ce1d7151ae744505491b9205be37ffd5ecb7e1e8bffebca
+    status: valid
+  ux-researcher-designer:
+    ref: artifacts/ux-researcher-designer-context-report-v1.yaml
+    registered_at: '2026-05-30T16:56:22.222519+00:00'
+    digest: c0239482d891fc0f71d5de36dac2b3e541e9caaac952b67055e5d441d5059bf0
+    status: valid
+  architect:
+    ref: artifacts/architect-context-report-v1.yaml
+    registered_at: '2026-05-30T16:56:32.452493+00:00'
+    digest: 18dbc59ac1e1a7515ad99146cd21f499d759caf2691e11a95c70192b488f90ea
+    status: valid
+  customer-success:
+    ref: artifacts/customer-success-context-report-v1.yaml
+    registered_at: '2026-05-30T16:57:27.947355+00:00'
+    digest: c45f8508c2cb410786afd7e945d628c8b1cea500df191a103d60870dadb20062
+    status: valid
+  api-designer:
+    ref: artifacts/api-designer-context-report-v1.yaml
+    registered_at: '2026-05-30T16:57:58.843772+00:00'
+    digest: 6f1456c085026e75c55a947b54cb1df7053b9b57fa9f10670dfce326eb5b9ed8
+    status: valid
+  devops-engineer:
+    ref: artifacts/devops-engineer-context-report-v1.yaml
+    registered_at: '2026-05-30T17:01:08.124827+00:00'
+    digest: be3e17e86882153229914e61f4f601732c4ca913c987f1a50916ccb64d9b9707
+    status: valid
+  ui-design-system:
+    ref: artifacts/ui-design-system-context-report-v1.yaml
+    registered_at: '2026-05-30T17:02:38.009580+00:00'
+    digest: fd575a776a5fc73be19b57b2374e708457603118ef78f8232052348d198973b4
+    status: valid
+  prototype:
+    ref: artifacts/prototype-context-report-v1.yaml
+    registered_at: '2026-05-30T17:03:20.633067+00:00'
+    digest: b1385f2207a7a1a9b3876affe24bdbac67ff4acb5ca12f38eb35263a8b9fcbee
+    status: valid
+  senior-engineer:
+    ref: artifacts/senior-engineer-context-report-v1.yaml
+    registered_at: '2026-05-30T17:13:42.228750+00:00'
+    digest: b970f1195dfea4e04294dd9c0299dea061773465308814cfaf1ed6d5af6b63cf
+    status: valid
+  security-engineer:
+    ref: artifacts/security-engineer-context-report-v1.yaml
+    registered_at: '2026-05-30T17:14:23.179415+00:00'
+    digest: de0d70579a102244ecd36047cff7680bc32f581c3c4f0097a8ad2c28411b8eea
+    status: valid
+  code-reviewer:
+    ref: artifacts/code-reviewer-context-report-v1.yaml
+    registered_at: '2026-05-30T17:14:25.412087+00:00'
+    digest: 94b7bbd51bc6766028be5f947ea400789a3b8d209560c780ab4a42d1b3409eda
+    status: valid
+  tdd:
+    ref: artifacts/tdd-context-report-v1.yaml
+    registered_at: '2026-05-30T17:14:28.968456+00:00'
+    digest: 1330338605c778bcf640eaadd90d5533111203b03e2ff17e41ae909ee632cd67
+    status: valid
+  release-manager:
+    ref: artifacts/release-manager-context-report-v1.yaml
+    registered_at: '2026-05-30T17:18:35.828830+00:00'
+    digest: 19c9eccfff41a2082860d8effc9d45249da69f979a234f79074189a224f089c2
+    status: valid
+  graph-topologist:
+    ref: artifacts/graph-topologist-context-report-v1.yaml
+    registered_at: '2026-05-30T17:25:27.744894+00:00'
+    digest: 5183291f30ccc763760edfae75838239f00b2e0d5125f863fd47220769514fd8
+    status: valid
+  hrbp:
+    ref: artifacts/hrbp-context-report-v1.yaml
+    registered_at: '2026-05-30T17:25:29.822942+00:00'
+    digest: 6d1aad28035e522cea701346dd840415dd45c4f22b06684a785e2a57820f763b
+    status: valid
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: false
+  all_loops_resolved: false
+  all_blocking_evals_resolved: false
+  all_joins_passed: false
+  all_artifacts_resolved: false
+  no_undecided_activation_candidates: false
+  settled_at: null
+timestamp_end: '2026-05-30T17:25:26.356379+00:00'

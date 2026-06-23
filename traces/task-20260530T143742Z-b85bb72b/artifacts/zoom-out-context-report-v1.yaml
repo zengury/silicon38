@@ -1,0 +1,61 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read: []
+  retained_context:
+    decisions:
+    - statement: Focus on top-level module structure and inter-module communication.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use codebase's own terms without renaming.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Cannot access robot-side code without additional permissions.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Some backend modules may be large; detailed analysis may require
+        multiple iterations.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: The codebase is a monorepo with pnpm workspaces.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Backend uses FastAPI and SQLModel.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Frontend uses Vue 3 and Element Plus.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the exact database schema and ORM model structure?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How are WebSocket connections managed for real-time robot updates?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the authentication mechanism?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Are there any unit or integration tests?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file-by-file listing of frontend components.
+    reason: background_only
+  - source: Specific API endpoint paths.
+    reason: background_only
+  - source: Dockerfile contents.
+    reason: background_only
+  compression_rationale:
+    method: 'Semantic compression: retained high-level module map, call relationships,
+      and data flows; omitted low-level file details and configuration specifics.'
+    loss_notes:
+    - Lost granularity of individual Vue components and backend routes.
+    - Lost exact dependency versions and Docker build steps.
+  quality_checks:
+  - name: Module existence verified via file listing
+    passed: true
+  - name: Relationships verified by reading imports/calls
+    passed: true

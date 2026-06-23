@@ -1,0 +1,12 @@
+artifact_id: triage-analysis-v1
+producer: triage
+type: analysis
+version: 1
+status: draft
+created_at: "2026-05-24T23:36:00+08:00"
+superseded_by: null
+content_ref: artifacts/triage-analysis-v1.md
+consumers:
+  - zoom-out
+  - architect
+  - to-prd

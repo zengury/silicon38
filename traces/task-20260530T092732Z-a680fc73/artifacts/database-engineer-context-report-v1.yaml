@@ -1,0 +1,107 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→database-engineer-20260530-092813.yaml
+      context_digest: 904dffe2675fadacbb9cadcc37a8b4b6bc269d347e55120cd9b840bd3ad8b814
+  retained_context:
+    decisions:
+    - statement: Adopt Modular Monolith architecture
+      source: architect
+      impact: Single database instance with schema-level multi-tenancy (enterprise_id)
+    - statement: MySQL 8.0 is confirmed as database engine
+      source: docker/edge/docker-compose.yaml
+      impact: All DDL uses MySQL 8.0 syntax; PostgreSQL assumption from v1 corrected
+    - statement: Backend source absent; frontend mock data and API types are primary
+        schema evidence
+      source: workspace inspection
+      impact: 30 tables inferred from 10 mock files and 11 API definition files
+    - statement: Incremental refactoring — not a full rewrite
+      source: architect
+      impact: Schema preserves existing naming conventions; column renames are modest
+    constraints:
+    - statement: Only workspace files under /Users/ZQ/roboease are available
+      source: semantic_node_executor
+      impact: Cannot inspect actual database or backend ORM entities
+    - statement: Backend implementation code is not included in the workspace
+      source: semantic_node_executor
+      impact: ORM mapping, repository queries, and connection configuration are unknown
+    - statement: MySQL 8.0 with utf8mb4_general_ci is the database engine
+      source: docker/edge/docker-compose.yaml mysql service command args
+      impact: Collation-aware indexes and string comparisons must use utf8mb4_0900_ai_ci
+    - statement: Team size <10 developers
+      source: architect
+      impact: Migration complexity must be manageable; avoid exotic MySQL features
+    assumptions:
+    - statement: FastAPI backend uses SQLAlchemy/SQLModel for ORM
+      source: Python ecosystem conventions + Dockerfile
+      risk: Could be using raw SQL, Tortoise ORM, or Peewee
+    - statement: Multi-tenant architecture with enterprise_id scoping on all domain
+        tables
+      source: Mock data shows roleIds scoped to enterprise; API types include enterprise_id
+        fields
+      risk: Robot mock data does not show enterprise_id — may be global or implicitly
+        scoped
+    - statement: Robot heartbeat pings every few seconds via MQTT → MySQL updated_at
+      source: Robot management architecture inference
+      risk: Actual frequency unknown; index sizing depends on this
+    - statement: Robot passwords are encrypted at rest (AES-256-GCM)
+      source: Mock shows '<PASSWORD>' placeholder; design uses password_enc TEXT
+      risk: Could be plain text — critical security issue if true
+    open_questions:
+    - statement: Where is the backend source code?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the actual production data volume per table?
+      source: database-engineer
+      owner: devops-engineer
+    - statement: How are robot passwords encrypted at rest?
+      source: database-engineer
+      owner: senior-engineer
+    - statement: Is enterprise_id scoping applied to robot/task/synergy tables in
+        production?
+      source: database-engineer
+      owner: senior-engineer
+    - statement: What ORM is actually used (SQLAlchemy, SQLModel, Tortoise, raw SQL)?
+      source: database-engineer
+      owner: senior-engineer
+    - statement: What is the robot heartbeat frequency?
+      source: database-engineer
+      owner: devops-engineer
+  omitted_context:
+  - source: Detailed frontend component trees (300+ files)
+    reason: background_only
+  - source: Artifact files from prior releases (RELEASE-REPORT, release-plans)
+    reason: background_only
+  - source: Docker robot/star_walker, robot/planning-backend Dockerfiles
+    reason: background_only
+  - source: Frontend portal landing page images and static assets
+    reason: background_only
+  compression_rationale:
+    method: 'Selective inclusion based on relevance to database schema design. Retained:
+      API contracts, mock data shapes, Docker database configuration, architectural
+      decisions affecting data modeling. Omitted: frontend presentation layer, deployment
+      scripts not related to database, non-data-related artifacts. Primary evidence
+      chain: frontend API types → mock data → inferred SQL schema → MySQL 8.0 DDL.'
+    loss_notes:
+    - Prior artifact (v1) assumed PostgreSQL; v2 corrects to MySQL 8.0 based on docker-compose
+      evidence
+    - Inspection task and inventory task subtypes inferred but not confirmed from
+      frontend evidence
+    - Library entities (action, expression, voice, knowledge) are structurally identical
+      — schema designed as separate tables per existing codebase patterns
+  quality_checks:
+  - name: All upstream decisions and constraints are captured
+    passed: true
+  - name: Assumptions are explicitly documented with source evidence
+    passed: true
+  - name: Open questions are carried forward with owner
+    passed: true
+  - name: Database engine confirmed by workspace evidence (not assumed)
+    passed: true
+  - name: Every index references a specific query pattern from frontend API
+    passed: true
+  - name: Every migration has a corresponding rollback (up.sql + down.sql)
+    passed: true
+  - name: All nullable columns have documented reasons in table comments
+    passed: true

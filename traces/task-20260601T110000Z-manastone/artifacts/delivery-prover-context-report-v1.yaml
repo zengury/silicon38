@@ -1,0 +1,73 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/senior-engineer→delivery-prover-20260601-111241.yaml
+      context_digest: 0aca1159a186386c67322e5196d3b7ea8510090d9f0a3687aecfa77b0e7808d3
+  retained_context:
+    decisions:
+    - statement: All features directly supporting install, brand independence, and
+        user guidance are KEEP
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Introduce manastone CLI wrapper to hide pi brand
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Single install script bundles all dependencies including pi engine
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: User guidance via manastone doctor and inline help
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Centralized BRAND constant in runtime/constants.py
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must hide pi brand and present Manastone as independent
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Install must include all dependencies (pi coding agent)
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: User guidance must be optimized for clarity
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: The pi coding agent CLI accepts --prefix npm install without issues
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Users have Node.js and npm available (checked in phase 1)
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What specific user guidance materials are needed beyond the install
+        script?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How will brand independence be audited across all touchpoints?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file contents beyond the 11 modified/created files
+    reason: background_only
+  - source: roboonto/ directory internals (not affected by this change)
+    reason: background_only
+  - source: pilot/skills/ content (not affected by this change)
+    reason: background_only
+  - source: docs/ directory content (internal documentation, skipped by audit)
+    reason: background_only
+  compression_rationale:
+    method: Focused on verification of the four architecture decisions and three scope
+      constraints. Omitted roboonto internals, skills, and docs as they are not affected
+      by this implementation. Retained all decisions, constraints, assumptions, and
+      open questions from the handoff chain.
+    loss_notes: []
+  quality_checks:
+  - name: all_verification_steps_executed
+    passed: true
+  - name: evidence_captured_for_each_step
+    passed: true
+  - name: overall_verdict_issued
+    passed: true
+  - name: verdict_justified_by_step_results
+    passed: true

@@ -1,0 +1,8 @@
+from: architect
+to: grill-me
+relation_type: evaluates
+timestamp: '2026-05-25T18:53:36.401100+00:00'
+focus: 'Architecture designed per Kahn principles. Challenge: are module boundaries
+  deep enough? Are interfaces truly narrow?'
+artifact_refs:
+- architect-design-v1

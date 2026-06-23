@@ -1,0 +1,142 @@
+{
+  "app": {
+    "title": "机器人车队运维监控面板",
+    "shortTitle": "机器人监控"
+  },
+  "nav": {
+    "dashboard": "仪表盘",
+    "alerts": "告警",
+    "config": "配置",
+    "collaboration": "协作",
+    "export": "导出"
+  },
+  "status": {
+    "online": "在线",
+    "offline": "离线",
+    "error": "异常",
+    "idle": "待机",
+    "charging": "充电中"
+  },
+  "metrics": {
+    "battery": "电量",
+    "temperature": "温度",
+    "cpu": "CPU",
+    "network": "网络延迟",
+    "task": "当前任务",
+    "location": "位置",
+    "batteryUnit": "%",
+    "temperatureUnit": "°C",
+    "cpuUnit": "%",
+    "networkUnit": "ms",
+    "voltageUnit": "V",
+    "noTask": "无任务",
+    "altitude": "海拔"
+  },
+  "charts": {
+    "fleetOverview": "车队总览",
+    "batteryDistribution": "电量分布",
+    "cpuTemperatureTrend": "CPU/温度趋势",
+    "geoHeatmap": "机器人位置热力图",
+    "history30d": "30天历史曲线",
+    "expandOverview": "展开总览",
+    "collapseOverview": "收起总览",
+    "noData": "暂无数据",
+    "loading": "加载中..."
+  },
+  "alerts": {
+    "title": "告警列表",
+    "allAlerts": "全部告警",
+    "active": "活动",
+    "acknowledged": "已确认",
+    "resolved": "已解决",
+    "severity": {
+      "critical": "严重",
+      "warning": "警告",
+      "info": "信息"
+    },
+    "acknowledge": "确认告警",
+    "mute": "静音",
+    "viewDetails": "查看详情",
+    "noAlerts": "暂无告警",
+    "robotFell": "机器人摔倒",
+    "jointDisconnected": "关节失联",
+    "batteryLow": "电量过低",
+    "cpuHigh": "CPU温度过高",
+    "networkHigh": "网络延迟过高"
+  },
+  "collaboration": {
+    "title": "工程师协作",
+    "commentPlaceholder": "输入留言...",
+    "send": "发送",
+    "imHandling": "我在处理",
+    "resolved": "已解决",
+    "atMention": "@提及同事",
+    "noComments": "暂无留言"
+  },
+  "config": {
+    "title": "配置面板",
+    "alertThresholds": "告警阈值",
+    "samplingFrequency": "采样频率",
+    "reconnectStrategy": "重连策略",
+    "batteryLowThreshold": "低电量阈值",
+    "jointTempHighThreshold": "关节温度上限",
+    "cpuTempHighThreshold": "CPU温度上限",
+    "networkLatencyHighThreshold": "网络延迟上限",
+    "tiltAngleThreshold": "倾斜角度阈值",
+    "maxRetries": "最大重试次数",
+    "baseDelay": "基础延迟",
+    "backoffMultiplier": "退避倍数",
+    "save": "保存配置",
+    "saving": "保存中...",
+    "saved": "已保存",
+    "reset": "恢复默认",
+    "saveError": "保存失败",
+    "samplesPerSecond": "次/秒"
+  },
+  "export": {
+    "title": "导出报表",
+    "pdf": "导出PDF",
+    "excel": "导出Excel",
+    "format": "格式",
+    "dateRange": "日期范围",
+    "from": "开始",
+    "to": "结束",
+    "includeCharts": "包含图表",
+    "includeAlerts": "包含告警",
+    "includeComments": "包含留言",
+    "generate": "生成报表",
+    "generating": "生成中...",
+    "download": "下载",
+    "expires": "链接有效期"
+  },
+  "theme": {
+    "light": "亮色",
+    "dark": "暗色",
+    "switch": "切换主题"
+  },
+  "lang": {
+    "switch": "English",
+    "zhCN": "中文",
+    "en": "English"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "出错了",
+    "retry": "重试",
+    "cancel": "取消",
+    "confirm": "确认",
+    "close": "关闭",
+    "back": "返回",
+    "search": "搜索",
+    "filter": "筛选",
+    "refresh": "刷新",
+    "settings": "设置",
+    "noData": "暂无数据",
+    "robot": "机器人",
+    "robots": "台机器人",
+    "fleet": "车队",
+    "selected": "已选",
+    "all": "全部",
+    "timeline": "时间线"
+  }
+}

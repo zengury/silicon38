@@ -1,0 +1,68 @@
+context_compression_report:
+  input_scope:
+    artifacts_read:
+      - artifact_id: senior-engineer-implementation-v1
+        used: true
+        why: "Primary implementation summary for the local read-only snapshot server, static serving behavior, validation evidence, and stated non-mutation constraints."
+      - artifact_id: api-designer-contract-v1
+        used: true
+        why: "Snapshot API contract defining local-only/read-only expectations, endpoint surface, error behavior, and data exposure boundaries."
+    handoffs_read:
+      - ref: "handoffs/senior-engineer→security-engineer-20260527-151240.yaml"
+        context_digest: "580682a6cd4117cc5a526d3378a81e4c7e080bbdba85d01e10061a9801eeddfb"
+  retained_context:
+    decisions:
+      - statement: "The visualizer is a local read-only projection of Graph and Ledger facts, not a mutation/control plane."
+        source: "artifacts/senior-engineer-implementation-v1.md and handoffs/senior-engineer→security-engineer-20260527-151240.yaml"
+        impact: "Security review focused on unauthorized reads, path traversal, browser-origin exposure, and script execution rather than write authorization."
+      - statement: "Snapshot data includes graph, trace, events, handoffs, artifacts, policy decisions, convergence state, and learning summaries."
+        source: "artifacts/senior-engineer-implementation-v1.md and artifacts/api-designer-contract-v1.md"
+        impact: "Local snapshot responses are sensitive enough that wildcard CORS and external scripts are blocking data-exposure risks."
+      - statement: "Static serving maps / to visualizer/index.html and attempts to reject traversal under visualizer/."
+        source: "handoffs/senior-engineer→security-engineer-20260527-151240.yaml"
+        impact: "Static path traversal was checked separately from API task_id traversal and found guarded by resolve/relative_to."
+    constraints:
+      - statement: "The node may only write the security-engineer evaluation artifact and context report."
+        source: "user instruction"
+        impact: "No implementation files were modified; remediations are reported for downstream producers."
+      - statement: "The visualizer must remain local-only and read-only."
+        source: "artifacts/api-designer-contract-v1.md and artifacts/senior-engineer-implementation-v1.md"
+        impact: "Any path that allows arbitrary browser origins or third-party scripts to read local snapshot data is treated as blocking."
+      - statement: "Context report handoff references must be task-relative and cite exact upstream context digest values."
+        source: "user instruction and org/HARNESS.md"
+        impact: "The context report cites the senior-engineer to security-engineer handoff with digest 580682a6cd4117cc5a526d3378a81e4c7e080bbdba85d01e10061a9801eeddfb."
+    assumptions:
+      - statement: "Trace summaries, handoff context blocks, source refs, and learning summaries can contain sensitive project or user context."
+        source: "artifacts/api-designer-contract-v1.md and org/CONTEXT_BLOCK.md"
+        risk: "If treated as harmless because they are read-only, local task data can be exposed to unrelated browser origins or CDN-executed code."
+      - statement: "The browser client should be served from the same local origin as the API in normal use."
+        source: "visualizer/index.html and tools/org_viz_server.py"
+        risk: "If file:// or separate-origin development remains required, CORS needs an explicit allowlist rather than wildcard access."
+    open_questions:
+      - statement: "Should v1 support any cross-origin development workflow, or require same-origin local serving only?"
+        source: "security-engineer-evaluation-v1.md"
+        owner: "senior-engineer"
+      - statement: "Should future artifact-content endpoints redact or separately gate artifact bodies?"
+        source: "security-engineer-evaluation-v1.md"
+        owner: "api-designer"
+  omitted_context:
+    - source: "Full visual styling details in visualizer/styles.css"
+      reason: "irrelevant"
+    - source: "Three.js scene geometry and animation math"
+      reason: "background_only"
+    - source: "Full text of upstream PRD, UX, and design-system artifacts"
+      reason: "background_only"
+  compression_rationale:
+    method: "Retained only security-relevant facts that affect downstream remediation: local read-only boundary, snapshot data sensitivity, API route/path handling, browser execution context, and exact upstream handoff provenance."
+    loss_notes:
+      - "Presentation and layout details were omitted because they do not change the security remediation path."
+      - "Detailed source code is referenced by file and line in the evaluation artifact rather than duplicated in the context report."
+  quality_checks:
+    - name: "cites_exact_senior_engineer_handoff_ref"
+      passed: true
+    - name: "cites_exact_senior_engineer_context_digest"
+      passed: true
+    - name: "uses_allowed_omitted_context_reasons"
+      passed: true
+    - name: "records_blocking_security_findings_for_downstream_fix"
+      passed: true

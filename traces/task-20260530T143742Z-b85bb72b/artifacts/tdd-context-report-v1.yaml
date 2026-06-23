@@ -1,0 +1,93 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/api-designer→tdd-20260530-145417.yaml
+      context_digest: 6fcf328decd685e112d4a9ba229f15222e8dcef4e58fa0e6fbbf678566edb0c8
+  retained_context:
+    decisions:
+    - statement: Adopt modular monolith with clear service boundaries
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Standardize API layer with versioned endpoints
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Replace mock data with real API calls in admin frontend
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Implement JWT-based authentication with RBAC
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Add comprehensive logging and error handling
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Establish database migration strategy with Alembic
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Backend uses FastAPI and SQLModel
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Team size is small (<10 developers)
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Domain boundaries are still evolving
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Cannot access robot-side code without additional permissions
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Backend uses FastAPI and SQLModel
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Frontend uses Vue 3 and Element Plus
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Codebase is a monorepo with pnpm workspaces
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: No existing tests
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the exact database schema and ORM model structure?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How are WebSocket connections managed for real-time robot updates?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the current authentication mechanism?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Are there any existing tests?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file-by-file listing of frontend components
+    reason: background_only
+  - source: Specific API endpoint paths from existing code
+    reason: background_only
+  - source: Dockerfile contents and deployment configurations
+    reason: background_only
+  - source: Historical artifact contents (release plans, ops plans, etc.)
+    reason: background_only
+  compression_rationale:
+    method: 'Semantic compression: retained high-level architecture decisions and
+      constraints relevant to API testing; omitted low-level file details, configuration
+      specifics, and historical artifacts.'
+    loss_notes:
+    - Lost granularity of individual Vue components and backend routes
+    - Lost exact dependency versions and Docker build steps
+    - Lost historical artifact details (not relevant for API testing)
+  quality_checks:
+  - name: schema_examples_present
+    passed: true
+  - name: error_contract_present
+    passed: true
+  - name: contract matches project language conventions
+    passed: true
+  - name: every field has stated intent
+    passed: true
+  - name: usage example demonstrates correct usage
+    passed: true

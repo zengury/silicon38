@@ -1,0 +1,90 @@
+from: to-prd
+to: to-issues
+relation_type: thompson_sample
+timestamp: '2026-05-31T17:43:40.200819+00:00'
+focus: Thompson sample α=366.8 β=3.5 [validated:triggers]
+artifact_refs: &id001
+- to-prd-prd-v1
+deliverable:
+  producer: to-prd
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: to-prd-prd-v1
+    producer: to-prd
+    type: prd
+    version: 1
+    status: draft
+    content_ref: artifacts/to-prd-prd-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260531T174304Z-d2fc8043
+  from: to-prd
+  to: to-issues
+  relation_type: thompson_sample
+  focus: Thompson sample α=366.8 β=3.5 [validated:triggers]
+  source:
+    producer_role: to-prd
+    context_compression_report_ref: artifacts/to-prd-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/triage→to-prd-20260531-174318.yaml
+      context_digest: cbb0e558d7b18f7142d624fcd4203d0b68e9d952dc6b9f67e6d743f394688090
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Task is a codebase improvement (enhancement) not a bug.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Priority set to high due to impact on maintainability.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: No write access to the codebase.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must respect existing ADRs and out-of-scope decisions.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: The codebase is primarily one language (to be confirmed).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Existing tests may be present (to be confirmed).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the primary programming language(s)?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Are there existing tests and what framework?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Any architectural constraints?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Desired outcome metrics?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context: []
+  compression_rationale:
+    method: Retained key decisions, constraints, assumptions, and open questions from
+      the triage handoff. Omitted detailed scope items and agent recommendations as
+      they are not needed for PRD generation.
+    loss_notes: []
+  quality_checks:
+  - name: Required fields present
+    passed: true
+  - name: Context compression valid
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - triage-analysis-v1
+  previous_blocks:
+  - ref: handoffs/triage→to-prd-20260531-174318.yaml
+    from: triage
+    to: to-prd
+    relation_type: thompson_sample
+    focus: Thompson sample α=273.0 β=7.2 [validated:triggers]
+    context_digest: cbb0e558d7b18f7142d624fcd4203d0b68e9d952dc6b9f67e6d743f394688090
+    deliverable_artifact_refs:
+    - triage-analysis-v1
+  context_digest: ff5705feed37d3ec6ea8550ccabbb973f70c8e4177347de03da0788a5659ff7a

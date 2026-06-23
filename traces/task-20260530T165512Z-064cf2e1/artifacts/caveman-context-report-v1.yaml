@@ -1,0 +1,100 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/to-prd→caveman-20260530-165542.yaml
+      context_digest: 7f2be6091c455561b7ee3d240f82b4ff7cf5c7d13dfc30d577759852974874ff
+  retained_context:
+    decisions:
+    - statement: 使用适配器模式进行数据归一化
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 后端采用Node.js + Express + WebSocket
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 前端采用React + TypeScript + ECharts
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 告警引擎基于规则引擎
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 协作功能基于WebSocket实时通信
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Adapter pattern justified
+      source: caveman
+      impact: Confirms design decision.
+    - statement: WebSocket for real-time correct
+      source: caveman
+      impact: Confirms design decision.
+    - statement: Rule engine for alerts appropriate
+      source: caveman
+      impact: Confirms design decision.
+    - statement: ECharts over D3.js good
+      source: caveman
+      impact: Confirms design decision.
+    - statement: Puppeteer for PDF acceptable
+      source: caveman
+      impact: Confirms design decision.
+    constraints:
+    - statement: 初始支持10台机器人
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: 数据格式不统一需归一化
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: 需支持暗色/亮色主题、多语言、可拖拽布局
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: 机器人通过HTTP/WebSocket上报数据
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: 运维团队使用桌面浏览器访问面板
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: 历史数据保留30天
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: 告警通知方式是否需要邮件/短信？
+      source: semantic_node_executor
+      owner: runtime
+    - statement: 是否需要角色权限管理？
+      source: semantic_node_executor
+      owner: runtime
+    - statement: 机器人数量上限是多少？
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Is 30-day history storage cost acceptable?
+      source: caveman
+      owner: runtime
+    - statement: Need email/SMS alert notification?
+      source: caveman
+      owner: runtime
+    - statement: Robot count limit? 10 initial, but scale?
+      source: caveman
+      owner: runtime
+  omitted_context:
+  - source: 具体文件路径和代码片段（避免过时）
+    reason: background_only
+  - source: 第三方库版本号（由开发阶段决定）
+    reason: background_only
+  compression_rationale:
+    method: Retain all decisions, constraints, assumptions, open questions from upstream.
+      Add caveman's confirmations and new open questions.
+    loss_notes:
+    - Omitted file paths and library versions as they may change.
+  quality_checks:
+  - name: All requirements have testable criteria
+    passed: true
+  - name: Non-functional requirements have thresholds
+    passed: true
+  - name: Out-of-scope items clearly listed
+    passed: true
+  - name: Success criteria measurable
+    passed: true
+  - name: Plain-language explanation understandable by non-engineer
+    passed: true
+  - name: Minimum viable version is simpler than what exists
+    passed: true

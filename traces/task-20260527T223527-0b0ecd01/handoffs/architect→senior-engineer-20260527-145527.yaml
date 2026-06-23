@@ -1,0 +1,155 @@
+from: architect
+to: senior-engineer
+relation_type: triggers
+timestamp: '2026-05-27T14:55:27.356263+00:00'
+focus: implement local snapshot server and data adapter from ontology/traces
+artifact_refs: &id001
+- architect-architecture-v1
+deliverable:
+  producer: architect
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: architect-architecture-v1
+    producer: architect
+    type: architecture
+    version: 1
+    status: draft
+    content_ref: artifacts/architect-architecture-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260527T223527-0b0ecd01
+  from: architect
+  to: senior-engineer
+  relation_type: triggers
+  focus: implement local snapshot server and data adapter from ontology/traces
+  source:
+    producer_role: architect
+    context_compression_report_ref: artifacts/architect-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/caveman→architect-20260527-144434.yaml
+      context_digest: d39f77d1e7a7f400cf4c44334e04146346f62d972d886346305a2c49398dd909
+    input_artifacts:
+    - artifact_id: caveman-analysis-v1
+      used: true
+      why: Provided the upstream first-principles reduction, MVP boundary, data contract
+        direction, and product shape for the visualizer.
+  compressed_context:
+    decisions:
+    - statement: The visualizer should be driven by Ledger-derived run snapshots.
+      source: handoffs/caveman→architect-20260527-144434.yaml context_block and caveman-analysis-v1
+      impact: Architecture uses a snapshot adapter/server and keeps the frontend as
+        a projection layer.
+    - statement: The 3D scene must expose Graph, Policy, Ledger, Runtime, and Learning
+        as distinct operational concepts.
+      source: org/CONTEXT_BLOCK.md and caveman-analysis-v1
+      impact: Architecture includes five visual zones rather than a generic agent
+        graph.
+    - statement: Minimum viable version should replay an existing trace before adding
+        full live transport.
+      source: caveman-analysis-v1
+      impact: Architecture starts with polling/replay and defers WebSocket or LangGraph
+        event streaming.
+    - statement: Handoff blocks must be visible objects carrying deliverable metadata
+        and compressed context-block data.
+      source: user request and handoffs/caveman→architect-20260527-144434.yaml context_block
+      impact: Architecture defines a HandoffBlock schema and scene animation/inspector
+        behavior.
+    - statement: LangGraph is optional and cannot become the organization brain.
+      source: org/RUNTIME.md and org/CONTEXT_BLOCK.md
+      impact: Architecture treats future LangGraph events as adapter input only, with
+        Ledger-backed facts authoritative.
+    constraints:
+    - statement: Ledger facts, not private runtime reasoning, must drive visual state.
+      source: org/RUNTIME.md and org/CONTEXT_BLOCK.md
+      impact: Node status, handoff blocks, policy gates, artifacts, and learning signals
+        are normalized from trace files.
+    - statement: Context-only relations cannot activate nodes.
+      source: org/RUNTIME.md
+      impact: Edge schema distinguishes activation-capable relations from context/pressure
+        relations.
+    - statement: Do not create new top-level concepts beyond Graph, Ledger, Policy,
+        Runtime, and Learning.
+      source: org/CONTEXT_BLOCK.md
+      impact: The scene uses these as conceptual anchors; visual zones do not introduce
+        competing domain concepts.
+    - statement: The first visualizer should be local and read-only.
+      source: architect judgment from upstream MVP constraints
+      impact: The server exposes snapshot APIs but no mutation or runtime command
+        endpoints in v1.
+    assumptions:
+    - statement: A local Vite, TypeScript, and Three.js frontend is acceptable for
+        the prototype.
+      source: user explicitly requested Three.js framework
+      risk: If repo packaging preferences differ, the snapshot schema can survive
+        a frontend tool change.
+    - statement: A small Python snapshot adapter can read current YAML traces and
+        serve JSON.
+      source: current repo uses Python ledger/runtime tools
+      risk: If dependencies are later standardized around Node, the adapter boundary
+        should remain stable.
+    - statement: Polling at roughly 500-1000 ms is sufficient for local operational
+        visibility in v1.
+      source: architect implementation tradeoff
+      risk: High-frequency runtime animation may later require SSE or WebSocket transport.
+    open_questions:
+    - statement: Which trace should become the canonical demo trace after this run
+        completes?
+      source: caveman-analysis-v1
+      owner: prototype
+    - statement: Should the snapshot server use only Python stdlib or allow a small
+        web framework?
+      source: architect-architecture-v1
+      owner: senior-engineer
+    - statement: Should the read-only viewer later become an authenticated control
+        plane?
+      source: architect-architecture-v1
+      owner: api-designer
+  omitted_context:
+  - source: Full text of org/RUNTIME.md
+    reason: background_only
+  - source: Full text of org/CONTEXT_BLOCK.md
+    reason: background_only
+  - source: Full YAML body of caveman handoff context_block
+    reason: duplicate
+  - source: Detailed frontend component implementation
+    reason: irrelevant
+  - source: Graph editing and live policy mutation workflows
+    reason: irrelevant
+  compression_rationale:
+    method: Retained only decisions, constraints, assumptions, and open questions
+      that affect downstream implementation of the Three.js visualizer and its data
+      boundary.
+    loss_notes:
+    - Exact prose from upstream caveman analysis is omitted; the architecture preserves
+      its MVP, schema, and Ledger-truth decisions.
+    - Complete Runtime command syntax is omitted because the visualizer is read-only
+      in v1.
+    - Full Graph edge list is omitted because downstream implementation should load
+      it from ontology/relations.yaml.
+  quality_checks:
+  - name: cites_exact_architect_handoff_ref
+    passed: true
+  - name: cites_exact_context_digest
+    passed: true
+  - name: cites_upstream_caveman_artifact_id
+    passed: true
+  - name: preserves_ledger_as_source_of_truth
+    passed: true
+  - name: keeps_langgraph_optional
+    passed: true
+  - name: defines_downstream_snapshot_boundary
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - caveman-analysis-v1
+  previous_blocks:
+  - ref: handoffs/caveman→architect-20260527-144434.yaml
+    from: caveman
+    to: architect
+    relation_type: may_trigger
+    focus: design trace-to-snapshot, realtime polling, and Three.js app architecture
+      around Ledger truth
+    context_digest: d39f77d1e7a7f400cf4c44334e04146346f62d972d886346305a2c49398dd909
+    deliverable_artifact_refs:
+    - caveman-analysis-v1
+  context_digest: 416e13550c7b1d4b2ca6398e28af110fa5482534c01a479fe1968380ee87df22

@@ -1,0 +1,70 @@
+context_compression_report:
+  input_scope:
+    artifacts_read:
+      - artifact_id: product-vision-anchor-product-vision-statement-v1
+        used: true
+        why: "vision defines the emotional promise and out-of-scope boundaries that shape all UX decisions"
+      - artifact_id: architect-architecture-v1
+        used: true
+        why: "architecture defines the shelf grid data model, tab structure, and API constraints"
+      - artifact_id: to-prd-prd-v1
+        used: true
+        why: "PRD defines 10 user stories that the UX must serve"
+    handoffs_read:
+      - ref: "handoffs/product-vision-anchor→ux-researcher-designer-20260606-124910.yaml"
+        context_digest: "3d110eaa5aa91ebfcf189c8d54e870b02c761c8df99ebe8f98267e927ea6536e"
+      - ref: "handoffs/architect→ux-researcher-designer-20260606-124911.yaml"
+        context_digest: "6c306830ffc2dfd4a13738980104c04a61496b58989e63bf9790a1652355ca8d"
+      - ref: "handoffs/to-prd→ux-researcher-designer-20260606-124911.yaml"
+        context_digest: "c2fa79f697f6a2554efc51a331f99463daaf9058e796a026a22bdd3f5147aaab"
+  retained_context:
+    decisions:
+      - statement: "Three tabs: Shelves (home), Search (primary job), Profile (utilities)"
+        source: "ux-researcher-designer"
+        impact: "defines the entire app navigation architecture — every feature must fit into one of three tabs"
+      - statement: "Shelf grid mirrors physical layout 1:1 using LazyVGrid with row×column positions"
+        source: "ux-researcher-designer"
+        impact: "preserves spatial memory; search results always show physical location as primary action signal"
+      - statement: "Search results always show shelf name + position (row, column)"
+        source: "ux-researcher-designer"
+        impact: "search is a retrieval command, not just a catalog lookup — the location is the answer"
+      - statement: "Confidence indicators (⚠️ badge) always visible when AI confidence < 0.7"
+        source: "ux-researcher-designer"
+        impact: "builds trust through honesty; user can confirm or edit low-confidence books"
+    constraints:
+      - statement: "3 tabs maximum — anything else goes in Profile > Settings"
+        source: "ux-researcher-designer (Salk: subtraction)"
+        impact: "navigation cannot grow beyond 3 items without design review"
+      - statement: "Onboarding is 3 cards max, skippable"
+        source: "ux-researcher-designer"
+        impact: "no multi-step wizard; no mandatory tutorial"
+      - statement: "All tap targets minimum 44×44pt"
+        source: "ux-researcher-designer"
+        impact: "Apple HIG compliance; no small touch zones"
+    assumptions:
+      - statement: "Users navigate spatially, not through lists"
+        source: "ux-researcher-designer"
+        risk: "if users don't build spatial memory of their shelves, the grid view wastes screen space"
+    open_questions:
+      - statement: "Should the shelf grid auto-detect rows/columns from the photo?"
+        source: "ux-researcher-designer"
+        owner: runtime
+  omitted_context:
+    - source: "Detailed persona biography"
+      reason: background_only
+    - source: "Accessibility ARIA label wording"
+      reason: background_only
+    - source: "Spacing and typography specifications"
+      reason: background_only
+  compression_rationale:
+    method: "Extracted screen architecture decisions, user journey steps, and UX principles that constrain downstream implementation."
+    loss_notes: []
+  quality_checks:
+    - name: "Persona is grounded in observable behavior"
+      passed: true
+    - name: "Every screen serves the 'find by location' job"
+      passed: true
+    - name: "Edge cases and error states are covered"
+      passed: true
+    - name: "Design spec is precise enough for frontend implementation"
+      passed: true

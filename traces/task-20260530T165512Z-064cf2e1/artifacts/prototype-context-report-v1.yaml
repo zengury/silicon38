@@ -1,0 +1,18 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/ux-researcher-designer→prototype-20260530-165638.yaml
+      context_digest: d726e752c97f7d6c8f5c390494951645054784cf453077d798e7fb8649957cd5
+  retained_context:
+    decisions: []
+    constraints: []
+    assumptions: []
+    open_questions: []
+  omitted_context: []
+  compression_rationale:
+    method: semantic_node_executor_normalized
+    loss_notes: []
+  quality_checks:
+  - name: semantic_executor_schema_normalized
+    passed: true

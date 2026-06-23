@@ -1,0 +1,269 @@
+task_id: task-20260531T170908Z-b241b4ee
+task_status: propagating
+node_states:
+  triage:
+    status: completed
+    updated_at: '2026-05-31T17:09:23.636298+00:00'
+    activated_at: '2026-05-31T17:09:23.530891+00:00'
+    completed_at: '2026-05-31T17:09:23.636298+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - triage-analysis-v1
+    blocked_reason: null
+    entry_node: true
+  to-prd:
+    status: completed
+    updated_at: '2026-05-31T17:09:54.000118+00:00'
+    activated_at: '2026-05-31T17:09:53.847821+00:00'
+    completed_at: '2026-05-31T17:09:54.000118+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - to-prd-prd-v1
+    blocked_reason: null
+  scope-prosecutor:
+    status: completed
+    updated_at: '2026-05-31T17:10:13.168062+00:00'
+    activated_at: '2026-05-31T17:10:12.968549+00:00'
+    completed_at: '2026-05-31T17:10:13.168062+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - scope-prosecutor-scope-verdict-v1
+    blocked_reason: null
+  to-issues:
+    status: completed
+    updated_at: '2026-05-31T17:10:21.868651+00:00'
+    activated_at: '2026-05-31T17:10:21.652019+00:00'
+    completed_at: '2026-05-31T17:10:21.868651+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - to-issues-decomposition-v1
+    blocked_reason: null
+  caveman:
+    status: completed
+    updated_at: '2026-05-31T17:10:26.393870+00:00'
+    activated_at: '2026-05-31T17:10:26.164428+00:00'
+    completed_at: '2026-05-31T17:10:26.393870+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - caveman-analysis-v1
+    blocked_reason: null
+  api-designer:
+    status: completed
+    updated_at: '2026-05-31T17:10:48.459001+00:00'
+    activated_at: '2026-05-31T17:10:48.177722+00:00'
+    completed_at: '2026-05-31T17:10:48.459001+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - api-designer-contract-v1
+    blocked_reason: null
+  senior-engineer:
+    status: completed
+    updated_at: '2026-05-31T17:18:36.215339+00:00'
+    activated_at: '2026-05-31T17:18:35.900079+00:00'
+    completed_at: '2026-05-31T17:18:36.215339+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - senior-engineer-implementation-v1
+    blocked_reason: null
+  code-reviewer:
+    status: completed
+    updated_at: '2026-05-31T17:19:12.206507+00:00'
+    activated_at: '2026-05-31T17:19:11.846876+00:00'
+    completed_at: '2026-05-31T17:19:12.206507+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - code-reviewer-review-v1
+    blocked_reason: null
+  tdd:
+    status: completed
+    updated_at: '2026-05-31T17:19:12.911055+00:00'
+    activated_at: '2026-05-31T17:19:12.547546+00:00'
+    completed_at: '2026-05-31T17:19:12.911055+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - tdd-evaluation-v1
+    blocked_reason: null
+  delivery-prover:
+    status: completed
+    updated_at: '2026-05-31T17:19:44.872208+00:00'
+    activated_at: '2026-05-31T17:19:44.484746+00:00'
+    completed_at: '2026-05-31T17:19:44.872208+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - delivery-prover-proof-v1
+    blocked_reason: null
+  handoff:
+    status: completed
+    updated_at: '2026-05-31T17:20:28.133716+00:00'
+    activated_at: '2026-05-31T17:20:27.609192+00:00'
+    completed_at: '2026-05-31T17:20:28.133716+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - handoff-handoff-v1
+    blocked_reason: null
+artifact_registry:
+  triage-analysis-v1:
+    type: analysis
+    producer: triage
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/triage-analysis-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T17:09:23.562788+00:00'
+  to-prd-prd-v1:
+    type: prd
+    producer: to-prd
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/to-prd-prd-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T17:09:53.889251+00:00'
+  scope-prosecutor-scope-verdict-v1:
+    type: scope-verdict
+    producer: scope-prosecutor
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/scope-prosecutor-scope-verdict-v1.yaml
+    consumers_pending: []
+    registered_at: '2026-05-31T17:10:13.018812+00:00'
+  to-issues-decomposition-v1:
+    type: decomposition
+    producer: to-issues
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/to-issues-decomposition-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T17:10:21.705248+00:00'
+  caveman-analysis-v1:
+    type: analysis
+    producer: caveman
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/caveman-analysis-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T17:10:26.225072+00:00'
+  api-designer-contract-v1:
+    type: contract
+    producer: api-designer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/api-designer-contract-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T17:10:48.251457+00:00'
+  senior-engineer-implementation-v1:
+    type: implementation
+    producer: senior-engineer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/senior-engineer-implementation-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T17:18:35.986036+00:00'
+  code-reviewer-review-v1:
+    type: review
+    producer: code-reviewer
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/code-reviewer-review-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T17:19:11.937142+00:00'
+  tdd-evaluation-v1:
+    type: evaluation
+    producer: tdd
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/tdd-evaluation-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T17:19:12.648306+00:00'
+  delivery-prover-proof-v1:
+    type: proof
+    producer: delivery-prover
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/delivery-prover-proof-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-31T17:19:44.588630+00:00'
+  handoff-handoff-v1:
+    type: handoff
+    producer: handoff
+    version: 1
+    status: draft
+    superseded_by: null
+    content_ref: artifacts/handoff-handoff-v1.yaml
+    consumers_pending: []
+    registered_at: '2026-05-31T17:20:27.762085+00:00'
+context_compression_reports:
+  triage:
+    ref: artifacts/triage-context-report-v1.yaml
+    registered_at: '2026-05-31T17:09:23.600504+00:00'
+    digest: 53c958ce9347c76ba6ced243fd93f5ee975bd61e6e1337eef764783ff22b292e
+    status: valid
+  to-prd:
+    ref: artifacts/to-prd-context-report-v1.yaml
+    registered_at: '2026-05-31T17:09:53.953941+00:00'
+    digest: 00eda092b6df575a7bf4ccfc864f4f67cea984c89566cde302f1329811c0c4fe
+    status: valid
+  scope-prosecutor:
+    ref: artifacts/scope-prosecutor-context-report-v1.yaml
+    registered_at: '2026-05-31T17:10:13.105345+00:00'
+    digest: f5341c82d424b7337665c0a5e9aac80178ef6f3171a406345f0d00618c727fe6
+    status: valid
+  to-issues:
+    ref: artifacts/to-issues-context-report-v1.yaml
+    registered_at: '2026-05-31T17:10:21.797294+00:00'
+    digest: ce527f5106e013bbba40af7c7f03587e3a3f5de3f9344dbdc4ac0a7d06706e77
+    status: valid
+  caveman:
+    ref: artifacts/caveman-context-report-v1.yaml
+    registered_at: '2026-05-31T17:10:26.319883+00:00'
+    digest: d93ae4b8a8dd734bd9247574f383958433f82d9821b3f465af0f23dd5991a5a0
+    status: valid
+  api-designer:
+    ref: artifacts/api-designer-context-report-v1.yaml
+    registered_at: '2026-05-31T17:10:48.370733+00:00'
+    digest: 4254d6afbc1b82025c7a0278d9513c19d3e9b09e5a21dac243a60bfa94df0501
+    status: valid
+  senior-engineer:
+    ref: artifacts/senior-engineer-context-report-v1.yaml
+    registered_at: '2026-05-31T17:18:36.113749+00:00'
+    digest: 86334e2372673a9da27e3869e00a6ac212661ef13937c7313a78c23a913b6973
+    status: valid
+  code-reviewer:
+    ref: artifacts/code-reviewer-context-report-v1.yaml
+    registered_at: '2026-05-31T17:19:12.096308+00:00'
+    digest: a3e35f7546df22f012d642322a80d99918c2b59648783ddd7669142e3d6af9ec
+    status: valid
+  tdd:
+    ref: artifacts/tdd-context-report-v1.yaml
+    registered_at: '2026-05-31T17:19:12.799127+00:00'
+    digest: 457988c9415ab37b093a9f224cad2df2651e128c5cb371d04d87a4561c015236
+    status: valid
+  delivery-prover:
+    ref: artifacts/delivery-prover-context-report-v1.yaml
+    registered_at: '2026-05-31T17:19:44.748781+00:00'
+    digest: cd95c2d51c6df852f277ab2c7026af3af7abc13159d9db5b42ba93075b4ebcb4
+    status: valid
+  handoff:
+    ref: artifacts/handoff-context-report-v1.yaml
+    registered_at: '2026-05-31T17:20:27.969954+00:00'
+    digest: dd7276bc50ebd856485c50f7199d62526e7c42065389c34101a94dde6b3638e0
+    status: valid
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: false
+  all_loops_resolved: false
+  all_blocking_evals_resolved: false
+  all_joins_passed: false
+  all_artifacts_resolved: false
+  no_undecided_activation_candidates: false
+  settled_at: null

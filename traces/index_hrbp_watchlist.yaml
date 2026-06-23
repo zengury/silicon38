@@ -1,0 +1,39 @@
+# Written by hrbp — 2026-06-23
+last_run: 2026-06-23
+watchlist:
+  - candidate: mlops-engineer
+    source_url: https://github.com/VoltAgent/awesome-claude-code-subagents
+    watch_reason: >
+      Gap is real (no role owns ML training infrastructure, model serving, or
+      experiment tracking) but too specialized for current org usage profile.
+      No evidence Silicon Org is being used for ML infrastructure tasks yet.
+    added_date: 2026-06-23
+    recheck_trigger: >
+      When ML training/serving tasks appear in Silicon Org traces, OR when
+      explicit ML infrastructure work items enter the task queue.
+
+  - candidate: build-engineer
+    source_url: https://github.com/VoltAgent/awesome-claude-code-subagents
+    watch_reason: >
+      Gap is real (no role owns build-system optimization, Bazel/Turborepo
+      configuration, or large-monorepo CI performance) but only relevant for
+      teams operating large monorepos with complex build graphs. Current org
+      usage is single-repo/smaller-scale.
+    added_date: 2026-06-23
+    recheck_trigger: >
+      When monorepo build-optimization tasks surface in org traces, OR when
+      build times become a named bottleneck in task descriptions.
+
+  - candidate: context-engineer
+    source_url: https://github.com/muratcankoylan/context-engineering
+    watch_reason: >
+      Concept is valid (systematic design of context windows, prompt
+      construction, and retrieval augmentation for LLM tasks) and distinct
+      from ai-engineer (which focuses on API integration and pipeline design).
+      Evidence base is weak: ~900 stars, no established community definition,
+      concept still crystallizing as of 2026-06.
+    added_date: 2026-06-23
+    recheck_trigger: >
+      When source repo reaches > 3k stars, OR when context/RAG pipeline
+      optimization tasks appear in Silicon Org traces as a distinct workstream
+      separate from general AI feature development.

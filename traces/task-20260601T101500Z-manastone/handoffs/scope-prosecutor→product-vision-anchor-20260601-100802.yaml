@@ -1,0 +1,88 @@
+from: scope-prosecutor
+to: product-vision-anchor
+relation_type: thompson_sample
+timestamp: '2026-06-01T10:08:02.051849+00:00'
+focus: Thompson sample α=153.2 β=2.8 [validated:constrains]
+artifact_refs: &id001
+- scope-prosecutor-scope-verdict-v1
+deliverable:
+  producer: scope-prosecutor
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: scope-prosecutor-scope-verdict-v1
+    producer: scope-prosecutor
+    type: scope-verdict
+    version: 1
+    status: draft
+    content_ref: artifacts/scope-prosecutor-scope-verdict-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260601T101500Z-manastone
+  from: scope-prosecutor
+  to: product-vision-anchor
+  relation_type: thompson_sample
+  focus: Thompson sample α=153.2 β=2.8 [validated:constrains]
+  source:
+    producer_role: scope-prosecutor
+    context_compression_report_ref: artifacts/scope-prosecutor-context-report-v1.yaml
+    input_handoffs: []
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Focus on install experience and brand independence as core v1 scope.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Defer broad multi-level functionality audit to post-v1.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must hide Pi brand from end users.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Install must include all dependencies (Pi coding agent) automatically.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Environment is noisy; work must be low-profile and precise.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Pi coding agent is a required dependency for Manastone's agent capabilities.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Users are new to Manastone and need clear guidance.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Brand independence is achievable without breaking upstream compatibility.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What specific Pi branding currently leaks into the user experience?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the exact install failure rate or confusion point for new
+        users?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How does the OpenClaw-Pi relationship model apply technically?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file listings and code snippets not relevant to scope decisions.
+    reason: background_only
+  - source: Prior analysis or client rationale (per input contract).
+    reason: background_only
+  compression_rationale:
+    method: Extracted only the task requirements and harness constraints; omitted
+      all workspace file details and prior analysis to maintain blind prosecution.
+    loss_notes: []
+  quality_checks:
+  - name: every_feature_has_verdict
+    passed: true
+  - name: core_statement_present
+    passed: true
+  - name: no_diplomatic_hedging
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs: []
+  previous_blocks: []
+  context_digest: c763629162dbe4aec96e3279672e1f52d2cfc25ca62a4779cf8fd9170fb5d41f

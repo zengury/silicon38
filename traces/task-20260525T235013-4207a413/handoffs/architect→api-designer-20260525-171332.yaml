@@ -1,0 +1,8 @@
+from: architect
+to: api-designer
+relation_type: triggers
+timestamp: '2026-05-25T17:13:32.162833+00:00'
+focus: 'Patch v2 per code-reviewer review findings: add GET /alerts/active, ALERT_ACKED+COLLAB_UPDATED
+  WS variants, embed modal payload, define alert_id↔incident_id.'
+artifact_refs:
+- architect-architecture-v1

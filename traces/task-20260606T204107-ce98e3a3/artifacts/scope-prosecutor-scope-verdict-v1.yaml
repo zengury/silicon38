@@ -1,0 +1,36 @@
+core_statement: Bookshelf lets book owners instantly digitize their physical shelves via photo-based AI recognition, enabling search and discovery across their collection.
+feature_verdicts:
+  - feature: Photo-based AI recognition of books
+    verdict: KEEP
+    reason: Core value — without it, the product cannot digitize shelves.
+  - feature: Digital shelf mirrors physical layout
+    verdict: KEEP
+    reason: Essential for locating books by position; differentiates from simple catalog apps.
+  - feature: Search by title or author
+    verdict: KEEP
+    reason: Primary job — finding books on shelves; without it, the product fails.
+  - feature: Tap book to see summary/details
+    verdict: KEEP
+    reason: Core value — AI-generated summaries justify the subscription.
+  - feature: View entire collection across shelves
+    verdict: KEEP
+    reason: Necessary for browsing; without it, user cannot see full library.
+  - feature: Discover users with similar shelves
+    verdict: DEFER
+    reason: Social discovery is not essential for v1; core value is personal digitization.
+  - feature: Send messages to other users
+    verdict: DEFER
+    reason: Messaging adds complexity and is not needed for v1 core.
+  - feature: Subscription ($1.99/month)
+    verdict: KEEP
+    reason: Monetization is required for business viability.
+  - feature: Notifications for new books/messages
+    verdict: DEFER
+    reason: Not critical for v1; can be added post-launch.
+  - feature: Manage subscription (cancel/renew)
+    verdict: KEEP
+    reason: Required for subscription model compliance.
+kept_count: 6
+cut_count: 0
+deferred_count: 4
+scope_reduction_summary: Deferred all social features (discovery, messaging, notifications) to focus v1 on the core digitization and search experience.

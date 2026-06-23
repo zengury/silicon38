@@ -1,0 +1,18 @@
+artifact_id: caveman-analysis-v1
+task_id: task-20260524T231130
+version: 1
+supersedes: null
+producer:
+  role: caveman
+  timestamp_start: "2026-05-24T23:11:30+08:00"
+  timestamp_end: "2026-05-24T23:14:26+08:00"
+input_refs: []
+type: analysis
+content_ref: artifacts/caveman-analysis-v1.md
+content_summary: "caveman output for TeamUp refactor + cyberpunk redesign"
+production_notes: "Entry node activation. No prior artifacts."
+status: approved
+status_updated_at: "2026-05-24T15:14:26Z"
+status_updated_by: runtime
+rejection_reason: null
+consumers: []

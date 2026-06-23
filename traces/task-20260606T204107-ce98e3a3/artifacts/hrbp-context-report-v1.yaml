@@ -1,0 +1,41 @@
+context_compression_report:
+  input_scope:
+    artifacts_read:
+      - artifact_id: to-prd-prd-v1
+        used: true
+        why: "evaluated to-prd skill quality"
+      - artifact_id: scope-prosecutor-scope-verdict-v1
+        used: true
+        why: "evaluated scope-prosecutor skill quality"
+      - artifact_id: caveman-analysis-v1
+        used: true
+        why: "evaluated caveman skill quality"
+      - artifact_id: product-vision-anchor-product-vision-statement-v1
+        used: true
+        why: "evaluated product-vision-anchor skill quality"
+      - artifact_id: architect-architecture-v1
+        used: true
+        why: "evaluated architect skill quality"
+      - artifact_id: ux-researcher-designer-ux-spec-v1
+        used: true
+        why: "evaluated ux-researcher-designer skill quality"
+    handoffs_read: []
+  retained_context:
+    decisions:
+      - statement: "All 6 skills scored above 0.80 quality threshold; no replacements recommended"
+        source: "hrbp"
+        impact: "current skill roster is adequate for design-phase tasks"
+    constraints: []
+    assumptions: []
+    open_questions: []
+  omitted_context:
+    - source: "Detailed per-skill scoring methodology"
+      reason: background_only
+  compression_rationale:
+    method: "Extracted skill quality/efficiency scores and replacement recommendation from HRBP evaluation."
+    loss_notes: []
+  quality_checks:
+    - name: "All activated skills evaluated"
+      passed: true
+    - name: "Evaluation criteria stated"
+      passed: true

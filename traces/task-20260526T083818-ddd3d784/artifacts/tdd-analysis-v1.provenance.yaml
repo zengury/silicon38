@@ -1,0 +1,8 @@
+artifact_id: tdd-analysis-v1
+producer: tdd
+task_id: task-20260526T083818-ddd3d784
+version: 1
+timestamp: '2026-05-26T00:50:23.318660+00:00'
+input_artifacts: []
+quality_checks: []
+status: draft

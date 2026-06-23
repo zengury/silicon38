@@ -1,0 +1,8 @@
+artifact_id: triage-analysis-v1
+producer: triage
+task_id: task-20260525T234440-f391edc4
+version: 1
+timestamp: '2026-05-25T15:46:47.323389+00:00'
+input_artifacts: []
+quality_checks: []
+status: approved

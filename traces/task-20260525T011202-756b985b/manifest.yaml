@@ -1,0 +1,12 @@
+task_id: task-20260525T011202-756b985b
+timestamp_start: "2026-05-25T01:12:02+08:00"
+timestamp_end: null
+task_summary: "完全重构 WisglowAgent：统一引擎立面(Esherick)、显式数据流(Kimbell)、served/servant分离、减法(Salk)"
+task_type: refactor
+entry_nodes:
+  - zoom-out
+  - improve-codebase-architecture
+terminal_nodes: []
+outcome: null
+artifact_index: []
+handoff_trail: []

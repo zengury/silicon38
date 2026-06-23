@@ -1,0 +1,117 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→devops-engineer-20260530-100711.yaml
+      context_digest: fca4a483b788c6012daf9f5ac8559dfb87b067d3cf39a798c51a43511bbee448
+  retained_context:
+    decisions:
+    - statement: Adopt Modular Monolith architecture with strict module boundaries
+        (core → api → services → infrastructure)
+      source: architect-architecture-v1
+      impact: CI pipeline must enforce these boundaries via import-linter
+    - statement: Keep single Docker compose deployment for edge and production environments
+      source: architect-architecture-v1
+      impact: No Kubernetes — docker-compose.prod.yaml with GHCR images
+    - statement: Legacy config/ and db/ modules need migration to core/ and infrastructure/
+      source: architect-architecture-v1
+      impact: Migration tracking job needed in CI; LEGACY_IMPORTS_ALLOWED toggle
+    - statement: Backward-compatibility re-exports (db/database.py) must be maintained
+        during transition
+      source: architect-architecture-v1
+      impact: import-linter ignore_imports for db.database → infrastructure
+    - statement: 'Technology stack unchanged: FastAPI, Vue 3, MySQL, Redis, MQTT (EMQX),
+        JWT'
+      source: architect-architecture-v1
+      impact: Existing Dockerfiles and compose files remain valid; no infrastructure
+        changes needed
+    constraints:
+    - statement: Team size < 10 developers limits operational complexity
+      source: architect-architecture-v1
+      impact: No Kubernetes; Docker Compose orchestration only
+    - statement: Legacy config modules need gradual migration; cannot block deployment
+      source: architect-architecture-v1
+      impact: LEGACY_IMPORTS_ALLOWED toggle allows gradual gating
+    - statement: Robot hardware tests cannot run in CI
+      source: codebase analysis
+      impact: Robot tests limited to pytest unit tests; no hardware-in-the-loop
+    - statement: web_ui uses yarn while other frontends use pnpm
+      source: codebase analysis
+      impact: Dual package manager path needed or web_ui migration pending
+    assumptions:
+    - statement: The codebase is a multi-tenant robot management platform (RoboEase/RAAS)
+      source: architect-architecture-v1
+      risk: Confirmed by code analysis — matches
+    - statement: MQTT is used for robot communication via EMQX broker
+      source: architect-architecture-v1
+      risk: Confirmed by docker-compose and backend config — matches
+    - statement: JWT with HS256 is used for authentication
+      source: architect-architecture-v1
+      risk: Confirmed by config/setting.py — matches
+    - statement: Database is MySQL 8.0 with SQLModel ORM
+      source: architect-architecture-v1
+      risk: Confirmed by docker-compose and requirements.txt — matches
+    - statement: Domain boundaries (core, api, services, infrastructure) are emerging
+        but not yet fully enforced
+      source: architect-architecture-v1
+      risk: import-linter contracts written for target state; may need exceptions
+        during migration
+    open_questions:
+    - statement: What is the exact MQTT topic structure?
+      source: architect-architecture-v1
+      owner: senior-engineer
+    - statement: What is the testing strategy?
+      source: architect-architecture-v1
+      owner: qa-engineer
+    - statement: Are there any cross-boundary imports that are intentional and need
+        contract exceptions?
+      source: devops-engineer
+      owner: senior-engineer
+    - statement: What is the target date for setting LEGACY_IMPORTS_ALLOWED=false
+        in CI?
+      source: devops-engineer
+      owner: release-manager
+    - statement: Should web_ui be migrated from yarn to pnpm?
+      source: devops-engineer
+      owner: frontend-lead
+  omitted_context:
+  - source: Detailed frontend component hierarchy (300+ files in frontend/admin/src/)
+    reason: background_only
+  - source: Specific implementation details of backend services layer
+    reason: background_only
+  - source: Frontend portal images and static assets
+    reason: background_only
+  - source: Historical artifact contents (v1-v5 ops plans, older release plans)
+    reason: background_only
+  - source: Robot module internal Python files beyond DOCKERFILE and requirements
+    reason: background_only
+  compression_rationale:
+    method: ADR-driven operational alignment — filtered all input through the lens
+      of the architect's modular monolith decision, retaining decisions, constraints,
+      and open questions that directly impact CI/CD configuration. Omitted implementation
+      details not relevant to pipeline design.
+    loss_notes:
+    - Frontend component tree and specific Vue component implementations omitted
+    - Backend service layer internal structure not detailed — only import-level boundaries
+      matter
+    - Robot module source code not reviewed — pipeline handles robot as a black box
+    - Historical ops plan iterations (v1-v5) compressed into v6 baseline
+  quality_checks:
+  - name: Every pipeline stage has a clear failure output that identifies what failed
+      and why
+    passed: true
+  - name: 'Pipeline is idempotent: running it twice does not produce errors or duplicates'
+    passed: true
+  - name: No secrets in configuration files — secrets are referenced, not embedded
+    passed: true
+  - name: 'Caching is correct: cache keys include all inputs that affect the cached
+      output'
+    passed: true
+  - name: 'Deployment is reversible: rollback procedure is defined and tested'
+    passed: true
+  - name: Generated configuration files are syntactically valid
+    passed: true
+  - name: Environment boundaries are named and documented
+    passed: true
+  - name: Verification path is present for all environments
+    passed: true

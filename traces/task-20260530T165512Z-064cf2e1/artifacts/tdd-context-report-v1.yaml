@@ -1,0 +1,84 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/api-designer→tdd-20260530-171346.yaml
+      context_digest: d22e83a45b9f69bc906abcef7f20d4b3a89ff287129f7bcd0dd08d9f49b479a7
+  retained_context:
+    decisions:
+    - statement: Use Adapter pattern for data normalization
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Backend Node.js + Express + WebSocket + PostgreSQL + Redis
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Frontend React + TypeScript + ECharts + react-grid-layout + react-i18next
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Alert engine rule-based with configurable thresholds
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Collaboration via WebSocket
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Export via Puppeteer and exceljs
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Theme via CSS variables, i18n via react-i18next
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Initial support for 10 robots
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Data format unification required
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Support dark/light theme, multi-language, draggable layout
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Data retention 30 days
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Robots report via HTTP/WebSocket
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Ops team uses desktop browser
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Alert notification only in-app initially
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Alert notification channels beyond in-app?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Role-based access control needed?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Maximum robot scale?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Specific file paths and code snippets from architect handoff
+    reason: background_only
+  - source: Third-party library versions
+    reason: background_only
+  compression_rationale:
+    method: Retained all architectural decisions, constraints, and assumptions from
+      handoff. Omitted implementation details not load-bearing for test design.
+    loss_notes:
+    - Omitted specific file paths as they may change.
+    - Omitted library versions; to be decided during development.
+  quality_checks:
+  - name: All structural decisions have stated rationale
+    passed: true
+  - name: Alternatives considered documented
+    passed: true
+  - name: Design can be implemented incrementally
+    passed: true
+  - name: Data flows explicit
+    passed: true
+  - name: Failure modes identified
+    passed: true

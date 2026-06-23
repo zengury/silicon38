@@ -1,0 +1,7 @@
+handoff_id: triage→zoom-out-20260524T233600
+from: triage
+to: zoom-out
+type: triggers
+timestamp: "2026-05-24T23:36:00+08:00"
+context: "WisglowAgent 165K 行代码库需要上下文映射 — 模块边界、依赖图谱、engine 层三引擎重叠度"
+artifact_ref: triage-analysis-v1

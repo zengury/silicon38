@@ -1,0 +1,71 @@
+# epic-design blocked-node report
+# task_id: task-20260531T163244Z-880b8dd4
+# timestamp: 2026-06-01
+
+schema: silicon_org.blocked_node_report.v1
+role: epic-design
+task_id: task-20260531T163244Z-880b8dd4
+status: blocked
+
+blocking_conditions:
+  - condition: "No narrative brief or product story to design against"
+    detail: >
+      The task is a codebase refactoring task targeting /Users/ZQ/roboease.
+      Objectives: eliminate duplication, improve module structure, enhance
+      maintainability and testability. There is no brand narrative, no visual
+      story, no mood/feeling directive, and no audience description that a
+      cinematic experience designer can translate into scroll-driven scenes,
+      parallax depth, or text animations.
+  - condition: "Product vision excludes UI/UX changes"
+    detail: >
+      Upstream product-vision-anchor explicitly declares out_of_scope_forever:
+      "UI/UX changes". Any immersive design deliverable from epic-design would
+      constitute a UI/UX change, violating the upstream constraint. Proceeding
+      would break the provenance chain.
+
+mismatch_analysis:
+  thompson_sample_score: 0.9768
+  edge_type: constrains
+  edge_strength: 0.85
+  routing_diagnosis: >
+    Thompson sampling conflated edge weight confidence with content fit.
+    The 'constrains' edge from product-vision-anchor to epic-design has
+    high strength (0.85) but this score reflects the edge's structural
+    plausibility, not the task's content match. The sampling algorithm
+    did not validate that the task actually involves visual design work.
+    This is a false positive — the edge is correct (vision constrains
+    design) but inapplicable to this task type.
+
+codebase_frontend_inspection:
+  admin_app: "Vue 3 + Element Plus + UnoCSS admin dashboard (RaaS管理平台)"
+  portal_app: "Vue 3 robot-facing portal"
+  has_existing_ui: true
+  has_design_system: true
+  provided_assets: []
+  narrative_brief: null
+  conclusion: >
+    A functioning admin dashboard and robot portal exist, but the task
+    is refactoring the backend codebase, not redesigning the frontend.
+    The existing UI is utilitarian/admin-focused and does not call for
+    cinematic treatment.
+
+unblock_requirements:
+  - "Task type must be visual/design/marketing (landing page, product site, brand experience)"
+  - "Narrative brief describing mood, audience, emotional arc, and section count"
+  - "Visual assets (product images, brand marks, hero imagery) provided for inspection"
+  - "Reversal of 'out_of_scope_forever: UI/UX changes' constraint in product vision"
+
+failure_protocol_compliance:
+  - check: "Did not proceed on assumption"
+    passed: true
+  - check: "Did not fabricate evidence or design artifacts"
+    passed: true
+  - check: "Reported specific obstacle"
+    passed: true
+  - check: "Named what would unblock"
+    passed: true
+
+recommendation: >
+  Route this task to refactor-specialist or improve-codebase-architecture
+  instead. epic-design should only activate for tasks with explicit visual
+  design intent and provided assets.

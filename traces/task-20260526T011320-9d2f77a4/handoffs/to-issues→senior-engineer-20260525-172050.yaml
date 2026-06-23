@@ -1,0 +1,8 @@
+from: to-issues
+to: senior-engineer
+relation_type: triggers
+timestamp: '2026-05-25T17:20:50.080245+00:00'
+focus: 19 issues decomposed with P0/P1/P2 priority, dependency graph, and acceptance
+  criteria. Build P0 first.
+artifact_refs:
+- to-issues-decomposition-v1

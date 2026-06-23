@@ -1,0 +1,108 @@
+from: ux-researcher-designer
+to: ui-design-system
+relation_type: may_trigger
+timestamp: '2026-05-30T16:56:37.756536+00:00'
+focus: task requires reusable UI components, visual tokens, or interaction states
+artifact_refs: &id001
+- ux-researcher-designer-ux-spec-v1
+deliverable:
+  producer: ux-researcher-designer
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: ux-researcher-designer-ux-spec-v1
+    producer: ux-researcher-designer
+    type: ux-spec
+    version: 1
+    status: draft
+    content_ref: artifacts/ux-researcher-designer-ux-spec-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260530T165512Z-064cf2e1
+  from: ux-researcher-designer
+  to: ui-design-system
+  relation_type: may_trigger
+  focus: task requires reusable UI components, visual tokens, or interaction states
+  source:
+    producer_role: ux-researcher-designer
+    context_compression_report_ref: artifacts/ux-researcher-designer-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/to-prd→ux-researcher-designer-20260530-165541.yaml
+      context_digest: 171456c76663afa9fa6c38719d45bdda7dc7a82de2749ba94e828771eeee0ba7
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: 使用适配器模式进行数据归一化
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 后端采用Node.js + Express + WebSocket
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 前端采用React + TypeScript + ECharts
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 告警引擎基于规则引擎
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 协作功能基于WebSocket实时通信
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: 初始支持10台机器人
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: 数据格式不统一需归一化
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: 需支持暗色/亮色主题、多语言、可拖拽布局
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: 机器人通过HTTP/WebSocket上报数据
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: 运维团队使用桌面浏览器访问面板
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: 历史数据保留30天
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: 告警通知方式是否需要邮件/短信？
+      source: semantic_node_executor
+      owner: runtime
+    - statement: 是否需要角色权限管理？
+      source: semantic_node_executor
+      owner: runtime
+    - statement: 机器人数量上限是多少？
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: 具体文件路径和代码片段
+    reason: background_only
+  - source: 第三方库版本号
+    reason: background_only
+  compression_rationale:
+    method: 保留与UX设计直接相关的决策、约束和假设，省略实现细节
+    loss_notes:
+    - 省略了具体文件路径
+    - 省略了第三方库版本号
+  quality_checks:
+  - name: primary_workflow_present
+    passed: true
+  - name: usability_risks_named
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - to-prd-prd-v1
+  previous_blocks:
+  - ref: handoffs/to-prd→ux-researcher-designer-20260530-165541.yaml
+    from: to-prd
+    to: ux-researcher-designer
+    relation_type: may_trigger
+    focus: PRD includes user-facing interface requirements, interaction design, or
+      visual design deliverables
+    context_digest: 171456c76663afa9fa6c38719d45bdda7dc7a82de2749ba94e828771eeee0ba7
+    deliverable_artifact_refs:
+    - to-prd-prd-v1
+  context_digest: 0c150cd922930a3ae18ffb910d8b553063a4c00c4789b862f297b83777321d0e
+soul_ref: org/soul.md

@@ -1,0 +1,73 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/to-prd→to-issues-20260531-170955.yaml
+      context_digest: 1dd200d2731a5ff820d13119daf5f87b16e50066d90d4bb3c8449aefa5196e3f
+  retained_context:
+    decisions:
+    - statement: Classify as enhancement (refactoring)
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Priority high
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: No code modification during triage
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must use read-only tools
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: No new features or external behavior changes.
+      source: PRD
+      impact: All issues must preserve existing behavior.
+    - statement: All changes must preserve existing tests.
+      source: PRD
+      impact: Tests must pass after each change.
+    - statement: Refactoring must be incremental and reversible.
+      source: PRD
+      impact: Each issue should be small and self-contained.
+    assumptions:
+    - statement: Codebase is primarily one language
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Existing tests may exist
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Module structure is identifiable.
+      source: PRD
+      risk: May require deeper analysis.
+    open_questions:
+    - statement: Primary language?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Existing tests?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Module structure?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed implementation decisions from PRD (e.g., specific patterns) are
+      not needed for issue decomposition.
+    reason: background_only
+  - source: Testing strategy details (e.g., coverage targets) are captured in Issue
+      6.
+    reason: background_only
+  compression_rationale:
+    method: Extracted key decisions, constraints, and open questions from the handoff
+      and PRD. Retained only information relevant to issue decomposition. Omitted
+      verbose descriptions and template boilerplate.
+    loss_notes:
+    - Implementation decisions like 'Use abstract base classes' are deferred to individual
+      issues.
+  quality_checks:
+  - name: scope_boundary_present
+    passed: true
+  - name: done_condition_present
+    passed: true
+  - name: independent_issues_present
+    passed: true
+  - name: dependencies_named
+    passed: true

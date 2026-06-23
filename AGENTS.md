@@ -17,7 +17,7 @@ Then, NOW, without waiting for user confirmation:
 The intended startup experience is unchanged:
 
 ```bash
-cd silicon_org
+cd /Users/manas/silicon_org
 pi
 ```
 

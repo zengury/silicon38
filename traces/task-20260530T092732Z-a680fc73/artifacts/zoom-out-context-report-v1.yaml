@@ -1,0 +1,78 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read: []
+  retained_context:
+    decisions:
+    - statement: Map focuses on high-level module structure and deployment topology
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Backend source not present in workspace; only Dockerfile and docker-compose
+        references used
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Only workspace files under /Users/ZQ/roboease are available
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Backend implementation code is not included in the workspace
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Backend is a FastAPI application based on Dockerfile and docker-compose
+        references
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: EMQX is used for MQTT messaging to robots
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: MySQL is the primary database
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Redis is used for caching
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Minio is used for object storage
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Where is the backend source code?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What are the exact API endpoints and data models?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How is authentication/authorization implemented?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the robot-side software architecture?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Is there a CI/CD pipeline?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the Dify AI Platform integration scope?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file listings for frontend admin (300+ files truncated)
+    reason: background_only
+  - source: Artifact files in /Users/ZQ/roboease/artifacts/ (release reports, plans)
+      - not relevant for codebase structure map
+    reason: background_only
+  compression_rationale:
+    method: Selective inclusion based on relevance to codebase structure and deployment
+      topology. Omitted detailed frontend component trees and artifact files as they
+      are not needed for high-level context mapping.
+    loss_notes: []
+  quality_checks:
+  - name: Module names use codebase's actual terms
+    passed: true
+  - name: Every module has a one-sentence responsibility
+    passed: true
+  - name: Call relationships are directional
+    passed: true
+  - name: External dependencies explicitly labeled
+    passed: true
+  - name: Map is scoped to relevant area
+    passed: true

@@ -1,0 +1,55 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/to-prd→caveman-20260531-175236.yaml
+      context_digest: e46d0ebd6a56804978549d5a8b6ee9f8e249d372113db3ac25d115a658454f65
+  retained_context:
+    decisions:
+    - statement: Task is refactoring, not feature request.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Out-of-scope items listed to prevent scope creep.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Drop DI container, coverage target, JSDoc requirement.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must not introduce new features.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must preserve existing behavior.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Codebase at /Users/ZQ/roboease.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: User wants actionable improvements.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Current test coverage?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: ADRs constraining refactoring?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Preferred module structure?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed codebase exploration (blocking questions need answers).
+    reason: background_only
+  - source: Specific duplicate code instances (requires code analysis).
+    reason: background_only
+  compression_rationale:
+    method: Extracted essential scope and decisions; deferred detailed analysis.
+    loss_notes:
+    - No critical info lost; details recoverable later.
+  quality_checks:
+  - name: Explanation passes non-engineer test
+    passed: true
+  - name: Minimum viable version is simpler than PRD
+    passed: true

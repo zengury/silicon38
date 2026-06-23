@@ -1,0 +1,90 @@
+context_compression_report:
+  input_scope:
+    artifacts_read:
+      - artifact_id: prototype-plan-v1
+        used: true
+        why: "Defined the prototype proof target: a Three.js trace replay that shows graph, handoff blocks, and context-block payloads before full realtime transport."
+      - artifact_id: senior-engineer-implementation-v1
+        used: true
+        why: "Implemented the read-only local snapshot server, API routes, security headers, task id validation, and static serving boundary."
+      - artifact_id: senior-frontend-implementation-v1
+        used: true
+        why: "Implemented the Three.js browser UI, live snapshot normalization, local vendored assets, filters, inspectors, timeline, and handoff block rendering."
+      - artifact_id: tdd-evaluation-v1
+        used: true
+        why: "Identified live snapshot shape, API contract, missing trace status, and Policy CLI issues that needed verification after remediation."
+      - artifact_id: security-engineer-evaluation-v1
+        used: true
+        why: "Identified local data exposure, task_id traversal, external CDN script, and escaping risks that needed verification after remediation."
+      - artifact_id: code-reviewer-review-v1
+        used: true
+        why: "Identified blocking frontend/server integration and Policy validation issues that needed proof after remediation."
+    handoffs_read:
+      - ref: "handoffs/prototype→delivery-prover-20260527-145528.yaml"
+        context_digest: "2070757f59db6b409e025d2b1ec5ae3ac274d9ddf69380b20dc13fb66ee7c6d6"
+      - ref: "handoffs/senior-engineer→delivery-prover-20260527-151240.yaml"
+        context_digest: "f5aaecba6057a24591c69be9de8b848fc297ca5054458118699cf08e06833758"
+
+  retained_context:
+    decisions:
+      - statement: "Delivery proof must verify the runnable demo, not only static file presence."
+        source: "prototype→delivery-prover and senior-engineer→delivery-prover handoffs"
+        impact: "Started the local server, queried API routes, and rendered the Three.js page in Chrome."
+      - statement: "Graph, Policy, Ledger, Runtime, Learning, node activity, handoffs, and Context Blocks must be visible from durable facts."
+        source: "prototype-plan-v1, senior-frontend-implementation-v1, and org/CONTEXT_BLOCK.md"
+        impact: "Browser proof checked live mode counts for nodes, edges, events, handoffs, canvas, and node labels."
+      - statement: "Security and code-review findings are part of the delivery gate."
+        source: "security-engineer-evaluation-v1 and code-reviewer-review-v1"
+        impact: "Verified CORS removal, task id rejection, vendored scripts, escaped title rendering, and working Policy CLI before passing."
+    constraints:
+      - statement: "The visualizer must remain read-only and local."
+        source: "senior-engineer-implementation-v1"
+        impact: "Only GET routes were exercised; no Ledger mutation endpoint is exposed by the server."
+      - statement: "Displayed facts must come from Graph files, Ledger traces, or the normalized snapshot."
+        source: "senior-frontend-implementation-v1"
+        impact: "Proof used the live snapshot API for the current task and verified the expected trace counts."
+      - statement: "Context Compression Reports must be real Policy checks, not no-op commands."
+        source: "code-reviewer-review-v1"
+        impact: "Verified the new `tools/policy.py context-report` CLI against multiple reports and a missing-file failure."
+    assumptions:
+      - statement: "Installed Google Chrome through Playwright is representative enough for this local demo proof."
+        source: "delivery-prover execution"
+        risk: "Different browsers may still need a later compatibility pass."
+      - statement: "Polling live snapshots is acceptable for this demo milestone."
+        source: "prototype-plan-v1 and senior-engineer-implementation-v1"
+        risk: "Future realtime runtime integration may need SSE or websocket hooks."
+    open_questions:
+      - statement: "Should production packaging replace the no-build vendored assets with a lockfile-based frontend package?"
+        source: "delivery-prover residual risk"
+        owner: "senior-frontend"
+
+  omitted_context:
+    - source: "Full browser screenshot pixels"
+      reason: background_only
+    - source: "Complete JSON snapshot body"
+      reason: background_only
+    - source: "Unrelated workspace skill directory changes"
+      reason: irrelevant
+    - source: "Future realtime SSE/WebSocket design details"
+      reason: background_only
+
+  compression_rationale:
+    method: "Retained only the artifacts, handoff digests, commands, findings, remediation evidence, and residual risks needed to prove the runnable visualizer."
+    loss_notes:
+      - "The full snapshot body is not duplicated because the proof records the key counts and source endpoint."
+      - "The screenshot file path is retained instead of embedding binary image data."
+      - "Detailed design-system prose is omitted because delivery proof focuses on executable behavior."
+
+  quality_checks:
+    - name: "server_started"
+      passed: true
+    - name: "api_snapshot_counts_verified"
+      passed: true
+    - name: "browser_canvas_rendered"
+      passed: true
+    - name: "no_external_browser_requests"
+      passed: true
+    - name: "security_remediations_verified"
+      passed: true
+    - name: "policy_cli_validates_reports"
+      passed: true

@@ -1,0 +1,8 @@
+artifact_id: graph-topologist-topology-review-v1
+producer: graph-topologist
+task_id: task-20260601T100409Z-9e70454c
+version: 1
+timestamp: '2026-06-01T10:05:33.073824+00:00'
+input_artifacts: []
+quality_checks: []
+status: draft

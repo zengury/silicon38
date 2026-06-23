@@ -1,0 +1,85 @@
+from: zoom-out
+to: triage
+relation_type: thompson_sample
+timestamp: '2026-06-10T09:00:20.423867+00:00'
+focus: Thompson sample α=122.0 β=6.2 [validated:supports]
+artifact_refs: &id001
+- zoom-out-context-map-v1
+deliverable:
+  producer: zoom-out
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: zoom-out-context-map-v1
+    producer: zoom-out
+    type: context-map
+    version: 1
+    status: approved
+    content_ref: artifacts/zoom-out-context-map-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260610T090002Z-02eb07ff
+  from: zoom-out
+  to: triage
+  relation_type: thompson_sample
+  focus: Thompson sample α=122.0 β=6.2 [validated:supports]
+  source:
+    producer_role: zoom-out
+    context_compression_report_ref: artifacts/zoom-out-context-report-v1.yaml
+    input_handoffs: []
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Focus on top-level modules for initial map.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use codebase's own module names and domain terms.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Only top-level structure was examined; deeper analysis requires reading
+        individual files.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: External dependency versions are not verified.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Codebase structure is representative of actual module responsibilities.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: External dependencies are correctly identified from imports.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What specific duplicate code patterns exist?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Are there any circular dependencies?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the current test coverage?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file-level analysis
+    reason: background_only
+  - source: Specific duplicate code locations
+    reason: background_only
+  - source: Test coverage metrics
+    reason: background_only
+  compression_rationale:
+    method: 'Top-level abstraction: only module-level structure and relationships
+      are retained; file-level details are omitted as they are not needed for initial
+      mapping.'
+    loss_notes:
+    - File-level dependencies and internal module structure are not captured.
+    - Exact duplicate code instances are not identified.
+  quality_checks:
+  - name: Module existence verified
+    passed: true
+  - name: Relationships verified by reading imports
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs: []
+  previous_blocks: []
+  context_digest: 8028c40a3f770952e0af71f1d0e40884820b7467a25994d6dd3db3e363bac6fa

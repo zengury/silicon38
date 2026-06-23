@@ -1,0 +1,60 @@
+core_statement: Manastone is a robot agent platform that lets users control and diagnose robots via natural language, with a single install command and zero configuration.
+feature_verdicts:
+  - feature: User entry — new user install includes all dependencies (pi coding agent)
+    verdict: KEEP
+    reason: Without this, the product cannot be installed, failing its primary job of being usable.
+  - feature: Manastone independent brand, hide pi brand (like openclaw/pi relationship)
+    verdict: KEEP
+    reason: Brand independence is core to differentiation; without it, users perceive a dependency that undermines trust.
+  - feature: Optimize installation experience and user guidance
+    verdict: KEEP
+    reason: Without clear guidance, users cannot onboard, making the product unusable for its primary job.
+  - feature: Multi-level functionality leads to user confusion about how to install and use terminal to solve problems
+    verdict: KEEP
+    reason: This is the core problem statement; fixing it is essential for user adoption.
+  - feature: Brand independence audit and transformation
+    verdict: KEEP
+    reason: Ensures all touchpoints consistently present Manastone as the primary brand, critical for differentiation.
+  - feature: Silent install of agent engine (brand hidden)
+    verdict: KEEP
+    reason: Supports brand independence by hiding pi; without it, brand confusion persists.
+  - feature: Robot detection — auto-detects robot model, writes config
+    verdict: KEEP
+    reason: Eliminates manual configuration, a key usability improvement for the core install experience.
+  - feature: Verification — post-install checks including manastone doctor
+    verdict: KEEP
+    reason: Provides user confidence that install succeeded, reducing support burden.
+  - feature: Launcher scripts — manastone-chat, manastone-launcher
+    verdict: KEEP
+    reason: Provides clear entry points for users, essential for usability.
+  - feature: Python runtime — Manastone package with robot-specific extras
+    verdict: KEEP
+    reason: Core dependency; without it, the product cannot run.
+  - feature: Robot tools — registers 8 robot tools with the engine
+    verdict: KEEP
+    reason: Core functionality for robot control; without it, the product cannot do its primary job.
+  - feature: Agent engine — Conversation engine (silent install, brand hidden)
+    verdict: KEEP
+    reason: Core component; without it, natural language interaction is impossible.
+  - feature: Prerequisites — Python 3.10+, Node.js, npm, pip, optional ROS2
+    verdict: KEEP
+    reason: Necessary dependencies; without them, install fails.
+  - feature: Install phases — guided 7-phase setup
+    verdict: KEEP
+    reason: Provides structure and feedback during install, improving user experience.
+  - feature: Build tarball — python3 bootstrap/packaging/build_pack.py
+    verdict: DEFER
+    reason: Internal developer tool; not needed for end-user install, can be deferred to v1.1.
+  - feature: systemd template (user-level, uses ~/.manastone/ config)
+    verdict: DEFER
+    reason: Daemon deployment is advanced; most users start with chat/launcher, defer to v1.1.
+  - feature: Manual daemon start convenience script
+    verdict: DEFER
+    reason: Same as systemd; defer to v1.1.
+  - feature: sim pack not yet released
+    verdict: CUT
+    reason: Not a feature; it's a placeholder with no requirements, cut from scope.
+kept_count: 14
+cut_count: 1
+deferred_count: 3
+scope_reduction_summary: Cut the sim pack placeholder (non-feature) and deferred internal build tools and daemon deployment scripts to v1.1, keeping focus on the core install-and-use experience.

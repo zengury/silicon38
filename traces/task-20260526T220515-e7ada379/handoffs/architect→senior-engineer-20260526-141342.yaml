@@ -1,0 +1,143 @@
+from: architect
+to: senior-engineer
+relation_type: triggers
+timestamp: '2026-05-26T14:13:43.007369+00:00'
+focus: 'Architecture decisions: Canonical Model types, Adapter Pipeline interface,
+  WebSocket message format, Alert state machine, Zustand store architecture — implement
+  per ADR-001 through ADR-008'
+artifact_refs: &id001
+- architect-output-v1
+deliverable:
+  producer: architect
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: architect-output-v1
+    producer: architect
+    type: output
+    version: 1
+    status: draft
+    content_ref: artifacts/architect-output-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260526T220515-e7ada379
+  from: architect
+  to: senior-engineer
+  relation_type: triggers
+  focus: 'Architecture decisions: Canonical Model types, Adapter Pipeline interface,
+    WebSocket message format, Alert state machine, Zustand store architecture — implement
+    per ADR-001 through ADR-008'
+  source:
+    producer_role: architect
+    context_compression_report_ref: artifacts/architect-context-report-v1.yaml
+    input_handoffs:
+    - ref: to-prd→architect-20260526-140814.yaml
+      from: to-prd
+      type: may_trigger
+      context_digest: 'Design system architecture for fleet monitoring dashboard:
+        Canonical Model + Adapter Pipeline for heterogeneous robot data, real-time
+        WebSocket architecture, module contracts, data flow, deployment topology'
+    input_artifacts:
+    - artifact_id: to-prd-output-v1
+      path: artifacts/to-prd-output-v1.md
+      used: true
+      why: PRD defines all functional requirements, Canonical Model shape, and implementation
+        decisions that architecture must satisfy
+    - artifact_id: to-issues-output-v1
+      path: artifacts/to-issues-output-v1.md
+      used: true
+      why: Issue breakdown confirms module boundaries and dependency graph align with
+        architectural decisions
+  compressed_context:
+    decisions:
+    - statement: Canonical Model 采用扁平结构，battery/joints/cpu/network/task/location 六大域
+      source: 'to-prd: Canonical Model type definition'
+      impact: ADR-002 细化为完整 TypeScript 类型定义 + 单位标准化规则
+    - statement: Adapter Pipeline 三阶段：parse → mapFields → normalizeUnits
+      source: 'to-prd: Schema Adapter Pipeline 概念'
+      impact: ADR-003 细化为接口定义、注册机制、错误处理策略
+    - statement: 实时架构：Backend Aggregation Service → WebSocket → SPA State Store →
+        UI
+      source: 'to-prd: Implementation Decision #4'
+      impact: ADR-004 定义完整数据流、消息格式、重连策略
+    - statement: 告警规则 DSL + 状态机
+      source: 'to-prd: Alert Engine 设计'
+      impact: ADR-005 细化为 9 条预设规则 + pending→active→acknowledged→resolved 状态机
+    - statement: 前端 Zustand 多 Store 架构
+      source: 'to-prd: Implementation Decision #3 (Zustand 选型)'
+      impact: ADR-006 定义 7 个独立 Store 及其职责边界
+    - statement: 前端模块划分：Dashboard、Detail、Alert、Config、Collab、Export、Theme/i18n/Layout
+      source: 'to-prd: 模块划分表'
+      impact: ADR-006 组件树结构反映模块边界
+    constraints:
+    - statement: SPA 纯前端架构，无 SSR
+      source: 'to-prd: Implementation Decision #1'
+      impact: ADR-001 选择的 SPA 架构符合该约束
+    - statement: 系统只读监控，不包含机器人遥控
+      source: 'to-prd: Out of Scope'
+      impact: WebSocket 只需 server→client 推送，不需双向控制指令
+    - statement: Demo 阶段单用户、localhost 部署
+      source: 'to-prd: Further Notes (mock data)'
+      impact: ADR-008 部署拓扑简化为单机双进程
+    - statement: 中/英双语
+      source: 'to-prd: Further Notes'
+      impact: ADR-006 包含 I18nProvider，ADR-007 选型 react-i18next
+    assumptions:
+    - statement: 后端聚合服务由本团队构建（Demo 阶段的前端工程师可兼做 Mock Server）
+      source: 'to-prd: assumption ''后端聚合服务已存在或可以独立构建'''
+      risk: low — Mock Server 复杂度可控，Bun + ws 即可
+    - statement: 20 台机器人足以演示
+      source: to-prd / to-issues shared assumption
+      risk: low — 架构支持扩展到 100+ 台
+    - statement: 地图服务使用 Leaflet + OpenStreetMap
+      source: 'to-prd: Further Notes (Leaflet 作为备选)'
+      risk: medium — 中国大陆访问 OSM tile 可能慢，需预留国内地图服务切换方案
+    open_questions:
+    - statement: 生产环境下 Backend Aggregation Service 的部署和维护归属
+      source: 'to-prd: open_question'
+      owner: user / release-manager
+    - statement: 30 天历史数据的存储方案（内存 vs 时序数据库）
+      source: 'to-prd: open_question'
+      owner: database-engineer (production phase)
+    - statement: 多人并发协作的冲突策略
+      source: 'architect: 新识别风险'
+      owner: architect / senior-engineer
+  omitted_context:
+  - context: PRD 中的 Testing Decisions 章节
+    source: to-prd-output-v1.md
+    reason: background_only
+  - context: to-issues 中的详细验收标准
+    source: to-issues-output-v1.md
+    reason: background_only
+  - context: to-issues 中的 Completion Report
+    source: to-issues-output-v1.md
+    reason: irrelevant
+  compression_rationale:
+    method: 聚焦 PRD 中影响架构决策的关键内容（数据模型、模块划分、技术选型），省略测试策略和实现细节级验收标准
+    loss_notes:
+    - to-issues 的详细 issue 验收标准未纳入 — 架构决策不受单条 issue 的验收标准影响
+  quality_checks:
+  - name: 所有 retained decisions 有 source 和 impact
+    passed: true
+  - name: 所有 retained constraints 有 source 和 impact
+    passed: true
+  - name: 所有 assumptions 有 source 和 risk
+    passed: true
+  - name: 所有 open_questions 有 source 和 owner
+    passed: true
+  - name: omitted context 每项有明确 reason
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - to-prd-output-v1
+  previous_blocks:
+  - ref: handoffs/to-prd→architect-20260526-140814.yaml
+    from: to-prd
+    to: architect
+    relation_type: may_trigger
+    focus: 'Design system architecture for fleet monitoring dashboard: Canonical Model
+      + Adapter Pipeline for heterogeneous robot data, real-time WebSocket architecture,
+      module contracts, data flow, deployment topology'
+    context_digest: 751b0f287e6b7cde82406cf75c37e150be6f19a4213c8513b1027f7d91198264
+    deliverable_artifact_refs:
+    - to-prd-output-v1
+  context_digest: 359387cdb3a97e196962b4a6cbc59649184edce11cd1161148b2709a3cda1b99

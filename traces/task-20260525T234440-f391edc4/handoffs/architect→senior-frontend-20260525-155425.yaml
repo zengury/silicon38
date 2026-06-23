@@ -1,0 +1,5 @@
+from: architect
+to: senior-frontend
+relation_type: triggers
+timestamp: '2026-05-25T15:54:25.968849+00:00'
+focus: 前端架构方案：React SPA + Zustand + ECharts + react-grid-layout，按 feature-based 目录结构

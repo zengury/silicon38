@@ -1,0 +1,91 @@
+context_compression_report:
+  input_scope:
+    artifacts_read:
+    - artifact_id: senior-engineer-implementation-v1
+      path: artifacts/senior-engineer-implementation-v1.md
+      used: true
+      why: Provided the implemented server scope, endpoints, validation notes, and handoff compliance claims being evaluated.
+    - artifact_id: api-designer-contract-v1
+      path: artifacts/api-designer-contract-v1.md
+      used: true
+      why: Defined the expected read-only visualizer API contract and error handling used to judge endpoint compatibility.
+    - artifact_id: to-prd-prd-v1
+      path: artifacts/to-prd-prd-v1.md
+      used: true
+      why: Supplied MVP requirements for graph, ledger, policy, handoff, runtime, learning, replay, and traceability behavior.
+    - artifact_id: architect-architecture-v1
+      path: artifacts/architect-architecture-v1.md
+      used: true
+      why: Supplied the architecture decision that the visualizer is a read-only Ledger-derived projection.
+    handoffs_read:
+    - ref: handoffs/senior-engineer→tdd-20260527-151239.yaml
+      context_digest: 109ce10079e735af510c669994694915a59da0d9a9d9fd53109b7dc5231af2f8
+  retained_context:
+    decisions:
+    - statement: "The senior-engineer implementation created a stdlib-only local read-only snapshot server."
+      source: "artifacts/senior-engineer-implementation-v1.md"
+      impact: "Evaluation focused on public CLI/import and HTTP behavior for tools/org_viz_server.py."
+    - statement: "The frontend must consume normalized snapshot state rather than parsing raw trace files as the primary live path."
+      source: "artifacts/to-prd-prd-v1.md and artifacts/architect-architecture-v1.md"
+      impact: "A schema alignment failure between /api/snapshot and visualizer/app.js was treated as blocking."
+    - statement: "The API designer contract names /api/runs, /api/org, and /api/runs/{task_id}/snapshot as expected resources."
+      source: "artifacts/api-designer-contract-v1.md"
+      impact: "Missing contract endpoints were tested and recorded as blocking compatibility failures."
+    - statement: "The task explicitly requires a context report valid for python3 tools/policy.py context-report."
+      source: "user task instruction and org/registry/tdd.md"
+      impact: "The policy.py context-report command was smoke-tested directly and found to be a no-op."
+    constraints:
+    - statement: "The evaluator may only write tdd-evaluation-v1.md and tdd-context-report-v1.yaml."
+      source: "user task instruction"
+      impact: "No implementation files, ledger state files, or provenance files were modified."
+    - statement: "Ledger remains the source of truth and the visualizer must stay read-only."
+      source: "org/CONTEXT_BLOCK.md and artifacts/architect-architecture-v1.md"
+      impact: "Tests used GET endpoints and import/CLI checks only, with no ledger mutation commands."
+    - statement: "Context report handoff references must be task-relative and cite exact upstream context digests."
+      source: "tools/policy.py context_report_source_issues and user task instruction"
+      impact: "The senior-engineer to tdd handoff is cited as handoffs/senior-engineer→tdd-20260527-151239.yaml with digest 109ce10079e735af510c669994694915a59da0d9a9d9fd53109b7dc5231af2f8."
+    assumptions:
+    - statement: "HTTP and CLI smoke tests are sufficient for this TDD evaluation because no implementation edits or new tests were authorized."
+      source: "user task instruction"
+      risk: "Canvas/WebGL rendering issues may remain undiscovered without installing browser automation."
+    - statement: "The API designer artifact is still authoritative unless a later node explicitly supersedes it."
+      source: "artifacts/api-designer-contract-v1.md"
+      risk: "If the intended v1 contract changed to /api/snapshot and /api/tasks only, the reported endpoint failures should be reclassified as contract drift."
+    open_questions:
+    - statement: "Should /api/snapshot and /api/tasks remain aliases or become the canonical v1 API?"
+      source: "observed implementation versus artifacts/api-designer-contract-v1.md"
+      owner: "api-designer"
+    - statement: "Should unknown task_id return 404 TRACE_NOT_FOUND or a partial 200 snapshot with embedded errors?"
+      source: "observed server behavior versus artifacts/api-designer-contract-v1.md"
+      owner: "senior-engineer"
+    - statement: "Should tools/policy.py expose a CLI in addition to importable policy functions used by ledger.py?"
+      source: "observed policy.py command behavior"
+      owner: "senior-engineer"
+  omitted_context:
+  - source: "Full text of visualizer/styles.css"
+    reason: "background_only"
+  - source: "Full contents of AGENTS.md, RUNTIME.md, ENCODER.md, nodes.yaml, relations.yaml, and REGISTRY.md"
+    reason: "background_only"
+  - source: "Unrelated dirty worktree changes outside the requested files"
+    reason: "irrelevant"
+  - source: "Complete HTTP response bodies saved under /tmp"
+    reason: "duplicate"
+  compression_rationale:
+    method: "Retained only the upstream artifact refs, exact activation handoff digest, executable smoke evidence, blocking behavioral findings, and constraints needed by downstream fixer/reviewer nodes."
+    loss_notes:
+    - "Full source listings are omitted because the evaluation artifact records public behavior and file paths."
+    - "Large protocol files are represented by the specific constraints they imposed on this evaluation."
+    - "Temporary curl output files are not preserved as trace artifacts."
+  quality_checks:
+  - name: "uses_task_relative_handoff_ref"
+    passed: true
+  - name: "cites_exact_upstream_context_digest"
+    passed: true
+  - name: "lists_registered_artifact_inputs"
+    passed: true
+  - name: "omitted_context_reasons_use_allowed_enums"
+    passed: true
+  - name: "does_not_claim_implementation_edits"
+    passed: true
+  - name: "records_pass_fail_smoke_results"
+    passed: true

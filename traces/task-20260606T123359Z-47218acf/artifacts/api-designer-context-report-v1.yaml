@@ -1,0 +1,18 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/to-issues→api-designer-20260606-123516.yaml
+      context_digest: 8e04c9f58b9859049f456d2b20e58e5d9ef7caac72cc93907ac98ae5ccd8e045
+  retained_context:
+    decisions: []
+    constraints: []
+    assumptions: []
+    open_questions: []
+  omitted_context: []
+  compression_rationale:
+    method: semantic_node_executor_normalized
+    loss_notes: []
+  quality_checks:
+  - name: semantic_executor_schema_normalized
+    passed: true

@@ -1,0 +1,19 @@
+artifact_id: apple-hig-expert-hig-v1
+type: analysis
+producer: apple-hig-expert
+version: 1
+status: draft
+superseded_by: null
+created_at: "2026-05-23T21:46:00+08:00"
+content_ref: artifacts/apple-hig-expert-hig-v1.md
+summary: "Apple HIG compliance guidelines for iOS client — navigation patterns, typography, accessibility, TestFlight review requirements, implementation checklist"
+decisions:
+  - decision: "Tab Bar + NavigationStack (3 tabs)"
+    rationale: "Standard iOS pattern. No custom navigation that conflicts with system gestures."
+  - decision: "Settings as navigation push (not modal)"
+    rationale: "iOS convention — gear icon in toolbar pushes settings screen. Modals are for self-contained tasks."
+  - decision: "Minimum 12pt sphere radius + 44pt hit region for graph nodes"
+    rationale: "Small nodes in web version would violate 44pt tap target minimum on mobile."
+  - decision: "SceneKit over ARKit"
+    rationale: "Full camera control, no world-tracking overhead. AR adds complexity without benefit for graph viewing."
+consumers_pending: [ui-design-system, senior-frontend]

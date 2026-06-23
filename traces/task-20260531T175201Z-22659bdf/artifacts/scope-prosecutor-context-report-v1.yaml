@@ -1,0 +1,57 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/to-prd→scope-prosecutor-20260531-175236.yaml
+      context_digest: dcb9aea4376786082e5612624ad91303859ec64acc7940211ba7adf0a14d1c66
+  retained_context:
+    decisions:
+    - statement: Task is a refactoring task, not a feature request.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Out-of-scope items explicitly listed to prevent scope creep.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must not introduce new features.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must preserve existing behavior.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Codebase is at /Users/ZQ/roboease.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: User wants actionable improvements, not just analysis.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the current test coverage?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Are there ADRs that constrain refactoring?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Preferred module structure?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed codebase exploration not performed yet (blocking questions need
+      answers).
+    reason: background_only
+  - source: Specific duplicate code instances not identified (requires code analysis).
+    reason: background_only
+  compression_rationale:
+    method: Extracted only the essential classification and scope boundaries; deferred
+      detailed analysis until blocking questions are resolved.
+    loss_notes:
+    - No loss of critical information; omitted details are recoverable when execution
+      begins.
+  quality_checks:
+  - name: Every feature has a verdict
+    passed: true
+  - name: Core statement is present
+    passed: true
+  - name: No diplomatic hedging
+    passed: true

@@ -1,0 +1,141 @@
+context_compression_report:
+  input_scope:
+    artifacts_read:
+    - artifact_id: ux-researcher-designer-ux-spec-v1
+      path: artifacts/ux-researcher-designer-ux-spec-v1.md
+      sha256: 0d58e32d0a1464bd0c35a0ec615951fbbfc4a71afee907331b292718a75ca78b
+      used: true
+      why: Primary UX specification for information architecture, visual semantics,
+        handoff/context block inspection, replay/live controls, accessibility, data
+        contract, and MVP acceptance criteria.
+    - artifact_id: prototype-plan-v1
+      path: artifacts/prototype-plan-v1.md
+      used: true
+      why: Cross-checked prototype needs for Three.js scene objects, handoff block
+        animation, operating layers, and first demo scope.
+    - artifact_id: architect-architecture-v1
+      path: artifacts/architect-architecture-v1.md
+      used: true
+      why: Cross-checked snapshot boundary, read-only UI constraint, normalized schema,
+        and source-of-truth architecture.
+    handoffs_read:
+    - ref: handoffs/ux-researcher-designer→ui-design-system-20260527-145527.yaml
+      sha256: f46e3e2feca9ce73ed4fb8468dfeeb9bbc5a1bfcd85b1c352d6fbe9688910a1c
+      context_digest: dc963783e6e58ac2420c6f73276977b0deb3cecac2c324e046aee55fc6318b4c
+      relation_type: may_trigger
+      focus: define visual tokens, node states, block styles, and inspector components
+    - ref: handoffs/triage→ux-researcher-designer-20260527-144434.yaml
+      context_digest: b185c9e416e3a26fe95dbe83bc0af2ed927534489141eba4c1ca9d626346848a
+      inherited_via: handoffs/ux-researcher-designer→ui-design-system-20260527-145527.yaml
+    - ref: handoffs/caveman→ux-researcher-designer-20260527-144434.yaml
+      context_digest: 90427156b43a9897afd79e4b9e1c6e0183e75613adaea5bde19628173dad9d4c
+      inherited_via: handoffs/ux-researcher-designer→ui-design-system-20260527-145527.yaml
+  retained_context:
+    decisions:
+    - statement: Use one semantic token layer for both Three.js materials and DOM
+        panels.
+      source: ux-researcher-designer-ux-spec-v1 and handoffs/ux-researcher-designer→ui-design-system-20260527-145527.yaml
+      impact: Node, edge, gate, block, timeline, inspector, and theme states share
+        token names and meanings.
+    - statement: Activation-capable relations must look different from context-only
+        relations.
+      source: ux-researcher-designer-context-report-v1.yaml and inherited triage context
+        digest b185c9e416e3a26fe95dbe83bc0af2ed927534489141eba4c1ca9d626346848a
+      impact: triggers, may_trigger, and reverse-aware evaluates get activation/review
+        arrows; supports/constrains/complements/augments/precedes do not.
+    - statement: Handoff blocks are inspectable payload objects, not decorative particles.
+      source: ux-researcher-designer-ux-spec-v1
+      impact: The spec defines deliverable, context, digest, relation, soul, and error
+        slices plus Summary/Deliverable/Context Block/Digest Chain inspector tabs.
+    - statement: The five top-level operating concepts remain Graph, Ledger, Policy,
+        Runtime, and Learning.
+      source: ux-researcher-designer-context-report-v1.yaml
+      impact: Concept tokens and filters are limited to those five anchors and do
+        not introduce a competing mental model.
+    - statement: Reduced motion and 2D fallback are v1 requirements.
+      source: ux-researcher-designer-ux-spec-v1
+      impact: The design system specifies non-motion alternatives for pulses, handoff
+        movement, camera focus, and data inspection.
+    constraints:
+    - statement: Only Graph and Ledger facts may be displayed as operational truth.
+      source: handoffs/ux-researcher-designer→ui-design-system-20260527-145527.yaml
+        context_digest dc963783e6e58ac2420c6f73276977b0deb3cecac2c324e046aee55fc6318b4c
+      impact: Every operational component includes source refs and missing/partial
+        states instead of inferred truth.
+    - statement: The visualizer observes and explains; it must not execute nodes,
+        edit Graph, or approve artifacts in v1.
+      source: ux-researcher-designer-ux-spec-v1 and architect-architecture-v1
+      impact: Top bar, inspector, and timeline include focus/copy/replay controls
+        only, not mutation controls.
+    - statement: Do not fabricate run activity when no trace is selected.
+      source: ux-researcher-designer-ux-spec-v1
+      impact: No-trace state renders Graph structure and legends but no fake node
+        activity or handoff blocks.
+    - statement: Digest verification must expose verified, not_checked, missing, and
+        mismatch states.
+      source: ux-researcher-designer-ux-spec-v1
+      impact: The handoff block and digest-chain inspector avoid false green states
+        when browser verification cannot run.
+    assumptions:
+    - statement: The implementation can expose CSS variables or a TypeScript token
+        object to Three.js and DOM components.
+      source: ui-design-system judgment from requested design-token scope
+      risk: If scene materials are hardcoded separately from DOM CSS, visual meanings
+        can drift.
+    - statement: The first prototype will render all 35 nodes and 122 edges but may
+        highlight a smaller replay path.
+      source: ux-researcher-designer-ux-spec-v1 and prototype-plan-v1
+      risk: If labels become dense, the inspector/search/2D fallback must preserve
+        readability.
+    - statement: Digest verification may be adapter-side rather than browser-side.
+      source: architect-architecture-v1
+      risk: The UI must display not_checked or adapter-provided state instead of inferring
+        verification.
+    open_questions:
+    - statement: Should concept plane positions be adapter-provided or client-defined
+        constants?
+      source: ui-design-system downstream concern
+      owner: prototype
+    - statement: Which icon library will the frontend use for DOM controls and non-color
+        cues?
+      source: ui-design-system downstream concern
+      owner: senior-frontend
+    - statement: Should canvas labels use CSS2DRenderer or custom sprite text for
+        the first prototype?
+      source: ui-design-system downstream concern
+      owner: prototype
+  omitted_context:
+  - source: Full raw Graph node and relation lists
+    reason: irrelevant
+  - source: Full architecture API schema
+    reason: background_only
+  - source: Full prototype fixture JSON
+    reason: background_only
+  - source: General skill workflow text
+    reason: irrelevant
+  compression_rationale:
+    method: Converted UX and architecture handoffs into stable semantic tokens, state
+      matrices, component contracts, accessibility rules, and developer handoff checks
+      for a Three.js plus DOM operations UI.
+    loss_notes:
+    - Detailed artifact previews are not reproduced; the design-system spec defines
+      where previews appear and how they cite source refs.
+    - Exact Three.js implementation library choices for line rendering and labels
+      are left to prototype/senior-frontend.
+    - Full Markdown text of upstream UX spec is represented as token/component implications
+      rather than repeated verbatim.
+  quality_checks:
+  - name: handoff_refs_include_exact_context_digest
+    passed: true
+  - name: artifacts_read_are_cited_with_paths
+    passed: true
+  - name: primary_ux_artifact_digest_recorded
+    passed: true
+  - name: distinguishes_activation_edges_from_context_edges
+    passed: true
+  - name: covers_node_statuses_edge_types_handoff_blocks_concept_planes_inspector_replay_themes_accessibility_motion
+    passed: true
+  - name: keeps_visualizer_read_only
+    passed: true
+  - name: yaml_parseable
+    passed: true

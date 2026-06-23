@@ -1,0 +1,8 @@
+artifact_id: to-issues-issues-v1
+producer: to-issues
+task_id: task-20260524T235435-cd06553e
+version: 1
+timestamp: '2026-05-25T07:04:23.246421+00:00'
+input_artifacts: []
+quality_checks: []
+status: approved

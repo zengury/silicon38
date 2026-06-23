@@ -1,0 +1,70 @@
+task_id: task-20260601T100409Z-9e70454c
+timestamp_start: '2026-06-01T10:04:14.267045+00:00'
+timestamp_end: '2026-06-01T10:05:32.799094+00:00'
+task_summary: 对 zengury/manastone 仓库做一次重新调优。manastone 位于 /Users/ZQ/manastone，是用户最重要的
+  repo，经历了多轮迭代，主要功能已验证并在使用，架构已多次迭代。核心问题：1）用户入口和界面——新用户只需安装 manastone 即可包含所有依赖（最重要的是
+  pi coding agent），manastone 是独立品牌，pi 品牌需隐藏（类似 openclaw 与 pi 的关系）；2）多层次功能导致用户不知道如何安装、如何学会用终端面对问题。需要优化安装体验、用户引导、品牌独立性。注意环境实际情况：周围嘈杂（别人在蹦迪），需要低声精准地工作。
+task_type: general
+entry_nodes:
+- triage
+terminal_nodes:
+- triage
+- graph-topologist
+- hrbp
+outcome:
+  status: partial
+  decoder_notes: Graph propagation exhausted — no more legal candidates.
+  quality_signal:
+    source: runtime_decoder
+    value: 0.5
+    detail: Graph propagation exhausted — no more legal candidates.
+context_block:
+  ref: org/CONTEXT_BLOCK.md
+  sha256: d82dc247c04f8cd2e797dd394ecd8d9cd927f1e194f2800d4fcf1e2be41f2a66
+artifact_index:
+- artifact_id: triage-analysis-v1
+  type: analysis
+  producer: triage
+  version: 1
+  status: draft
+  path: artifacts/triage-analysis-v1.md
+  ref: artifacts/triage-analysis-v1.md
+  provenance_ref: artifacts/triage-analysis-v1.provenance.yaml
+- artifact_id: graph-topologist-topology-review-v1
+  type: topology-review
+  producer: graph-topologist
+  version: 1
+  status: draft
+  path: artifacts/graph-topologist-topology-review-v1.md
+  ref: artifacts/graph-topologist-topology-review-v1.md
+  provenance_ref: artifacts/graph-topologist-topology-review-v1.provenance.yaml
+- artifact_id: hrbp-talent-evaluation-v1
+  type: talent-evaluation
+  producer: hrbp
+  version: 1
+  status: draft
+  path: artifacts/hrbp-talent-evaluation-v1.md
+  ref: artifacts/hrbp-talent-evaluation-v1.md
+  provenance_ref: artifacts/hrbp-talent-evaluation-v1.provenance.yaml
+context_report_index:
+- role: triage
+  ref: artifacts/triage-context-report-v1.yaml
+  digest: 0fb3c9874101687b6c4b6daccf7e0e9e52ad1714ccde8521ca616fdf9e532c67
+  status: valid
+- role: graph-topologist
+  ref: artifacts/graph-topologist-context-report-v1.yaml
+  digest: 5183291f30ccc763760edfae75838239f00b2e0d5125f863fd47220769514fd8
+  status: valid
+- role: hrbp
+  ref: artifacts/hrbp-context-report-v1.yaml
+  digest: 6d1aad28035e522cea701346dd840415dd45c4f22b06684a785e2a57820f763b
+  status: valid
+handoff_trail:
+- ref: handoffs/triage→to-prd-20260601-100433.yaml
+  from: triage
+  to: to-prd
+  relation_type: thompson_sample
+  timestamp: '2026-06-01T10:04:33.197111+00:00'
+  artifact_refs:
+  - triage-analysis-v1
+  context_block_digest: 3ff25872e68927846e0d12b1d7281e3679fd5a6829aa0a06b43dede52b3e5afe

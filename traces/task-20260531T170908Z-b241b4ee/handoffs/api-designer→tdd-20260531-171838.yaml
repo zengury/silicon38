@@ -1,0 +1,121 @@
+from: api-designer
+to: tdd
+relation_type: triggers
+timestamp: '2026-05-31T17:18:38.883040+00:00'
+focus: Activate tdd from api-designer
+artifact_refs: &id001
+- api-designer-contract-v1
+deliverable:
+  producer: api-designer
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: api-designer-contract-v1
+    producer: api-designer
+    type: contract
+    version: 1
+    status: draft
+    content_ref: artifacts/api-designer-contract-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260531T170908Z-b241b4ee
+  from: api-designer
+  to: tdd
+  relation_type: triggers
+  focus: Activate tdd from api-designer
+  source:
+    producer_role: api-designer
+    context_compression_report_ref: artifacts/api-designer-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/to-issues→api-designer-20260531-171027.yaml
+      context_digest: 389c10b6f802ddf46607e9fec2f17d4b66f2126fe99a003899d27673764b17fe
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Classify as enhancement (refactoring)
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Priority high
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Start with codebase analysis (Issue 1) to inform all subsequent work.
+      source: to-issues
+      impact: Prerequisite for all other issues.
+    - statement: Extract utility module early (Issue 2) to reduce duplication quickly.
+      source: to-issues
+      impact: High impact, low risk.
+    - statement: Define architecture before refactoring business logic and data access.
+      source: to-issues
+      impact: Ensures consistency.
+    - statement: Add tests after extraction to ensure quality.
+      source: to-issues
+      impact: Tests are easier after isolation.
+    constraints:
+    - statement: No code modification during triage
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must use read-only tools
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: No new features or external behavior changes.
+      source: PRD
+      impact: All issues must preserve existing behavior.
+    - statement: All changes must preserve existing tests.
+      source: PRD
+      impact: Tests must pass after each change.
+    - statement: Refactoring must be incremental and reversible.
+      source: PRD
+      impact: Each issue should be small and self-contained.
+    assumptions:
+    - statement: Codebase is primarily TypeScript/JavaScript
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Existing tests may exist
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Module structure is identifiable.
+      source: PRD
+      risk: May require deeper analysis.
+    open_questions:
+    - statement: Primary language?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Existing tests?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Module structure?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed implementation decisions from PRD (e.g., specific patterns) are
+      not needed for API design.
+    reason: background_only
+  - source: Testing strategy details (e.g., coverage targets) are captured in Issue
+      6.
+    reason: background_only
+  compression_rationale:
+    method: Extracted key decisions, constraints, and open questions from the handoff
+      and issue decomposition. Retained only information relevant to API contract
+      design. Omitted verbose descriptions and template boilerplate.
+    loss_notes:
+    - Implementation decisions like 'Use abstract base classes' are deferred to individual
+      issues.
+  quality_checks:
+  - name: schema_examples_present
+    passed: true
+  - name: error_contract_present
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - to-issues-decomposition-v1
+  - to-prd-prd-v1
+  - triage-analysis-v1
+  previous_blocks:
+  - ref: handoffs/to-issues→api-designer-20260531-171027.yaml
+    from: to-issues
+    to: api-designer
+    relation_type: thompson_sample
+    focus: Thompson sample α=2.0 β=5.0 [structural_prior]
+    context_digest: 389c10b6f802ddf46607e9fec2f17d4b66f2126fe99a003899d27673764b17fe
+    deliverable_artifact_refs:
+    - to-issues-decomposition-v1
+  context_digest: 891c81727efcfcc14da4dbfaec65ed3e9c4c7a2958ea8acc5bcc87519051dd6b

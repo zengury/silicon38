@@ -1,0 +1,15 @@
+signals:
+- description: '/Users/ZQ/manastone/manastone — Build demonstration-taught guided
+    tour system. Full brief: /Users/ZQ/Downloads/v3_TOUR_BRIEF.md. Two modes (teaching
+    + guiding), voice-only operator interface, anti-hal'
+  inferred: design
+  task_id: task-20260607T145443Z-da0862f2
+  timestamp: '2026-06-07T22:54:44.116088'
+  triage_type: null
+  used: true
+- description: 优化重构 /Users/ZQ/roboease 代码库：消除重复代码、改善模块结构、提升可维护性和可测试性
+  inferred: refactor
+  task_id: task-20260610T023455Z-9f61727f
+  timestamp: '2026-06-10T10:34:55.270200'
+  triage_type: null
+  used: false

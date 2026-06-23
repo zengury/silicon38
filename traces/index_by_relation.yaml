@@ -1,0 +1,342 @@
+to-prd→to-issues/triggers:
+- task_id: task-20260523T214431
+  timestamp: '2026-05-23T21:48:00+08:00'
+  signal: 1.0
+  fidelity: followed
+to-prd→architect/supports:
+- task_id: task-20260523T214431
+  timestamp: '2026-05-23T21:48:00+08:00'
+  signal: 1.0
+  fidelity: followed
+- task_id: task-20260525T235013-4207a413
+  timestamp: '2026-05-25T17:24:06.820003+00:00'
+  signal: 0.0
+- task_id: task-20260606T204107-ce98e3a3
+  timestamp: '2026-06-06T12:52:45.823636+00:00'
+  signal: 0.4095
+  confidence: 0.29250000000000004
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=0.70; relation_type=supports; multiplier=0.45
+ux-researcher-designer→prototype/triggers:
+- task_id: task-20260523T214431
+  timestamp: '2026-05-23T21:48:00+08:00'
+  signal: 1.0
+  fidelity: followed
+ux-researcher-designer→ui-design-system/supports:
+- task_id: task-20260523T214431
+  timestamp: '2026-05-23T21:48:00+08:00'
+  signal: 1.0
+  fidelity: followed
+- task_id: task-20260525T235013-4207a413
+  timestamp: '2026-05-25T17:24:06.820003+00:00'
+  signal: 0.0
+apple-hig-expert→ui-design-system/constrains:
+- task_id: task-20260523T214431
+  timestamp: '2026-05-23T21:48:00+08:00'
+  signal: 1.0
+  fidelity: followed
+apple-hig-expert→senior-frontend/constrains:
+- task_id: task-20260523T214431
+  timestamp: '2026-05-23T21:50:00+08:00'
+  signal: 1.0
+  fidelity: followed
+architect→senior-frontend/triggers:
+- task_id: task-20260523T214431
+  timestamp: '2026-05-23T21:50:00+08:00'
+  signal: 1.0
+  fidelity: followed
+architect→api-designer/triggers:
+- task_id: task-20260523T214431
+  timestamp: '2026-05-23T21:50:00+08:00'
+  signal: 1.0
+  fidelity: followed
+- task_id: task-20260525T235013-4207a413
+  timestamp: '2026-05-25T17:24:06.820003+00:00'
+  signal: 0.0
+to-issues→senior-frontend/supports:
+- task_id: task-20260523T214431
+  timestamp: '2026-05-23T21:50:00+08:00'
+  signal: 1.0
+  fidelity: followed
+ui-design-system→senior-frontend/constrains:
+- task_id: task-20260524T230317
+  timestamp: '2026-05-24T23:12:00+08:00'
+  signal: 1.0
+  fidelity: followed
+  detail: Hard constraint respected — all design tokens used consistently
+- task_id: task-20260525T235013-4207a413
+  timestamp: '2026-05-25T17:24:06.820003+00:00'
+  signal: 0.0
+senior-frontend→code-reviewer/triggers:
+- task_id: task-20260524T230317
+  timestamp: '2026-05-24T23:20:00+08:00'
+  signal: 1.0
+  fidelity: followed
+- task_id: task-20260525T235013-4207a413
+  timestamp: '2026-05-25T17:24:06.820003+00:00'
+  signal: 0.0
+to-issues→senior-engineer/triggers:
+- task_id: task-20260523T214431
+  timestamp: null
+  signal: -1.0
+  fidelity: overridden
+  detail: Runtime skipped — no backend changes needed
+architect→senior-engineer/triggers:
+- task_id: task-20260523T214431
+  timestamp: null
+  signal: -1.0
+  fidelity: overridden
+  detail: Runtime skipped — redundant with to-issues→senior-engineer
+- task_id: task-20260526T025105-ccfae5c1
+  timestamp: '2026-05-25T18:59:22.844035+00:00'
+  signal: 1.0
+  confidence: 0.65
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; relation_type=triggers; multiplier=1.00
+- task_id: task-20260526T030000-cavas
+  timestamp: '2026-05-25T19:06:04.969762+00:00'
+  signal: 1.0
+  confidence: 0.65
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; relation_type=triggers; multiplier=1.00
+- task_id: task-20260526T083818-ddd3d784
+  timestamp: '2026-05-26T00:51:12.021915+00:00'
+  signal: 1.0
+  confidence: 0.65
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; relation_type=triggers; multiplier=1.00
+zoom-out→architect/supports:
+- task_id: task-20260524T230317
+  timestamp: null
+  signal: 0.0
+  fidelity: followed
+  detail: Not triggered — refactor task, architect not needed
+architect→devops-engineer/constrains:
+- task_id: task-20260523T214431
+  timestamp: null
+  signal: 0.0
+  fidelity: followed
+  detail: Constraint recorded but devops not activated — CI/CD deferred
+grill-me→to-prd/evaluates:
+- task_id: task-20260523T214431
+  timestamp: null
+  signal: 0.0
+  fidelity: followed
+  detail: Not triggered — advisory evaluation skipped
+grill-me→architect/evaluates:
+- task_id: task-20260523T214431
+  timestamp: null
+  signal: 0.0
+  fidelity: followed
+  detail: Not triggered — advisory evaluation skipped
+zoom-out→improve-codebase-architecture/supports:
+- task_id: task-20260524T230317
+  timestamp: '2026-05-24T23:08:00+08:00'
+  signal: 1.0
+  fidelity: followed
+  detail: Runtime activated improve-codebase-architecture manually — supports edge
+    consumed
+zoom-out→ui-design-system/activation:
+- task_id: task-20260524T230317
+  timestamp: '2026-05-24T23:08:00+08:00'
+  signal: 1.0
+  fidelity: overridden
+  detail: NO EDGE EXISTS in graph. Runtime created ad-hoc activation. Graph gap —
+    see evaluation recommendations.
+improve-codebase-architecture→refactor-specialist/triggers:
+- task_id: task-20260524T230317
+  timestamp: '2026-05-24T23:12:00+08:00'
+  signal: 1.0
+  fidelity: followed
+  detail: Trigger fired correctly — architecture roadmap fed into refactor execution
+ui-design-system→senior-frontend/activation:
+- task_id: task-20260524T230317
+  timestamp: '2026-05-24T23:12:00+08:00'
+  signal: 1.0
+  fidelity: overridden
+  detail: Only constrains edge exists (no triggers). Runtime activated manually. Graph
+    gap.
+refactor-specialist→code-reviewer/triggers:
+- task_id: task-20260524T230317
+  timestamp: '2026-05-24T23:20:00+08:00'
+  signal: 1.0
+  fidelity: followed
+code-reviewer→senior-engineer/may_trigger:
+- task_id: task-20260524T230317
+  timestamp: null
+  signal: -1.0
+  fidelity: overridden
+  detail: CHANGES_REQUIRED condition met but Runtime applied trivial fixes directly
+    — 3 files, <10 lines each. Efficiency win.
+- task_id: task-20260525T235013-4207a413
+  timestamp: '2026-05-25T17:24:06.820003+00:00'
+  signal: 0.0
+zoom-out→refactor-specialist/supports:
+- task_id: task-20260524T230317
+  timestamp: '2026-05-24T23:12:00+08:00'
+  signal: 1.0
+  fidelity: followed
+  detail: Supports edge consumed — territory map informed refactor scope
+zoom-out→senior-engineer/supports:
+- task_id: task-20260524T230317
+  timestamp: null
+  signal: 0.0
+  fidelity: followed
+  detail: Not triggered — frontend-only refactor
+grill-me→ui-design-system/evaluates:
+- task_id: task-20260524T230317
+  timestamp: null
+  signal: 0.0
+  fidelity: followed
+  detail: Not triggered — advisory. Would have caught mild over-engineering (CATEGORIES
+    constant)
+triage→to-prd/triggers:
+- task_id: task-20260525T235013-4207a413
+  timestamp: '2026-05-25T17:24:06.820003+00:00'
+  signal: 0.0
+to-prd→api-designer/supports:
+- task_id: task-20260525T235013-4207a413
+  timestamp: '2026-05-25T17:24:06.820003+00:00'
+  signal: 0.0
+to-prd→ux-researcher-designer/supports:
+- task_id: task-20260525T235013-4207a413
+  timestamp: '2026-05-25T17:24:06.820003+00:00'
+  signal: 0.0
+- task_id: task-20260606T204107-ce98e3a3
+  timestamp: '2026-06-06T12:52:45.823636+00:00'
+  signal: 0.4095
+  confidence: 0.29250000000000004
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=0.70; relation_type=supports; multiplier=0.45
+zoom-out→architect/may_trigger:
+- task_id: task-20260526T025105-ccfae5c1
+  timestamp: '2026-05-25T18:59:22.844035+00:00'
+  signal: 0.9
+  confidence: 0.5850000000000001
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; relation_type=may_trigger; multiplier=0.90
+- task_id: task-20260526T030000-cavas
+  timestamp: '2026-05-25T19:06:04.969762+00:00'
+  signal: 0.9
+  confidence: 0.5850000000000001
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; relation_type=may_trigger; multiplier=0.90
+- task_id: task-20260526T083818-ddd3d784
+  timestamp: '2026-05-26T00:51:12.021915+00:00'
+  signal: 0.9
+  confidence: 0.5850000000000001
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; relation_type=may_trigger; multiplier=0.90
+architect→grill-me/evaluates:
+- task_id: task-20260526T025105-ccfae5c1
+  timestamp: '2026-05-25T18:59:22.844035+00:00'
+  signal: 0.85
+  confidence: 0.5525
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; relation_type=evaluates; multiplier=0.85
+architect→caveman/evaluates:
+- task_id: task-20260526T025105-ccfae5c1
+  timestamp: '2026-05-25T18:59:22.844035+00:00'
+  signal: 0.85
+  confidence: 0.5525
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; relation_type=evaluates; multiplier=0.85
+- task_id: task-20260526T083818-ddd3d784
+  timestamp: '2026-05-26T00:51:12.021915+00:00'
+  signal: 0.85
+  confidence: 0.5525
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; relation_type=evaluates; multiplier=0.85
+senior-engineer→tdd/evaluates:
+- task_id: task-20260526T025105-ccfae5c1
+  timestamp: '2026-05-25T18:59:22.844035+00:00'
+  signal: 0.85
+  confidence: 0.5525
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; relation_type=evaluates; multiplier=0.85
+- task_id: task-20260526T030000-cavas
+  timestamp: '2026-05-25T19:06:04.969762+00:00'
+  signal: 0.85
+  confidence: 0.5525
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; relation_type=evaluates; multiplier=0.85
+- task_id: task-20260526T083818-ddd3d784
+  timestamp: '2026-05-26T00:51:12.021915+00:00'
+  signal: 0.85
+  confidence: 0.5525
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; relation_type=evaluates; multiplier=0.85
+senior-engineer→security-engineer/evaluates:
+- task_id: task-20260526T025105-ccfae5c1
+  timestamp: '2026-05-25T18:59:22.844035+00:00'
+  signal: 0.85
+  confidence: 0.5525
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; relation_type=evaluates; multiplier=0.85
+- task_id: task-20260526T030000-cavas
+  timestamp: '2026-05-25T19:06:04.969762+00:00'
+  signal: 0.85
+  confidence: 0.5525
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; relation_type=evaluates; multiplier=0.85
+senior-engineer→code-reviewer/triggers:
+- task_id: task-20260526T025105-ccfae5c1
+  timestamp: '2026-05-25T18:59:22.844035+00:00'
+  signal: 1.0
+  confidence: 0.65
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; relation_type=triggers; multiplier=1.00
+- task_id: task-20260526T030000-cavas
+  timestamp: '2026-05-25T19:06:04.969762+00:00'
+  signal: 1.0
+  confidence: 0.65
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; relation_type=triggers; multiplier=1.00
+- task_id: task-20260526T083818-ddd3d784
+  timestamp: '2026-05-26T00:51:12.021915+00:00'
+  signal: 1.0
+  confidence: 0.65
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=1.00; relation_type=triggers; multiplier=1.00
+to-prd→product-vision-anchor/triggers:
+- task_id: task-20260606T204107-ce98e3a3
+  timestamp: '2026-06-06T12:52:45.823636+00:00'
+  signal: 0.9099999999999999
+  confidence: 0.65
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=0.70; relation_type=triggers; multiplier=1.00
+scope-prosecutor→product-vision-anchor/constrains:
+- task_id: task-20260606T204107-ce98e3a3
+  timestamp: '2026-06-06T12:52:45.823636+00:00'
+  signal: 0.5005
+  confidence: 0.35750000000000004
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=0.70; relation_type=constrains; multiplier=0.55
+product-vision-anchor→architect/constrains:
+- task_id: task-20260606T204107-ce98e3a3
+  timestamp: '2026-06-06T12:52:45.823636+00:00'
+  signal: 0.5005
+  confidence: 0.35750000000000004
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=0.70; relation_type=constrains; multiplier=0.55
+caveman→architect/may_trigger:
+- task_id: task-20260606T204107-ce98e3a3
+  timestamp: '2026-06-06T12:52:45.823636+00:00'
+  signal: 0.819
+  confidence: 0.5850000000000001
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=0.70; relation_type=may_trigger; multiplier=0.90
+product-vision-anchor→ux-researcher-designer/constrains:
+- task_id: task-20260606T204107-ce98e3a3
+  timestamp: '2026-06-06T12:52:45.823636+00:00'
+  signal: 0.5005
+  confidence: 0.35750000000000004
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=0.70; relation_type=constrains; multiplier=0.55
+architect→ux-researcher-designer/may_trigger:
+- task_id: task-20260606T204107-ce98e3a3
+  timestamp: '2026-06-06T12:52:45.823636+00:00'
+  signal: 0.819
+  confidence: 0.5850000000000001
+  signal_source: relation_credit_assignment.v0
+  detail: outcome=success; decoder_quality=0.70; relation_type=may_trigger; multiplier=0.90

@@ -1,0 +1,61 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read: []
+  retained_context:
+    decisions:
+    - statement: Manastone must hide Pi brand like OpenClaw hides Pi.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Install must be single command with no flags.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: First-run must print clear next steps.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must maintain robot-specific ontology and skills.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must support multiple robot models (X2, G1, HalfCheetah).
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must keep roboonto importers for new robot onboarding.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: New user does not know Pi exists.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Auto-detection of robot model is feasible.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Removing Pi dependency is possible without breaking functionality.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: How to wrap Pi chat engine without leaking brand?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the actual usage of manastone-dev.toml?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Is auto-detection reliable for all robot models?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file list (247 files) not needed for analysis.
+    reason: background_only
+  - source: Test fixtures and test files not relevant to install/brand issues.
+    reason: background_only
+  - source: Specific skill content not needed for high-level assessment.
+    reason: background_only
+  compression_rationale:
+    method: Focused on install flow, brand leakage, and first-run experience. Omitted
+      robot-specific details and test infrastructure.
+    loss_notes: []
+  quality_checks:
+  - name: non-engineer test
+    passed: true
+  - name: minimum viable version is simpler
+    passed: true

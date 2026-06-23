@@ -1,0 +1,74 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/refactor-specialist→code-reviewer-20260610-024308.yaml
+      context_digest: e4115057aba4d62cce9ba48bbc4d1e609faaa3a1f9da24341d736c96b9bb23e7
+  retained_context:
+    decisions:
+    - statement: Created create_library_crud_router factory in shared/crud_router.py
+        to eliminate 4-way CRUD duplication.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Knowledge library retains custom create_with_dify endpoint outside
+        the factory.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Task endpoints and screen project endpoints left for future refactor
+        iterations.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Task endpoints have domain-specific robot interaction logic requiring
+        deeper analysis before unification.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Screen project admin vs portal have different security scopes — authorization
+        differences must be preserved.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: No integration/API-level tests exist for the refactored endpoints.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: The unused Request classes in original library files were never referenced
+        externally.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: All library services follow the same BaseEntityService pattern.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Should knowledge_library get an official/list endpoint like the other
+        3 libraries?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Can file upload/download duplication be unified?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Robot module duplications (xialan_api vs xiaqi_api) — out of scope for
+      backend refactor.
+    reason: background_only
+  - source: Exact file contents of unchanged service files.
+    reason: background_only
+  - source: Device.py internal duplication.
+    reason: background_only
+  compression_rationale:
+    method: Semantic summarization of review findings and upstream context. Preserved
+      all architectural decisions and constraints. Omitted implementation details
+      of unchanged files and out-of-scope code.
+    loss_notes:
+    - Specific line numbers of remaining duplicates not included (available in duplicates-report.json).
+    - Router factory implementation details not included (available in shared/crud_router.py).
+  quality_checks:
+  - name: Tests green before and after
+    passed: true
+  - name: Route paths identical to originals
+    passed: true
+  - name: Duplicate detector confirms library CRUD eliminated
+    passed: true
+  - name: main.py imports still work
+    passed: true
+  - name: Behavior preservation via 152 passing tests
+    passed: true

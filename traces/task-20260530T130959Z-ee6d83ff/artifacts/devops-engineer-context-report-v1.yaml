@@ -1,0 +1,100 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→devops-engineer-20260530-131049.yaml
+      context_digest: e1855372fb84574cda6eeaf5c57112e23018e52be5e468c30fda3ccba946aab3
+  retained_context:
+    decisions:
+    - statement: Adopt modular monolith for backend with bounded contexts.
+      source: architect
+      impact: Shapes CI/CD module boundary enforcement and resource governance.
+    - statement: Extract authentication into dedicated module as first migration step.
+      source: architect
+      impact: Auth module first to need dedicated health check and route.
+    - statement: Use event bus (Redis pub/sub) for async communication.
+      source: architect
+      impact: Redis critical dependency; its health impacts module decoupling.
+    - statement: Database per module (schema-level separation).
+      source: architect
+      impact: Migration scripts per-module; rollback handles schema isolation.
+    - statement: CI module boundary checks advisory during refactoring (v8).
+      source: devops-engineer-v8
+      impact: Modules can be created incrementally without blocking CI.
+    - statement: Docker Compose remains the deployment platform.
+      source: architect
+      impact: No Kubernetes; resource governance at Docker level.
+    constraints:
+    - statement: Team size is small; avoid over-engineering ops.
+      source: architect
+      impact: Single-host Docker Compose, no service mesh.
+    - statement: Existing deployment uses Docker Compose; must remain compatible.
+      source: architect
+      impact: All ops changes incremental; no orchestration migration.
+    - statement: Robot-side services are separate microservices.
+      source: architect
+      impact: Separate deploy pipelines not covered here.
+    - statement: core/ and infrastructure/ directories do not exist yet.
+      source: runtime
+      impact: Module boundary enforcement cannot be fully blocking.
+    assumptions:
+    - statement: Production host has at least 4 CPU cores and 8GB RAM.
+      source: devops-engineer
+      risk: Resource limits assume this; must validate.
+    - statement: Staging runs on same host as production.
+      source: devops-engineer
+      risk: If separate, network isolation approach changes.
+    - statement: TLS certificates manually provisioned and rotated.
+      source: devops-engineer
+      risk: If certbot used later, nginx volume paths change.
+    open_questions:
+    - statement: What is the exact event bus technology?
+      source: architect
+      owner: runtime
+    - statement: Should API gateway be separate service or part of Nginx?
+      source: architect
+      owner: runtime
+    - statement: What is the migration strategy for existing data?
+      source: architect
+      owner: runtime
+    - statement: What is the production host specification?
+      source: devops-engineer
+      owner: operations
+    - statement: What is the TLS certificate renewal strategy?
+      source: devops-engineer
+      owner: operations
+  omitted_context:
+  - source: Frontend component details
+    reason: background_only
+  - source: Detailed file listings beyond key configs
+    reason: background_only
+  - source: Robot hardware code
+    reason: background_only
+  - source: Database schema details
+    reason: background_only
+  compression_rationale:
+    method: Top-down structural compression. Retained decisions directly impacting
+      operational design (module boundaries, deployment platform, event bus). Retained
+      constraints limiting ops options (team size, Docker Compose, missing directories).
+      Omitted implementation details belonging to other roles.
+    loss_notes:
+    - Per-module entity details not retained.
+    - Robot-side service details not explored.
+    - Frontend build specifics not retained.
+  quality_checks:
+  - name: Environment boundaries named and documented
+    passed: true
+  - name: Verification path covers full request chain
+    passed: true
+  - name: No secrets embedded in ops plan or compose files
+    passed: true
+  - name: Rollback procedure defined with decision matrix
+    passed: true
+  - name: Resource limits assigned to all services
+    passed: true
+  - name: ADR module structure reflected in routing plan
+    passed: true
+  - name: Makefile targets are self-documenting
+    passed: true
+  - name: CI pipeline changes are incremental
+    passed: true

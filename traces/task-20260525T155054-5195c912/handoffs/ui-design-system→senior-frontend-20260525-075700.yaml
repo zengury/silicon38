@@ -1,0 +1,5 @@
+from: ui-design-system
+to: senior-frontend
+relation_type: constrains
+timestamp: '2026-05-25T07:57:00.180461+00:00'
+focus: 8 component specs + tokens → frontend shell implementation

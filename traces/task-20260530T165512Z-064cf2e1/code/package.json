@@ -1,0 +1,39 @@
+{
+  "name": "robot-fleet-monitor",
+  "version": "1.0.0",
+  "description": "Robot Fleet Operations Monitoring Dashboard - Backend",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "test": "jest --forceExit --detectOpenHandles",
+    "test:watch": "jest --watch",
+    "migrate": "ts-node src/db/migrate.ts"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.16.0",
+    "pg": "^8.11.3",
+    "redis": "^4.6.12",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "zod": "^3.22.4",
+    "uuid": "^9.0.0",
+    "puppeteer": "^21.6.1",
+    "exceljs": "^4.4.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/ws": "^8.5.10",
+    "@types/pg": "^8.10.9",
+    "@types/cors": "^2.8.17",
+    "@types/uuid": "^9.0.7",
+    "@types/node": "^20.10.0",
+    "@types/jest": "^29.5.11",
+    "typescript": "^5.3.2",
+    "ts-node": "^10.9.2",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1"
+  }
+}

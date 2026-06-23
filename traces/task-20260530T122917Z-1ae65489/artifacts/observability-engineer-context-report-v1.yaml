@@ -1,0 +1,18 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/senior-engineer→observability-engineer-20260530-124144.yaml
+      context_digest: 9c5fed8ad634f9e1616fbb5a853d1e4a7a8f7c202bd1eb58e9377957509f4f74
+  retained_context:
+    decisions: []
+    constraints: []
+    assumptions: []
+    open_questions: []
+  omitted_context: []
+  compression_rationale:
+    method: semantic_node_executor_normalized
+    loss_notes: []
+  quality_checks:
+  - name: semantic_executor_schema_normalized
+    passed: true

@@ -1,0 +1,36 @@
+task_id: task-hrbp-test
+timestamp_start: '2026-05-30T12:09:00.702755+00:00'
+timestamp_end: null
+task_summary: hrbp test
+task_type: bug_fix
+entry_nodes:
+- triage
+terminal_nodes:
+- triage
+outcome: null
+context_block:
+  ref: org/CONTEXT_BLOCK.md
+  sha256: d82dc247c04f8cd2e797dd394ecd8d9cd927f1e194f2800d4fcf1e2be41f2a66
+artifact_index:
+- artifact_id: triage-analysis-v1
+  type: analysis
+  producer: triage
+  version: 1
+  status: draft
+  path: artifacts/triage-analysis-v1.md
+  ref: artifacts/triage-analysis-v1.md
+  provenance_ref: artifacts/triage-analysis-v1.provenance.yaml
+context_report_index:
+- role: triage
+  ref: artifacts/triage-context-report-v1.yaml
+  digest: 6469fc75978e96cf952c94dc9e1fa64e4f6bd06a2e4dd41ff068bc8ac1dc3e7f
+  status: valid
+handoff_trail:
+- ref: handoffs/triage→diagnose-20260530-120909.yaml
+  from: triage
+  to: diagnose
+  relation_type: triggers
+  timestamp: '2026-05-30T12:09:09.831361+00:00'
+  artifact_refs:
+  - triage-analysis-v1
+  context_block_digest: 14a2752ead51d246ec98ced7f8d64abbf9bf2e6843f034a2990a1ae8d3dc2afe

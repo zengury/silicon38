@@ -1,0 +1,15 @@
+task_id: task-20260606T210735-11f41dce
+task_status: initializing
+node_states: {}
+artifact_registry: {}
+context_compression_reports: {}
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: false
+  all_loops_resolved: false
+  all_blocking_evals_resolved: false
+  all_joins_passed: false
+  all_artifacts_resolved: false
+  no_undecided_activation_candidates: false
+  settled_at: null

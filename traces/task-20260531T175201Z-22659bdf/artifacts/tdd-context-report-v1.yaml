@@ -1,0 +1,86 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/senior-engineer→tdd-20260531-180153.yaml
+      context_digest: ca250eb8f9853483fdd22e3ff8cd1781901536d8a0fc99a83f99df546da14f9a
+  retained_context:
+    decisions:
+    - statement: 'Implemented 6 issues in dependency order: 1 (static analysis) →
+        2 (shared utilities) → 3 (feature structure) → 4 (JSDoc) → 5 (tests) → 6 (incremental
+        pattern)'
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Used backward-compatible shim pattern for feature migration
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: operation() context manager instruments but does not suppress exceptions
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must not introduce new features
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must preserve existing behavior
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Codebase is at /Users/ZQ/roboease
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Write scope limited to product_code_scoped (senior-engineer) and
+        tests_and_trace_artifacts (tdd)
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: pnpm workspace hoists eslint plugins to root node_modules
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: jscpd will be installed via pnpm install before running detect-duplicates
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Robot feature colocation pattern applies equally to task, agent,
+        synergy modules
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Should admin/portal eslint.config.ts be updated to use the shared
+        base config?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Which module should be refactored next using the feature colocation
+        pattern?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Should operation() context manager be retroactively applied to existing
+        services?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed per-service analysis of try/except patterns in all 25+ backend
+      services
+    reason: background_only
+  - source: Robot module Vue views migration into features/robot/views/
+    reason: background_only
+  - source: Full jscpd duplicate detection report
+    reason: background_only
+  compression_rationale:
+    method: Retained all architectural decisions and constraints as they form the
+      contract for downstream nodes. Omitted tactical details recoverable from implementation
+      artifact.
+    loss_notes:
+    - No loss of critical information
+  quality_checks:
+  - name: All 6 issues have acceptance criteria verified
+    passed: true
+  - name: Test suite passes (129/129)
+    passed: true
+  - name: No breaking changes to existing imports
+    passed: true
+  - name: Backward-compatible shims in place
+    passed: true
+  - name: Dependency graph respected
+    passed: true
+  - name: Test names are behavioral specifications
+    passed: true
+  - name: Tests use public interfaces only
+    passed: true

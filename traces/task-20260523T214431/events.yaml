@@ -1,0 +1,7 @@
+task_id: task-20260523T214431
+events:
+  - event_id: ev-001
+    timestamp: "2026-05-23T21:44:31+08:00"
+    event_type: task_started
+    payload:
+      detail: "Develop iOS mobile client for strategy-canvas, distributed via TestFlight"

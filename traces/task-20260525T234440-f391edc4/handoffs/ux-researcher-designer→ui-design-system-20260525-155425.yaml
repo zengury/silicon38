@@ -1,0 +1,5 @@
+from: ux-researcher-designer
+to: ui-design-system
+relation_type: supports
+timestamp: '2026-05-25T15:54:25.904914+00:00'
+focus: 17 个核心组件需要设计系统产出：设计 token、组件规格、暗色/亮色主题、响应式断点

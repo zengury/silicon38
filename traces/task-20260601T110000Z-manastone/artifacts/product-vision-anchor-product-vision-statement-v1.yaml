@@ -1,0 +1,11 @@
+vision_statement: "A robotics engineer who has just purchased a Unitree G1 or Agibot X2 uses Manastone to install and control their robot via natural language in under 10 minutes, so they feel confident and in control, unlike the vendor's own SDK which requires hours of manual setup and exposes a confusing brand dependency."
+target_user: "Robotics engineer who has just purchased a Unitree G1 or Agibot X2 robot"
+primary_job: "Install and control their robot via natural language in under 10 minutes"
+emotional_promise: "Confident and in control"
+beating_alternative: "Vendor's own SDK which requires hours of manual setup and exposes a confusing brand dependency"
+out_of_scope_forever: "Manastone will never build or sell robot hardware, nor provide a simulation environment for non-Manastone robots."
+vision_test: |
+  A downstream node can test its output by asking:
+  "Does my output help a robotics engineer who just purchased a Unitree G1 or Agibot X2 install and control their robot via natural language in under 10 minutes?
+   Does it reinforce the feeling of being confident and in control?
+   Does it avoid building robot hardware or providing simulation for non-Manastone robots?"

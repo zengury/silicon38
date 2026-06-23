@@ -1,0 +1,35 @@
+context_compression_report:
+  input_scope:
+    artifacts_read:
+      - artifact_id: to-prd-prd-v1
+        used: true
+        why: "trace analysis — PRD quality and task_type classification"
+      - artifact_id: architect-architecture-v1
+        used: true
+        why: "trace analysis — architecture artifact completeness"
+      - artifact_id: ux-researcher-designer-ux-spec-v1
+        used: true
+        why: "trace analysis — UX spec quality"
+    handoffs_read: []
+  retained_context:
+    decisions:
+      - statement: "task_type classification bottleneck identified as structural pattern (6 aggregate tasks)"
+        source: "graph-topologist"
+        impact: "future feature-type tasks will continue to gate out Layer 2/3 nodes unless classification is fixed"
+      - statement: "Runtime manual drive is a viable escape hatch but bypasses evaluator nodes"
+        source: "graph-topologist"
+        impact: "manual drive should be reserved for design-phase tasks where user review substitutes for evaluators"
+    constraints: []
+    assumptions: []
+    open_questions: []
+  omitted_context:
+    - source: "Detailed cross-task trace comparison"
+      reason: background_only
+  compression_rationale:
+    method: "Extracted structural findings and proposed changes from graph topology analysis."
+    loss_notes: []
+  quality_checks:
+    - name: "Trace evidence cited for each finding"
+      passed: true
+    - name: "Proposed changes are actionable"
+      passed: true

@@ -1,0 +1,94 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→security-engineer-20260530-100711.yaml
+      context_digest: 53c158203fa92b7df60eaef17469b47adf6334480fe3313f232c1ab2b855a8f5
+  retained_context:
+    decisions:
+    - statement: Adopt Modular Monolith architecture
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Enforce strict module boundaries via package conventions
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Keep existing technology stack (FastAPI, Vue 3, MySQL, Redis, MQTT)
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: JWT with HS256 for authentication
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: MQTT topics structured as {tenant_id}/{robot_id}/{command|telemetry|status}
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Legacy config modules need migration
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Backward-compatibility re-exports must be maintained during transition
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Team size limits ability to manage microservices complexity
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Only file listing and key files were read; no full code traversal
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: The codebase is a multi-tenant robot management platform
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: MQTT is used for robot communication
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: JWT is used for authentication
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Team size is small (<10 developers)
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Domain boundaries are still emerging
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What is the exact database schema?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How are MQTT topics structured?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the CI/CD pipeline?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the testing strategy?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file contents beyond key files
+    reason: background_only
+  - source: Historical artifact contents (release plans, etc.)
+    reason: background_only
+  - source: Frontend component hierarchy
+    reason: background_only
+  - source: Specific implementation details of services layer
+    reason: background_only
+  compression_rationale:
+    method: Focused on security-relevant decisions and constraints from the architecture
+      handoff. Omitted frontend details and historical artifacts as they are not security-relevant.
+    loss_notes:
+    - Frontend component tree not mapped
+    - Backend service layer internal structure not detailed
+    - Database schema not extracted
+    - MQTT topic structure not documented
+  quality_checks:
+  - name: Every finding states vulnerability class, location, exploitability condition,
+      and remediation
+    passed: true
+  - name: Findings ranked by exploitability
+    passed: true
+  - name: No false positives reported
+    passed: true
+  - name: Dependency audit covers transitive dependencies
+    passed: false
+  - name: No 'you should consider' findings
+    passed: true

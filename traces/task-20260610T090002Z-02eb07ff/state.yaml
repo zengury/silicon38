@@ -1,0 +1,177 @@
+task_id: task-20260610T090002Z-02eb07ff
+task_status: delivered
+node_states:
+  zoom-out:
+    status: completed
+    updated_at: '2026-06-10T09:00:19.553813+00:00'
+    activated_at: '2026-06-10T09:00:19.429362+00:00'
+    completed_at: '2026-06-10T09:00:19.553813+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - zoom-out-context-map-v1
+    blocked_reason: null
+    entry_node: true
+  triage:
+    status: completed
+    updated_at: '2026-06-10T09:00:31.939471+00:00'
+    activated_at: '2026-06-10T09:00:31.762152+00:00'
+    completed_at: '2026-06-10T09:00:31.939471+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - triage-analysis-v1
+    blocked_reason: null
+  architect:
+    status: completed
+    updated_at: '2026-06-10T09:00:44.493664+00:00'
+    activated_at: '2026-06-10T09:00:44.293430+00:00'
+    completed_at: '2026-06-10T09:00:44.493664+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - architect-architecture-v1
+    blocked_reason: null
+  improve-codebase-architecture:
+    status: completed
+    updated_at: '2026-06-10T09:05:33.351757+00:00'
+    activated_at: '2026-06-10T09:05:33.118831+00:00'
+    completed_at: '2026-06-10T09:05:33.351757+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - improve-codebase-architecture-architecture-improvement-v1
+    blocked_reason: null
+  to-prd:
+    status: completed
+    updated_at: '2026-06-10T09:05:53.479037+00:00'
+    activated_at: '2026-06-10T09:05:53.207583+00:00'
+    completed_at: '2026-06-10T09:05:53.479037+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - to-prd-prd-v1
+    blocked_reason: null
+  graph-topologist:
+    status: completed
+    updated_at: '2026-06-10T09:10:10.785745+00:00'
+    activated_at: '2026-06-10T09:10:10.440703+00:00'
+    completed_at: '2026-06-10T09:10:10.785745+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - graph-topologist-topology-review-v1
+    blocked_reason: null
+  hrbp:
+    status: completed
+    updated_at: '2026-06-10T09:10:11.446782+00:00'
+    activated_at: '2026-06-10T09:10:11.087423+00:00'
+    completed_at: '2026-06-10T09:10:11.446782+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - hrbp-talent-evaluation-v1
+    blocked_reason: null
+artifact_registry:
+  zoom-out-context-map-v1:
+    type: context-map
+    producer: zoom-out
+    version: 1
+    status: approved
+    superseded_by: null
+    content_ref: artifacts/zoom-out-context-map-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-10T09:00:19.463479+00:00'
+  triage-analysis-v1:
+    type: analysis
+    producer: triage
+    version: 1
+    status: approved
+    superseded_by: null
+    content_ref: artifacts/triage-analysis-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-10T09:00:31.800867+00:00'
+  architect-architecture-v1:
+    type: architecture
+    producer: architect
+    version: 1
+    status: approved
+    superseded_by: null
+    content_ref: artifacts/architect-architecture-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-10T09:00:44.338992+00:00'
+  improve-codebase-architecture-architecture-improvement-v1:
+    type: architecture-improvement
+    producer: improve-codebase-architecture
+    version: 1
+    status: approved
+    superseded_by: null
+    content_ref: artifacts/improve-codebase-architecture-architecture-improvement-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-10T09:05:33.172955+00:00'
+  to-prd-prd-v1:
+    type: prd
+    producer: to-prd
+    version: 1
+    status: approved
+    superseded_by: null
+    content_ref: artifacts/to-prd-prd-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-10T09:05:53.274147+00:00'
+  graph-topologist-topology-review-v1:
+    type: topology-review
+    producer: graph-topologist
+    version: 1
+    status: approved
+    superseded_by: null
+    content_ref: artifacts/graph-topologist-topology-review-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-10T09:10:10.524892+00:00'
+  hrbp-talent-evaluation-v1:
+    type: talent-evaluation
+    producer: hrbp
+    version: 1
+    status: approved
+    superseded_by: null
+    content_ref: artifacts/hrbp-talent-evaluation-v1.md
+    consumers_pending: []
+    registered_at: '2026-06-10T09:10:11.182872+00:00'
+context_compression_reports:
+  zoom-out:
+    ref: artifacts/zoom-out-context-report-v1.yaml
+    registered_at: '2026-06-10T09:00:19.506306+00:00'
+    digest: 884fbf1c39eaef8f5e353115a94418a672796972fa9afaef27efe4aef8832a02
+    status: valid
+  triage:
+    ref: artifacts/triage-context-report-v1.yaml
+    registered_at: '2026-06-10T09:00:31.886133+00:00'
+    digest: bfea9f80614b41d27258f6bc02ece231440969966a74c935b968ce38a3c20190
+    status: valid
+  architect:
+    ref: artifacts/architect-context-report-v1.yaml
+    registered_at: '2026-06-10T09:00:44.430189+00:00'
+    digest: 9a8b1c96fbda7522929ed7bbf340dacaf348db44b18733b5abbac40ad72749cb
+    status: valid
+  improve-codebase-architecture:
+    ref: artifacts/improve-codebase-architecture-context-report-v1.yaml
+    registered_at: '2026-06-10T09:05:33.277172+00:00'
+    digest: 995b7b3a071e9d864a1a4492305db892d07e0b227f8c0356c53540734e955c95
+    status: valid
+  to-prd:
+    ref: artifacts/to-prd-context-report-v1.yaml
+    registered_at: '2026-06-10T09:05:53.394401+00:00'
+    digest: e61d7586ed7766259dd7f18758c83025a156f4ff0763ecc61097a7ab1c02d250
+    status: valid
+  graph-topologist:
+    ref: artifacts/graph-topologist-context-report-v1.yaml
+    registered_at: '2026-06-10T09:10:10.683678+00:00'
+    digest: 5183291f30ccc763760edfae75838239f00b2e0d5125f863fd47220769514fd8
+    status: valid
+  hrbp:
+    ref: artifacts/hrbp-context-report-v1.yaml
+    registered_at: '2026-06-10T09:10:11.346894+00:00'
+    digest: 6d1aad28035e522cea701346dd840415dd45c4f22b06684a785e2a57820f763b
+    status: valid
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: true
+  all_loops_resolved: true
+  all_blocking_evals_resolved: true
+  all_joins_passed: true
+  all_artifacts_resolved: true
+  no_undecided_activation_candidates: false
+timestamp_end: '2026-06-10T09:10:10.318656+00:00'

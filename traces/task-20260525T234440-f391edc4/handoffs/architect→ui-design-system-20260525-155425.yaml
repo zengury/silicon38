@@ -1,0 +1,5 @@
+from: architect
+to: ui-design-system
+relation_type: supports
+timestamp: '2026-05-25T15:54:25.937522+00:00'
+focus: 架构决定了前端组件可用的数据形状和实时通道，设计系统需对齐

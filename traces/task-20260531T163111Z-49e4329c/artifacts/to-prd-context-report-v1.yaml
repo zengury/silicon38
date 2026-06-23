@@ -1,0 +1,76 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/triage→to-prd-20260531-163131.yaml
+      context_digest: 9650975bd32d4b64fa1e9cb9d885c4938489a69724069128ad4ab536c1633428
+  retained_context:
+    decisions:
+    - statement: Task is enhancement/refactoring, not bug.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: 'Recommended agents: code_analyzer, architect, quality_engineer.'
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Feature-based module structure.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Use Strangler Fig pattern for gradual migration.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Extract deep modules for complex logic.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: No code changes during triage.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Must respect ADRs and out-of-scope knowledge base.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: No new features.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Refactoring must not break existing functionality.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Codebase is primarily one language (to be confirmed).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: User wants actionable recommendations, not implementation.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Existing tests may exist (to be confirmed).
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Primary language?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Existing tests?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Architectural constraints?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Desired module structure?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed code analysis (not yet performed).
+    reason: background_only
+  - source: Specific duplicate code locations (unknown).
+    reason: background_only
+  compression_rationale:
+    method: Focused on triage output and blocking questions; omitted speculative details.
+    loss_notes: []
+  quality_checks:
+  - name: problem_statement_falsifiable
+    passed: true
+  - name: scope_boundary_present
+    passed: true
+  - name: recommended_agents_derived_from_problem
+    passed: true
+  - name: blocking_questions_specific
+    passed: true

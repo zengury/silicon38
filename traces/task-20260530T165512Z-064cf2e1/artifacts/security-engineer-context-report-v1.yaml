@@ -1,0 +1,95 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/devops-engineer→security-engineer-20260530-171347.yaml
+      context_digest: eeefd9624ec434e585cc5139627b20dec73301badf9fd1cdf9c68819f3a5366b
+  retained_context:
+    decisions:
+    - statement: Backend Node.js + Express + WebSocket + PostgreSQL + Redis
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Frontend React + TypeScript + ECharts + react-grid-layout + react-i18next
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Export via Puppeteer and exceljs on server
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Data retention 30 days
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Alert engine rule-based with configurable thresholds
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Collaboration via WebSocket
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Adapter pattern for data normalization
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Initial support for 10 robots
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Data retention 30 days
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Support dark/light theme, multi-language, draggable layout
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Data format unification required
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Robots report via HTTP/WebSocket
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Ops team uses desktop browser
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Alert notification only in-app initially
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: Alert notification channels beyond in-app?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Role-based access control needed?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Maximum robot scale?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Cloud provider and region?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: Monitoring stack choice (Prometheus/Grafana vs cloud-native)?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Caveman analysis (irrelevant)
+    reason: background_only
+  - source: Issue decomposition (background only)
+    reason: background_only
+  - source: UX specifications (no security impact)
+    reason: background_only
+  - source: Specific file paths (may change)
+    reason: background_only
+  compression_rationale:
+    method: Retained all architecture decisions and constraints that directly impact
+      security posture (authentication, data flow, dependencies). Omitted non-security-relevant
+      details like UX specs and issue decomposition.
+    loss_notes: []
+  quality_checks:
+  - name: All retained decisions cite a source artifact or handoff
+    passed: true
+  - name: No hard constraint omitted
+    passed: true
+  - name: All environment variables mapped to secrets where applicable
+    passed: true
+  - name: Every Dockerfile matches an architect-level service decision
+    passed: true
+  - name: Rollback procedure defined and testable
+    passed: true
+  - name: No secrets embedded in any configuration file
+    passed: true

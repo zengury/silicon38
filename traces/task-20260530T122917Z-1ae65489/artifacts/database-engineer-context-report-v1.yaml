@@ -1,0 +1,126 @@
+context_compression_report:
+  input_scope:
+    artifacts_read: []
+    handoffs_read:
+    - ref: handoffs/architect→database-engineer-20260530-123008.yaml
+      context_digest: e04ff25a72722f1aa62dddc71b40af3e8defbc9929241eed9420cb6229e6d209
+  retained_context:
+    decisions:
+    - statement: Maintain modular monolith with clear layer boundaries; backend remains
+        single deployable unit with shared database
+      source: architect
+      impact: Schema design must consider eventual service extraction; avoid cross-domain
+        coupling at DB level
+    - statement: Use SQLModel for ORM; continue existing pattern
+      source: architect
+      impact: Entity definitions are SQLModel table=True classes; no switch to raw
+        SQLAlchemy
+    - statement: Separate domain logic from infrastructure; business logic in domain/,
+        DB in infrastructure/
+      source: architect
+      impact: Entities live in infrastructure/db/; services import from there via
+        db/database.py re-export
+    - statement: Preserve VARCHAR PKs with Snowflake IDs for Phase 1; defer BIGINT
+        migration to Phase 2
+      source: database-engineer
+      impact: Immediate refactor adds constraints and indexes without changing PK
+        types; coordinated migration later
+    - statement: FK constraints with ON DELETE CASCADE for child/junction tables,
+        SET NULL for optional parents, RESTRICT for operational tables
+      source: database-engineer
+      impact: Referential integrity enforced at DB level; orphan prevention; safe
+        deletion semantics
+    constraints:
+    - statement: 'MySQL 8.0 only — no PostgreSQL migration (confirmed by docker-compose:
+        mysql:8.0 image)'
+      source: docker/edge/docker-compose.yaml
+      impact: All DDL is MySQL 8.0 syntax; utf8mb4_0900_ai_ci collation; JSON type;
+        online DDL features
+    - statement: Team size <10 — migrations must be simple, reviewable, reversible
+      source: architect
+      impact: Raw SQL files + Python runner instead of Alembic; manual review possible
+    - statement: No Alembic in requirements.txt — migration runner must be self-contained
+      source: backend/requirements.txt
+      impact: runner.py uses only pymysql (already in requirements.txt); 185 lines
+        of pure Python
+    - statement: Snowflake ID generation embedded in all service create() methods
+        via common.IdUtil.get_next_id()
+      source: backend/common/__init__.py, all services
+      impact: Cannot change PK type from VARCHAR to BIGINT without coordinated service
+        refactor
+    - statement: Shared database requires careful schema management — no per-service
+        databases
+      source: architect
+      impact: All entities share one MySQL database; naming conventions must prevent
+        collisions
+    assumptions:
+    - statement: The legacy menu table (BIGINT PK) is read-only reference data; new
+        writes go to sys_menu (VARCHAR PK)
+      source: database-engineer
+      risk: If menu table is still actively written, both must support writes
+    - statement: Production data volume is small enough (<100K rows per table) that
+        index creation is near-instant
+      source: database-engineer
+      risk: If tables have millions of rows, index creation needs scheduling during
+        maintenance window
+    - statement: Snowflake ID generator is configured with worker_id=0, datacenter_id=0
+        (single-node deployment)
+      source: database-engineer
+      risk: If multiple worker IDs exist, ID collision is impossible; otherwise consider
+        sharding
+    open_questions:
+    - statement: What is the current production data volume per table? Needed for
+        precise EXPLAIN cost estimates.
+      source: database-engineer
+      owner: runtime
+    - statement: How many Snowflake worker IDs are configured? Affects ID collision
+        risk.
+      source: database-engineer
+      owner: runtime
+    - statement: Are there application-level uniqueness checks that duplicate what
+        FK constraints should enforce?
+      source: database-engineer
+      owner: runtime
+    - statement: Does the existing synergy_info table have data? Only synergy2_info
+        is actively used in service code.
+      source: database-engineer
+      owner: runtime
+    - statement: Is the legacy menu table still actively written to? Or is it read-only
+        from the initial dump?
+      source: database-engineer
+      owner: runtime
+  omitted_context:
+  - source: Detailed service code implementation (permission_service, menuService,
+      dictService, etc.)
+    reason: background_only
+  - source: Frontend mock data (admin mock files) — used only to confirm table existence,
+      not for schema design
+    reason: background_only
+  - source: Dify API integration details (token management, endpoint URLs)
+    reason: background_only
+  - source: MQTT topic configurations and message formats
+    reason: background_only
+  - source: Video server implementation (video_server.py)
+    reason: background_only
+  compression_rationale:
+    method: 'Entity-centric extraction: read all service imports to build complete
+      entity inventory; cross-referenced with legacy schema dumps (raas.sql) to identify
+      missing tables and structural issues; extracted query patterns from service
+      Session usage to justify each index'
+    loss_notes:
+    - Omitting individual SQL query implementations from each service — summarized
+      into index justification patterns
+    - Omitting frontend mock data details — only table names verified
+    - Omitting Docker environment variable lists beyond DATABASE_URL and DB pool config
+    - Omitting Dify API integration details — external service, not schema-relevant
+  quality_checks:
+  - name: All 39 entity names from db/database.py re-exports accounted for
+    passed: true
+  - name: Every index references a specific query pattern from service code
+    passed: true
+  - name: All FK constraints reference existing tables with correct column names
+    passed: true
+  - name: Migration down scripts reverse the order of up scripts
+    passed: true
+  - name: No nullable column without documented reason
+    passed: true

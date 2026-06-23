@@ -1,0 +1,8 @@
+task_id: task-20260606T210735-11f41dce
+events:
+- event_id: ev-001
+  timestamp: '2026-06-06T13:07:36.127731+00:00'
+  event_type: task_started
+  payload:
+    detail: 'bookshelf backend implementation: Node.js/Express/TypeScript API with
+      PostgreSQL, auth, shelves, recognition pipeline, books, subscriptions'

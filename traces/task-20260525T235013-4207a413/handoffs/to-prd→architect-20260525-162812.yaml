@@ -1,0 +1,7 @@
+from: to-prd
+to: architect
+relation_type: supports
+timestamp: '2026-05-25T16:28:12.054003+00:00'
+focus: Design system per PRD; honor FR-001..009 latencies; resolve the 3 open questions.
+artifact_refs:
+- to-prd-prd-v1

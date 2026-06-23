@@ -1,0 +1,8 @@
+artifact_id: scope-prosecutor-scope-verdict-v1
+producer: scope-prosecutor
+task_id: task-20260601T110000Z-manastone
+version: 1
+timestamp: '2026-06-01T10:59:49.062246+00:00'
+input_artifacts: []
+quality_checks: []
+status: draft

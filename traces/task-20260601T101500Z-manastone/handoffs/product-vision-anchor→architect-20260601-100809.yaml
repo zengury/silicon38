@@ -1,0 +1,105 @@
+from: product-vision-anchor
+to: architect
+relation_type: thompson_sample
+timestamp: '2026-06-01T10:08:09.959885+00:00'
+focus: Thompson sample α=153.2 β=2.8 [validated:constrains]
+artifact_refs: &id001
+- product-vision-anchor-product-vision-statement-v1
+deliverable:
+  producer: product-vision-anchor
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: product-vision-anchor-product-vision-statement-v1
+    producer: product-vision-anchor
+    type: product-vision-statement
+    version: 1
+    status: draft
+    content_ref: artifacts/product-vision-anchor-product-vision-statement-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260601T101500Z-manastone
+  from: product-vision-anchor
+  to: architect
+  relation_type: thompson_sample
+  focus: Thompson sample α=153.2 β=2.8 [validated:constrains]
+  source:
+    producer_role: product-vision-anchor
+    context_compression_report_ref: artifacts/product-vision-anchor-context-report-v1.yaml
+    input_handoffs:
+    - ref: handoffs/scope-prosecutor→product-vision-anchor-20260601-100802.yaml
+      context_digest: c763629162dbe4aec96e3279672e1f52d2cfc25ca62a4779cf8fd9170fb5d41f
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: Focus on install experience and brand independence as core v1 scope.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    - statement: Defer broad multi-level functionality audit to post-v1.
+      source: semantic_node_executor
+      impact: Affects downstream node execution.
+    constraints:
+    - statement: Must hide Pi brand from end users.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Install must include all dependencies (Pi coding agent) automatically.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    - statement: Environment is noisy; work must be low-profile and precise.
+      source: semantic_node_executor
+      impact: Constrains downstream node execution.
+    assumptions:
+    - statement: Pi coding agent is a required dependency for Manastone's agent capabilities.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Users are new to Manastone and need clear guidance.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    - statement: Brand independence is achievable without breaking upstream compatibility.
+      source: semantic_node_executor
+      risk: Assumption may need review.
+    open_questions:
+    - statement: What specific Pi branding currently leaks into the user experience?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: What is the exact install failure rate or confusion point for new
+        users?
+      source: semantic_node_executor
+      owner: runtime
+    - statement: How does the OpenClaw-Pi relationship model apply technically?
+      source: semantic_node_executor
+      owner: runtime
+  omitted_context:
+  - source: Detailed file listings and code snippets not relevant to vision synthesis.
+    reason: background_only
+  - source: Prior analysis or client rationale beyond scope decisions.
+    reason: background_only
+  compression_rationale:
+    method: Extracted only the task requirements, scope verdict, and harness constraints;
+      omitted all workspace file details and prior analysis to maintain focus on vision
+      synthesis.
+    loss_notes: []
+  quality_checks:
+  - name: vision_falsifiable
+    passed: true
+  - name: out_of_scope_defined
+    passed: true
+  - name: target_user_specific
+    passed: true
+  - name: alternative_named
+    passed: true
+  - name: no_abstract_filler
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs:
+  - scope-prosecutor-scope-verdict-v1
+  previous_blocks:
+  - ref: handoffs/scope-prosecutor→product-vision-anchor-20260601-100802.yaml
+    from: scope-prosecutor
+    to: product-vision-anchor
+    relation_type: thompson_sample
+    focus: Thompson sample α=153.2 β=2.8 [validated:constrains]
+    context_digest: c763629162dbe4aec96e3279672e1f52d2cfc25ca62a4779cf8fd9170fb5d41f
+    deliverable_artifact_refs:
+    - scope-prosecutor-scope-verdict-v1
+  context_digest: 3125bcf2dc44c45af4da6422585e1d1c9e20a44e30ab8dc26e4fcf557db256f7
+soul_ref: org/soul.md

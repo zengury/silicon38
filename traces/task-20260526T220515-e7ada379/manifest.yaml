@@ -1,0 +1,124 @@
+task_id: task-20260526T220515-e7ada379
+timestamp_start: '2026-05-26T14:05:18.986322+00:00'
+timestamp_end: '2026-05-26T14:24:33.138809+00:00'
+task_summary: Robot fleet monitoring dashboard — architecture, UI design, and demo
+task_type: design
+entry_nodes:
+- to-prd
+terminal_nodes:
+- to-prd
+- to-issues
+- architect
+- senior-engineer
+- graph-topologist
+outcome:
+  status: success
+  decoder_notes: 'FleetOps Dashboard demo delivered: React+TypeScript SPA with ECharts
+    visualizations, 20-robot simulator, alert engine with 8 rules, per-robot config
+    panel, comment+@mention collaboration, PDF/Excel export, dark/light theme, zh-CN/en-US
+    i18n. Build passing. Run: cd demo/fleetops-dashboard && npm run dev'
+  quality_signal:
+    source: runtime_decoder
+    value: 1.0
+    detail: 'FleetOps Dashboard demo delivered: React+TypeScript SPA with ECharts
+      visualizations, 20-robot simulator, alert engine with 8 rules, per-robot config
+      panel, comment+@mention collaboration, PDF/Excel export, dark/light theme, zh-CN/en-US
+      i18n. Build passing. Run: cd demo/fleetops-dashboard && npm run dev'
+context_block:
+  ref: org/CONTEXT_BLOCK.md
+  sha256: c880cd1b12fb9109ef69c3c7f2a6ac82bc66d4305cad0589a0c7dcbf87aea4f5
+artifact_index:
+- artifact_id: to-prd-output-v1
+  type: output
+  producer: to-prd
+  version: 1
+  status: approved
+  path: artifacts/to-prd-output-v1.md
+  ref: artifacts/to-prd-output-v1.md
+  provenance_ref: artifacts/to-prd-output-v1.provenance.yaml
+- artifact_id: to-issues-output-v1
+  type: output
+  producer: to-issues
+  version: 1
+  status: approved
+  path: artifacts/to-issues-output-v1.md
+  ref: artifacts/to-issues-output-v1.md
+  provenance_ref: artifacts/to-issues-output-v1.provenance.yaml
+- artifact_id: architect-output-v1
+  type: output
+  producer: architect
+  version: 1
+  status: approved
+  path: artifacts/architect-output-v1.md
+  ref: artifacts/architect-output-v1.md
+  provenance_ref: artifacts/architect-output-v1.provenance.yaml
+- artifact_id: senior-engineer-output-v1
+  type: output
+  producer: senior-engineer
+  version: 1
+  status: approved
+  path: artifacts/senior-engineer-output-v1.md
+  ref: artifacts/senior-engineer-output-v1.md
+  provenance_ref: artifacts/senior-engineer-output-v1.provenance.yaml
+- artifact_id: graph-topologist-retrospective-v1
+  type: retrospective
+  producer: graph-topologist
+  version: 1
+  status: approved
+  path: artifacts/graph-topologist-control-loop-hardening-record-v1.md
+  ref: artifacts/graph-topologist-control-loop-hardening-record-v1.md
+  provenance_ref: artifacts/graph-topologist-retrospective-v1.provenance.yaml
+context_report_index:
+- role: to-prd
+  ref: artifacts/to-prd-context-report-v1.yaml
+  digest: be4dc66abd612066460c55b2a2eab7bc17e7a4614fa6ad42beeeee16066d047b
+  status: valid
+- role: to-issues
+  ref: artifacts/to-issues-context-report-v1.yaml
+  digest: 5e1be27ad4c37dc9e8fe4db00e84acc208531cbdcbba19f6cd227c2ada02f997
+  status: valid
+- role: architect
+  ref: artifacts/architect-context-report-v1.yaml
+  digest: 18aa0672d4c273d5aa636a9aa149209669d50cd30dfe716d097f7522b589a753
+  status: valid
+- role: senior-engineer
+  ref: artifacts/senior-engineer-context-report-v1.yaml
+  digest: e9721663bb8bc19506efeb8a1b41b7594b66c956708a1c71fb8ad2829cc23b94
+  status: valid
+- role: graph-topologist
+  ref: artifacts/graph-topologist-context-report-v1.yaml
+  digest: f27150cf71ed676c5c1d5a0fe2b3d11aa07ca268f471c7e3525b2af3efa54626
+  status: valid
+handoff_trail:
+- ref: handoffs/to-prd→to-issues-20260526-140814.yaml
+  from: to-prd
+  to: to-issues
+  relation_type: triggers
+  timestamp: '2026-05-26T14:08:14.063296+00:00'
+  artifact_refs:
+  - to-prd-output-v1
+  context_block_digest: 1daa2366b67666858c38a18e9816c507e44cbd562fa8398fdd37b0d9f66ae48e
+- ref: handoffs/to-prd→architect-20260526-140814.yaml
+  from: to-prd
+  to: architect
+  relation_type: may_trigger
+  timestamp: '2026-05-26T14:08:14.179202+00:00'
+  artifact_refs:
+  - to-prd-output-v1
+  context_block_digest: 751b0f287e6b7cde82406cf75c37e150be6f19a4213c8513b1027f7d91198264
+- ref: handoffs/to-issues→senior-engineer-20260526-141342.yaml
+  from: to-issues
+  to: senior-engineer
+  relation_type: triggers
+  timestamp: '2026-05-26T14:13:42.871311+00:00'
+  artifact_refs:
+  - to-issues-output-v1
+  context_block_digest: 3bef104eba32bfcb3e47174ff760dbe65dfada6895e2127d9cf334c09af295ad
+- ref: handoffs/architect→senior-engineer-20260526-141342.yaml
+  from: architect
+  to: senior-engineer
+  relation_type: triggers
+  timestamp: '2026-05-26T14:13:43.007369+00:00'
+  artifact_refs:
+  - architect-output-v1
+  context_block_digest: 359387cdb3a97e196962b4a6cbc59649184edce11cd1161148b2709a3cda1b99

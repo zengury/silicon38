@@ -1,0 +1,7 @@
+from: to-prd
+to: ux-researcher-designer
+relation_type: supports
+timestamp: '2026-05-25T16:28:12.262354+00:00'
+focus: Interaction design for Triage Canvas + Alert Modal under <30s decision window.
+artifact_refs:
+- to-prd-prd-v1

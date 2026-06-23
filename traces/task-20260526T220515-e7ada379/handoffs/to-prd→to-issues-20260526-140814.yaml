@@ -1,0 +1,94 @@
+from: to-prd
+to: to-issues
+relation_type: triggers
+timestamp: '2026-05-26T14:08:14.063296+00:00'
+focus: 'Decompose fleet monitoring dashboard PRD into independently deliverable work
+  items: data adapter, real-time engine, alert engine, dashboard UI, history view,
+  config panel, collaboration, export, theming/l10n/layout'
+artifact_refs: &id001
+- to-prd-output-v1
+deliverable:
+  producer: to-prd
+  artifact_refs: *id001
+  artifacts:
+  - artifact_id: to-prd-output-v1
+    producer: to-prd
+    type: output
+    version: 1
+    status: draft
+    content_ref: artifacts/to-prd-output-v1.md
+context_block:
+  schema: silicon_org.context_chain.v1
+  task_id: task-20260526T220515-e7ada379
+  from: to-prd
+  to: to-issues
+  relation_type: triggers
+  focus: 'Decompose fleet monitoring dashboard PRD into independently deliverable
+    work items: data adapter, real-time engine, alert engine, dashboard UI, history
+    view, config panel, collaboration, export, theming/l10n/layout'
+  source:
+    producer_role: to-prd
+    context_compression_report_ref: artifacts/to-prd-context-report-v1.yaml
+    input_handoffs: []
+    input_artifacts: []
+  compressed_context:
+    decisions:
+    - statement: 定义 Canonical Model 统一异构机器人数据
+      source: 'user requirement #2: 数据格式不统一'
+      impact: 所有下游模块（UI、告警、历史、导出）都基于此模型构建
+    - statement: 采用 SPA + WebSocket 推送的实时架构
+      source: 'user requirement #1: 实时显示数据'
+      impact: 前端不需要轮询，后端负责数据归一化和推送
+    - statement: 告警引擎使用可配置规则 DSL
+      source: 'user requirement #6: 工程师可调整告警阈值'
+      impact: 告警引擎与 UI 解耦，规则持久化存储
+    - statement: 前端技术栈 React 18 + TypeScript + ECharts + Tailwind
+      source: 'user requirements #3 (多图表) + #9 (主题切换)'
+      impact: 图表库选型确定，布局和主题方案确定
+    constraints:
+    - statement: 系统只读监控，不包含机器人遥控
+      source: scope boundary decision
+      impact: 不需要双向通信，简化实时通道设计
+    - statement: 总览数据 1Hz、详情 5Hz 的更新频率
+      source: 实时性需求估算
+      impact: 约束 WebSocket 消息量和前端渲染帧率
+    - statement: 支持中/英双语
+      source: 'user requirement #9'
+      impact: 所有 UI 文案需通过 i18n 框架管理
+    assumptions:
+    - statement: 后端聚合服务已存在或可以独立构建
+      source: PRD 只定义前端和接口契约
+      risk: medium — 若后端也需要本团队构建，需增加架构师参与范围
+    - statement: 30 天历史数据可通过后端 API 拉取
+      source: 'user requirement #5'
+      risk: low — 时序数据查询是标准需求
+    - statement: 单团队使用，无复杂权限系统
+      source: Out of Scope 声明
+      risk: medium — 若客户后期要求多团队隔离，需要重构
+    open_questions:
+    - statement: 后端部署位置（边缘 vs 云端）
+      source: 架构未确定
+      owner: architect
+    - statement: 时序数据库选型
+      source: 历史数据存储需求
+      owner: architect / database-engineer
+    - statement: 地图服务选型
+      source: 地理位置展示需求
+      owner: architect
+  omitted_context: []
+  compression_rationale:
+    method: 首节点无上游上下文，只从用户需求直接提取决策和约束进行结构化
+    loss_notes: []
+  quality_checks:
+  - name: 所有 retained decisions 均有 source 和 impact
+    passed: true
+  - name: 所有 retained constraints 均有 source 和 impact
+    passed: true
+  - name: 所有 retained assumptions 均有 source 和 risk
+    passed: true
+  - name: 所有 open_questions 均有 source 和 owner
+    passed: true
+  producer_output_artifact_refs: *id001
+  inherited_artifact_refs: []
+  previous_blocks: []
+  context_digest: 1daa2366b67666858c38a18e9816c507e44cbd562fa8398fdd37b0d9f66ae48e

@@ -1,0 +1,176 @@
+task_id: task-20260526T220515-e7ada379
+task_status: delivered
+node_states:
+  to-prd:
+    status: completed
+    updated_at: '2026-05-26T14:07:13.413372+00:00'
+    activated_at: '2026-05-26T14:05:22.596097+00:00'
+    completed_at: '2026-05-26T14:07:13.413372+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - to-prd-output-v1
+    blocked_reason: null
+    entry_node: true
+  caveman:
+    status: skipped
+    updated_at: '2026-05-26T14:08:07.056071+00:00'
+    skip_reason: PRD already uses first-principles design (Canonical Model, Adapter
+      Pipeline); advisory evaluation adds iteration without justified benefit for
+      demo velocity
+  grill-me:
+    status: skipped
+    updated_at: '2026-05-26T14:08:07.107228+00:00'
+    skip_reason: Advisory evaluation deferred; stress-test more valuable after architect
+      produces design artifact
+  to-issues:
+    status: completed
+    updated_at: '2026-05-26T14:10:22.674181+00:00'
+    activated_at: '2026-05-26T14:08:16.933669+00:00'
+    completed_at: '2026-05-26T14:10:22.674181+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - to-issues-output-v1
+    blocked_reason: null
+  architect:
+    status: completed
+    updated_at: '2026-05-26T14:13:02.897313+00:00'
+    activated_at: '2026-05-26T14:08:17.039546+00:00'
+    completed_at: '2026-05-26T14:13:02.897313+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - architect-output-v1
+    blocked_reason: null
+  api-designer:
+    status: skipped
+    updated_at: '2026-05-26T14:13:42.570315+00:00'
+    skip_reason: ADR-004 already defines WebSocket message contract; no new REST API
+      to design for demo
+  database-engineer:
+    status: skipped
+    updated_at: '2026-05-26T14:13:42.628624+00:00'
+    skip_reason: Demo uses in-memory storage per ADR-008; no database schema needed
+  devops-engineer:
+    status: skipped
+    updated_at: '2026-05-26T14:13:42.685865+00:00'
+    skip_reason: Demo runs on localhost; no CI/CD pipeline required
+  security-engineer:
+    status: skipped
+    updated_at: '2026-05-26T14:13:42.743523+00:00'
+    skip_reason: Demo is single-user localhost; no auth or security hardening needed
+  senior-engineer:
+    status: completed
+    updated_at: '2026-05-26T14:23:02.181155+00:00'
+    activated_at: '2026-05-26T14:13:47.176281+00:00'
+    completed_at: '2026-05-26T14:23:02.181155+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - senior-engineer-output-v1
+    blocked_reason: null
+  tdd:
+    status: skipped
+    updated_at: '2026-05-26T14:23:21.678571+00:00'
+    skip_reason: Demo deliverable for client presentation; no production test suite
+      required. MockDataEngine is self-validating
+  code-reviewer:
+    status: skipped
+    updated_at: '2026-05-26T14:23:21.746313+00:00'
+    skip_reason: Demo deliverable; client presentation not production deployment
+  observability-engineer:
+    status: skipped
+    updated_at: '2026-05-26T14:23:21.811052+00:00'
+    skip_reason: Demo runs on localhost; no production observability needed
+  performance-engineer:
+    status: skipped
+    updated_at: '2026-05-26T14:23:21.876669+00:00'
+    skip_reason: Demo with 20 simulated robots; performance profiling not applicable
+  graph-topologist:
+    status: completed
+    updated_at: '2026-05-26T17:17:14.307376+00:00'
+    activated_at: '2026-05-26T17:16:50.183706+00:00'
+    completed_at: '2026-05-26T17:17:14.307376+00:00'
+    iteration: 1
+    output_artifact_ids:
+    - graph-topologist-retrospective-v1
+    blocked_reason: null
+artifact_registry:
+  to-prd-output-v1:
+    type: output
+    producer: to-prd
+    version: 1
+    status: approved
+    superseded_by: null
+    content_ref: artifacts/to-prd-output-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-26T14:07:13.293109+00:00'
+  to-issues-output-v1:
+    type: output
+    producer: to-issues
+    version: 1
+    status: approved
+    superseded_by: null
+    content_ref: artifacts/to-issues-output-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-26T14:10:02.016963+00:00'
+  architect-output-v1:
+    type: output
+    producer: architect
+    version: 1
+    status: approved
+    superseded_by: null
+    content_ref: artifacts/architect-output-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-26T14:13:02.756231+00:00'
+  senior-engineer-output-v1:
+    type: output
+    producer: senior-engineer
+    version: 1
+    status: approved
+    superseded_by: null
+    content_ref: artifacts/senior-engineer-output-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-26T14:23:02.042027+00:00'
+  graph-topologist-retrospective-v1:
+    type: retrospective
+    producer: graph-topologist
+    version: 1
+    status: approved
+    superseded_by: null
+    content_ref: artifacts/graph-topologist-control-loop-hardening-record-v1.md
+    consumers_pending: []
+    registered_at: '2026-05-26T17:16:55.614726+00:00'
+context_compression_reports:
+  to-prd:
+    ref: artifacts/to-prd-context-report-v1.yaml
+    registered_at: '2026-05-26T14:07:13.354246+00:00'
+    digest: be4dc66abd612066460c55b2a2eab7bc17e7a4614fa6ad42beeeee16066d047b
+    status: valid
+  to-issues:
+    ref: artifacts/to-issues-context-report-v1.yaml
+    registered_at: '2026-05-26T14:10:22.607305+00:00'
+    digest: 5e1be27ad4c37dc9e8fe4db00e84acc208531cbdcbba19f6cd227c2ada02f997
+    status: valid
+  architect:
+    ref: artifacts/architect-context-report-v1.yaml
+    registered_at: '2026-05-26T14:13:02.826573+00:00'
+    digest: 18aa0672d4c273d5aa636a9aa149209669d50cd30dfe716d097f7522b589a753
+    status: valid
+  senior-engineer:
+    ref: artifacts/senior-engineer-context-report-v1.yaml
+    registered_at: '2026-05-26T14:23:02.105561+00:00'
+    digest: e9721663bb8bc19506efeb8a1b41b7594b66c956708a1c71fb8ad2829cc23b94
+    status: valid
+  graph-topologist:
+    ref: artifacts/graph-topologist-context-report-v1.yaml
+    registered_at: '2026-05-26T17:17:08.660320+00:00'
+    digest: f27150cf71ed676c5c1d5a0fe2b3d11aa07ca268f471c7e3525b2af3efa54626
+    status: valid
+loop_states: []
+join_gates: []
+convergence:
+  all_non_loop_nodes_settled: true
+  all_loops_resolved: true
+  all_blocking_evals_resolved: false
+  all_joins_passed: true
+  all_artifacts_resolved: true
+  no_undecided_activation_candidates: true
+timestamp_end: '2026-05-26T14:24:33.138809+00:00'

@@ -1,0 +1,5 @@
+from: architect
+to: senior-engineer
+relation_type: triggers
+timestamp: '2026-05-25T06:52:11.969295+00:00'
+focus: 8 ADRs + modular monolith BFF + data pipeline → implementation

@@ -1,0 +1,9 @@
+from: zoom-out
+to: architect
+relation_type: may_trigger
+timestamp: '2026-05-25T18:52:19.589203+00:00'
+focus: 'Context map complete: 8 internal responsibilities, coupling matrix, 7 module
+  boundaries (4 served + 3 servant per Kahn). Architecture restructuring needed: served/servant
+  separation, deep module extraction.'
+artifact_refs:
+- zoom-out-analysis-v1
