@@ -1,0 +1,117 @@
+# Task Graph State Schema
+#
+# Live working memory for a single task execution.
+# Written by: Encoder (initialization), every node (on completion)
+# Read by:    every node (before activation), Decoder (convergence check)
+#
+# Location: traces/<task_id>/state.yaml
+#
+# This is the materialized current view.
+# The EventStream (events.yaml) is the immutable history.
+# State can always be reconstructed by replaying the event stream.
+
+TaskGraphState:
+  task_id: string
+  task_status: initializing | propagating | converging | settled | failed
+
+  # ── Node states ─────────────────────────────────────────────────────────────
+
+  node_states:
+    # keyed by role
+    <role>:
+      status: pending | activated | completed | blocked | skipped | failed
+      activated_at: iso8601 | null
+      completed_at: iso8601 | null
+      iteration: integer             # how many times this node has run in this task
+      output_artifact_ids: [string]  # artifact_ids produced, in order
+      blocked_reason: string | null
+
+  # ── Artifact registry ────────────────────────────────────────────────────────
+  #
+  # Tracks the authoritative version of each logical artifact.
+  # Prevents Decoder from consuming a superseded version.
+
+  artifact_registry:
+    # keyed by artifact_id
+    <artifact_id>:
+      type: code | test | spec | analysis | review | design | schema | document
+      producer: string
+      version: integer
+      status: draft | under_review | approved | superseded | rejected
+      superseded_by: string | null   # artifact_id of newer version
+      content_ref: string            # path to artifact file
+      consumers_pending: [string]    # roles that have not yet consumed this
+
+  # ── Context compression reports ────────────────────────────────────────────
+  #
+  # A node must register one valid report before it can be marked completed.
+  # The Ledger uses it to build the context_block carried by handoff records.
+
+  context_compression_reports:
+    <role>:
+      ref: string
+      digest: string
+      status: valid
+      registered_at: iso8601
+
+  # ── Loop tracking ────────────────────────────────────────────────────────────
+  #
+  # Detects convergence vs divergence in recurrent node pairs.
+
+  loop_states:
+    - loop_id: string                # e.g. "senior-engineer↔code-reviewer"
+      nodes: [string]
+      iterations: integer
+      max_iterations: integer        # default 3; hard stop to prevent infinite loops
+      convergence_signal: improving | stalled | diverging | converged | exhausted
+      last_rejection_reasons: [string]   # from each iteration
+      status: active | converged | exhausted
+
+  # ── Join gates ───────────────────────────────────────────────────────────────
+  #
+  # Tracks parallel branch synchronization.
+  # A node behind a join gate cannot activate until all upstream branches complete.
+
+  join_gates:
+    - gate_node: string              # the node that must wait
+      requires: [string]             # all of these must be completed
+      satisfied: [string]            # completed so far
+      can_proceed: boolean
+
+  # ── Convergence snapshot ─────────────────────────────────────────────────────
+  #
+  # Decoder reads this to know when it is safe to decode.
+  # Updated after every node completion.
+
+  convergence:
+    all_non_loop_nodes_settled: boolean   # completed or skipped
+    all_loops_resolved: boolean           # converged or exhausted
+    all_blocking_evals_resolved: boolean  # no pending required-blocking evaluations
+    all_joins_passed: boolean             # all join gates have been cleared
+    all_artifacts_resolved: boolean       # true if no artifact is draft or under_review
+    no_undecided_activation_candidates: boolean
+    settled_at: iso8601 | null            # timestamp when all conditions first became true
+
+    # The Decoder fires when:
+    #   all_non_loop_nodes_settled AND all_loops_resolved AND
+    #   all_blocking_evals_resolved AND all_joins_passed AND
+    #   all_artifacts_resolved AND no_undecided_activation_candidates
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Integration with Artifact Ledger
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# artifact_registry here is the live index.
+# artifact_ledger (provenance.yaml sidecars) is the durable audit record.
+#
+# When a node completes:
+#   1. Write artifact content to artifacts/<artifact_id>.<ext>
+#   2. Write provenance sidecar to artifacts/<artifact_id>.provenance.yaml
+#   3. Write handoff record to handoffs/<from>→<to>-<ts>.yaml
+#      The handoff must include both direct deliverable metadata and a
+#      digest-linked context_block summarizing upstream handoff context.
+#   4. Append events to events.yaml
+#   5. Update state.yaml (this file) — artifact_registry, node_states, convergence
+#
+# Decoder fires when convergence.settled_at is non-null.
+# Decoder writes final manifest.yaml with outcome.

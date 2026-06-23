@@ -1,0 +1,210 @@
+# Optional model routing example.
+# Copy to org/models.local.yaml for machine/user-specific overrides.
+# If omitted, every node uses the Runtime current/default model.
+#
+# Concrete model IDs belong here, never in ontology/nodes.yaml or relations.yaml.
+# Every role can be overridden independently.
+
+schema: silicon_org.model_routing.v1
+
+default:
+  provider: runtime
+  model: runtime-default
+  reasoning_effort: inherit
+
+runner_pools:
+  # Fast document/planning nodes. For DeepSeek direct API use provider: deepseek
+  # with DEEPSEEK_API_KEY in the environment.
+  api_model:
+    provider: pi
+    model: runtime-default
+    reasoning_effort: medium
+    session_policy: ephemeral
+
+  # Nodes that write or modify implementation code.
+  coding_builder:
+    provider: pi
+    model: runtime-default
+    reasoning_effort: medium
+    session_policy: warm
+
+  # Nodes that verify, test, review, or challenge implementation output.
+  coding_reviewer:
+    provider: pi
+    model: runtime-default
+    reasoning_effort: high
+    session_policy: warm
+
+  # Frontend/prototype nodes that may need browser-oriented tooling.
+  frontend_browser:
+    provider: pi
+    model: runtime-default
+    reasoning_effort: medium
+    session_policy: warm
+
+profiles:
+  fast_reasoning:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: low
+  fast_critical_reasoning:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: low
+  broad_context_reasoning:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: medium
+  documentation_grounded_reasoning:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: medium
+  product_reasoning:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: medium
+  planning_reasoning:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: medium
+  creative_implementation:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: medium
+  high_reasoning_architecture:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: high
+  interface_design:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: medium
+  data_modeling:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: medium
+  implementation:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: medium
+  test_reasoning:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: high
+  diagnostic_reasoning:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: high
+  code_quality_refactoring:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: medium
+  ops_engineering:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: medium
+  observability_design:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: medium
+  performance_reasoning:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: high
+  ux_research_design:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: medium
+  design_system:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: medium
+  platform_design_review:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: high
+  frontend_implementation:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: medium
+  immersive_design:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: medium
+  org_development:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: high
+  talent_evaluation:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: high
+  verification:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: high
+  code_review_high_reasoning:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: high
+  adversarial_high_reasoning:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: high
+  supply_chain_review:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: high
+  technical_writing:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: medium
+  release_management:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: medium
+  continuity:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: medium
+  customer_outcome:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: medium
+  security_high_reasoning:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: high
+  high_reasoning_learning:
+    provider: runtime
+    model: runtime-default
+    reasoning_effort: high
+
+roles:
+  # triage:
+  #   runner_pool: api_model
+  #   reasoning_effort: low
+  #
+  # Example direct DeepSeek pool override:
+  #
+  # runner_pools:
+  #   api_model:
+  #     provider: deepseek
+  #     model: deepseek-chat
+  #     reasoning_effort: medium
+  #
+  # architect:
+  #   runner_pool: api_model
+  #   reasoning_effort: high
+  # senior-engineer:
+  #   runner_pool: coding_builder
+  #   reasoning_effort: medium
+  # senior-frontend:
+  #   runner_pool: frontend_browser
+  #   reasoning_effort: medium
+  # code-reviewer:
+  #   runner_pool: coding_reviewer
+  #   reasoning_effort: high
+  # security-engineer:
+  #   runner_pool: coding_reviewer
+  #   reasoning_effort: high

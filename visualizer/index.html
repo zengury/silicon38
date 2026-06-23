@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Silicon Org Operations Visualizer</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./vendor/js-yaml.min.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./vendor/three.module.js",
+          "three/addons/": "./vendor/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app" class="app-shell" data-theme="dark">
+      <header class="topbar" aria-label="Run status">
+        <div class="brand-block">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <h1>Silicon Org</h1>
+            <p>3D operations graph</p>
+          </div>
+        </div>
+
+        <div class="run-strip">
+          <label class="trace-picker">
+            <span>Trace</span>
+            <select id="traceSelect" aria-label="Select trace">
+              <option value="latest">latest</option>
+            </select>
+          </label>
+          <span id="modeBadge" class="status-pill">loading</span>
+          <span id="taskIdLabel" class="mono">task pending</span>
+          <span id="syncLabel" class="mono">sync --</span>
+        </div>
+
+        <div class="top-actions">
+          <button id="themeToggle" class="icon-button" type="button" aria-label="Toggle theme" title="Toggle theme">◐</button>
+          <button id="motionToggle" class="icon-button" type="button" aria-label="Toggle reduced motion" title="Toggle reduced motion">↯</button>
+          <button id="resetCamera" class="icon-button" type="button" aria-label="Reset camera" title="Reset camera">⌂</button>
+        </div>
+      </header>
+
+      <aside class="left-rail" aria-label="Filters and run summary">
+        <section class="panel-block">
+          <h2>Control Planes</h2>
+          <div id="conceptFilters" class="segmented" role="toolbar" aria-label="Concept filters">
+            <button class="is-active" type="button" data-concept="all">All</button>
+            <button type="button" data-concept="graph">Graph</button>
+            <button type="button" data-concept="policy">Policy</button>
+            <button type="button" data-concept="ledger">Ledger</button>
+            <button type="button" data-concept="runtime">Runtime</button>
+            <button type="button" data-concept="learning">Learning</button>
+          </div>
+        </section>
+
+        <section class="panel-block">
+          <h2>Relation Types</h2>
+          <div id="edgeFilters" class="check-grid"></div>
+        </section>
+
+        <section class="panel-block">
+          <h2>Node States</h2>
+          <div id="stateFilters" class="check-grid"></div>
+        </section>
+
+        <section class="panel-block">
+          <h2>Search</h2>
+          <input id="searchInput" class="search-input" type="search" placeholder="role, digest, event, handoff" aria-label="Search graph and ledger" />
+          <div id="searchResults" class="search-results" aria-live="polite"></div>
+        </section>
+
+        <section class="panel-block stats-block">
+          <h2>Run Summary</h2>
+          <dl>
+            <div><dt>Nodes</dt><dd id="nodeCount">--</dd></div>
+            <div><dt>Edges</dt><dd id="edgeCount">--</dd></div>
+            <div><dt>Events</dt><dd id="eventCount">--</dd></div>
+            <div><dt>Handoffs</dt><dd id="handoffCount">--</dd></div>
+          </dl>
+        </section>
+      </aside>
+
+      <main class="stage" aria-label="Three dimensional Silicon Org scene">
+        <div id="sceneMount" class="scene-mount" tabindex="0" aria-label="3D graph canvas. Drag to orbit, wheel to zoom, click objects to inspect."></div>
+        <div id="labelLayer" class="label-layer" aria-hidden="true"></div>
+        <div class="scene-legend" aria-label="Relation legend">
+          <span><i class="line triggers"></i>triggers</span>
+          <span><i class="line may_trigger"></i>may trigger</span>
+          <span><i class="line evaluates"></i>evaluates</span>
+          <span><i class="line supports"></i>context</span>
+        </div>
+      </main>
+
+      <aside class="inspector" aria-label="Inspector">
+        <div class="inspector-head">
+          <div>
+            <p class="eyebrow">Inspector</p>
+            <h2 id="inspectorTitle">Select node, edge, block, or event</h2>
+          </div>
+          <button id="copyRef" class="small-button" type="button">Copy refs</button>
+        </div>
+        <div id="inspectorBody" class="inspector-body">
+          <p class="empty-state">The scene is read-only. Every operational fact shown here comes from Graph files, Ledger traces, or a normalized snapshot API.</p>
+        </div>
+      </aside>
+
+      <footer class="timeline" aria-label="Ledger timeline">
+        <div class="playback">
+          <button id="playPause" class="icon-button" type="button" aria-label="Play or pause replay">▶</button>
+          <button id="stepBack" class="icon-button" type="button" aria-label="Step previous event">←</button>
+          <button id="stepForward" class="icon-button" type="button" aria-label="Step next event">→</button>
+          <label>
+            <span>Speed</span>
+            <select id="speedSelect" aria-label="Replay speed">
+              <option value="0.5">0.5x</option>
+              <option value="1" selected>1x</option>
+              <option value="2">2x</option>
+              <option value="4">4x</option>
+            </select>
+          </label>
+        </div>
+        <input id="timelineRange" type="range" min="0" max="0" value="0" aria-label="Timeline scrubber" />
+        <div id="eventPreview" class="event-preview mono">No events loaded</div>
+      </footer>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

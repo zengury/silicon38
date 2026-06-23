@@ -1,0 +1,1820 @@
+relations:
+- from: zoom-out
+  to: triage
+  type: supports
+  weights:
+    necessity:
+      value: 0.6
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.4
+      confidence: 0.05
+      samples: 0
+- from: to-prd
+  to: to-issues
+  type: triggers
+  weights:
+    probability:
+      value: 0.97
+      confidence: 0.1778
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: triage
+  to: diagnose
+  type: triggers
+  weights:
+    probability:
+      value: 1.0
+      confidence: 0.4292
+      samples: 43
+    latency:
+      value: immediate
+    condition: task reports a bug, broken behavior, error, regression, incident, or performance symptom
+    activation_task_types:
+    - bug
+    - bug_fix
+    - diagnose
+    - debug
+    - incident
+    - performance
+- from: triage
+  to: to-prd
+  type: triggers
+  weights:
+    probability:
+      value: 0.74
+      confidence: 0.1778
+      samples: 43
+    latency:
+      value: immediate
+- from: triage
+  to: prototype
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.35
+      confidence: 0.15
+      samples: 43
+    condition: feasibility of proposed solution is unknown
+    activation_task_types:
+    - feature
+    - design
+    - architecture
+- from: triage
+  to: improve-codebase-architecture
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.25
+      confidence: 0.15
+      samples: 43
+    condition: task is explicitly architectural in nature
+    activation_task_types:
+    - refactor
+    - architecture
+- from: zoom-out
+  to: architect
+  type: supports
+  weights:
+    necessity:
+      value: 0.8
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.2
+      confidence: 0.05
+      samples: 0
+- from: zoom-out
+  to: architect
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.74
+      confidence: 0.2059
+      samples: 43
+    condition: context map identifies architecture work as part of the deliverable
+    activation_task_types:
+    - refactor
+    - architecture
+    - feature
+    - design
+- from: zoom-out
+  to: improve-codebase-architecture
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.84
+      confidence: 0.1731
+      samples: 26
+    condition: context map identifies structural debt, coupling, or module boundary violations
+    activation_task_types:
+    - refactor
+    - architecture
+- from: zoom-out
+  to: improve-codebase-architecture
+  type: supports
+  weights:
+    necessity:
+      value: 0.75
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.2
+      confidence: 0.05
+      samples: 0
+- from: zoom-out
+  to: refactor-specialist
+  type: supports
+  weights:
+    necessity:
+      value: 0.6
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.3
+      confidence: 0.05
+      samples: 0
+- from: zoom-out
+  to: senior-engineer
+  type: supports
+  weights:
+    necessity:
+      value: 0.4
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.6
+      confidence: 0.05
+      samples: 0
+- from: grill-with-docs
+  to: senior-engineer
+  type: supports
+  weights:
+    necessity:
+      value: 0.55
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.5
+      confidence: 0.05
+      samples: 0
+- from: grill-with-docs
+  to: diagnose
+  type: supports
+  weights:
+    necessity:
+      value: 0.55
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.4
+      confidence: 0.05
+      samples: 0
+- from: grill-with-docs
+  to: diagnose
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.5
+      confidence: 0.15
+      samples: 43
+    condition: documented behavior explains reported symptom
+    activation_task_types:
+    - bug_fix
+    - diagnose
+    - incident
+- from: grill-with-docs
+  to: architect
+  type: supports
+  weights:
+    necessity:
+      value: 0.4
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.5
+      confidence: 0.05
+      samples: 0
+- from: prototype
+  to: architect
+  type: supports
+  weights:
+    necessity:
+      value: 0.7
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.3
+      confidence: 0.05
+      samples: 0
+- from: to-prd
+  to: architect
+  type: supports
+  weights:
+    necessity:
+      value: 0.7
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.3
+      confidence: 0.05
+      samples: 0
+- from: to-prd
+  to: architect
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.65
+      confidence: 0.15
+      samples: 43
+    condition: requirements imply system architecture, data flow, or technology decisions
+    activation_task_types:
+    - feature
+    - design
+    - launch
+- from: to-prd
+  to: api-designer
+  type: supports
+  weights:
+    necessity:
+      value: 0.6
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.3
+      confidence: 0.05
+      samples: 0
+- from: to-prd
+  to: tdd
+  type: supports
+  weights:
+    necessity:
+      value: 0.55
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.4
+      confidence: 0.05
+      samples: 0
+- from: to-issues
+  to: senior-engineer
+  type: supports
+  weights:
+    necessity:
+      value: 0.7
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.25
+      confidence: 0.05
+      samples: 0
+- from: to-issues
+  to: senior-engineer
+  type: triggers
+  weights:
+    probability:
+      value: 0.89
+      confidence: 0.1778
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: caveman
+  to: architect
+  type: evaluates
+  weights:
+    strictness:
+      value: 0.5
+      confidence: 0.15
+      samples: 43
+    blocking:
+      value: advisory
+    blocking_skip_on_task_types:
+    - refactor
+    - ops
+    - docs
+    - bug_fix
+- from: caveman
+  to: architect
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.65
+      confidence: 0.15
+      samples: 43
+    condition: first-principles analysis identifies architecture constraints, essential system shape, or complexity that must
+      be removed
+    activation_task_types:
+    - architecture
+    - feature
+    - design
+- from: caveman
+  to: to-prd
+  type: evaluates
+  weights:
+    strictness:
+      value: 0.45
+      confidence: 0.15
+      samples: 43
+    blocking:
+      value: advisory
+- from: caveman
+  to: to-prd
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.6
+      confidence: 0.164
+      samples: 43
+    condition: first-principles analysis changes product scope, cuts features, or clarifies the one core user outcome
+    activation_task_types:
+    - feature
+    - design
+    - launch
+- from: caveman
+  to: refactor-specialist
+  type: supports
+  weights:
+    necessity:
+      value: 0.4
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.5
+      confidence: 0.05
+      samples: 0
+- from: caveman
+  to: ux-researcher-designer
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.55
+      confidence: 0.164
+      samples: 43
+    condition: first-principles analysis identifies the core user moment, removes UX complexity, or changes interaction priorities
+    activation_task_types:
+    - feature
+    - design
+    - launch
+- from: architect
+  to: senior-engineer
+  type: constrains
+  weights:
+    strength:
+      value: 0.85
+      confidence: 0.15
+      samples: 43
+    rigidity:
+      value: soft
+- from: architect
+  to: api-designer
+  type: constrains
+  weights:
+    strength:
+      value: 0.75
+      confidence: 0.15
+      samples: 43
+    rigidity:
+      value: soft
+- from: architect
+  to: database-engineer
+  type: constrains
+  weights:
+    strength:
+      value: 0.75
+      confidence: 0.15
+      samples: 43
+    rigidity:
+      value: soft
+- from: architect
+  to: devops-engineer
+  type: constrains
+  weights:
+    strength:
+      value: 0.6
+      confidence: 0.15
+      samples: 43
+    rigidity:
+      value: soft
+- from: architect
+  to: devops-engineer
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.74
+      confidence: 0.2059
+      samples: 43
+    condition: task involves deployment to an external platform or requires CI/CD delivery pipeline
+    activation_skip_on_task_types:
+    - docs
+    - design
+- from: architect
+  to: senior-engineer
+  type: triggers
+  weights:
+    probability:
+      value: 0.86
+      confidence: 0.2198
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: architect
+  to: api-designer
+  type: triggers
+  weights:
+    probability:
+      value: 0.74
+      confidence: 0.2059
+      samples: 43
+    latency:
+      value: immediate
+    activation_task_types:
+    - feature
+    - architecture
+    - design
+    activation_skip_on_task_types:
+    - bug_fix
+    - refactor
+    - ops
+    - docs
+- from: architect
+  to: database-engineer
+  type: triggers
+  weights:
+    probability:
+      value: 0.59
+      confidence: 0.2059
+      samples: 43
+    latency:
+      value: immediate
+    activation_task_types:
+    - feature
+    - architecture
+    - design
+    activation_skip_on_task_types:
+    - bug_fix
+    - refactor
+    - ops
+    - docs
+- from: api-designer
+  to: senior-engineer
+  type: constrains
+  weights:
+    strength:
+      value: 0.85
+      confidence: 0.15
+      samples: 43
+    rigidity:
+      value: hard
+- from: api-designer
+  to: tdd
+  type: constrains
+  weights:
+    strength:
+      value: 0.7
+      confidence: 0.15
+      samples: 43
+    rigidity:
+      value: soft
+- from: api-designer
+  to: senior-engineer
+  type: triggers
+  weights:
+    probability:
+      value: 0.9
+      confidence: 0.15
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: api-designer
+  to: tdd
+  type: triggers
+  weights:
+    probability:
+      value: 0.87
+      confidence: 0.1918
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: database-engineer
+  to: senior-engineer
+  type: constrains
+  weights:
+    strength:
+      value: 0.8
+      confidence: 0.15
+      samples: 43
+    rigidity:
+      value: soft
+- from: database-engineer
+  to: senior-engineer
+  type: triggers
+  weights:
+    probability:
+      value: 0.85
+      confidence: 0.15
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: database-engineer
+  to: performance-engineer
+  type: supports
+  weights:
+    necessity:
+      value: 0.7
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.2
+      confidence: 0.05
+      samples: 0
+- from: senior-engineer
+  to: tdd
+  type: complements
+  weights:
+    synergy:
+      value: 0.75
+      confidence: 0.15
+      samples: 43
+    overlap:
+      value: 0.1
+      confidence: 0.1
+      samples: 0
+- from: tdd
+  to: senior-engineer
+  type: complements
+  weights:
+    synergy:
+      value: 0.75
+      confidence: 0.15
+      samples: 43
+    overlap:
+      value: 0.1
+      confidence: 0.1
+      samples: 0
+- from: tdd
+  to: senior-engineer
+  type: evaluates
+  weights:
+    strictness:
+      value: 0.85
+      confidence: 0.15
+      samples: 43
+    blocking:
+      value: required
+    blocking_skip_on_task_types:
+    - demo
+    - docs
+- from: diagnose
+  to: tdd
+  type: triggers
+  weights:
+    probability:
+      value: 0.8
+      confidence: 0.15
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: diagnose
+  to: improve-codebase-architecture
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.4
+      confidence: 0.15
+      samples: 43
+    condition: root cause is architectural — no correct test seam existed
+    activation_task_types:
+    - bug_fix
+    - diagnose
+    - incident
+- from: improve-codebase-architecture
+  to: refactor-specialist
+  type: triggers
+  weights:
+    probability:
+      value: 0.8
+      confidence: 0.15
+      samples: 43
+    latency:
+      value: deferred
+    activation_unconditional: true
+- from: improve-codebase-architecture
+  to: architect
+  type: supports
+  weights:
+    necessity:
+      value: 0.7
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.25
+      confidence: 0.05
+      samples: 0
+- from: refactor-specialist
+  to: tdd
+  type: triggers
+  weights:
+    probability:
+      value: 0.7
+      confidence: 0.15
+      samples: 43
+    latency:
+      value: immediate
+    activation_task_types:
+    - refactor
+    - architecture
+    - feature
+    activation_skip_on_task_types:
+    - ops
+    - docs
+- from: scope-prosecutor
+  to: to-prd
+  type: evaluates
+  weights:
+    blocking:
+      value: advisory
+    confidence:
+      value: 0.05
+      samples: 0
+- from: scope-prosecutor
+  to: product-vision-anchor
+  type: constrains
+  weights:
+    strength:
+      value: 0.9
+      confidence: 0.15
+      samples: 39
+- from: scope-prosecutor
+  to: architect
+  type: constrains
+  weights:
+    strength:
+      value: 0.85
+      confidence: 0.15
+      samples: 39
+- from: scope-prosecutor
+  to: senior-engineer
+  type: constrains
+  weights:
+    strength:
+      value: 0.8
+      confidence: 0.15
+      samples: 39
+- from: to-prd
+  to: product-vision-anchor
+  type: triggers
+  weights:
+    probability:
+      value: 0.92
+      confidence: 0.1654
+      samples: 39
+    latency:
+      value: immediate
+    activation_task_types:
+    - feature
+    - design
+    - launch
+- from: product-vision-anchor
+  to: architect
+  type: constrains
+  weights:
+    strength:
+      value: 0.9
+      confidence: 0.15
+      samples: 39
+- from: product-vision-anchor
+  to: ux-researcher-designer
+  type: constrains
+  weights:
+    strength:
+      value: 0.9
+      confidence: 0.15
+      samples: 39
+- from: product-vision-anchor
+  to: epic-design
+  type: constrains
+  weights:
+    strength:
+      value: 0.85
+      confidence: 0.15
+      samples: 39
+    activation_task_types:
+    - feature
+    - design
+    - launch
+    activation_skip_on_task_types:
+    - bug_fix
+    - refactor
+    - ops
+    - docs
+- from: product-vision-anchor
+  to: ui-design-system
+  type: constrains
+  weights:
+    strength:
+      value: 0.75
+      confidence: 0.15
+      samples: 39
+    activation_task_types:
+    - feature
+    - design
+    - launch
+    activation_skip_on_task_types:
+    - bug_fix
+    - refactor
+    - ops
+    - docs
+- from: product-vision-anchor
+  to: ux-researcher-designer
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.85
+      confidence: 0.15
+      samples: 39
+    condition: task involves user-facing product design or UX decisions
+    activation_task_types:
+    - feature
+    - design
+    - launch
+- from: architect
+  to: product-critic
+  type: triggers
+  weights:
+    probability:
+      value: 0.75
+      confidence: 0.15
+      samples: 39
+    latency:
+      value: deferred
+    activation_task_types:
+    - feature
+    - design
+    - architecture
+    - launch
+    activation_skip_on_task_types:
+    - bug_fix
+    - refactor
+    - ops
+    - docs
+- from: ux-researcher-designer
+  to: product-critic
+  type: supports
+  weights:
+    necessity:
+      value: 0.65
+      confidence: 0.15
+      samples: 39
+    substitutability:
+      value: 0.4
+      confidence: 0.05
+      samples: 0
+- from: epic-design
+  to: product-critic
+  type: supports
+  weights:
+    necessity:
+      value: 0.55
+      confidence: 0.15
+      samples: 39
+    substitutability:
+      value: 0.5
+      confidence: 0.05
+      samples: 0
+- from: product-critic
+  to: architect
+  type: evaluates
+  weights:
+    blocking:
+      value: advisory
+    confidence:
+      value: 0.05
+      samples: 0
+- from: product-critic
+  to: ux-researcher-designer
+  type: evaluates
+  weights:
+    blocking:
+      value: advisory
+    confidence:
+      value: 0.05
+      samples: 0
+- from: senior-engineer
+  to: code-reviewer
+  type: triggers
+  weights:
+    probability:
+      value: 1.0
+      confidence: 0.2618
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: senior-engineer
+  to: observability-engineer
+  type: triggers
+  weights:
+    probability:
+      value: 0.64
+      confidence: 0.2059
+      samples: 43
+    latency:
+      value: immediate
+    activation_task_types:
+    - feature
+    - architecture
+    - refactor
+    activation_skip_on_task_types:
+    - bug_fix
+    - docs
+    - design
+- from: senior-engineer
+  to: security-engineer
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.5
+      confidence: 0.15
+      samples: 43
+    condition: code touches auth, user input, data persistence, or external calls
+    activation_task_types:
+    - feature
+    - refactor
+    - bug_fix
+    - architecture
+- from: senior-engineer
+  to: performance-engineer
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.3
+      confidence: 0.15
+      samples: 43
+    condition: code is on a high-throughput or latency-sensitive path
+    activation_task_types:
+    - feature
+    - refactor
+- from: tdd
+  to: code-reviewer
+  type: triggers
+  weights:
+    probability:
+      value: 0.9
+      confidence: 0.15
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: refactor-specialist
+  to: code-reviewer
+  type: triggers
+  weights:
+    probability:
+      value: 0.98
+      confidence: 0.15
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: diagnose
+  to: code-reviewer
+  type: triggers
+  weights:
+    probability:
+      value: 0.95
+      confidence: 0.15
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: observability-engineer
+  to: senior-engineer
+  type: augments
+  weights:
+    necessity:
+      value: 0.6
+      confidence: 0.15
+      samples: 43
+    depth:
+      value: 0.55
+      confidence: 0.05
+      samples: 0
+- from: observability-engineer
+  to: code-reviewer
+  type: triggers
+  weights:
+    probability:
+      value: 0.85
+      confidence: 0.15
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: performance-engineer
+  to: senior-engineer
+  type: evaluates
+  weights:
+    strictness:
+      value: 0.7
+      confidence: 0.15
+      samples: 43
+    blocking:
+      value: advisory
+- from: performance-engineer
+  to: code-reviewer
+  type: triggers
+  weights:
+    probability:
+      value: 0.8
+      confidence: 0.15
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: security-engineer
+  to: senior-engineer
+  type: evaluates
+  weights:
+    strictness:
+      value: 0.9
+      confidence: 0.15
+      samples: 43
+    blocking:
+      value: required
+    blocking_skip_on_task_types:
+    - design
+    - demo
+    - docs
+- from: security-engineer
+  to: code-reviewer
+  type: triggers
+  weights:
+    probability:
+      value: 0.85
+      confidence: 0.15
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: devops-engineer
+  to: security-engineer
+  type: triggers
+  weights:
+    probability:
+      value: 0.7
+      confidence: 0.15
+      samples: 43
+    latency:
+      value: immediate
+    activation_task_types:
+    - feature
+    - architecture
+    - release
+    activation_skip_on_task_types:
+    - bug_fix
+    - docs
+    - design
+- from: devops-engineer
+  to: release-manager
+  type: triggers
+  weights:
+    probability:
+      value: 0.82
+      confidence: 0.1918
+      samples: 43
+    latency:
+      value: deferred
+    activation_unconditional: true
+- from: code-reviewer
+  to: senior-engineer
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.5
+      confidence: 0.15
+      samples: 43
+    condition: verdict is CHANGES_REQUIRED or BLOCKED
+    activation_verdicts:
+    - CHANGES_REQUIRED
+    - BLOCKED
+- from: code-reviewer
+  to: security-engineer
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.3
+      confidence: 0.15
+      samples: 43
+    condition: security-adjacent findings present in review
+    activation_task_types:
+    - feature
+    - refactor
+    - bug_fix
+- from: grill-me
+  to: architect
+  type: evaluates
+  weights:
+    strictness:
+      value: 0.8
+      confidence: 0.15
+      samples: 43
+    blocking:
+      value: advisory
+    activation_unconditional: true
+- from: grill-me
+  to: to-prd
+  type: evaluates
+  weights:
+    strictness:
+      value: 0.7
+      confidence: 0.15
+      samples: 43
+    blocking:
+      value: advisory
+- from: grill-me
+  to: api-designer
+  type: evaluates
+  weights:
+    strictness:
+      value: 0.75
+      confidence: 0.15
+      samples: 43
+    blocking:
+      value: advisory
+- from: grill-me
+  to: ui-design-system
+  type: evaluates
+  weights:
+    strictness:
+      value: 0.7
+      confidence: 0.15
+      samples: 43
+    blocking:
+      value: advisory
+- from: grill-me
+  to: code-reviewer
+  type: complements
+  weights:
+    synergy:
+      value: 0.55
+      confidence: 0.15
+      samples: 43
+    overlap:
+      value: 0.15
+      confidence: 0.05
+      samples: 0
+- from: dependency-auditor
+  to: devops-engineer
+  type: evaluates
+  weights:
+    strictness:
+      value: 0.7
+      confidence: 0.15
+      samples: 43
+    blocking:
+      value: advisory
+- from: dependency-auditor
+  to: release-manager
+  type: supports
+  weights:
+    necessity:
+      value: 0.8
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.15
+      confidence: 0.05
+      samples: 0
+- from: dependency-auditor
+  to: security-engineer
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.6
+      confidence: 0.15
+      samples: 43
+    condition: CVEs found in dependency audit
+    activation_task_types:
+    - feature
+    - refactor
+    - release
+- from: technical-writer
+  to: api-designer
+  type: augments
+  weights:
+    necessity:
+      value: 0.55
+      confidence: 0.15
+      samples: 43
+    depth:
+      value: 0.7
+      confidence: 0.05
+      samples: 0
+- from: technical-writer
+  to: release-manager
+  type: supports
+  weights:
+    necessity:
+      value: 0.6
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.2
+      confidence: 0.05
+      samples: 0
+- from: release-manager
+  to: dependency-auditor
+  type: evaluates
+  weights:
+    strictness:
+      value: 0.8
+      confidence: 0.15
+      samples: 43
+    blocking:
+      value: required
+    activation_unconditional: true
+- from: release-manager
+  to: devops-engineer
+  type: evaluates
+  weights:
+    strictness:
+      value: 0.75
+      confidence: 0.15
+      samples: 43
+    blocking:
+      value: required
+- from: triage
+  to: ux-researcher-designer
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.4
+      confidence: 0.15
+      samples: 43
+    condition: task involves user-facing interface or interaction design
+    activation_task_types:
+    - feature
+    - design
+    - launch
+- from: to-prd
+  to: ux-researcher-designer
+  type: supports
+  weights:
+    necessity:
+      value: 0.55
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.4
+      confidence: 0.05
+      samples: 0
+- from: ux-researcher-designer
+  to: prototype
+  type: triggers
+  weights:
+    probability:
+      value: 0.75
+      confidence: 0.164
+      samples: 43
+    latency:
+      value: immediate
+    activation_task_types:
+    - feature
+    - design
+    - launch
+    activation_skip_on_task_types:
+    - bug_fix
+    - refactor
+    - ops
+    - docs
+- from: ux-researcher-designer
+  to: ui-design-system
+  type: supports
+  weights:
+    necessity:
+      value: 0.65
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.3
+      confidence: 0.05
+      samples: 0
+- from: ux-researcher-designer
+  to: ui-design-system
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.65
+      confidence: 0.15
+      samples: 43
+    condition: task requires reusable UI components, visual tokens, or interaction states
+    activation_task_types:
+    - feature
+    - design
+    - launch
+- from: ux-researcher-designer
+  to: apple-hig-expert
+  type: supports
+  weights:
+    necessity:
+      value: 0.5
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.4
+      confidence: 0.05
+      samples: 0
+- from: prototype
+  to: ux-researcher-designer
+  type: complements
+  weights:
+    synergy:
+      value: 0.7
+      confidence: 0.15
+      samples: 43
+    overlap:
+      value: 0.2
+      confidence: 0.05
+      samples: 0
+- from: apple-hig-expert
+  to: ui-design-system
+  type: constrains
+  weights:
+    strength:
+      value: 0.75
+      confidence: 0.15
+      samples: 43
+    rigidity:
+      value: soft
+- from: apple-hig-expert
+  to: senior-frontend
+  type: constrains
+  weights:
+    strength:
+      value: 0.65
+      confidence: 0.15
+      samples: 43
+    rigidity:
+      value: soft
+- from: apple-hig-expert
+  to: ui-design-system
+  type: evaluates
+  weights:
+    strictness:
+      value: 0.8
+      confidence: 0.15
+      samples: 43
+    blocking:
+      value: advisory
+    activation_unconditional: true
+- from: apple-hig-expert
+  to: epic-design
+  type: evaluates
+  weights:
+    strictness:
+      value: 0.75
+      confidence: 0.15
+      samples: 43
+    blocking:
+      value: advisory
+- from: ui-design-system
+  to: senior-frontend
+  type: constrains
+  weights:
+    strength:
+      value: 0.85
+      confidence: 0.15
+      samples: 43
+    rigidity:
+      value: hard
+- from: ui-design-system
+  to: senior-frontend
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.75
+      confidence: 0.15
+      samples: 43
+    condition: task requires frontend implementation or runnable UI demo
+    activation_task_types:
+    - feature
+    - design
+    - launch
+- from: ui-design-system
+  to: epic-design
+  type: constrains
+  weights:
+    strength:
+      value: 0.7
+      confidence: 0.15
+      samples: 43
+    rigidity:
+      value: soft
+- from: ui-design-system
+  to: epic-design
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.6
+      confidence: 0.15
+      samples: 43
+    condition: task requires immersive visual treatment, cinematic interaction, or premium scroll experience
+    activation_task_types:
+    - feature
+    - design
+    - launch
+- from: ui-design-system
+  to: apple-hig-expert
+  type: complements
+  weights:
+    synergy:
+      value: 0.65
+      confidence: 0.15
+      samples: 43
+    overlap:
+      value: 0.3
+      confidence: 0.05
+      samples: 0
+- from: epic-design
+  to: senior-frontend
+  type: triggers
+  weights:
+    probability:
+      value: 0.85
+      confidence: 0.15
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: epic-design
+  to: code-reviewer
+  type: triggers
+  weights:
+    probability:
+      value: 0.9
+      confidence: 0.15
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: senior-frontend
+  to: code-reviewer
+  type: triggers
+  weights:
+    probability:
+      value: 0.98
+      confidence: 0.15
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: senior-frontend
+  to: epic-design
+  type: complements
+  weights:
+    synergy:
+      value: 0.7
+      confidence: 0.15
+      samples: 43
+    overlap:
+      value: 0.3
+      confidence: 0.05
+      samples: 0
+- from: prototype
+  to: senior-frontend
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.75
+      confidence: 0.15
+      samples: 43
+    condition: prototype finding is proceed and a runnable demo is requested
+    activation_task_types:
+    - feature
+    - design
+    - launch
+- from: grill-me
+  to: ux-researcher-designer
+  type: evaluates
+  weights:
+    strictness:
+      value: 0.65
+      confidence: 0.15
+      samples: 43
+    blocking:
+      value: advisory
+- from: code-reviewer
+  to: senior-frontend
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.5
+      confidence: 0.15
+      samples: 43
+    condition: verdict is CHANGES_REQUIRED on frontend code
+    activation_task_types:
+    - feature
+    - design
+- from: code-reviewer
+  to: technical-writer
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.57
+      confidence: 0.1918
+      samples: 43
+    condition: approved work changes public behavior, API contracts, operating protocol, or user-facing documentation
+    activation_task_types:
+    - feature
+    - release
+    - architecture
+    - refactor
+- from: code-reviewer
+  to: handoff
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.56
+      confidence: 0.2198
+      samples: 43
+    condition: task leaves follow-up work, unresolved questions, or context that must transfer to another session
+    activation_unconditional: true
+- from: architect
+  to: ux-researcher-designer
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.55
+      confidence: 0.15
+      samples: 43
+    condition: architecture includes user-facing frontend, interaction flows, or component trees
+    activation_task_types:
+    - feature
+    - design
+    - launch
+- from: architect
+  to: ui-design-system
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.4
+      confidence: 0.15
+      samples: 43
+    condition: architecture specifies visual component tree, design tokens, or theme system that needs formalization as reusable
+      components
+    activation_task_types:
+    - feature
+    - design
+    - launch
+- from: to-prd
+  to: ux-researcher-designer
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.5
+      confidence: 0.15
+      samples: 43
+    condition: PRD includes user-facing interface requirements, interaction design, or visual design deliverables
+    activation_task_types:
+    - feature
+    - design
+    - launch
+- from: ux-researcher-designer
+  to: architect
+  type: supports
+  weights:
+    necessity:
+      value: 0.5
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.45
+      confidence: 0.05
+      samples: 0
+- from: senior-frontend
+  to: architect
+  type: supports
+  weights:
+    necessity:
+      value: 0.4
+      confidence: 0.15
+      samples: 43
+    substitutability:
+      value: 0.55
+      confidence: 0.05
+      samples: 0
+- from: architect
+  to: grill-me
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.4
+      confidence: 0.15
+      samples: 43
+    condition: task_type is architecture or design, and architect produced its first artifact
+    activation_task_types:
+    - architecture
+    - feature
+    - design
+- from: to-prd
+  to: grill-me
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.3
+      confidence: 0.15
+      samples: 43
+    condition: PRD declares contested scope or trades off against soul / first-principles findings
+    activation_task_types:
+    - feature
+    - design
+    - launch
+- from: api-designer
+  to: grill-me
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.35
+      confidence: 0.15
+      samples: 43
+    condition: wire contract crosses trust boundaries or exposes irreversible mutations
+    activation_task_types:
+    - feature
+    - architecture
+- from: code-reviewer
+  to: api-designer
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.5
+      confidence: 0.15
+      samples: 43
+    condition: review findings include CRITICAL or HIGH on api artifact
+    activation_task_types:
+    - feature
+    - architecture
+- from: code-reviewer
+  to: architect
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.4
+      confidence: 0.15
+      samples: 43
+    condition: review findings include CRITICAL on architecture
+    activation_task_types:
+    - architecture
+    - feature
+- from: code-reviewer
+  to: improve-codebase-architecture
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.65
+      confidence: 0.15
+      samples: 26
+    condition: review finds SRP violations, large files, deep coupling, or structural debt
+    activation_verdicts:
+    - CHANGES_REQUIRED
+    activation_task_types:
+    - refactor
+    - architecture
+    - feature
+- from: architect
+  to: security-engineer
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.59
+      confidence: 0.2059
+      samples: 43
+    condition: architecture touches auth, claim concurrency, persisted config, or external write endpoints
+    activation_skip_on_task_types:
+    - docs
+- from: api-designer
+  to: security-engineer
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.5
+      confidence: 0.15
+      samples: 43
+    condition: wire contract exposes state-mutating endpoints or accepts untrusted input
+    activation_task_types:
+    - feature
+    - architecture
+    - refactor
+- from: delivery-prover
+  to: senior-engineer
+  type: evaluates
+  weights:
+    strictness:
+      value: 0.95
+      confidence: 0.15
+      samples: 43
+    blocking:
+      value: required
+    activation_unconditional: true
+- from: delivery-prover
+  to: senior-frontend
+  type: evaluates
+  weights:
+    strictness:
+      value: 0.95
+      confidence: 0.15
+      samples: 43
+    blocking:
+      value: required
+    activation_unconditional: true
+- from: delivery-prover
+  to: prototype
+  type: evaluates
+  weights:
+    strictness:
+      value: 0.8
+      confidence: 0.15
+      samples: 43
+    blocking:
+      value: required
+    activation_unconditional: true
+- from: senior-engineer
+  to: delivery-prover
+  type: triggers
+  weights:
+    probability:
+      value: 1.0
+      confidence: 0.2618
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: senior-frontend
+  to: delivery-prover
+  type: triggers
+  weights:
+    probability:
+      value: 0.98
+      confidence: 0.15
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: prototype
+  to: delivery-prover
+  type: triggers
+  weights:
+    probability:
+      value: 0.9
+      confidence: 0.15
+      samples: 43
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: delivery-prover
+  to: senior-engineer
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.95
+      confidence: 0.15
+      samples: 43
+    condition: verdict is FAIL_WITH_ISSUES or BLOCKED
+    activation_verdicts:
+    - FAIL_WITH_ISSUES
+    - BLOCKED
+- from: delivery-prover
+  to: senior-frontend
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.95
+      confidence: 0.15
+      samples: 43
+    condition: verdict is FAIL_WITH_ISSUES or BLOCKED
+    activation_verdicts:
+    - FAIL_WITH_ISSUES
+    - BLOCKED
+- from: delivery-prover
+  to: code-reviewer
+  type: triggers
+  weights:
+    probability:
+      value: 0.9
+      confidence: 0.15
+      samples: 43
+    latency:
+      value: immediate
+    activation_verdicts:
+    - PASS
+- from: architect
+  to: customer-success
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.8
+      confidence: 0.15
+      samples: 43
+    condition: task produces a customer-facing deliverable (design, feature with UI, product launch) — NOT bug_fix, refactor,
+      ops, or internal tooling
+    activation_task_types:
+    - feature
+    - design
+    - launch
+
+# ── ai-engineer edges ────────────────────────────────────────────────────────
+- from: architect
+  to: ai-engineer
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.9
+      confidence: 0.15
+      samples: 0
+    condition: architecture document mentions AI features, LLM integration, RAG pipelines, embeddings, or agent components
+    activation_task_types:
+    - feature
+    - ai
+    - integration
+- from: ai-engineer
+  to: senior-engineer
+  type: triggers
+  weights:
+    probability:
+      value: 1.0
+      confidence: 0.15
+      samples: 0
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: ai-engineer
+  to: tdd
+  type: supports
+  weights:
+    necessity:
+      value: 0.7
+      confidence: 0.15
+      samples: 0
+    condition: ai-integration-spec defines testable acceptance criteria for retrieval quality or model output
+
+# ── threat-modeling-expert edges ──────────────────────────────────────────────
+- from: architect
+  to: threat-modeling-expert
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.85
+      confidence: 0.15
+      samples: 0
+    condition: new system or service being designed AND involves authentication, payments, PII, multi-tenant isolation, or external
+      attack surface
+    activation_task_types:
+    - feature
+    - architecture
+    - security
+- from: threat-modeling-expert
+  to: architect
+  type: evaluates
+  weights:
+    blocking:
+      value: advisory
+    condition: threat model identifies HIGH-priority threats requiring design changes
+- from: threat-modeling-expert
+  to: security-engineer
+  type: supports
+  weights:
+    necessity:
+      value: 0.8
+      confidence: 0.15
+      samples: 0
+    condition: passes design-time threat model and attack trees to inform code-level security audit
+
+# ── compliance-auditor edges ──────────────────────────────────────────────────
+- from: security-engineer
+  to: compliance-auditor
+  type: triggers
+  weights:
+    probability:
+      value: 0.9
+      confidence: 0.15
+      samples: 0
+    condition: product handles PII, health data, or financial data AND release-manager is preparing launch
+    activation_task_types:
+    - launch
+    - release
+    - compliance
+- from: compliance-auditor
+  to: release-manager
+  type: evaluates
+  weights:
+    blocking:
+      value: advisory
+    condition: compliance verdict is GAPS_REQUIRE_FIX or LAUNCH_BLOCKER

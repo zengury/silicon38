@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "skills": {
+    "api-design-reviewer": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "skillPath": "engineering/skills/api-design-reviewer/SKILL.md",
+      "computedHash": "70bc089119b4dd984b87fbf9015f814f7252fb16773e8fde68a4b5a5ce04ee42"
+    },
+    "apple-hig-expert": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "skillPath": "product-team/apple-hig-expert/skills/apple-hig-expert/SKILL.md",
+      "computedHash": "ff8d076a40062aa34fe478994a6686248a0ef0b329909b7574ed71e945bf07ae"
+    },
+    "ci-cd-pipeline-builder": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "skillPath": "engineering/skills/ci-cd-pipeline-builder/SKILL.md",
+      "computedHash": "620ded2e048743d076a1952fb34b6c5dba590352345dfea843e54e555c174c4c"
+    },
+    "code-reviewer": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "skillPath": "engineering-team/skills/code-reviewer/SKILL.md",
+      "computedHash": "0ea1d5d3fbc7a2b8958748da963ab3979e07c4e305077e0d2e061b9f90fdf06b"
+    },
+    "database-designer": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "skillPath": "engineering/skills/database-designer/SKILL.md",
+      "computedHash": "969abb51a43c750f2b368707023ac8b7b4dfe4025a24632cceebb8e27c2e58d7"
+    },
+    "epic-design": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "skillPath": "engineering-team/skills/epic-design/SKILL.md",
+      "computedHash": "3ddfcbea6ea5086d052ad37f94503b8d4bad4d61d5d7fb1cabd8715c7add6b20"
+    },
+    "release-manager": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "skillPath": "engineering/skills/release-manager/SKILL.md",
+      "computedHash": "c7a402150639cf9fa780f7fc72f859d3ecc0f02218392f38ca7d12743b8a553e"
+    },
+    "senior-architect": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "skillPath": "engineering-team/skills/senior-architect/SKILL.md",
+      "computedHash": "0152c1cb90512177153d936557a11bf760d5cbd21470a1305cc727d0a3af1df9"
+    },
+    "senior-backend": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "skillPath": "engineering-team/skills/senior-backend/SKILL.md",
+      "computedHash": "45228f6f893be2bbfcea6be09a7f3fb847635e828a31860a4fd810dbdd26ec0d"
+    },
+    "senior-frontend": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "skillPath": "engineering-team/skills/senior-frontend/SKILL.md",
+      "computedHash": "c4845ae10ab5e18b1a6bcfd19067e17545108ee87700f89fd5ea07811ad5096a"
+    },
+    "senior-security": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "skillPath": "engineering-team/skills/senior-security/SKILL.md",
+      "computedHash": "815e7e7540d386358d51515e111a9897fc00bd2d5c907a6e91d1dad482010291"
+    },
+    "ux-researcher-designer": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "skillPath": "product-team/skills/ux-researcher-designer/SKILL.md",
+      "computedHash": "2f0e31d8ff81d3454699684ad46224bb5a1739f57bc24db1dad1fa505251e6bf"
+    },
+    "scope-prosecutor": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "plan-ceo-review/SKILL.md",
+      "mode": "SCOPE_REDUCTION",
+      "computedHash": null
+    },
+    "product-vision-anchor": {
+      "source": "ipavelm/ultimate-product-discovery-skill",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "mode": "Light",
+      "computedHash": null
+    },
+    "product-critic": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": "plan-ceo-review/SKILL.md",
+      "mode": "HOLD_SCOPE",
+      "computedHash": null
+    }
+  }
+}

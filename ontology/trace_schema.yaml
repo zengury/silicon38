@@ -1,0 +1,137 @@
+# Execution Trace Schema
+#
+# Records node executions, relation signals, and weight update inputs.
+# Primary purpose: weight learning from execution history.
+#
+# This schema is the weight-learning record.
+# For artifact storage, provenance, and audit trail see:
+#   artifact_ledger.yaml    — artifact provenance + handoff records
+#   task_graph_state.yaml   — live execution state + convergence tracking
+#
+# Full per-task storage layout:
+#   traces/<task_id>/
+#     manifest.yaml    — task index + outcome (artifact_ledger.yaml: TaskManifest)
+#     state.yaml       — live state (task_graph_state.yaml: TaskGraphState)
+#     events.yaml      — append-only event stream (artifact_ledger.yaml: EventStream)
+#     artifacts/       — artifact content + provenance sidecars
+#     handoffs/        — node-to-node handoff records
+#
+# Weight update indices (cross-task):
+#   traces/index_by_role.yaml       role → [task_ids]
+#   traces/index_by_relation.yaml   from+to → [task_ids]
+#   traces/index_learning_proposals.yaml  per-trace proposals, aggregate
+#                                        pattern proposals, and reviewed
+#                                        Policy overlays
+
+TaskTrace:
+  task_id: string                  # uuid
+  timestamp_start: iso8601
+  timestamp_end: iso8601
+  task_summary: string             # one sentence, what was the task
+
+  # Nodes activated in this task and their outcomes
+  node_executions:
+    - role: string                 # matches nodes.yaml role
+      timestamp_start: iso8601
+      timestamp_end: iso8601
+      input_sources:               # which nodes provided input
+        - role: string
+      output_summary: string       # one sentence, what was produced
+      output_artifacts:            # files or inline content produced
+        - type: string             # code | test | document | analysis | schema
+          ref: string              # file path or inline key
+      status: completed | partial | blocked
+      blocked_reason: string | null
+
+  # Relations activated in this task and their local signals
+  relation_signals:
+    - from: string
+      to: string
+      type: string
+      weight_snapshot:             # weight values at time of activation
+        # dimensions vary by relation type — match relation_types.yaml
+        probability: float | null
+        strictness: float | null
+        strength: float | null
+        synergy: float | null
+        overlap: float | null
+        necessity: float | null
+        depth: float | null
+      local_signal:
+        signal_type: acceptance | rejection | override | skip
+        value: float               # +1.0 accepted, -1.0 rejected, 0.0 skipped
+        detail: string | null      # e.g. "CHANGES_REQUIRED: missing error handling"
+
+  # Task-level outcome (populated after completion)
+  outcome:
+    status: success | partial | failed
+    quality_signal:
+      source: delivery-prover | runtime_decoder_unverified | runtime_decoder | human | test_suite | downstream_acceptance | null
+      value: float | null          # [0.0, 1.0] if available, null if not yet measured
+      detail: string | null
+    notes: string | null
+
+# Weight update proposals derived from this trace. The current Runtime writes
+# learning indices and review proposals with `ledger weights`; proposals may be
+# per-trace or aggregate across repeated patterns. Reviewed proposals may
+# activate temporary Policy overlays, but do not mutate relations.yaml.
+  weight_updates:
+    - from: string
+      to: string
+      type: string
+      dimension: string
+      previous_value: float
+      new_value: float
+      delta: float
+      update_source: auto | measure | human
+      justification: string
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Weight Update Rules (proposal formulas)
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# Computed only when a human or future evaluator asks for a proposal.
+# `tools/ledger.py weights` currently writes trace indices, not ontology edits.
+# α = learning rate = 0.05 (slow adaptation, requires many samples to shift)
+# confidence increases with sample count: confidence = min(1.0, samples / 100)
+#
+# triggers.probability:
+#   signal = 1.0 if trigger fired, 0.0 if node completed without firing
+#   new_value = old_value * (1 - α) + signal * α
+#
+# may_trigger.probability:
+#   signal = 1.0 if condition was met and trigger fired
+#   signal = 0.0 if condition was checked but not met
+#   new_value = old_value * (1 - α) + signal * α
+#
+# evaluates.strictness:
+#   signal = local_signal.value (acceptance=+1, rejection=-1 mapped to [0,1])
+#   new_value = old_value * (1 - α) + (1.0 - acceptance_rate) * α
+#   note: calibrate against defect_escape_rate when quality_signal.source != null
+#
+# constrains.strength:
+#   signal = 0.0 if target overrode constraint, 1.0 if constraint was followed
+#   new_value = old_value * (1 - α) + signal * α
+#
+# complements.overlap:
+#   signal = semantic_similarity(output_A, output_B)  [requires embedding]
+#   new_value = old_value * (1 - α) + signal * α
+#
+# supports.necessity, complements.synergy, augments.necessity, augments.depth:
+#   require external measurement (ablation or quality scoring)
+#   updated only when quality_signal.source is non-null
+#   new_value = old_value * (1 - α) + quality_signal.value * α
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Log location
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# traces/<task_id>/
+#
+# Indices maintained separately for fast lookup:
+#   traces/index_by_role.yaml      role → [task_ids]
+#   traces/index_by_relation.yaml  from+to → [task_ids]
+#   traces/index_learning_proposals.yaml
+#     proposals: generated by Learning
+#       basis: trace | aggregate
+#     policy_overlays: reviewed directives consumed by Policy

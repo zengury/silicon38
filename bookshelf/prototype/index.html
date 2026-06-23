@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bookshelf — Prototype</title>
+<style>
+:root {
+  --brown: #8B5E3C;
+  --brown-light: #A67B5B;
+  --bg: #F2F1ED;
+  --card: #FFFFFF;
+  --text: #1C1C1E;
+  --secondary: #6B6B73;
+  --red: #C44536;
+  --navy: #2E4A7A;
+  --green: #3D6B4F;
+  --gold: #D4A853;
+  --burgundy: #7A2E3B;
+  --warn: #E8A838;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  background: #1a1a1a;
+  display: flex; justify-content: center; align-items: center;
+  min-height: 100vh; padding: 20px;
+}
+.phone {
+  width: 393px; height: 852px;
+  background: var(--bg);
+  border-radius: 44px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5), inset 0 0 0 2px #333;
+  display: flex; flex-direction: column;
+}
+.status-bar {
+  height: 54px; background: var(--bg);
+  display: flex; justify-content: space-between; align-items: flex-end;
+  padding: 0 32px 8px;
+  font-size: 12px; font-weight: 600; color: var(--text);
+}
+.screen {
+  flex: 1; overflow-y: auto; overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+.screen::-webkit-scrollbar { display: none; }
+
+/* Navigation */
+.nav-title {
+  font-size: 34px; font-weight: 700;
+  padding: 8px 20px 16px; color: var(--text);
+}
+
+/* Tab Bar */
+.tab-bar {
+  height: 84px; background: rgba(242,241,237,0.92);
+  backdrop-filter: blur(20px);
+  display: flex; align-items: flex-start; padding-top: 8px;
+  border-top: 1px solid rgba(0,0,0,.08);
+}
+.tab-item {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  gap: 4px; padding: 4px 0; cursor: pointer; transition: .15s;
+  color: var(--secondary);
+}
+.tab-item.active { color: var(--brown); }
+.tab-item svg { width: 24px; height: 24px; }
+.tab-item span { font-size: 10px; font-weight: 500; }
+
+/* Cards */
+.card {
+  background: var(--card); border-radius: 14px;
+  margin: 0 20px 12px; padding: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+}
+.card-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 10px;
+}
+.card-title { font-size: 17px; font-weight: 600; color: var(--text); }
+.card-subtitle { font-size: 13px; color: var(--secondary); margin-top: 2px; }
+.card-chevron { color: var(--secondary); font-size: 14px; }
+
+/* Shelf Spine Strip */
+.spine-strip {
+  display: flex; gap: 2px; height: 36px; border-radius: 4px; overflow: hidden;
+}
+.spine-seg {
+  flex: 1; min-width: 4px; border-radius: 1px;
+}
+
+/* Shelf Grid */
+.shelf-grid {
+  display: grid; gap: 3px; padding: 4px;
+}
+.book-cell {
+  aspect-ratio: 0.65; border-radius: 3px;
+  display: flex; align-items: flex-end; justify-content: center;
+  padding: 2px; cursor: pointer; transition: transform .1s;
+  position: relative; overflow: hidden;
+}
+.book-cell:active { transform: scale(.95); }
+.book-cell .title-mini {
+  font-size: 6px; font-weight: 600; color: rgba(255,255,255,.9);
+  text-align: center; line-height: 1.1;
+  background: rgba(0,0,0,.3); width: 100%;
+  padding: 1px 0; border-radius: 0 0 1px 1px;
+}
+.book-cell .warn-dot {
+  position: absolute; top: 2px; right: 2px;
+  width: 6px; height: 6px; background: var(--warn);
+  border-radius: 50%;
+}
+.book-cell.empty {
+  background: #E5E4E0;
+  display: flex; align-items: center; justify-content: center;
+  color: #B0AFA8; font-size: 10px;
+}
+
+/* Buttons */
+.btn-primary {
+  display: block; width: calc(100% - 40px); margin: 16px 20px;
+  padding: 14px; background: var(--brown);
+  color: white; font-size: 16px; font-weight: 600;
+  border: none; border-radius: 14px; cursor: pointer;
+  text-align: center;
+}
+.btn-primary:active { background: var(--brown-light); }
+.btn-secondary {
+  display: block; margin: 0 auto; padding: 8px 24px;
+  background: none; border: none; color: var(--secondary);
+  font-size: 14px; cursor: pointer;
+}
+
+/* Search */
+.search-bar {
+  margin: 0 20px 12px;
+  background: #E5E4E0; border-radius: 12px;
+  padding: 10px 14px; display: flex; align-items: center; gap: 8px;
+}
+.search-bar input {
+  flex: 1; border: none; background: none; font-size: 15px;
+  outline: none; color: var(--text);
+}
+.search-bar input::placeholder { color: #A0A0A0; }
+
+.search-result {
+  padding: 14px 20px; display: flex; gap: 12px; align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,.05); cursor: pointer;
+}
+.search-result .spine-bar {
+  width: 4px; height: 44px; border-radius: 2px; flex-shrink: 0;
+}
+.search-result .info { flex: 1; min-width: 0; }
+.search-result .info .title { font-size: 15px; font-weight: 500; color: var(--text); }
+.search-result .info .author { font-size: 12px; color: var(--secondary); }
+.search-result .info .location {
+  font-size: 11px; color: var(--brown); font-weight: 500;
+  display: flex; align-items: center; gap: 4px; margin-top: 2px;
+}
+
+/* Book Detail Sheet */
+.sheet-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.4);
+  z-index: 100; display: flex; align-items: flex-end; justify-content: center;
+}
+.sheet {
+  width: 393px; max-height: 70vh;
+  background: var(--card); border-radius: 20px 20px 0 0;
+  overflow-y: auto; padding: 12px 20px 40px;
+  animation: slideUp .25s ease-out;
+}
+@keyframes slideUp { from { transform: translateY(100%); } }
+.sheet-handle {
+  width: 36px; height: 5px; background: #D1D1D6;
+  border-radius: 3px; margin: 0 auto 16px;
+}
+.sheet h3 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+.sheet .author { font-size: 14px; color: var(--secondary); margin-bottom: 12px; }
+.sheet .location-row {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; color: var(--brown); font-weight: 500;
+  padding: 8px 0; border-top: 1px solid rgba(0,0,0,.06);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  margin-bottom: 12px;
+}
+.sheet .warn-box {
+  background: #FFF8E1; border-radius: 8px; padding: 10px 12px;
+  font-size: 12px; color: #8B6914; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.sheet .summary-label { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.sheet .summary-text { font-size: 14px; color: var(--secondary); line-height: 1.5; }
+
+/* Auth Screen */
+.auth-screen { padding: 60px 32px; text-align: center; }
+.auth-screen .logo { font-size: 48px; margin-bottom: 12px; }
+.auth-screen h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.auth-screen .sub { font-size: 14px; color: var(--secondary); margin-bottom: 32px; }
+.auth-screen input {
+  display: block; width: 100%; padding: 14px; margin-bottom: 10px;
+  border: 1px solid #D1D1D6; border-radius: 12px; font-size: 15px;
+  background: var(--bg);
+}
+.auth-btn {
+  display: block; width: 100%; padding: 14px;
+  background: var(--brown); color: white; font-size: 16px; font-weight: 600;
+  border: none; border-radius: 14px; margin: 8px 0; cursor: pointer;
+}
+.apple-btn {
+  display: block; width: 100%; padding: 14px;
+  background: #000; color: white; font-size: 16px; font-weight: 600;
+  border: none; border-radius: 14px; margin: 16px 0; cursor: pointer;
+}
+.divider {
+  display: flex; align-items: center; gap: 12px; margin: 20px 0;
+  color: var(--secondary); font-size: 13px;
+}
+.divider::before, .divider::after {
+  content: ''; flex: 1; height: 1px; background: #D1D1D6;
+}
+
+/* Onboarding */
+.onboard-card {
+  text-align: center; padding: 40px 32px;
+}
+.onboard-card .icon { font-size: 56px; margin-bottom: 20px; }
+.onboard-card h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.onboard-card p { font-size: 15px; color: var(--secondary); line-height: 1.5; }
+.dots { display: flex; gap: 8px; justify-content: center; margin: 20px 0; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: #D1D1D6; }
+.dot.active { background: var(--brown); width: 24px; border-radius: 4px; }
+
+/* Paywall */
+.paywall { text-align: center; padding: 40px 32px; }
+.paywall .logo { font-size: 48px; margin-bottom: 12px; }
+.paywall h2 { font-size: 26px; font-weight: 700; margin-bottom: 20px; }
+.paywall .features { text-align: left; margin: 20px 0; }
+.paywall .feat {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 0; font-size: 15px;
+}
+.paywall .feat .check { color: var(--brown); font-size: 18px; }
+.paywall .price { font-size: 44px; font-weight: 700; color: var(--brown); margin: 12px 0 4px; }
+.paywall .per { font-size: 14px; color: var(--secondary); margin-bottom: 24px; }
+
+/* Camera Screen */
+.camera-screen { background: #000; color: white; position: relative; }
+.camera-frame {
+  width: 100%; aspect-ratio: 1; position: relative;
+  background: radial-gradient(ellipse at center, #1a1a1a 0%, #000 100%);
+  margin-top: 60px;
+}
+.camera-guide {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+}
+.guide-row { flex: 1; border-bottom: 1px solid rgba(255,255,255,.15); }
+.camera-hint {
+  text-align: center; font-size: 13px; color: rgba(255,255,255,.7);
+  padding: 20px;
+}
+.camera-btn {
+  display: flex; justify-content: center; padding: 30px 0;
+}
+.shutter {
+  width: 70px; height: 70px; border-radius: 50%;
+  border: 3px solid white; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: .1s;
+}
+.shutter:active { transform: scale(.9); }
+.shutter-inner {
+  width: 56px; height: 56px; border-radius: 50%; background: white;
+}
+
+/* Processing */
+.processing {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; height: 100%; padding: 40px; text-align: center;
+  background: #000; color: white;
+}
+.processing .spin {
+  width: 48px; height: 48px; border: 3px solid rgba(255,255,255,.2);
+  border-top-color: var(--brown); border-radius: 50%;
+  animation: spin .8s linear infinite; margin-bottom: 24px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.processing h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+.processing p { font-size: 13px; color: rgba(255,255,255,.6); }
+
+/* Done */
+.done-screen {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; height: 100%; padding: 40px; text-align: center;
+  background: #000; color: white;
+}
+.done-screen .checkmark {
+  font-size: 56px; margin-bottom: 16px;
+}
+.done-screen h3 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+.done-screen .count { font-size: 15px; color: rgba(255,255,255,.7); margin-bottom: 8px; }
+.done-screen .review-hint {
+  font-size: 12px; color: var(--warn); display: flex; align-items: center; gap: 6px; margin-bottom: 24px;
+}
+
+/* Empty state */
+.empty-state {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 60px 32px; text-align: center;
+}
+.empty-state .icon { font-size: 48px; color: var(--brown); opacity: .4; margin-bottom: 16px; }
+.empty-state h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+.empty-state p { font-size: 14px; color: var(--secondary); line-height: 1.4; }
+
+/* Hidden */
+.hidden { display: none !important; }
+
+/* Profile */
+.profile-section { padding: 0 20px 16px; }
+.profile-header {
+  display: flex; align-items: center; gap: 14px; padding: 8px 0 16px;
+}
+.profile-avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--brown); display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 24px;
+}
+.profile-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,.05);
+  cursor: pointer;
+}
+.profile-row .left { display: flex; align-items: center; gap: 10px; font-size: 15px; }
+.profile-row .right { color: var(--secondary); font-size: 13px; }
+.profile-section .section-label {
+  font-size: 12px; font-weight: 600; color: var(--secondary);
+  text-transform: uppercase; letter-spacing: .5px; margin: 16px 0 8px;
+}
+.danger { color: var(--red) !important; }
+
+/* Step indicator */
+.steps { display: flex; gap: 8px; justify-content: center; padding: 20px; }
+.step-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--brown);
+  opacity: .3; transition: .2s;
+}
+.step-dot.done { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="phone" id="app">
+  <!-- Screens will be rendered here -->
+</div>
+
+<script>
+// ── State ──
+const state = {
+  screen: 'onboarding', // onboarding | auth | paywall | main
+  onboardingPage: 0,
+  tab: 'shelves',       // shelves | search | profile
+  shelves: [
+    {
+      id: '1', name: 'Living Room Left', rowCount: 3, columnCount: 6,
+      bookCount: 5, createdAt: 'Jun 4, 2026',
+      books: [
+        { id:'b1', title:'The Design of Everyday Things', author:'Don Norman', summary:'Explores how good design makes products understandable and usable, introducing affordances, signifiers, and the gulfs of execution and evaluation.', row:1, col:1, confidence:0.95, color:'#5C4033' },
+        { id:'b2', title:'Thinking, Fast and Slow', author:'Daniel Kahneman', summary:'Examines the two systems of human thought: fast intuitive System 1 and slow deliberate System 2, revealing cognitive biases that affect decision-making.', row:1, col:2, confidence:0.92, color:'#2E4A7A' },
+        { id:'b3', title:'A Pattern Language', author:'Christopher Alexander', summary:'Presents 253 patterns for designing towns, buildings, and construction, emphasizing human-centered spaces.', row:2, col:1, confidence:0.88, color:'#3D6B4F' },
+        { id:'b4', title:'The Timeless Way of Building', author:'Christopher Alexander', summary:'Introduces a quality without a name that makes buildings feel alive, emerging from pattern languages.', row:2, col:2, confidence:0.65, color:'#7A2E3B' },
+        { id:'b5', title:'High Output Management', author:'Andrew S. Grove', summary:'A practical guide to management from Intel\'s former CEO, covering leverage, meetings, and performance.', row:3, col:1, confidence:0.91, color:'#D4A853' },
+      ]
+    },
+    {
+      id: '2', name: 'Study - Main Wall', rowCount: 4, columnCount: 7,
+      bookCount: 0, createdAt: 'Jun 5, 2026', books: []
+    }
+  ],
+  searchQuery: '',
+  cameraState: 'idle', // idle | processing | done
+  showBookDetail: null,
+  showNewShelf: false,
+  newShelfStep: 0,
+  newShelfName: '',
+  newShelfRows: 4,
+  newShelfCols: 6,
+};
+
+// ── SVG Icons ──
+const icons = {
+  books: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="18" rx="1"/><rect x="13" y="3" width="8" height="18" rx="1"/><line x1="7" y1="8" x2="7" y2="8"/></svg>`,
+  search: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>`,
+  person: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>`,
+  camera: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="15" rx="3"/><circle cx="12" cy="12.5" r="3"/></svg>`,
+  plus: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`,
+  chevron: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>`,
+  location: `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.4 8 13 8 13s8-7.6 8-13a8 8 0 0 0-8-8z"/></svg>`,
+  warn: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>`,
+  sparkle: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.5 5.5L19 9l-5.5 1.5L12 16l-1.5-5.5L5 9l5.5-1.5z"/></svg>`,
+}
+
+// ── Render ──
+function render() {
+  const app = document.getElementById('app');
+  let html = '';
+
+  if (state.screen === 'onboarding') {
+    html = renderOnboarding();
+  } else if (state.screen === 'auth') {
+    html = renderAuth();
+  } else if (state.screen === 'paywall') {
+    html = renderPaywall();
+  } else if (state.screen === 'camera') {
+    html = renderCamera();
+  } else if (state.screen === 'main') {
+    html = renderMain();
+  }
+
+  app.innerHTML = html;
+  bindEvents();
+}
+
+// ── Onboarding ──
+function renderOnboarding() {
+  const pages = [
+    { icon: icons.camera, title: 'Your Library in One Photo', desc: 'Take a photo of any bookshelf. AI recognizes every book instantly — no typing, no scanning.' },
+    { icon: icons.sparkle, title: 'AI Reads Your Books', desc: 'Every book gets its title, author, and a summary. All automatic. All in seconds.' },
+    { icon: icons.search, title: 'Find Anything Instantly', desc: 'Search by title or author. See exactly which shelf and position. Walk straight to your book.' },
+  ];
+  const p = pages[state.onboardingPage];
+  return `
+    <div class="screen">
+      <div style="padding-top:80px"></div>
+      <div class="onboard-card">
+        <div class="icon" style="color:var(--brown)">${p.icon}</div>
+        <h2>${p.title}</h2>
+        <p>${p.desc}</p>
+      </div>
+      <div class="dots">
+        ${pages.map((_,i) => `<div class="dot ${i===state.onboardingPage?'active':''}"></div>`).join('')}
+      </div>
+      ${state.onboardingPage < pages.length-1
+        ? `<button class="btn-primary" onclick="nextOnboard()">Next</button>`
+        : `<button class="btn-primary" onclick="finishOnboarding()">Get Started</button>`
+      }
+      <button class="btn-secondary" onclick="finishOnboarding()">Skip</button>
+    </div>
+  `;
+}
+
+function nextOnboard() { state.onboardingPage++; render(); }
+function finishOnboarding() { state.screen = 'auth'; render(); }
+
+// ── Auth ──
+function renderAuth() {
+  return `
+    <div class="screen auth-screen">
+      <div class="logo" style="color:var(--brown)">${icons.books}</div>
+      <h1>Bookshelf</h1>
+      <p class="sub">Your library, digitized.</p>
+      <input type="email" placeholder="Email" id="authEmail" value="elena@test.com">
+      <input type="password" placeholder="Password (8+ chars)" id="authPass" value="TestPass1">
+      <button class="auth-btn" onclick="doAuth('register')">Create Account</button>
+      <button class="btn-secondary" onclick="doAuth('login')">Sign In</button>
+      <div class="divider">or</div>
+      <button class="apple-btn" onclick="doAuth('apple')"> Sign in with Apple</button>
+    </div>
+  `;
+}
+
+function doAuth(mode) {
+  state.screen = 'paywall'; render();
+}
+
+// ── Paywall ──
+function renderPaywall() {
+  return `
+    <div class="screen paywall">
+      <div style="padding-top:40px"></div>
+      <div class="logo" style="color:var(--brown)">${icons.books}</div>
+      <h2>Bookshelf Premium</h2>
+      <div class="features">
+        <div class="feat"><span class="check">✓</span> Unlimited shelf photos</div>
+        <div class="feat"><span class="check">✓</span> AI book recognition & summaries</div>
+        <div class="feat"><span class="check">✓</span> Search across all shelves</div>
+        <div class="feat"><span class="check">✓</span> Up to 10 shelves</div>
+      </div>
+      <div class="price">$1.99</div>
+      <div class="per">per month</div>
+      <button class="btn-primary" onclick="doSubscribe()">Subscribe</button>
+      <button class="btn-secondary" onclick="doSubscribe()">Restore Purchases</button>
+    </div>
+  `;
+}
+
+function doSubscribe() { state.screen = 'main'; render(); }
+
+// ── Camera ──
+function renderCamera() {
+  if (state.cameraState === 'processing') {
+    return `
+      <div class="screen processing">
+        <div class="spin"></div>
+        <h3>Recognizing your books...</h3>
+        <p>This usually takes about 10 seconds</p>
+      </div>
+    `;
+  }
+  if (state.cameraState === 'done') {
+    const shelf = state.shelves[0];
+    const books = shelf.books;
+    const needsReview = books.filter(b => b.confidence < 0.7).length;
+    return `
+      <div class="screen done-screen">
+        <div class="checkmark">✅</div>
+        <h3>${books.length} Books Recognized</h3>
+        <p class="count">Your shelf "${shelf.name}" is ready</p>
+        ${needsReview > 0 ? `<div class="review-hint">⚠️ ${needsReview} book${needsReview>1?'s':''} need${needsReview===1?'s':''} your review</div>` : ''}
+        <button class="btn-primary" style="margin-top:24px" onclick="leaveCamera()">View Shelf</button>
+      </div>
+    `;
+  }
+  return `
+    <div class="screen camera-screen">
+      <div class="camera-frame">
+        <div class="camera-guide">
+          ${'<div class="guide-row"></div>'.repeat(3)}
+        </div>
+      </div>
+      <div class="camera-hint">Frame your shelf so all books are visible</div>
+      <div class="camera-btn">
+        <div class="shutter" onclick="takePhoto()">
+          <div class="shutter-inner"></div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function takePhoto() {
+  state.cameraState = 'processing'; render();
+  setTimeout(() => {
+    // Simulate AI recognition — populate shelf 1 with books if empty
+    if (state.shelves[0].bookCount === 0) {
+      state.shelves[0].bookCount = state.shelves[0].books.length;
+    }
+    state.cameraState = 'done'; render();
+  }, 2000);
+}
+
+function leaveCamera() {
+  state.cameraState = 'idle';
+  state.screen = 'main';
+  state.tab = 'shelves';
+  render();
+}
+
+// ── New Shelf Flow ──
+function renderNewShelf() {
+  if (state.newShelfStep === 0) {
+    return `
+      <div class="screen">
+        <div class="nav-title">Name Your Shelf</div>
+        <div class="steps"><div class="step-dot done"></div><div class="step-dot"></div></div>
+        <div style="padding:12px 20px">
+          <input type="text" placeholder="e.g., Living Room Left" style="width:100%;padding:14px;border:1px solid #D1D1D6;border-radius:12px;font-size:15px;background:white" id="shelfNameInput" value="${state.newShelfName}">
+        </div>
+        <div style="padding:0 20px">
+          ${['Living Room','Study','Bedroom','Office'].map(n => `
+            <div style="padding:12px 14px;background:white;border-radius:10px;margin-bottom:8px;cursor:pointer;font-size:15px" onclick="selectShelfName('${n}')">
+              ${n} ${state.newShelfName===n?'✓':''}
+            </div>
+          `).join('')}
+        </div>
+        <button class="btn-primary" style="margin-top:20px" onclick="newShelfStep1()">Continue</button>
+      </div>
+    `;
+  }
+  return `
+    <div class="screen">
+      <div class="nav-title">Shelf Size</div>
+      <div class="steps"><div class="step-dot done"></div><div class="step-dot done"></div></div>
+      <div style="padding:20px">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:14px;background:white;border-radius:10px;margin-bottom:10px">
+          <span style="font-size:15px">Rows</span>
+          <div style="display:flex;align-items:center;gap:16px">
+            <button style="width:32px;height:32px;border-radius:50%;border:2px solid var(--brown);background:none;font-size:20px;color:var(--brown);cursor:pointer;line-height:1" onclick="adjustRows(-1)">−</button>
+            <span style="font-size:16px;font-weight:600;min-width:20px;text-align:center">${state.newShelfRows}</span>
+            <button style="width:32px;height:32px;border-radius:50%;border:2px solid var(--brown);background:none;font-size:20px;color:var(--brown);cursor:pointer;line-height:1" onclick="adjustRows(1)">+</button>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:14px;background:white;border-radius:10px">
+          <span style="font-size:15px">Columns</span>
+          <div style="display:flex;align-items:center;gap:16px">
+            <button style="width:32px;height:32px;border-radius:50%;border:2px solid var(--brown);background:none;font-size:20px;color:var(--brown);cursor:pointer;line-height:1" onclick="adjustCols(-1)">−</button>
+            <span style="font-size:16px;font-weight:600;min-width:20px;text-align:center">${state.newShelfCols}</span>
+            <button style="width:32px;height:32px;border-radius:50%;border:2px solid var(--brown);background:none;font-size:20px;color:var(--brown);cursor:pointer;line-height:1" onclick="adjustCols(1)">+</button>
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--secondary);margin-top:10px">Count the shelves and estimate books per row.</p>
+      </div>
+      <button class="btn-primary" style="margin-top:20px" onclick="createShelfAndCamera()">📷 Take Photo</button>
+    </div>
+  `;
+}
+
+function selectShelfName(n) { state.newShelfName = n; render(); }
+function newShelfStep1() { state.newShelfStep = 1; render(); }
+function adjustRows(d) { state.newShelfRows = Math.max(1, Math.min(10, state.newShelfRows+d)); render(); }
+function adjustCols(d) { state.newShelfCols = Math.max(1, Math.min(20, state.newShelfCols+d)); render(); }
+
+function createShelfAndCamera() {
+  const name = state.newShelfName || `Shelf ${new Date().toLocaleDateString()}`;
+  state.shelves.push({
+    id: 's' + Date.now(), name, rowCount: state.newShelfRows,
+    columnCount: state.newShelfCols, bookCount: 0, createdAt: 'Just now', books: []
+  });
+  state.showNewShelf = false;
+  state.newShelfStep = 0; state.newShelfName = '';
+  state.screen = 'camera'; state.cameraState = 'idle';
+  render();
+}
+
+// ── Main App ──
+function renderMain() {
+  const statusBar = `<div class="status-bar"><span>9:41</span><span>📶 🔋</span></div>`;
+
+  if (state.showNewShelf) {
+    return statusBar + renderNewShelf();
+  }
+
+  let content = '';
+  if (state.tab === 'shelves') content = renderShelves();
+  else if (state.tab === 'search') content = renderSearch();
+  else if (state.tab === 'profile') content = renderProfile();
+
+  const tabBar = `
+    <div class="tab-bar">
+      <div class="tab-item ${state.tab==='shelves'?'active':''}" onclick="switchTab('shelves')">
+        ${icons.books}<span>Shelves</span>
+      </div>
+      <div class="tab-item ${state.tab==='search'?'active':''}" onclick="switchTab('search')">
+        ${icons.search}<span>Search</span>
+      </div>
+      <div class="tab-item ${state.tab==='profile'?'active':''}" onclick="switchTab('profile')">
+        ${icons.person}<span>Profile</span>
+      </div>
+    </div>
+  `;
+
+  return statusBar + `<div class="screen">${content}</div>` + tabBar;
+}
+
+// ── Shelves Tab ──
+function renderShelves() {
+  const shelves = state.shelves;
+  if (shelves.length === 0) {
+    return `
+      <div class="nav-title">My Library</div>
+      <div class="empty-state">
+        <div class="icon">${icons.books}</div>
+        <h3>No shelves yet</h3>
+        <p>Take a photo of your first bookshelf</p>
+        <button class="btn-primary" style="margin-top:20px" onclick="startNewShelf()">📷 Add Your First Shelf</button>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="nav-title">My Library</div>
+    ${shelves.map(s => `
+      <div class="card" onclick="openShelf('${s.id}')">
+        <div class="card-header">
+          <div>
+            <div class="card-title">${s.name}</div>
+            <div class="card-subtitle">${s.bookCount} books · ${s.rowCount}×${s.columnCount} · ${s.createdAt}</div>
+          </div>
+          <div class="card-chevron">${icons.chevron}</div>
+        </div>
+        <div class="spine-strip">
+          ${Array.from({length: s.columnCount}, (_, i) => {
+            const colors = ['#5C4033','#2E4A7A','#3D6B4F','#7A2E3B','#D4A853'];
+            return `<div class="spine-seg" style="background:${i < s.bookCount ? colors[i%5] : '#E5E4E0'}"></div>`;
+          }).join('')}
+        </div>
+      </div>
+    `).join('')}
+    <button class="btn-primary" onclick="startNewShelf()">+ Add a Shelf</button>
+  `;
+}
+
+function startNewShelf() { state.showNewShelf = true; render(); }
+
+function openShelf(id) {
+  const shelf = state.shelves.find(s => s.id === id);
+  if (!shelf) return;
+
+  const books = shelf.books;
+  if (books.length === 0) {
+    // Show empty shelf with camera prompt
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <div class="screen">
+        <div class="nav-title">← ${shelf.name}</div>
+        <div class="empty-state">
+          <div class="icon">${icons.camera}</div>
+          <h3>This shelf is empty</h3>
+          <p>Take a photo to fill it with books</p>
+          <button class="btn-primary" style="margin-top:20px" onclick="goToCamera()">📷 Take Photo</button>
+        </div>
+      </div>
+    `;
+    showModal(div.innerHTML);
+    return;
+  }
+
+  const rows = shelf.rowCount;
+  const cols = shelf.columnCount;
+  let gridHtml = '<div class="shelf-grid" style="grid-template-columns:repeat(' + cols + ',1fr)">';
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const book = books.find(b => b.row === r+1 && b.col === c+1);
+      if (book) {
+        const warn = book.confidence < 0.7 ? '<div class="warn-dot"></div>' : '';
+        const shortTitle = book.title.length > 15 ? book.title.slice(0,14)+'…' : book.title;
+        gridHtml += `
+          <div class="book-cell" style="background:${book.color}" onclick="showBookDetail('${book.id}')">
+            ${warn}
+            <div class="title-mini">${shortTitle}</div>
+          </div>`;
+      } else {
+        gridHtml += `<div class="book-cell empty">?</div>`;
+      }
+    }
+  }
+  gridHtml += '</div>';
+
+  const div = document.createElement('div');
+  div.innerHTML = `
+    <div class="screen">
+      <div class="nav-title">← ${shelf.name}</div>
+      <div style="padding:0 12px">
+        ${gridHtml}
+      </div>
+    </div>
+  `;
+  showModal(div.innerHTML);
+}
+
+function showModal(html) {
+  const el = document.getElementById('modal');
+  if (el) el.remove();
+  const overlay = document.createElement('div');
+  overlay.id = 'modal';
+  overlay.className = 'sheet-overlay';
+  overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
+  overlay.innerHTML = `<div class="sheet">${html}</div>`;
+  document.body.appendChild(overlay);
+}
+
+function goToCamera() {
+  const el = document.getElementById('modal');
+  if (el) el.remove();
+  state.screen = 'camera';
+  state.cameraState = 'idle';
+  render();
+}
+
+function showBookDetail(bookId) {
+  const book = state.shelves.flatMap(s => s.books).find(b => b.id === bookId);
+  if (!book) return;
+  const shelf = state.shelves.find(s => s.books.some(b => b.id === bookId));
+  const warnHtml = book.confidence < 0.7
+    ? `<div class="warn-box">⚠️ AI is uncertain about this book. Tap to confirm or edit.</div>` : '';
+
+  const el = document.getElementById('modal');
+  if (el) el.remove();
+  const overlay = document.createElement('div');
+  overlay.id = 'modal';
+  overlay.className = 'sheet-overlay';
+  overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
+  overlay.innerHTML = `
+    <div class="sheet">
+      <div class="sheet-handle"></div>
+      <h3>${book.title}</h3>
+      <div class="author">${book.author}</div>
+      <div class="location-row">
+        📚 ${shelf?.name || 'Shelf'} · 📍 Row ${book.row}, Col ${book.col}
+      </div>
+      ${warnHtml}
+      <div class="summary-label">Summary</div>
+      <div class="summary-text">${book.summary}</div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+}
+
+// ── Search Tab ──
+function renderSearch() {
+  const results = state.searchQuery
+    ? state.shelves.flatMap(s => s.books.map(b => ({...b, shelfName: s.name})))
+        .filter(b => b.title.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
+                     b.author.toLowerCase().includes(state.searchQuery.toLowerCase()))
+    : [];
+
+  if (!state.searchQuery) {
+    return `
+      <div class="nav-title">Search</div>
+      <div class="search-bar">
+        🔍 <input type="text" placeholder="Search by title or author..." id="searchInput" value="${state.searchQuery}">
+      </div>
+      <div style="padding:20px;text-align:center;color:var(--secondary);font-size:14px">
+        Start typing to search across all shelves
+      </div>
+    `;
+  }
+
+  return `
+    <div class="nav-title">Search</div>
+    <div class="search-bar">
+      🔍 <input type="text" placeholder="Search by title or author..." id="searchInput" value="${state.searchQuery}">
+      ${state.searchQuery ? '<span onclick="clearSearch()" style="cursor:pointer;color:var(--secondary)">✕</span>' : ''}
+    </div>
+    <div style="padding:0 20px;font-size:12px;color:var(--secondary);margin-bottom:8px">${results.length} results</div>
+    ${results.map(b => `
+      <div class="search-result" onclick="showBookDetail('${b.id}')">
+        <div class="spine-bar" style="background:${b.color}"></div>
+        <div class="info">
+          <div class="title">${b.title}</div>
+          <div class="author">${b.author}</div>
+          <div class="location">📚 ${b.shelfName} · 📍 Row ${b.row}, Col ${b.col}</div>
+        </div>
+        <div style="color:var(--secondary);font-size:12px">›</div>
+      </div>
+    `).join('')}
+  `;
+}
+
+function clearSearch() { state.searchQuery = ''; render(); }
+
+// ── Profile Tab ──
+function renderProfile() {
+  const totalBooks = state.shelves.reduce((s, sh) => s + sh.bookCount, 0);
+  return `
+    <div class="nav-title">Profile</div>
+    <div class="profile-section">
+      <div class="profile-header">
+        <div class="profile-avatar">E</div>
+        <div>
+          <div style="font-size:17px;font-weight:600">Elena M.</div>
+          <div style="font-size:13px;color:var(--secondary)">${state.shelves.length} shelves · ${totalBooks} books</div>
+        </div>
+      </div>
+    </div>
+    <div class="profile-section">
+      <div class="section-label">Subscription</div>
+      <div class="profile-row">
+        <div class="left">📚 Bookshelf Premium</div>
+        <div class="right" style="color:var(--brown)">$1.99/mo ✓</div>
+      </div>
+      <div style="padding:8px 0">
+        <button class="btn-secondary" style="color:var(--brown);padding:8px 0">Manage Subscription</button>
+      </div>
+    </div>
+    <div class="profile-section">
+      <div class="section-label">Settings</div>
+      <div class="profile-row"><div class="left">🔔 Notifications</div><div class="right">›</div></div>
+      <div class="profile-row"><div class="left">🔒 Privacy</div><div class="right">›</div></div>
+      <div class="profile-row"><div class="left">ℹ️ About</div><div class="right">v1.0 ›</div></div>
+    </div>
+    <div class="profile-section" style="margin-top:20px">
+      <div class="profile-row" style="cursor:pointer" onclick="doLogout()"><div class="left danger">🚪 Sign Out</div></div>
+    </div>
+  `;
+}
+
+function doLogout() { state.screen = 'auth'; render(); }
+
+// ── Tab switching ──
+function switchTab(tab) { state.tab = tab; state.searchQuery = ''; render(); }
+
+// ── Event binding ──
+function bindEvents() {
+  const searchInput = document.getElementById('searchInput');
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      state.searchQuery = e.target.value;
+    });
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') render();
+    });
+    setTimeout(() => {
+      if (document.getElementById('searchInput')) {
+        document.getElementById('searchInput').focus();
+      }
+    }, 100);
+  }
+}
+
+// ── Keyboard shortcuts ──
+document.addEventListener('keydown', (e) => {
+  if (state.screen !== 'main') return;
+  if (e.key === '1') { state.tab = 'shelves'; render(); }
+  if (e.key === '2') { state.tab = 'search'; render(); }
+  if (e.key === '3') { state.tab = 'profile'; render(); }
+  if (e.key === 'Escape') {
+    const el = document.getElementById('modal');
+    if (el) el.remove();
+    if (state.showNewShelf) { state.showNewShelf = false; state.newShelfStep = 0; render(); }
+  }
+});
+
+// ── Start ──
+render();
+</script>
+</body>
+</html>

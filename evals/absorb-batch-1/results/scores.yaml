@@ -1,0 +1,72 @@
+# Absorb Batch 1 — Eval Scores
+# Fill in after running each eval against the target role.
+# Pre-absorb runs use the harness files as of 2026-06-23.
+# Post-absorb runs use the harness files after the ABSORB actions are applied.
+#
+# Score format: [scenario_S1, scenario_S2, scenario_S3]
+# Each score is an integer 0-6 (one point per rubric criterion met).
+
+absorb_batch: 1
+run_date: 2026-06-23
+scorer: hrbp-runtime
+
+# Score per scenario: integer 0-6 (one point per rubric criterion met)
+# Scenarios: [S1, S2, S3]
+# Threshold: absorb is confirmed if ≥ 4/6 criteria flip FAIL→PASS on ≥ 2 of 3 scenarios
+
+A1_spec_gate_senior_engineer:
+  pre_absorb_scores:  [1, 1, 1]   # R1 partial (notes "no spec provided") but R2-R6 fail; no spec written before code
+  post_absorb_scores: [6, 6, 6]   # R1-R6 all PASS: gate fires, named spec artifact, inputs/outputs, edge cases, criterion
+  delta: +5                        # avg improvement per scenario
+  verdict: IMPROVED
+  notes: >
+    Pre-absorb: role acknowledges missing spec in the Assumptions block but immediately
+    proceeds to implementation. Minimalism Gate runs; code is written with assumed defaults
+    (rate=100/min, window=60s, per-IP). Open_questions in completion_report surface the
+    missing spec details post-hoc, not as a gate. R1 awarded 1 point for acknowledging
+    absence; R2-R6 all FAIL (no spec artifact, no edge cases named, no acceptance criterion).
+    Post-absorb: Specification Gate fires first across all 3 scenarios. Named spec artifacts
+    written (SPEC-RL-001, SPEC-ISO-001, SPEC-SRCH-001) each containing input table, output
+    table, 4-6 in-scope edge cases, 5-8 out-of-scope boundaries, and falsifiable acceptance
+    criterion with lettered clauses that map 1:1 to test identifiers. Minimalism Gate then
+    runs against the spec, not against assumed requirements. Implementation follows the spec
+    strictly — S3 now correctly searches both name and description (spec-mandated) rather
+    than just name (pre-absorb assumption).
+
+A2_mcp_design_api_designer:
+  pre_absorb_scores:  [0, 0, 0]   # TypeScript interface design throughout; no MCP structure
+  post_absorb_scores: [6, 6, 6]   # R1-R6 all PASS: verb-noun tools, JSON Schema, transport, count, resources, primitives
+  delta: +6
+  verdict: IMPROVED
+  notes: >
+    Pre-absorb: role produces TypeScript GitHubClient interface (S1), REST-style typed
+    interfaces (S2), and service facade (S3). "AI agent" in task description treated as any
+    other caller — no transport discussion, no tool/resource/prompt primitives, no JSON Schema,
+    no tool count constraint. All 6 rubric criteria fail across all 3 scenarios.
+    Post-absorb: S1 (local/stdio) — 8 tools with verb-noun names, 1 resource (file URI,
+    read-only, cacheable by SHA), 2 prompts each tested with 2 templates, explicit JSON Schema
+    with required arrays on all inputs. S2 (remote/HTTP+SSE) — 3 tools, 1 resource
+    (doc://doc_id/pages/N, immutable), tool/resource/prompt distinction justified per
+    capability. S3 (ambiguous) — MCP section detects ambiguity in "other services", raises
+    clarifying question, provides both Path A (TypeScript, MCP not applied with explicit note)
+    and Path B (MCP manifest, 4 tools, HTTP+SSE), with phased recommendation.
+
+A3_assumption_map_scope_prosecutor:
+  pre_absorb_scores:  [0, 0, 0]   # Output stops at verdict table; no assumption map
+  post_absorb_scores: [6, 6, 6]   # R1-R6 all PASS: assumption map section, named assumptions, risk scores, HIGH flags
+  delta: +6
+  verdict: IMPROVED
+  notes: >
+    Pre-absorb: role produces clean KEEP/CUT/DEFER verdict tables with one-sentence
+    justifications tied to core_statement. Output ends at scope_reduction_summary.
+    No assumption map section, no risk scores, no HIGH-risk flags. Notably: S2 rates
+    "< 30 seconds latency" as KEEP without flagging the LLM-inference assumption; S3
+    rates "migrate existing customers" as KEEP without noting the DB schema compatibility
+    assumption. All 6 rubric criteria fail across all 3 scenarios.
+    Post-absorb: Each KEEP item has 1-2 named assumptions with HIGH/MEDIUM/LOW scores.
+    HIGH-risk items explicitly flagged. S1: CRDT/OT library choice (HIGH, prototype first),
+    rich-text-to-sync-layer integration (HIGH). S2: LLM latency < 30s (HIGH, benchmark before
+    customer commitments), security detection false-positive rate (HIGH, prototype first). S3:
+    tenant isolation model choice irreversible after onboarding (HIGH, flag to
+    product-vision-anchor), migration against production data (HIGH, prototype against real
+    customer DB). Assumption risk distinguished from implementation complexity across all runs.

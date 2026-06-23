@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Robot Silicon Org Resources</title>
+  <style>
+    :root {
+      --ink: #162019;
+      --muted: #5e6b61;
+      --line: #d8ded5;
+      --bg: #f6f5ed;
+      --panel: #ffffff;
+      --green: #1f6f4a;
+      --blue: #225f86;
+      --amber: #8a5d13;
+      --rose: #8a3f4d;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(120deg, rgba(31,111,74,.12), transparent 34%),
+        linear-gradient(260deg, rgba(34,95,134,.12), transparent 42%),
+        var(--bg);
+      font-family: ui-serif, Georgia, "Times New Roman", "Noto Serif SC", serif;
+      line-height: 1.55;
+    }
+
+    header {
+      padding: 48px min(6vw, 72px) 28px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 68px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      max-width: 980px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .note {
+      margin-top: 18px;
+      max-width: 980px;
+      padding: 14px 16px;
+      border-left: 4px solid var(--amber);
+      background: rgba(255,255,255,.62);
+      color: #5f4717;
+      font-family: ui-sans-serif, "Noto Sans SC", system-ui, sans-serif;
+      font-size: 14px;
+    }
+
+    main {
+      padding: 28px min(6vw, 72px) 56px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 18px;
+    }
+
+    article {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 12px 34px rgba(22,32,25,.07);
+    }
+
+    h2 {
+      margin: 0 0 6px;
+      font-size: 23px;
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    .role {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-family: ui-sans-serif, "Noto Sans SC", system-ui, sans-serif;
+      font-size: 14px;
+    }
+
+    h3 {
+      margin: 16px 0 6px;
+      color: var(--green);
+      font-family: ui-sans-serif, "Noto Sans SC", system-ui, sans-serif;
+      font-size: 13px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 19px;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: .92em;
+      color: var(--rose);
+      background: #f5eeee;
+      border: 1px solid #ead8dc;
+      border-radius: 5px;
+      padding: 1px 5px;
+    }
+
+    .skill {
+      margin-top: 10px;
+      color: #334036;
+      font-family: ui-sans-serif, "Noto Sans SC", system-ui, sans-serif;
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 20px min(6vw, 72px) 42px;
+      color: var(--muted);
+      font-family: ui-sans-serif, "Noto Sans SC", system-ui, sans-serif;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Robot Silicon Org</h1>
+    <p class="subtitle">十四个机器人专家领域的合法资料入口。每个节点都可以发展成一个可调用的 skill：读资料、建模型、诊断问题、设计实验、给出落地方案。</p>
+    <p class="note">说明：这里不放盗版下载链接，只放官方、开放课程、开放教材、出版社页面、论文和项目文档。付费书籍走出版社/图书馆/学校资源，开放教材直接从作者或项目站点阅读。</p>
+  </header>
+
+  <main>
+    <section class="grid">
+      <article>
+        <h2>math-foundation</h2>
+        <p class="role">数学基础：线代、微积分、概率、优化、数值方法。</p>
+        <h3>核心资料</h3>
+        <ul>
+          <li><a href="https://web.stanford.edu/~boyd/cvxbook/">Convex Optimization - Boyd & Vandenberghe</a></li>
+          <li><a href="https://www.roboticsbook.org/">Introduction to Robotics and Perception</a></li>
+          <li><a href="https://cs.stanford.edu/group/manips/teaching/cs223a/">Stanford CS223A Introduction to Robotics</a></li>
+        </ul>
+        <p class="skill">Skill: <code>robot-math-translator</code>，把工程问题翻译成变量、约束、目标函数和不确定性。</p>
+      </article>
+
+      <article>
+        <h2>kinematics-expert</h2>
+        <p class="role">运动学：坐标变换、正/逆运动学、Jacobian、工作空间。</p>
+        <h3>核心资料</h3>
+        <ul>
+          <li><a href="https://hades.mech.northwestern.edu/index.php/Modern_Robotics">Modern Robotics official site</a></li>
+          <li><a href="https://hades.mech.northwestern.edu/images/8/81/MR-largefont.pdf">Modern Robotics preprint PDF</a></li>
+          <li><a href="https://see.stanford.edu/Course/CS223A">Stanford Engineering Everywhere CS223A</a></li>
+        </ul>
+        <p class="skill">Skill: <code>kinematics-debugger</code>，检查 DH/SE(3) 表达、IK 可解性、Jacobian 奇异点。</p>
+      </article>
+
+      <article>
+        <h2>dynamics-expert</h2>
+        <p class="role">动力学：刚体动力学、Lagrange/Newton-Euler、接触、摩擦。</p>
+        <h3>核心资料</h3>
+        <ul>
+          <li><a href="https://link.springer.com/book/10.1007/978-1-4899-7560-7">Rigid Body Dynamics Algorithms - Featherstone</a></li>
+          <li><a href="https://link.springer.com/book/10.1007/978-1-84628-642-1">Robotics: Modelling, Planning and Control - Springer</a></li>
+          <li><a href="https://underactuated.mit.edu/">MIT Underactuated Robotics</a></li>
+        </ul>
+        <p class="skill">Skill: <code>dynamics-model-auditor</code>，审查质量矩阵、科氏项、重力项、接触模型和仿真一致性。</p>
+      </article>
+
+      <article>
+        <h2>control-engineer</h2>
+        <p class="role">运动控制：PID、频域分析、稳定性、状态空间、系统辨识。</p>
+        <h3>核心资料</h3>
+        <ul>
+          <li><a href="https://fbsbook.org/">Feedback Systems - Astrom & Murray</a></li>
+          <li><a href="https://ctms.engin.umich.edu/CTMS/index.php?aux=Home">Control Tutorials for MATLAB and Simulink</a></li>
+          <li><a href="https://www.cds.caltech.edu/~murray/books/AM08/pdf/fbs-public_24Jul2020.pdf">Feedback Systems PDF</a></li>
+        </ul>
+        <p class="skill">Skill: <code>control-loop-diagnostician</code>，根据响应曲线判断欠阻尼、延迟、积分饱和、噪声放大。</p>
+      </article>
+
+      <article>
+        <h2>force-control-expert</h2>
+        <p class="role">力控：阻抗/导纳控制、接触任务、柔顺控制、末端执行器。</p>
+        <h3>核心资料</h3>
+        <ul>
+          <li><a href="https://link.springer.com/book/10.1007/978-1-84628-642-1">Robotics: Modelling, Planning and Control</a></li>
+          <li><a href="https://cs.stanford.edu/group/manips/teaching/cs223a/">Stanford CS223A force control topics</a></li>
+          <li><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/11-5-force-control/">Modern Robotics force control chapter resources</a></li>
+        </ul>
+        <p class="skill">Skill: <code>contact-task-reviewer</code>，判断接触任务是否需要力控、位置控、混合控制或安全限幅。</p>
+      </article>
+
+      <article>
+        <h2>mpc-optimizer</h2>
+        <p class="role">MPC/优化控制：代价函数、约束、QP/NLP、WBC、实时优化。</p>
+        <h3>核心资料</h3>
+        <ul>
+          <li><a href="https://web.stanford.edu/~boyd/cvxbook/">Convex Optimization</a></li>
+          <li><a href="https://www.mpc.berkeley.edu/mpc-course-materials">Berkeley MPC course materials</a></li>
+          <li><a href="https://osqp.org/docs/">OSQP documentation</a></li>
+        </ul>
+        <p class="skill">Skill: <code>mpc-formulation-designer</code>，把机器人任务写成状态、控制、约束、代价和求解器选择。</p>
+      </article>
+
+      <article>
+        <h2>motion-planner</h2>
+        <p class="role">运动规划：搜索、采样规划、轨迹优化、避障、任务规划。</p>
+        <h3>核心资料</h3>
+        <ul>
+          <li><a href="https://lavalle.pl/planning/">Planning Algorithms - Steven LaValle</a></li>
+          <li><a href="https://moveit.picknik.ai/">MoveIt 2 Documentation</a></li>
+          <li><a href="https://ompl.kavrakilab.org/">OMPL documentation</a></li>
+        </ul>
+        <p class="skill">Skill: <code>planner-selector</code>，在 A*、RRT、PRM、CHOMP、TrajOpt、MoveIt pipeline 之间做选择。</p>
+      </article>
+
+      <article>
+        <h2>perception-engineer</h2>
+        <p class="role">感知：目标检测、3D 重建、点云、传感器融合、状态估计。</p>
+        <h3>核心资料</h3>
+        <ul>
+          <li><a href="https://www.deeplearningbook.org/">Deep Learning - Goodfellow, Bengio, Courville</a></li>
+          <li><a href="https://cs231n.stanford.edu/">Stanford CS231n</a></li>
+          <li><a href="https://www.open3d.org/docs/latest/">Open3D documentation</a></li>
+        </ul>
+        <p class="skill">Skill: <code>perception-pipeline-architect</code>，设计相机/IMU/LiDAR/深度数据到状态估计的 pipeline。</p>
+      </article>
+
+      <article>
+        <h2>slam-navigation</h2>
+        <p class="role">SLAM/导航：定位、建图、回环检测、图优化、Nav2。</p>
+        <h3>核心资料</h3>
+        <ul>
+          <li><a href="https://mitpress.mit.edu/9780262201629/probabilistic-robotics/">Probabilistic Robotics - MIT Press</a></li>
+          <li><a href="https://robots.stanford.edu/probabilistic-robotics/">Probabilistic Robotics author site</a></li>
+          <li><a href="https://docs.nav2.org/">Nav2 documentation</a></li>
+        </ul>
+        <p class="skill">Skill: <code>slam-nav2-debugger</code>，诊断 TF、map-odom-base_link、AMCL、costmap、planner/controller 问题。</p>
+      </article>
+
+      <article>
+        <h2>world-modeler</h2>
+        <p class="role">世界模型：状态表示、因果、环境理解、预测、仿真表示。</p>
+        <h3>核心资料</h3>
+        <ul>
+          <li><a href="https://www.roboticsbook.org/">Introduction to Robotics and Perception</a></li>
+          <li><a href="https://www.deeplearningbook.org/">Deep Learning</a></li>
+          <li><a href="https://arxiv.org/abs/1803.10122">World Models - Ha & Schmidhuber</a></li>
+        </ul>
+        <p class="skill">Skill: <code>robot-world-state-designer</code>，设计机器人可查询、可验证、可更新的环境状态 schema。</p>
+      </article>
+
+      <article>
+        <h2>rl-policy-engineer</h2>
+        <p class="role">强化学习：PPO、reward、exploration、sim2real、policy optimization。</p>
+        <h3>核心资料</h3>
+        <ul>
+          <li><a href="http://incompleteideas.net/book/the-book-2nd.html">Reinforcement Learning: An Introduction</a></li>
+          <li><a href="https://spinningup.openai.com/en/latest/">OpenAI Spinning Up</a></li>
+          <li><a href="https://arxiv.org/abs/1811.12560">An Introduction to Deep Reinforcement Learning</a></li>
+        </ul>
+        <p class="skill">Skill: <code>rl-experiment-designer</code>，设计 reward、观测、动作空间、baseline、ablation 和 sim2real 风险。</p>
+      </article>
+
+      <article>
+        <h2>vla-agent-engineer</h2>
+        <p class="role">VLA/具身智能：视觉-语言-动作模型、task grounding、多模态策略。</p>
+        <h3>核心资料</h3>
+        <ul>
+          <li><a href="https://say-can.github.io/">SayCan project</a></li>
+          <li><a href="https://arxiv.org/abs/2307.15818">RT-2: Vision-Language-Action Models</a></li>
+          <li><a href="https://deepmind.google/research/publications/35829/">RoboCat - Google DeepMind</a></li>
+          <li><a href="https://arxiv.org/abs/2406.09246">OpenVLA paper</a></li>
+        </ul>
+        <p class="skill">Skill: <code>vla-to-runtime-gate</code>，把自然语言/视觉意图转成受约束、可审计、可拒绝的机器人 intent。</p>
+      </article>
+
+      <article>
+        <h2>ros-runtime-engineer</h2>
+        <p class="role">ROS/机器人系统：ROS 2、topic/service/action、ros2_control、MoveIt、runtime。</p>
+        <h3>核心资料</h3>
+        <ul>
+          <li><a href="https://docs.ros.org/">ROS 2 documentation</a></li>
+          <li><a href="https://control.ros.org/">ros2_control documentation</a></li>
+          <li><a href="https://drake.mit.edu/">Drake robotics toolkit</a></li>
+          <li><a href="https://moveit.picknik.ai/">MoveIt 2</a></li>
+        </ul>
+        <p class="skill">Skill: <code>ros-runtime-architect</code>，设计 node graph、接口、生命周期、日志、故障恢复和安全 gate。</p>
+      </article>
+
+      <article>
+        <h2>robot-product-strategist</h2>
+        <p class="role">应用创新：场景选择、产品定义、任务拆解、商业可行性。</p>
+        <h3>核心资料</h3>
+        <ul>
+          <li><a href="https://www.roboticsbusinessreview.com/">Robotics Business Review</a></li>
+          <li><a href="https://ifr.org/">International Federation of Robotics</a></li>
+          <li><a href="https://www.mckinsey.com/capabilities/operations/our-insights/automation-robotics-and-the-factory-of-the-future">McKinsey: automation and robotics</a></li>
+        </ul>
+        <p class="skill">Skill: <code>robot-application-scout</code>，评估场景痛点、机器人能力边界、ROI、部署风险和 demo 设计。</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    Built as a legal resource map for a Robot Silicon Org. Next step: turn each card into a node spec and SKILL.md.
+  </footer>
+</body>
+</html>
