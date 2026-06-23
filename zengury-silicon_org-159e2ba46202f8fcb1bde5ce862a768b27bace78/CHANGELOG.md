@@ -1,5 +1,121 @@
 # Changelog
 
+## v0.7.1 — 2026-06-23
+
+### Org Expansion: 38 → 41 nodes
+
+First structured hiring batch from the HRBP recruiting process. Original
+7 HIRE verdicts from the 2026-06-23 recruiting run were re-evaluated through
+a revised hiring framework before execution — adding activation frequency,
+absorb feasibility, and graph topology cost as explicit criteria alongside
+the HRBP hire ladder's gap test.
+
+**Result: 3 HIRE + 2 ABSORB + 2 WATCH** (not the original 7 HIRE).
+
+The revision matters: going from 38→45 nodes would have added ~21 edges
+(+15% graph complexity) with several low-activation roles diluting routing
+signal. Going from 38→41 adds 8 edges (+5.5%) — all on high-activation paths.
+
+---
+
+#### Hired: `ai-engineer` (Layer 2 — ai-integration)
+
+**Gap**: architect designs system topology; senior-engineer implements. Neither
+specializes in LLM-specific design concerns that are structurally different from
+general software design: context window budgeting, retrieval pipeline design
+(chunking, embedding model selection, hybrid search), hallucination mitigation
+strategies, and cost/latency tradeoffs at scale. As LLM integration becomes
+standard in software products, this is a structural omission — not an architect
+depth problem.
+
+**Activation**: any task involving AI features, LLM, RAG, embeddings, or agents.
+Fastest-growing activation category in the ecosystem.
+
+**New edges**: architect→ai-engineer (may_trigger), ai-engineer→senior-engineer
+(triggers), ai-engineer→tdd (supports)
+
+---
+
+#### Hired: `threat-modeling-expert` (Layer 3 — security)
+
+**Gap**: security-engineer audits existing code for vulnerabilities (OWASP,
+CVEs). threat-modeling-expert designs the threat surface *before implementation
+begins* — when only an architecture doc exists, no code. Outputs are categorically
+different: a threat-model-doc (STRIDE analysis, attack trees, ranked design
+constraints) vs. a vulnerability report (code findings). Different phase,
+different artifact type, different audience. Cannot be absorbed into
+security-engineer without losing the pre-code timing that makes threat modeling
+valuable.
+
+**Activation**: new systems/services with authentication, payments, PII, or
+external attack surface. Strict trigger gate — most feature work does not fire
+this role.
+
+**New edges**: architect→threat-modeling-expert (may_trigger), threat-modeling-expert
+→architect (evaluates/advisory), threat-modeling-expert→security-engineer (supports)
+
+---
+
+#### Hired: `compliance-auditor` (Layer 3 — legal-regulatory)
+
+**Gap**: security-engineer covers technical exploitability; dependency-auditor
+covers supply chain and licenses. Neither maps the system to regulatory frameworks:
+GDPR (Article 30 data processing register, right-to-erasure), CCPA (opt-out flows,
+data inventory), HIPAA (technical safeguard gap analysis, PHI inventory), SOC 2
+(trust service criteria mapping). This is a distinct professional domain — a
+system can be technically secure and legally non-compliant. For any product
+handling PII, health data, or financial data, this gap is a launch blocker.
+
+Shallow absorption into release-manager was rejected: a checklist item cannot
+substitute for regulatory domain knowledge, and false compliance assurance is
+worse than acknowledged ignorance.
+
+**Activation**: products handling PII/health/financial data approaching production
+launch. Episodic role — critical when triggered, invisible otherwise.
+
+**New edges**: security-engineer→compliance-auditor (triggers), compliance-auditor
+→release-manager (evaluates/advisory)
+
+---
+
+#### Not hired: `chaos-engineer` → ABSORBED into `devops-engineer`
+
+**Why not a node**: full chaos engineering (statistical steady-state hypothesis
+testing, multi-variable experiments, cross-team game days) is an SRE team
+discipline. In a dev org, the activation-frequency-to-node-cost ratio was too
+low. Core value at Silicon Org's activation rate is "document failure modes before
+production" — captured as a **Resilience Gate** in devops-engineer:
+failure inventory + injection scenarios + MTTR estimate per failure mode.
+
+---
+
+#### Not hired: `sre-engineer` → ABSORBED into `release-manager` + `devops-engineer`
+
+**Why not a node**: "owns the organizational relationship between reliability and
+feature velocity" is a management concept that doesn't translate cleanly to
+single-agent execution. The two concrete outputs that warranted a node were SLO
+definitions (a launch-gate artifact) and toil identification (an ops habit). Both
+absorbed:
+- **SLO Definition Gate** added to release-manager: availability, latency, and
+  error-rate SLOs required before any production launch tag.
+- **Toil Inventory** added to devops-engineer: flag manual steps consuming
+  >30 min/week during deployment design.
+
+---
+
+#### Deferred to WATCH: `data-engineer`, `incident-responder`
+
+**data-engineer**: gap is real (database-engineer ≠ ETL/streaming/lakehouse) but
+activation frequency is too low for a general-purpose dev org. Consistent with
+mlops-engineer treatment. Recheck trigger: 3+ pipeline tasks in org traces.
+
+**incident-responder**: originally promoted to HIRE "based on gap severity alone"
+despite weak community validation (500 stars). Re-evaluated: activation is rare
+(production incidents only), post-mortem artifact absorbed as template in
+deploy-operator. Recheck trigger: backing community validation > 3k stars.
+
+---
+
 ## v0.7.0 — 2026-06-23
 
 ### Harness Improvements — Absorb Batch 1

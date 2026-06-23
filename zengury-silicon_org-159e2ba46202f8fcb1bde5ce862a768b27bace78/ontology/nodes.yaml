@@ -252,6 +252,16 @@ nodes:
     skill_ref: .agents/skills/hrbp
     skill_source: zengury/hr-assistant
 
+  # ── Layer 2: AI Integration ───────────────────────────────────────────────
+
+  - role: ai-engineer
+    title: AI Engineer
+    layer: 2
+    domain: ai-integration
+    harness_ref: org/registry/ai-engineer.md
+    skill_ref: .agents/skills/ai-engineer
+    skill_source: VoltAgent/awesome-claude-code-subagents
+
   # ── Layer 3: Quality & Output ──────────────────────────────────────────────
 
   - role: delivery-prover
@@ -327,6 +337,22 @@ nodes:
     harness_ref: org/registry/release-manager.md
     skill_ref: .agents/skills/release-manager
     skill_source: alirezarezvani/claude-skills
+
+  - role: threat-modeling-expert
+    title: Threat Modeling Expert
+    layer: 3
+    domain: security
+    harness_ref: org/registry/threat-modeling-expert.md
+    skill_ref: .agents/skills/threat-modeling-expert
+    skill_source: wshobson/agents
+
+  - role: compliance-auditor
+    title: Compliance Auditor
+    layer: 3
+    domain: legal-regulatory
+    harness_ref: org/registry/compliance-auditor.md
+    skill_ref: .agents/skills/compliance-auditor
+    skill_source: VoltAgent/awesome-claude-code-subagents
 
   - role: handoff
     title: Context Transfer Specialist

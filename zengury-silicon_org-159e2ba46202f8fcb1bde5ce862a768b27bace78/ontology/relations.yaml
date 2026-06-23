@@ -1729,3 +1729,92 @@ relations:
     - feature
     - design
     - launch
+
+# ── ai-engineer edges ────────────────────────────────────────────────────────
+- from: architect
+  to: ai-engineer
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.9
+      confidence: 0.15
+      samples: 0
+    condition: architecture document mentions AI features, LLM integration, RAG pipelines, embeddings, or agent components
+    activation_task_types:
+    - feature
+    - ai
+    - integration
+- from: ai-engineer
+  to: senior-engineer
+  type: triggers
+  weights:
+    probability:
+      value: 1.0
+      confidence: 0.15
+      samples: 0
+    latency:
+      value: immediate
+    activation_unconditional: true
+- from: ai-engineer
+  to: tdd
+  type: supports
+  weights:
+    necessity:
+      value: 0.7
+      confidence: 0.15
+      samples: 0
+    condition: ai-integration-spec defines testable acceptance criteria for retrieval quality or model output
+
+# ── threat-modeling-expert edges ──────────────────────────────────────────────
+- from: architect
+  to: threat-modeling-expert
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.85
+      confidence: 0.15
+      samples: 0
+    condition: new system or service being designed AND involves authentication, payments, PII, multi-tenant isolation, or external
+      attack surface
+    activation_task_types:
+    - feature
+    - architecture
+    - security
+- from: threat-modeling-expert
+  to: architect
+  type: evaluates
+  weights:
+    blocking:
+      value: advisory
+    condition: threat model identifies HIGH-priority threats requiring design changes
+- from: threat-modeling-expert
+  to: security-engineer
+  type: supports
+  weights:
+    necessity:
+      value: 0.8
+      confidence: 0.15
+      samples: 0
+    condition: passes design-time threat model and attack trees to inform code-level security audit
+
+# ── compliance-auditor edges ──────────────────────────────────────────────────
+- from: security-engineer
+  to: compliance-auditor
+  type: triggers
+  weights:
+    probability:
+      value: 0.9
+      confidence: 0.15
+      samples: 0
+    condition: product handles PII, health data, or financial data AND release-manager is preparing launch
+    activation_task_types:
+    - launch
+    - release
+    - compliance
+- from: compliance-auditor
+  to: release-manager
+  type: evaluates
+  weights:
+    blocking:
+      value: advisory
+    condition: compliance verdict is GAPS_REQUIRE_FIX or LAUNCH_BLOCKER

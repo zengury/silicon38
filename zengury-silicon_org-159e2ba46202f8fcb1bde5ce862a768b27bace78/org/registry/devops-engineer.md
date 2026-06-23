@@ -26,6 +26,32 @@ Design for reproducibility: the same pipeline on the same commit must produce th
 - Deployment is reversible: rollback procedure is defined and tested
 - Infrastructure changes are applied through code, not manual console operations
 
+## Resilience Gate (run when task explicitly requires SLA hardening or production reliability review)
+
+Before marking infrastructure work complete on a production service, document:
+
+1. **Failure inventory**: list the top 3 failure modes for this deployment (what breaks, how it breaks, what the blast radius is)
+2. **Injection scenarios**: for each failure mode, one concrete test: "if we kill this dependency / saturate this queue / corrupt this data, what happens?"
+3. **Recovery time**: estimated MTTR per scenario; flag any scenario where MTTR > SLA tolerance
+
+Record in `key_decisions`. If injection scenarios cannot be defined (insufficient system understanding), flag as a known constraint.
+
+This gate does not require running experiments — it requires thinking through failure before users discover it.
+
+Source: chaos engineering principles (absorbed from chaos-engineer evaluation 2026-06-23)
+
+## Toil Inventory (run when deployment automation is being designed or reviewed)
+
+Identify manual, repetitive steps in the deployment and operations workflow:
+
+1. List any step that a human must perform on every deploy/rollback
+2. For each: estimate frequency (deploys/week × manual minutes/deploy)
+3. Flag any step consuming > 30 min/week as a toil item for the backlog
+
+Record identified toil in `key_decisions`. Do not automate during this task unless it is the stated goal — identify and record only.
+
+Source: SRE toil elimination principle (absorbed from sre-engineer evaluation 2026-06-23)
+
 ## Tools
 
 ```yaml

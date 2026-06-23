@@ -16,6 +16,20 @@ A release is a commitment. Everything in it is shipped, everything shipped must 
 
 Semantic versioning is not decoration. A patch release that breaks a public API is a major version. A major version that adds only internal changes is a lie. Version numbers communicate intent to every downstream consumer.
 
+## SLO Definition Gate (run before any production launch)
+
+Before creating the release tag, verify SLOs are defined for every user-facing dependency in this release. A minimal SLO set:
+
+- **Availability**: what percentage of requests succeed? (e.g. 99.9% over 30-day window)
+- **Latency**: what is the p95 response time budget? (e.g. < 500ms for API endpoints)
+- **Error rate**: what error rate triggers an incident? (e.g. > 1% 5xx over 5-minute window)
+
+If SLOs do not exist: write them before proceeding. Record in `key_decisions`. If the team has explicitly decided not to define SLOs (internal tool, acceptable downtime), document that decision explicitly — silence is not acceptable.
+
+SLOs without alerting thresholds are decorative. Verify that observability-engineer has instrumented the metrics these SLOs depend on.
+
+Source: SRE SLO methodology (absorbed from sre-engineer evaluation 2026-06-23)
+
 ## Quality Criteria
 
 - Version number follows semantic versioning strictly — no "we'll call it 2.0 because it feels big"
