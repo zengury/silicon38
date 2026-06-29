@@ -17,7 +17,7 @@ Silicon Org keeps the paradigm and adds the missing layer:
 
 | Dynamic Workflow improvises this per task | Silicon Org persists it |
 |---|---|
-| Role design (prompt-crafted on the spot) | **Role ontology** — 38 curated, versioned role definitions covering the ecosystem's observed role vocabulary |
+| Role design (prompt-crafted on the spot) | **Role ontology** — 41 curated, versioned role definitions covering the ecosystem's observed role vocabulary |
 | Task tracking (in-context todos) | **Ledger** — durable task facts + 6 convergence gates that define "done" outside any context window |
 | Verification (optional self-check) | **Blocking `evaluates` edges** — the producer *cannot* settle until an independent reviewer role completes |
 | Routing (re-decided cold each time) | **Learned weight matrix + Thompson Sampling** — every real trace improves the next activation decision |
@@ -49,7 +49,7 @@ Then start your coding agent **in this directory**:
 | Any other | Just start it here |
 
 **That's it.** No installation. No configuration. No API keys.
-All 38 role skills are pre-packaged in `.agents/skills/`. The agent reads
+All 41 role skills are pre-packaged in `.agents/skills/`. The agent reads
 `AGENTS.md` → `org/RUNTIME.md` and becomes the Runtime automatically.
 
 LangGraph-native execution is an optional local OSS runtime dependency:
@@ -103,18 +103,20 @@ See [`docs/HARNESS_ENGINEERING.md`](docs/HARNESS_ENGINEERING.md).
 ## The role library
 
 ```
-38 roles   ·   142 typed edges   ·   7 relation types   ·   38 pre-packaged skills
+41 roles   ·   152 typed edges   ·   7 relation types   ·   41 pre-packaged skills
 ```
 
 | Layer | Role | Agents |
 |-------|------|--------|
 | **Intake** | Understand & decompose | triage, zoom-out, caveman, grill-with-docs, to-prd, to-issues, prototype |
-| **Architecture** | Design the system | architect, api-designer, database-engineer, improve-codebase-architecture |
+| **Product** | Scope & vision | scope-prosecutor, product-vision-anchor, product-critic |
+| **Architecture** | Design the system | architect, api-designer, database-engineer, improve-codebase-architecture, ai-engineer |
 | **Engineering** | Build it | senior-engineer, tdd, diagnose, refactor-specialist |
-| **Operations** | Secure & deploy | devops-engineer, observability-engineer, performance-engineer, security-engineer |
+| **Operations** | Secure & deploy | devops-engineer, observability-engineer, performance-engineer, security-engineer, threat-modeling-expert, compliance-auditor |
 | **Design** | Craft the interface | ux-researcher-designer, ui-design-system, apple-hig-expert, senior-frontend, epic-design |
-| **Quality** | Review & challenge | code-reviewer, grill-me, dependency-auditor, technical-writer |
+| **Quality** | Review & challenge | code-reviewer, grill-me, dependency-auditor, technical-writer, delivery-prover |
 | **Release** | Ship it | release-manager, handoff |
+| **Org & Learning** | Improve the org | skill-scout, hrbp, customer-success, graph-topologist |
 
 The library is curated, not closed — adding a role is 4 files:
 
@@ -182,7 +184,7 @@ honest boundary, and it is exactly the regime where ephemeral DW breaks down.
 | [`org/RUNTIME.md`](org/RUNTIME.md) | Runtime protocol — what your agent must follow |
 | [`org/CONTEXT_BLOCK.md`](org/CONTEXT_BLOCK.md) | Continuity anchor — origin, invariants, non-negotiables |
 | [`org/HARNESS.md`](org/HARNESS.md) | Agent harness specification |
-| [`org/REGISTRY.md`](org/REGISTRY.md) | 38-role registry with selection guide |
+| [`org/REGISTRY.md`](org/REGISTRY.md) | 41-role registry with selection guide |
 | [`org/ENCODER.md`](org/ENCODER.md) | Task intake protocol |
 | [`org/DECODER.md`](org/DECODER.md) | Synthesis and delivery protocol |
 | [`docs/SPEC.md`](docs/SPEC.md) | Full technical specification |

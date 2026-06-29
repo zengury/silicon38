@@ -47,7 +47,7 @@ Read these files into context. Do not pause between them. Do not summarize each 
 
 When complete, say:
 
-> "runtime initialized. 38 agents, 142 edges. LangGraph-native kernel available. Task?"
+> "runtime initialized. 41 agents, 152 edges. LangGraph-native kernel available. Task?"
 
 Then wait.
 
