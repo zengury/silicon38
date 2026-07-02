@@ -18,7 +18,7 @@ selected trace.
 
 ## What It Shows
 
-- 35 org nodes and 122 typed graph edges.
+- 41 org nodes and 152 typed graph edges.
 - Control planes for Graph, Policy, Ledger, Runtime, and Learning.
 - Node activity derived from `state.yaml` and `events.yaml`.
 - Handoff blocks moving between nodes.
@@ -57,8 +57,8 @@ The current proof run verified:
 
 - live mode
 - task `task-20260527T223527-0b0ecd01`
-- 35 nodes
-- 122 edges
+- 41 nodes
+- 152 edges
 - 76 events
 - 19 handoffs
 - one rendered Three.js canvas

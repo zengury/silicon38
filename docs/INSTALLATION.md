@@ -9,8 +9,8 @@
 ## 1. Clone
 
 ```bash
-git clone https://github.com/zengury/silicon_org.git
-cd silicon_org
+git clone https://github.com/zengury/silicon38.git
+cd silicon38
 ```
 
 ## 2. Verify Packaged Skills
@@ -61,17 +61,16 @@ For the harness-level diagram, read `docs/HARNESS_ENGINEERING.md`.
     DECODER.md
     HARNESS.md
     REGISTRY.md
-    registry/         — 30 agent harness files
+    registry/         — 41 agent harness files
   ontology/
-    nodes.yaml        — 30 node definitions
-    relations.yaml    — 112 typed edges
+    nodes.yaml        — 41 node definitions
+    relations.yaml    — 152 typed edges
     relation_types.yaml
     artifact_ledger.yaml
     task_graph_state.yaml
     trace_schema.yaml
   .agents/skills/     — Packaged skill definitions
-  skills/             — Optional local skill install target
-  traces/             — Written at runtime
+  traces/             — Created per task at runtime (not shipped)
     index_by_role.yaml
     index_by_relation.yaml
     task-*/           — Per-task ledgers and artifacts

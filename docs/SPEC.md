@@ -9,7 +9,7 @@
 Silicon Org is a dynamic multi-agent software development organization encoded
 as a weighted Graph. When you open a repository containing Silicon Org in a
 coding agent, the main instance becomes the Runtime — an execution substrate
-that drives 35 specialized agents through any engineering task, maintains a
+that drives 41 specialized agents through any engineering task, maintains a
 full audit trail, and delivers production-ready output.
 
 ---
@@ -75,15 +75,15 @@ legality check.
 ### 2.1 Three-Layer Structure
 
 ```
-Layer 1 — Intake & Understanding (7 nodes)
+Layer 1 — Intake & Understanding (9 nodes)
   Entry points. Classify, decompose, research before execution.
 
-Layer 2 — Execution (20 nodes)
+Layer 2 — Execution (21 nodes)
   Architecture, Engineering, Operations, Design & Experience, customer,
   and org-development roles.
   Produce primary deliverables.
 
-Layer 3 — Quality & Output (8 nodes)
+Layer 3 — Quality & Output (11 nodes)
   Review, challenge, delivery proof, document, release, hand off,
   and organizational learning.
 ```

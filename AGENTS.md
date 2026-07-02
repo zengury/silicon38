@@ -17,14 +17,13 @@ Then, NOW, without waiting for user confirmation:
 The intended startup experience is unchanged:
 
 ```bash
-cd /Users/manas/silicon_org
-pi
+cd silicon38
 ```
 
-Then the user says:
+Then open your coding agent (Claude Code, Codex, Cursor, or pi) and say:
 
 ```text
-读一下 agents.md
+Read AGENTS.md
 ```
 
 After this boot sequence completes, the user can type a task in normal language.

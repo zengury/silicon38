@@ -1,5 +1,7 @@
 # Silicon Org
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![CI](https://github.com/zengury/silicon38/actions/workflows/ci.yml/badge.svg)](https://github.com/zengury/silicon38/actions/workflows/ci.yml) [![roles](https://img.shields.io/badge/roles-41-brightgreen.svg)](org/REGISTRY.md)
+
 **Dynamic Workflow, with a harness.**
 
 Coding agents like Claude Code converged on a pattern called **Dynamic
@@ -162,8 +164,7 @@ context windows, process restarts, and handoffs between different LLMs.
 ## Why a harness, honestly
 
 Multi-agent systems suffer organizational diseases — hidden information, peer
-pressure convergence, bystander effects, invisible orchestrators
-([`docs/ANALYSIS_AI_ORG_DISEASE.md`](docs/ANALYSIS_AI_ORG_DISEASE.md)). The
+pressure convergence, bystander effects, invisible orchestrators. The
 harness is the architectural defense: structured communication, visible power
 structure, traceable decisions.
 

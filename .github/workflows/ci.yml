@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  audit:
+    name: Integrity gates (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11"]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install package (with LangGraph OSS extra)
+        run: python -m pip install -e '.[langgraph-oss]'
+
+      - name: Audit (graph / file / runtime-contract / skill)
+        run: python tools/audit.py
+
+      - name: Fail if audit reports INVALID
+        run: |
+          if python tools/audit.py | grep -q "INVALID"; then
+            echo "audit.py reported INVALID"
+            exit 1
+          fi
+
+      - name: LangGraph-native smoke test
+        run: python tools/langgraph_native_smoke.py
+
+      # Note: tools/org_system_validation.py is an end-to-end routing exploration
+      # that relies on unseeded Thompson sampling, so its role-activation set
+      # varies run to run. It is a useful local/manual check but is intentionally
+      # NOT a CI gate — the deterministic gates above (audit + smoke) are.

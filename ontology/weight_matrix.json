@@ -2,11 +2,6 @@
   "schema": "silicon_org.weight_matrix.v1",
   "nodes": 41,
   "total_edges": 1640,
-  "sources": {
-    "validated": 121,
-    "llm_cognitive": 0,
-    "structural_prior": 1403
-  },
   "matrix": {
     "ai-engineer|api-designer": {
       "alpha": 2.0,
@@ -9167,8 +9162,8 @@
       "source": "structural_prior"
     },
     "triage|diagnose": {
-      "alpha": 663.0,
-      "beta": 3.0,
+      "alpha": 664.32,
+      "beta": 4.28,
       "prior_mean": 0.9955,
       "source": "validated:triggers",
       "samples_used": 43
