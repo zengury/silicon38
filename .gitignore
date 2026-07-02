@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# Silicon Org runtime output
+traces/
+*.log
+
+# Local config / secrets (examples are committed with an .example suffix)
+.env
+.env.local
+org/.env.local
+org/models.local.yaml
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
