@@ -578,3 +578,45 @@ profiles:
     context_focus: [vision_coherence, memorability, differentiation, sacrifice, taste, verdict]
     activation_notes: policy_triggered_deferred
     completion_gates: [verdict_rendered, all_five_tests_completed]
+
+  ai-engineer:
+    purpose: Design the LLM-specific layer — context budgeting, retrieval/RAG design, model selection, hallucination mitigation, and cost/latency tradeoffs — with architect-level rigor.
+    model_profile: high_reasoning_architecture
+    tool_groups: [repo_read, docs_read, browser_optional, ledger_read]
+    write_scope: architecture_docs_and_scoped_code
+    can_modify_product_code: scoped
+    resource_budget: {max_runtime_minutes: 30, max_artifacts: 2}
+    required_inputs: [architecture_or_task_description, upstream_context_block]
+    optional_inputs: [product_spec, api_contract]
+    output_artifacts: [{type: architecture, required: true}]
+    context_focus: [context_budget, retrieval_design, model_selection, cost_model, hallucination_mitigation, fallback_behavior]
+    activation_notes: policy_triggered
+    completion_gates: [context_budget_explicit, cost_model_stated, fallback_defined]
+
+  threat-modeling-expert:
+    purpose: Model the threat surface before implementation — STRIDE analysis, attack trees, trust boundaries → ranked design constraints (a design document, not a vulnerability report).
+    model_profile: security_high_reasoning
+    tool_groups: [repo_read, docs_read, ledger_read]
+    write_scope: trace_artifact_and_design_docs_optional
+    can_modify_product_code: false
+    resource_budget: {max_runtime_minutes: 30, max_artifacts: 1}
+    required_inputs: [architecture_artifact, upstream_context_block]
+    optional_inputs: [product_spec, data_flow_diagram]
+    output_artifacts: [{type: evaluation, required: true}]
+    context_focus: [trust_boundaries, stride_analysis, attack_surface, ranked_constraints]
+    activation_notes: policy_or_evaluator
+    completion_gates: [threats_enumerated, constraints_ranked]
+
+  compliance-auditor:
+    purpose: Map the system to regulatory frameworks (GDPR, CCPA, HIPAA, SOC 2) — data inventory, technical-safeguard gap analysis, and launch-blocking findings.
+    model_profile: security_high_reasoning
+    tool_groups: [repo_read, shell_safe, ledger_read]
+    write_scope: trace_artifact_only
+    can_modify_product_code: false
+    resource_budget: {max_runtime_minutes: 30, max_artifacts: 1}
+    required_inputs: [system_design_or_security_audit, upstream_context_block]
+    optional_inputs: [data_inventory, deployment_context]
+    output_artifacts: [{type: evaluation, required: true}]
+    context_focus: [applicable_frameworks, data_inventory, compliance_gaps, launch_blockers, remediation]
+    activation_notes: policy_or_evaluator
+    completion_gates: [frameworks_identified, gaps_classified]

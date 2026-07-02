@@ -196,8 +196,15 @@ completion_report:
     - string
   known_constraints:
     - string
+  confidence_differential: 0.0-1.0   # confidence in the recommendation vs. a coin-flip default
   iteration_context: null
 ```
+
+---
+
+## Context Compression Report
+
+Required per `org/HARNESS.md`. The recruiting recommendation is the deliverable; the compression report carries the durable context chain (candidates sourced, benchmarks applied, verdict rationale, watch-list deltas) so a downstream node — or a future recruiting run — can act without re-reading the raw sourcing material.
 
 ---
 

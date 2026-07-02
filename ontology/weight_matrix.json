@@ -1,14 +1,267 @@
 {
   "schema": "silicon_org.weight_matrix.v1",
-  "nodes": 38,
-  "total_edges": 1406,
+  "nodes": 41,
+  "total_edges": 1640,
+  "sources": {
+    "validated": 121,
+    "llm_cognitive": 0,
+    "structural_prior": 1403
+  },
   "matrix": {
+    "ai-engineer|api-designer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|apple-hig-expert": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|architect": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior",
+      "validated_reverse": "may_trigger"
+    },
+    "ai-engineer|caveman": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "ai-engineer|code-reviewer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|compliance-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|customer-success": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|database-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|delivery-prover": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|dependency-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|devops-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|diagnose": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|epic-design": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|graph-topologist": {
+      "alpha": 1.0,
+      "beta": 10.0,
+      "prior_mean": 0.0909,
+      "source": "structural_prior"
+    },
+    "ai-engineer|grill-me": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|grill-with-docs": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "ai-engineer|handoff": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|hrbp": {
+      "alpha": 1.0,
+      "beta": 10.0,
+      "prior_mean": 0.0909,
+      "source": "structural_prior"
+    },
+    "ai-engineer|improve-codebase-architecture": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|observability-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|performance-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|product-critic": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|product-vision-anchor": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "ai-engineer|prototype": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "ai-engineer|refactor-specialist": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|release-manager": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|scope-prosecutor": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "ai-engineer|security-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|senior-engineer": {
+      "alpha": 18.0,
+      "beta": 3.0,
+      "prior_mean": 0.8571,
+      "source": "validated:triggers",
+      "samples_used": 0
+    },
+    "ai-engineer|senior-frontend": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|skill-scout": {
+      "alpha": 1.0,
+      "beta": 10.0,
+      "prior_mean": 0.0909,
+      "source": "structural_prior"
+    },
+    "ai-engineer|tdd": {
+      "alpha": 7.6,
+      "beta": 5.4,
+      "prior_mean": 0.5846,
+      "source": "validated:supports",
+      "samples_used": 0
+    },
+    "ai-engineer|technical-writer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|threat-modeling-expert": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|to-issues": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "ai-engineer|to-prd": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "ai-engineer|triage": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "ai-engineer|ui-design-system": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|ux-researcher-designer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ai-engineer|zoom-out": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "api-designer|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
     "api-designer|apple-hig-expert": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "interface design \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "api-designer|architect": {
       "alpha": 2.0,
@@ -29,6 +282,12 @@
       "prior_mean": 0.2857,
       "source": "structural_prior",
       "validated_reverse": "may_trigger"
+    },
+    "api-designer|compliance-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "api-designer|customer-success": {
       "alpha": 2.0,
@@ -70,8 +329,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "interface design \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "api-designer|graph-topologist": {
       "alpha": 1.0,
@@ -80,11 +338,11 @@
       "source": "structural_prior"
     },
     "api-designer|grill-me": {
-      "alpha": 190.5,
+      "alpha": 333.0,
       "beta": 10.5,
-      "prior_mean": 0.9478,
+      "prior_mean": 0.9694,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "api-designer|grill-with-docs": {
       "alpha": 1.0,
@@ -159,25 +417,24 @@
       "source": "structural_prior"
     },
     "api-designer|security-engineer": {
-      "alpha": 190.5,
+      "alpha": 333.0,
       "beta": 10.5,
-      "prior_mean": 0.9478,
+      "prior_mean": 0.9694,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "api-designer|senior-engineer": {
-      "alpha": 340.5,
+      "alpha": 597.0,
       "beta": 4.5,
-      "prior_mean": 0.987,
+      "prior_mean": 0.9925,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
     },
     "api-designer|senior-frontend": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "interface design \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "api-designer|skill-scout": {
       "alpha": 1.0,
@@ -186,11 +443,11 @@
       "source": "structural_prior"
     },
     "api-designer|tdd": {
-      "alpha": 329.25,
+      "alpha": 577.2,
       "beta": 4.95,
-      "prior_mean": 0.9852,
+      "prior_mean": 0.9915,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
     },
     "api-designer|technical-writer": {
       "alpha": 2.0,
@@ -198,6 +455,12 @@
       "prior_mean": 0.2857,
       "source": "structural_prior",
       "validated_reverse": "augments"
+    },
+    "api-designer|threat-modeling-expert": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "api-designer|to-issues": {
       "alpha": 1.0,
@@ -222,20 +485,24 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "interface design \u2192 design systems: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "api-designer|ux-researcher-designer": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "interface design \u2192 user experience: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "api-designer|zoom-out": {
       "alpha": 1.0,
       "beta": 8.0,
       "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "apple-hig-expert|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
       "source": "structural_prior"
     },
     "apple-hig-expert|api-designer": {
@@ -257,6 +524,12 @@
       "source": "structural_prior"
     },
     "apple-hig-expert|code-reviewer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "apple-hig-expert|compliance-auditor": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -303,7 +576,7 @@
       "beta": 15.0,
       "prior_mean": 0.0323,
       "source": "validated:evaluates",
-      "samples_used": 24
+      "samples_used": 43
     },
     "apple-hig-expert|graph-topologist": {
       "alpha": 1.0,
@@ -402,11 +675,11 @@
       "source": "structural_prior"
     },
     "apple-hig-expert|senior-frontend": {
-      "alpha": 132.0,
+      "alpha": 230.8,
       "beta": 4.8,
-      "prior_mean": 0.9649,
+      "prior_mean": 0.9796,
       "source": "validated:constrains",
-      "samples_used": 24
+      "samples_used": 43
     },
     "apple-hig-expert|skill-scout": {
       "alpha": 1.0,
@@ -421,6 +694,12 @@
       "source": "structural_prior"
     },
     "apple-hig-expert|technical-writer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "apple-hig-expert|threat-modeling-expert": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -449,7 +728,7 @@
       "beta": 15.0,
       "prior_mean": 0.0323,
       "source": "validated:evaluates",
-      "samples_used": 24,
+      "samples_used": 43,
       "validated_reverse": "complements"
     },
     "apple-hig-expert|ux-researcher-designer": {
@@ -465,24 +744,30 @@
       "prior_mean": 0.1111,
       "source": "structural_prior"
     },
+    "architect|ai-engineer": {
+      "alpha": 16.5,
+      "beta": 4.5,
+      "prior_mean": 0.7857,
+      "source": "validated:may_trigger",
+      "samples_used": 0
+    },
     "architect|api-designer": {
-      "alpha": 280.5,
+      "alpha": 491.4,
       "beta": 6.9,
-      "prior_mean": 0.976,
+      "prior_mean": 0.9862,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
     },
     "architect|apple-hig-expert": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "architecture \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "architect|caveman": {
-      "alpha": 103.0,
+      "alpha": 179.0,
       "beta": 6.0,
-      "prior_mean": 0.945,
+      "prior_mean": 0.9676,
       "source": "producer_feedback",
       "validated_reverse": "may_trigger"
     },
@@ -493,19 +778,25 @@
       "source": "structural_prior",
       "validated_reverse": "may_trigger"
     },
+    "architect|compliance-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
     "architect|customer-success": {
-      "alpha": 304.16,
-      "beta": 7.14,
-      "prior_mean": 0.9806,
+      "alpha": 531.0,
+      "beta": 6.0,
+      "prior_mean": 0.9888,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "architect|database-engineer": {
-      "alpha": 224.25,
+      "alpha": 392.4,
       "beta": 9.15,
-      "prior_mean": 0.9608,
+      "prior_mean": 0.9772,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
     },
     "architect|delivery-prover": {
       "alpha": 2.0,
@@ -520,11 +811,11 @@
       "source": "structural_prior"
     },
     "architect|devops-engineer": {
-      "alpha": 280.5,
+      "alpha": 491.4,
       "beta": 6.9,
-      "prior_mean": 0.976,
+      "prior_mean": 0.9862,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "architect|diagnose": {
       "alpha": 2.0,
@@ -536,8 +827,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "architecture \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "architect|graph-topologist": {
       "alpha": 1.0,
@@ -546,11 +836,11 @@
       "source": "structural_prior"
     },
     "architect|grill-me": {
-      "alpha": 190.5,
+      "alpha": 333.0,
       "beta": 10.5,
-      "prior_mean": 0.9478,
+      "prior_mean": 0.9694,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "architect|grill-with-docs": {
       "alpha": 1.0,
@@ -595,7 +885,7 @@
       "beta": 4.8,
       "prior_mean": 0.6418,
       "source": "producer_feedback",
-      "samples_used": 20,
+      "samples_used": 39,
       "validated_reverse": "evaluates"
     },
     "architect|product-vision-anchor": {
@@ -632,26 +922,25 @@
       "validated_reverse": "constrains"
     },
     "architect|security-engineer": {
-      "alpha": 224.25,
+      "alpha": 392.4,
       "beta": 9.15,
-      "prior_mean": 0.9608,
+      "prior_mean": 0.9772,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "architect|senior-engineer": {
-      "alpha": 320.2,
-      "beta": 7.2,
-      "prior_mean": 0.9833,
+      "alpha": 570.6,
+      "beta": 5.1,
+      "prior_mean": 0.9911,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
     },
     "architect|senior-frontend": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
       "source": "suppressed_cross_domain",
-      "validated_reverse": "supports",
-      "note": "architecture \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "validated_reverse": "supports"
     },
     "architect|skill-scout": {
       "alpha": 1.0,
@@ -670,6 +959,14 @@
       "beta": 5.0,
       "prior_mean": 0.2857,
       "source": "structural_prior"
+    },
+    "architect|threat-modeling-expert": {
+      "alpha": 8.6,
+      "beta": 4.8,
+      "prior_mean": 0.6418,
+      "source": "producer_feedback",
+      "samples_used": 0,
+      "validated_reverse": "evaluates"
     },
     "architect|to-issues": {
       "alpha": 1.0,
@@ -691,18 +988,18 @@
       "source": "structural_prior"
     },
     "architect|ui-design-system": {
-      "alpha": 190.5,
+      "alpha": 333.0,
       "beta": 10.5,
-      "prior_mean": 0.9478,
+      "prior_mean": 0.9694,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "architect|ux-researcher-designer": {
-      "alpha": 209.25,
+      "alpha": 366.0,
       "beta": 9.75,
-      "prior_mean": 0.9555,
+      "prior_mean": 0.9741,
       "source": "validated:may_trigger",
-      "samples_used": 24,
+      "samples_used": 43,
       "validated_reverse": "supports"
     },
     "architect|zoom-out": {
@@ -711,6 +1008,12 @@
       "prior_mean": 0.1111,
       "source": "structural_prior",
       "validated_reverse": "may_trigger"
+    },
+    "caveman|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "caveman|api-designer": {
       "alpha": 2.0,
@@ -722,17 +1025,22 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "simplification \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "caveman|architect": {
-      "alpha": 246.75,
+      "alpha": 432.0,
       "beta": 8.25,
-      "prior_mean": 0.9676,
+      "prior_mean": 0.9813,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "caveman|code-reviewer": {
+      "alpha": 1.0,
+      "beta": 6.0,
+      "prior_mean": 0.1429,
+      "source": "structural_prior"
+    },
+    "caveman|compliance-auditor": {
       "alpha": 1.0,
       "beta": 6.0,
       "prior_mean": 0.1429,
@@ -778,8 +1086,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "simplification \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "caveman|graph-topologist": {
       "alpha": 1.0,
@@ -848,11 +1155,11 @@
       "source": "structural_prior"
     },
     "caveman|refactor-specialist": {
-      "alpha": 82.0,
+      "alpha": 142.8,
       "beta": 7.8,
-      "prior_mean": 0.9131,
+      "prior_mean": 0.9482,
       "source": "validated:supports",
-      "samples_used": 24
+      "samples_used": 43
     },
     "caveman|release-manager": {
       "alpha": 1.0,
@@ -882,8 +1189,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "simplification \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "caveman|skill-scout": {
       "alpha": 1.0,
@@ -903,6 +1209,12 @@
       "prior_mean": 0.1429,
       "source": "structural_prior"
     },
+    "caveman|threat-modeling-expert": {
+      "alpha": 1.0,
+      "beta": 6.0,
+      "prior_mean": 0.1429,
+      "source": "structural_prior"
+    },
     "caveman|to-issues": {
       "alpha": 2.0,
       "beta": 5.0,
@@ -910,11 +1222,11 @@
       "source": "structural_prior"
     },
     "caveman|to-prd": {
-      "alpha": 228.0,
+      "alpha": 399.0,
       "beta": 9.0,
-      "prior_mean": 0.962,
+      "prior_mean": 0.9779,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "caveman|triage": {
       "alpha": 2.0,
@@ -926,15 +1238,14 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "simplification \u2192 design systems: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "caveman|ux-researcher-designer": {
-      "alpha": 209.25,
+      "alpha": 366.0,
       "beta": 9.75,
-      "prior_mean": 0.9555,
+      "prior_mean": 0.9741,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "caveman|zoom-out": {
       "alpha": 2.0,
@@ -942,12 +1253,18 @@
       "prior_mean": 0.2857,
       "source": "structural_prior"
     },
+    "code-reviewer|ai-engineer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
     "code-reviewer|api-designer": {
-      "alpha": 190.5,
+      "alpha": 333.0,
       "beta": 10.5,
-      "prior_mean": 0.9478,
+      "prior_mean": 0.9694,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "code-reviewer|apple-hig-expert": {
       "alpha": 1.0,
@@ -956,16 +1273,22 @@
       "source": "structural_prior"
     },
     "code-reviewer|architect": {
-      "alpha": 190.5,
+      "alpha": 333.0,
       "beta": 10.5,
-      "prior_mean": 0.9478,
+      "prior_mean": 0.9694,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "code-reviewer|caveman": {
       "alpha": 0.5,
       "beta": 20.0,
       "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "code-reviewer|compliance-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
       "source": "structural_prior"
     },
     "code-reviewer|customer-success": {
@@ -1033,11 +1356,11 @@
       "source": "structural_prior"
     },
     "code-reviewer|handoff": {
-      "alpha": 206.16,
-      "beta": 10.54,
-      "prior_mean": 0.954,
+      "alpha": 372.6,
+      "beta": 9.6,
+      "prior_mean": 0.9749,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "code-reviewer|hrbp": {
       "alpha": 1.0,
@@ -1046,11 +1369,11 @@
       "source": "structural_prior"
     },
     "code-reviewer|improve-codebase-architecture": {
-      "alpha": 81.0,
+      "alpha": 266.25,
       "beta": 8.25,
-      "prior_mean": 0.9076,
+      "prior_mean": 0.9699,
       "source": "validated:may_trigger",
-      "samples_used": 7
+      "samples_used": 26
     },
     "code-reviewer|observability-engineer": {
       "alpha": 1.0,
@@ -1104,25 +1427,25 @@
       "source": "structural_prior"
     },
     "code-reviewer|security-engineer": {
-      "alpha": 190.5,
+      "alpha": 333.0,
       "beta": 10.5,
-      "prior_mean": 0.9478,
+      "prior_mean": 0.9694,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "code-reviewer|senior-engineer": {
-      "alpha": 190.5,
+      "alpha": 333.0,
       "beta": 10.5,
-      "prior_mean": 0.9478,
+      "prior_mean": 0.9694,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "code-reviewer|senior-frontend": {
-      "alpha": 190.5,
+      "alpha": 333.0,
       "beta": 10.5,
-      "prior_mean": 0.9478,
+      "prior_mean": 0.9694,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "code-reviewer|skill-scout": {
       "alpha": 1.0,
@@ -1138,11 +1461,17 @@
       "validated_reverse": "triggers"
     },
     "code-reviewer|technical-writer": {
-      "alpha": 216.75,
+      "alpha": 379.2,
       "beta": 9.45,
-      "prior_mean": 0.9582,
+      "prior_mean": 0.9757,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
+    },
+    "code-reviewer|threat-modeling-expert": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "code-reviewer|to-issues": {
       "alpha": 0.5,
@@ -1180,6 +1509,254 @@
       "prior_mean": 0.0244,
       "source": "structural_prior"
     },
+    "compliance-auditor|ai-engineer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|api-designer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|apple-hig-expert": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|architect": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|caveman": {
+      "alpha": 0.5,
+      "beta": 20.0,
+      "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|code-reviewer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|customer-success": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|database-engineer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|delivery-prover": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|dependency-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|devops-engineer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|diagnose": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|epic-design": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|graph-topologist": {
+      "alpha": 1.0,
+      "beta": 10.0,
+      "prior_mean": 0.0909,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|grill-me": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|grill-with-docs": {
+      "alpha": 0.5,
+      "beta": 20.0,
+      "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|handoff": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|hrbp": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|improve-codebase-architecture": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|observability-engineer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|performance-engineer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|product-critic": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|product-vision-anchor": {
+      "alpha": 0.5,
+      "beta": 20.0,
+      "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|prototype": {
+      "alpha": 0.5,
+      "beta": 20.0,
+      "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|refactor-specialist": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|release-manager": {
+      "alpha": 0.5,
+      "beta": 15.0,
+      "prior_mean": 0.0323,
+      "source": "validated:evaluates",
+      "samples_used": 0
+    },
+    "compliance-auditor|scope-prosecutor": {
+      "alpha": 0.5,
+      "beta": 20.0,
+      "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|security-engineer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior",
+      "validated_reverse": "triggers"
+    },
+    "compliance-auditor|senior-engineer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|senior-frontend": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|skill-scout": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|tdd": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|technical-writer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|threat-modeling-expert": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|to-issues": {
+      "alpha": 0.5,
+      "beta": 20.0,
+      "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|to-prd": {
+      "alpha": 0.5,
+      "beta": 20.0,
+      "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|triage": {
+      "alpha": 0.5,
+      "beta": 20.0,
+      "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|ui-design-system": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|ux-researcher-designer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "compliance-auditor|zoom-out": {
+      "alpha": 0.5,
+      "beta": 20.0,
+      "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "customer-success|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
     "customer-success|api-designer": {
       "alpha": 2.0,
       "beta": 5.0,
@@ -1206,6 +1783,12 @@
       "source": "structural_prior"
     },
     "customer-success|code-reviewer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "customer-success|compliance-auditor": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -1367,6 +1950,12 @@
       "prior_mean": 0.2857,
       "source": "structural_prior"
     },
+    "customer-success|threat-modeling-expert": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
     "customer-success|to-issues": {
       "alpha": 1.0,
       "beta": 8.0,
@@ -1403,6 +1992,12 @@
       "prior_mean": 0.1111,
       "source": "structural_prior"
     },
+    "database-engineer|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
     "database-engineer|api-designer": {
       "alpha": 2.0,
       "beta": 5.0,
@@ -1413,8 +2008,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "data \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "database-engineer|architect": {
       "alpha": 2.0,
@@ -1430,6 +2024,12 @@
       "source": "structural_prior"
     },
     "database-engineer|code-reviewer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "database-engineer|compliance-auditor": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -1469,8 +2069,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "data \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "database-engineer|graph-topologist": {
       "alpha": 1.0,
@@ -1515,11 +2114,11 @@
       "source": "structural_prior"
     },
     "database-engineer|performance-engineer": {
-      "alpha": 142.0,
+      "alpha": 248.4,
       "beta": 5.4,
-      "prior_mean": 0.9634,
+      "prior_mean": 0.9787,
       "source": "validated:supports",
-      "samples_used": 24
+      "samples_used": 43
     },
     "database-engineer|product-critic": {
       "alpha": 2.0,
@@ -1564,18 +2163,17 @@
       "source": "structural_prior"
     },
     "database-engineer|senior-engineer": {
-      "alpha": 321.75,
+      "alpha": 564.0,
       "beta": 5.25,
-      "prior_mean": 0.9839,
+      "prior_mean": 0.9908,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
     },
     "database-engineer|senior-frontend": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "data \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "database-engineer|skill-scout": {
       "alpha": 1.0,
@@ -1590,6 +2188,12 @@
       "source": "structural_prior"
     },
     "database-engineer|technical-writer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "database-engineer|threat-modeling-expert": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -1617,17 +2221,21 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "data \u2192 design systems: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "database-engineer|ux-researcher-designer": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "data \u2192 user experience: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "database-engineer|zoom-out": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "delivery-prover|ai-engineer": {
       "alpha": 1.0,
       "beta": 8.0,
       "prior_mean": 0.1111,
@@ -1658,11 +2266,17 @@
       "source": "structural_prior"
     },
     "delivery-prover|code-reviewer": {
-      "alpha": 340.5,
+      "alpha": 597.0,
       "beta": 4.5,
-      "prior_mean": 0.987,
+      "prior_mean": 0.9925,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
+    },
+    "delivery-prover|compliance-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "delivery-prover|customer-success": {
       "alpha": 1.0,
@@ -1765,7 +2379,7 @@
       "beta": 15.0,
       "prior_mean": 0.0323,
       "source": "validated:evaluates",
-      "samples_used": 24,
+      "samples_used": 43,
       "validated_reverse": "triggers"
     },
     "delivery-prover|refactor-specialist": {
@@ -1793,18 +2407,18 @@
       "source": "structural_prior"
     },
     "delivery-prover|senior-engineer": {
-      "alpha": 359.25,
+      "alpha": 630.0,
       "beta": 3.75,
-      "prior_mean": 0.9897,
+      "prior_mean": 0.9941,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "delivery-prover|senior-frontend": {
-      "alpha": 359.25,
+      "alpha": 630.0,
       "beta": 3.75,
-      "prior_mean": 0.9897,
+      "prior_mean": 0.9941,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "delivery-prover|skill-scout": {
       "alpha": 1.0,
@@ -1819,6 +2433,12 @@
       "source": "structural_prior"
     },
     "delivery-prover|technical-writer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "delivery-prover|threat-modeling-expert": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -1860,6 +2480,12 @@
       "prior_mean": 0.0244,
       "source": "structural_prior"
     },
+    "dependency-auditor|ai-engineer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
     "dependency-auditor|api-designer": {
       "alpha": 1.0,
       "beta": 8.0,
@@ -1890,6 +2516,12 @@
       "prior_mean": 0.2857,
       "source": "structural_prior"
     },
+    "dependency-auditor|compliance-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
     "dependency-auditor|customer-success": {
       "alpha": 1.0,
       "beta": 8.0,
@@ -1913,7 +2545,7 @@
       "beta": 15.0,
       "prior_mean": 0.0323,
       "source": "validated:evaluates",
-      "samples_used": 24
+      "samples_used": 43
     },
     "dependency-auditor|diagnose": {
       "alpha": 1.0,
@@ -2000,11 +2632,11 @@
       "source": "structural_prior"
     },
     "dependency-auditor|release-manager": {
-      "alpha": 163.0,
+      "alpha": 284.6,
       "beta": 4.2,
-      "prior_mean": 0.9749,
+      "prior_mean": 0.9855,
       "source": "producer_feedback",
-      "samples_used": 24,
+      "samples_used": 43,
       "validated_reverse": "evaluates"
     },
     "dependency-auditor|scope-prosecutor": {
@@ -2014,11 +2646,11 @@
       "source": "structural_prior"
     },
     "dependency-auditor|security-engineer": {
-      "alpha": 228.0,
+      "alpha": 399.0,
       "beta": 9.0,
-      "prior_mean": 0.962,
+      "prior_mean": 0.9779,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "dependency-auditor|senior-engineer": {
       "alpha": 1.0,
@@ -2045,6 +2677,12 @@
       "source": "structural_prior"
     },
     "dependency-auditor|technical-writer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "dependency-auditor|threat-modeling-expert": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -2086,6 +2724,12 @@
       "prior_mean": 0.0244,
       "source": "structural_prior"
     },
+    "devops-engineer|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
     "devops-engineer|api-designer": {
       "alpha": 2.0,
       "beta": 5.0,
@@ -2096,8 +2740,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "infrastructure \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "devops-engineer|architect": {
       "alpha": 2.0,
@@ -2113,6 +2756,12 @@
       "source": "structural_prior"
     },
     "devops-engineer|code-reviewer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "devops-engineer|compliance-auditor": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -2137,9 +2786,9 @@
       "source": "structural_prior"
     },
     "devops-engineer|dependency-auditor": {
-      "alpha": 143.0,
+      "alpha": 249.4,
       "beta": 4.8,
-      "prior_mean": 0.9675,
+      "prior_mean": 0.9811,
       "source": "producer_feedback",
       "validated_reverse": "evaluates"
     },
@@ -2153,8 +2802,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "infrastructure \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "devops-engineer|graph-topologist": {
       "alpha": 1.0,
@@ -2229,11 +2877,11 @@
       "source": "structural_prior"
     },
     "devops-engineer|release-manager": {
-      "alpha": 153.0,
+      "alpha": 267.0,
       "beta": 4.5,
-      "prior_mean": 0.9714,
+      "prior_mean": 0.9834,
       "source": "producer_feedback",
-      "samples_used": 24,
+      "samples_used": 43,
       "validated_reverse": "evaluates"
     },
     "devops-engineer|scope-prosecutor": {
@@ -2243,11 +2891,11 @@
       "source": "structural_prior"
     },
     "devops-engineer|security-engineer": {
-      "alpha": 265.5,
+      "alpha": 465.0,
       "beta": 7.5,
-      "prior_mean": 0.9725,
+      "prior_mean": 0.9841,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
     },
     "devops-engineer|senior-engineer": {
       "alpha": 2.0,
@@ -2259,8 +2907,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "infrastructure \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "devops-engineer|skill-scout": {
       "alpha": 1.0,
@@ -2275,6 +2922,12 @@
       "source": "structural_prior"
     },
     "devops-engineer|technical-writer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "devops-engineer|threat-modeling-expert": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -2302,20 +2955,24 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "infrastructure \u2192 design systems: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "devops-engineer|ux-researcher-designer": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "infrastructure \u2192 user experience: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "devops-engineer|zoom-out": {
       "alpha": 1.0,
       "beta": 8.0,
       "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "diagnose|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
       "source": "structural_prior"
     },
     "diagnose|api-designer": {
@@ -2328,8 +2985,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "debugging \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "diagnose|architect": {
       "alpha": 2.0,
@@ -2344,11 +3000,17 @@
       "source": "structural_prior"
     },
     "diagnose|code-reviewer": {
-      "alpha": 359.25,
+      "alpha": 630.0,
       "beta": 3.75,
-      "prior_mean": 0.9897,
+      "prior_mean": 0.9941,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
+    },
+    "diagnose|compliance-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "diagnose|customer-success": {
       "alpha": 2.0,
@@ -2384,8 +3046,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "debugging \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "diagnose|graph-topologist": {
       "alpha": 1.0,
@@ -2419,11 +3080,11 @@
       "source": "structural_prior"
     },
     "diagnose|improve-codebase-architecture": {
-      "alpha": 190.5,
+      "alpha": 333.0,
       "beta": 10.5,
-      "prior_mean": 0.9478,
+      "prior_mean": 0.9694,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "diagnose|observability-engineer": {
       "alpha": 2.0,
@@ -2489,8 +3150,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "debugging \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "diagnose|skill-scout": {
       "alpha": 1.0,
@@ -2499,13 +3159,19 @@
       "source": "structural_prior"
     },
     "diagnose|tdd": {
-      "alpha": 303.0,
+      "alpha": 531.0,
       "beta": 6.0,
-      "prior_mean": 0.9806,
+      "prior_mean": 0.9888,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
     },
     "diagnose|technical-writer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "diagnose|threat-modeling-expert": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -2534,20 +3200,24 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "debugging \u2192 design systems: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "diagnose|ux-researcher-designer": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "debugging \u2192 user experience: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "diagnose|zoom-out": {
       "alpha": 1.0,
       "beta": 8.0,
       "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "epic-design|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
       "source": "structural_prior"
     },
     "epic-design|api-designer": {
@@ -2557,10 +3227,10 @@
       "source": "structural_prior"
     },
     "epic-design|apple-hig-expert": {
-      "alpha": 154.32,
-      "beta": 5.78,
-      "prior_mean": 0.9714,
-      "source": "learned",
+      "alpha": 267.0,
+      "beta": 4.5,
+      "prior_mean": 0.9834,
+      "source": "producer_feedback",
       "validated_reverse": "evaluates"
     },
     "epic-design|architect": {
@@ -2576,11 +3246,17 @@
       "source": "structural_prior"
     },
     "epic-design|code-reviewer": {
-      "alpha": 340.5,
+      "alpha": 597.0,
       "beta": 4.5,
-      "prior_mean": 0.987,
+      "prior_mean": 0.9925,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
+    },
+    "epic-design|compliance-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "epic-design|customer-success": {
       "alpha": 2.0,
@@ -2667,11 +3343,11 @@
       "source": "structural_prior"
     },
     "epic-design|product-critic": {
-      "alpha": 94.4,
+      "alpha": 178.0,
       "beta": 6.6,
-      "prior_mean": 0.9347,
+      "prior_mean": 0.9642,
       "source": "validated:supports",
-      "samples_used": 20
+      "samples_used": 39
     },
     "epic-design|product-vision-anchor": {
       "alpha": 1.0,
@@ -2717,11 +3393,11 @@
       "source": "structural_prior"
     },
     "epic-design|senior-frontend": {
-      "alpha": 323.07,
-      "beta": 6.53,
-      "prior_mean": 0.9839,
+      "alpha": 564.0,
+      "beta": 5.25,
+      "prior_mean": 0.9908,
       "source": "validated:triggers",
-      "samples_used": 24,
+      "samples_used": 43,
       "validated_reverse": "complements"
     },
     "epic-design|skill-scout": {
@@ -2737,6 +3413,12 @@
       "source": "structural_prior"
     },
     "epic-design|technical-writer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "epic-design|threat-modeling-expert": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -2779,6 +3461,12 @@
       "prior_mean": 0.1111,
       "source": "structural_prior"
     },
+    "graph-topologist|ai-engineer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
     "graph-topologist|api-designer": {
       "alpha": 1.0,
       "beta": 8.0,
@@ -2804,6 +3492,12 @@
       "source": "structural_prior"
     },
     "graph-topologist|code-reviewer": {
+      "alpha": 1.0,
+      "beta": 10.0,
+      "prior_mean": 0.0909,
+      "source": "structural_prior"
+    },
+    "graph-topologist|compliance-auditor": {
       "alpha": 1.0,
       "beta": 10.0,
       "prior_mean": 0.0909,
@@ -2965,6 +3659,12 @@
       "prior_mean": 0.0909,
       "source": "structural_prior"
     },
+    "graph-topologist|threat-modeling-expert": {
+      "alpha": 1.0,
+      "beta": 10.0,
+      "prior_mean": 0.0909,
+      "source": "structural_prior"
+    },
     "graph-topologist|to-issues": {
       "alpha": 0.5,
       "beta": 20.0,
@@ -3001,12 +3701,18 @@
       "prior_mean": 0.0244,
       "source": "structural_prior"
     },
+    "grill-me|ai-engineer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
     "grill-me|api-designer": {
       "alpha": 0.5,
       "beta": 15.0,
       "prior_mean": 0.0323,
       "source": "validated:evaluates",
-      "samples_used": 24,
+      "samples_used": 43,
       "validated_reverse": "may_trigger"
     },
     "grill-me|apple-hig-expert": {
@@ -3020,7 +3726,7 @@
       "beta": 15.0,
       "prior_mean": 0.0323,
       "source": "validated:evaluates",
-      "samples_used": 24,
+      "samples_used": 43,
       "validated_reverse": "may_trigger"
     },
     "grill-me|caveman": {
@@ -3034,7 +3740,13 @@
       "beta": 4,
       "prior_mean": 0.6,
       "source": "validated:complements",
-      "samples_used": 24
+      "samples_used": 43
+    },
+    "grill-me|compliance-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "grill-me|customer-success": {
       "alpha": 1.0,
@@ -3192,6 +3904,12 @@
       "prior_mean": 0.2857,
       "source": "structural_prior"
     },
+    "grill-me|threat-modeling-expert": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
     "grill-me|to-issues": {
       "alpha": 0.5,
       "beta": 20.0,
@@ -3203,7 +3921,7 @@
       "beta": 15.0,
       "prior_mean": 0.0323,
       "source": "validated:evaluates",
-      "samples_used": 24,
+      "samples_used": 43,
       "validated_reverse": "may_trigger"
     },
     "grill-me|triage": {
@@ -3217,19 +3935,25 @@
       "beta": 15.0,
       "prior_mean": 0.0323,
       "source": "validated:evaluates",
-      "samples_used": 24
+      "samples_used": 43
     },
     "grill-me|ux-researcher-designer": {
       "alpha": 0.5,
       "beta": 15.0,
       "prior_mean": 0.0323,
       "source": "validated:evaluates",
-      "samples_used": 24
+      "samples_used": 43
     },
     "grill-me|zoom-out": {
       "alpha": 0.5,
       "beta": 20.0,
       "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "grill-with-docs|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
       "source": "structural_prior"
     },
     "grill-with-docs|api-designer": {
@@ -3242,15 +3966,14 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "research \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "grill-with-docs|architect": {
-      "alpha": 82.0,
+      "alpha": 142.8,
       "beta": 7.8,
-      "prior_mean": 0.9131,
+      "prior_mean": 0.9482,
       "source": "validated:supports",
-      "samples_used": 24
+      "samples_used": 43
     },
     "grill-with-docs|caveman": {
       "alpha": 2.0,
@@ -3259,6 +3982,12 @@
       "source": "structural_prior"
     },
     "grill-with-docs|code-reviewer": {
+      "alpha": 1.0,
+      "beta": 6.0,
+      "prior_mean": 0.1429,
+      "source": "structural_prior"
+    },
+    "grill-with-docs|compliance-auditor": {
       "alpha": 1.0,
       "beta": 6.0,
       "prior_mean": 0.1429,
@@ -3295,18 +4024,17 @@
       "source": "structural_prior"
     },
     "grill-with-docs|diagnose": {
-      "alpha": 190.5,
+      "alpha": 333.0,
       "beta": 10.5,
-      "prior_mean": 0.9478,
+      "prior_mean": 0.9694,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "grill-with-docs|epic-design": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "research \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "grill-with-docs|graph-topologist": {
       "alpha": 1.0,
@@ -3393,18 +4121,17 @@
       "source": "structural_prior"
     },
     "grill-with-docs|senior-engineer": {
-      "alpha": 112.0,
+      "alpha": 195.6,
       "beta": 6.6,
-      "prior_mean": 0.9444,
+      "prior_mean": 0.9674,
       "source": "validated:supports",
-      "samples_used": 24
+      "samples_used": 43
     },
     "grill-with-docs|senior-frontend": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "research \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "grill-with-docs|skill-scout": {
       "alpha": 1.0,
@@ -3419,6 +4146,12 @@
       "source": "structural_prior"
     },
     "grill-with-docs|technical-writer": {
+      "alpha": 1.0,
+      "beta": 6.0,
+      "prior_mean": 0.1429,
+      "source": "structural_prior"
+    },
+    "grill-with-docs|threat-modeling-expert": {
       "alpha": 1.0,
       "beta": 6.0,
       "prior_mean": 0.1429,
@@ -3446,20 +4179,24 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "research \u2192 design systems: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "grill-with-docs|ux-researcher-designer": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "research \u2192 user experience: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "grill-with-docs|zoom-out": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "handoff|ai-engineer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
       "source": "structural_prior"
     },
     "handoff|api-designer": {
@@ -3492,6 +4229,12 @@
       "prior_mean": 0.2857,
       "source": "structural_prior",
       "validated_reverse": "may_trigger"
+    },
+    "handoff|compliance-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "handoff|customer-success": {
       "alpha": 1.0,
@@ -3649,6 +4392,12 @@
       "prior_mean": 0.2857,
       "source": "structural_prior"
     },
+    "handoff|threat-modeling-expert": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
     "handoff|to-issues": {
       "alpha": 0.5,
       "beta": 20.0,
@@ -3685,6 +4434,12 @@
       "prior_mean": 0.0244,
       "source": "structural_prior"
     },
+    "hrbp|ai-engineer": {
+      "alpha": 1.0,
+      "beta": 10.0,
+      "prior_mean": 0.0909,
+      "source": "structural_prior"
+    },
     "hrbp|api-designer": {
       "alpha": 1.0,
       "beta": 10.0,
@@ -3710,6 +4465,12 @@
       "source": "structural_prior"
     },
     "hrbp|code-reviewer": {
+      "alpha": 1.0,
+      "beta": 10.0,
+      "prior_mean": 0.0909,
+      "source": "structural_prior"
+    },
+    "hrbp|compliance-auditor": {
       "alpha": 1.0,
       "beta": 10.0,
       "prior_mean": 0.0909,
@@ -3871,6 +4632,12 @@
       "prior_mean": 0.0909,
       "source": "structural_prior"
     },
+    "hrbp|threat-modeling-expert": {
+      "alpha": 1.0,
+      "beta": 10.0,
+      "prior_mean": 0.0909,
+      "source": "structural_prior"
+    },
     "hrbp|to-issues": {
       "alpha": 1.0,
       "beta": 8.0,
@@ -3907,6 +4674,12 @@
       "prior_mean": 0.1111,
       "source": "structural_prior"
     },
+    "improve-codebase-architecture|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
     "improve-codebase-architecture|api-designer": {
       "alpha": 2.0,
       "beta": 5.0,
@@ -3917,15 +4690,14 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "architecture \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "improve-codebase-architecture|architect": {
-      "alpha": 142.0,
+      "alpha": 248.4,
       "beta": 5.4,
-      "prior_mean": 0.9634,
+      "prior_mean": 0.9787,
       "source": "validated:supports",
-      "samples_used": 24
+      "samples_used": 43
     },
     "improve-codebase-architecture|caveman": {
       "alpha": 1.0,
@@ -3939,6 +4711,12 @@
       "prior_mean": 0.2857,
       "source": "structural_prior",
       "validated_reverse": "may_trigger"
+    },
+    "improve-codebase-architecture|compliance-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "improve-codebase-architecture|customer-success": {
       "alpha": 2.0,
@@ -3981,8 +4759,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "architecture \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "improve-codebase-architecture|graph-topologist": {
       "alpha": 1.0,
@@ -4045,11 +4822,11 @@
       "source": "structural_prior"
     },
     "improve-codebase-architecture|refactor-specialist": {
-      "alpha": 303.0,
+      "alpha": 531.0,
       "beta": 6.0,
-      "prior_mean": 0.9806,
+      "prior_mean": 0.9888,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
     },
     "improve-codebase-architecture|release-manager": {
       "alpha": 2.0,
@@ -4079,8 +4856,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "architecture \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "improve-codebase-architecture|skill-scout": {
       "alpha": 1.0,
@@ -4095,6 +4871,12 @@
       "source": "structural_prior"
     },
     "improve-codebase-architecture|technical-writer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "improve-codebase-architecture|threat-modeling-expert": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -4123,15 +4905,13 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "architecture \u2192 design systems: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "improve-codebase-architecture|ux-researcher-designer": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "architecture \u2192 user experience: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "improve-codebase-architecture|zoom-out": {
       "alpha": 1.0,
@@ -4139,6 +4919,12 @@
       "prior_mean": 0.1111,
       "source": "structural_prior",
       "validated_reverse": "supports"
+    },
+    "observability-engineer|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "observability-engineer|api-designer": {
       "alpha": 2.0,
@@ -4150,8 +4936,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "monitoring \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "observability-engineer|architect": {
       "alpha": 2.0,
@@ -4166,11 +4951,17 @@
       "source": "structural_prior"
     },
     "observability-engineer|code-reviewer": {
-      "alpha": 321.75,
+      "alpha": 564.0,
       "beta": 5.25,
-      "prior_mean": 0.9839,
+      "prior_mean": 0.9908,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
+    },
+    "observability-engineer|compliance-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "observability-engineer|customer-success": {
       "alpha": 2.0,
@@ -4212,8 +5003,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "monitoring \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "observability-engineer|graph-topologist": {
       "alpha": 1.0,
@@ -4304,14 +5094,13 @@
       "beta": 4,
       "prior_mean": 0.6,
       "source": "validated:augments",
-      "samples_used": 24
+      "samples_used": 43
     },
     "observability-engineer|senior-frontend": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "monitoring \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "observability-engineer|skill-scout": {
       "alpha": 1.0,
@@ -4326,6 +5115,12 @@
       "source": "structural_prior"
     },
     "observability-engineer|technical-writer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "observability-engineer|threat-modeling-expert": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -4353,20 +5148,24 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "monitoring \u2192 design systems: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "observability-engineer|ux-researcher-designer": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "monitoring \u2192 user experience: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "observability-engineer|zoom-out": {
       "alpha": 1.0,
       "beta": 8.0,
       "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "performance-engineer|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
       "source": "structural_prior"
     },
     "performance-engineer|api-designer": {
@@ -4379,8 +5178,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "performance \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "performance-engineer|architect": {
       "alpha": 2.0,
@@ -4395,11 +5193,17 @@
       "source": "structural_prior"
     },
     "performance-engineer|code-reviewer": {
-      "alpha": 303.0,
+      "alpha": 531.0,
       "beta": 6.0,
-      "prior_mean": 0.9806,
+      "prior_mean": 0.9888,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
+    },
+    "performance-engineer|compliance-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "performance-engineer|customer-success": {
       "alpha": 2.0,
@@ -4442,8 +5246,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "performance \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "performance-engineer|graph-topologist": {
       "alpha": 1.0,
@@ -4534,14 +5337,13 @@
       "beta": 15.0,
       "prior_mean": 0.0323,
       "source": "validated:evaluates",
-      "samples_used": 24
+      "samples_used": 43
     },
     "performance-engineer|senior-frontend": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "performance \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "performance-engineer|skill-scout": {
       "alpha": 1.0,
@@ -4556,6 +5358,12 @@
       "source": "structural_prior"
     },
     "performance-engineer|technical-writer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "performance-engineer|threat-modeling-expert": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -4583,17 +5391,21 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "performance \u2192 design systems: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "performance-engineer|ux-researcher-designer": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "performance \u2192 user experience: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "performance-engineer|zoom-out": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "product-critic|ai-engineer": {
       "alpha": 1.0,
       "beta": 8.0,
       "prior_mean": 0.1111,
@@ -4625,6 +5437,12 @@
       "source": "structural_prior"
     },
     "product-critic|code-reviewer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "product-critic|compliance-auditor": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -4787,6 +5605,12 @@
       "prior_mean": 0.2857,
       "source": "structural_prior"
     },
+    "product-critic|threat-modeling-expert": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
     "product-critic|to-issues": {
       "alpha": 0.5,
       "beta": 20.0,
@@ -4824,6 +5648,12 @@
       "prior_mean": 0.0244,
       "source": "structural_prior"
     },
+    "product-vision-anchor|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
     "product-vision-anchor|api-designer": {
       "alpha": 2.0,
       "beta": 5.0,
@@ -4834,15 +5664,14 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "product-vision \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "product-vision-anchor|architect": {
-      "alpha": 153.8,
-      "beta": 3.2,
-      "prior_mean": 0.9821,
+      "alpha": 290.0,
+      "beta": 2.8,
+      "prior_mean": 0.9904,
       "source": "validated:constrains",
-      "samples_used": 20
+      "samples_used": 39
     },
     "product-vision-anchor|caveman": {
       "alpha": 2.0,
@@ -4851,6 +5680,12 @@
       "source": "structural_prior"
     },
     "product-vision-anchor|code-reviewer": {
+      "alpha": 1.0,
+      "beta": 6.0,
+      "prior_mean": 0.1429,
+      "source": "structural_prior"
+    },
+    "product-vision-anchor|compliance-auditor": {
       "alpha": 1.0,
       "beta": 6.0,
       "prior_mean": 0.1429,
@@ -4893,11 +5728,11 @@
       "source": "structural_prior"
     },
     "product-vision-anchor|epic-design": {
-      "alpha": 146.6,
-      "beta": 4.4,
-      "prior_mean": 0.9784,
+      "alpha": 274.0,
+      "beta": 3.2,
+      "prior_mean": 0.9885,
       "source": "validated:constrains",
-      "samples_used": 20
+      "samples_used": 39
     },
     "product-vision-anchor|graph-topologist": {
       "alpha": 1.0,
@@ -4994,8 +5829,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "product-vision \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "product-vision-anchor|skill-scout": {
       "alpha": 1.0,
@@ -5010,6 +5844,12 @@
       "source": "structural_prior"
     },
     "product-vision-anchor|technical-writer": {
+      "alpha": 1.0,
+      "beta": 6.0,
+      "prior_mean": 0.1429,
+      "source": "structural_prior"
+    },
+    "product-vision-anchor|threat-modeling-expert": {
       "alpha": 1.0,
       "beta": 6.0,
       "prior_mean": 0.1429,
@@ -5035,20 +5875,26 @@
       "source": "structural_prior"
     },
     "product-vision-anchor|ui-design-system": {
-      "alpha": 128.0,
+      "alpha": 242.0,
       "beta": 4.0,
-      "prior_mean": 0.9697,
+      "prior_mean": 0.9837,
       "source": "validated:constrains",
-      "samples_used": 20
+      "samples_used": 39
     },
     "product-vision-anchor|ux-researcher-designer": {
-      "alpha": 270.75,
+      "alpha": 513.0,
       "beta": 5.25,
-      "prior_mean": 0.981,
+      "prior_mean": 0.9899,
       "source": "validated:may_trigger",
-      "samples_used": 20
+      "samples_used": 39
     },
     "product-vision-anchor|zoom-out": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "prototype|ai-engineer": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -5064,15 +5910,14 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "exploration \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "prototype|architect": {
-      "alpha": 142.0,
+      "alpha": 248.4,
       "beta": 5.4,
-      "prior_mean": 0.9634,
+      "prior_mean": 0.9787,
       "source": "validated:supports",
-      "samples_used": 24
+      "samples_used": 43
     },
     "prototype|caveman": {
       "alpha": 2.0,
@@ -5081,6 +5926,12 @@
       "source": "structural_prior"
     },
     "prototype|code-reviewer": {
+      "alpha": 1.0,
+      "beta": 6.0,
+      "prior_mean": 0.1429,
+      "source": "structural_prior"
+    },
+    "prototype|compliance-auditor": {
       "alpha": 1.0,
       "beta": 6.0,
       "prior_mean": 0.1429,
@@ -5099,11 +5950,11 @@
       "source": "structural_prior"
     },
     "prototype|delivery-prover": {
-      "alpha": 340.5,
+      "alpha": 597.0,
       "beta": 4.5,
-      "prior_mean": 0.987,
+      "prior_mean": 0.9925,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
     },
     "prototype|dependency-auditor": {
       "alpha": 1.0,
@@ -5127,8 +5978,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "exploration \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "prototype|graph-topologist": {
       "alpha": 1.0,
@@ -5221,11 +6071,11 @@
       "source": "structural_prior"
     },
     "prototype|senior-frontend": {
-      "alpha": 284.25,
+      "alpha": 498.0,
       "beta": 6.75,
-      "prior_mean": 0.9768,
+      "prior_mean": 0.9866,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "prototype|skill-scout": {
       "alpha": 1.0,
@@ -5240,6 +6090,12 @@
       "source": "structural_prior"
     },
     "prototype|technical-writer": {
+      "alpha": 1.0,
+      "beta": 6.0,
+      "prior_mean": 0.1429,
+      "source": "structural_prior"
+    },
+    "prototype|threat-modeling-expert": {
       "alpha": 1.0,
       "beta": 6.0,
       "prior_mean": 0.1429,
@@ -5268,17 +6124,22 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "exploration \u2192 design systems: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "prototype|ux-researcher-designer": {
       "alpha": 6,
       "beta": 4,
       "prior_mean": 0.6,
       "source": "validated:complements",
-      "samples_used": 24
+      "samples_used": 43
     },
     "prototype|zoom-out": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "refactor-specialist|ai-engineer": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -5294,8 +6155,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "code health \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "refactor-specialist|architect": {
       "alpha": 2.0,
@@ -5311,11 +6171,17 @@
       "validated_reverse": "supports"
     },
     "refactor-specialist|code-reviewer": {
-      "alpha": 371.16,
-      "beta": 3.94,
-      "prior_mean": 0.9912,
+      "alpha": 649.8,
+      "beta": 3.3,
+      "prior_mean": 0.9949,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
+    },
+    "refactor-specialist|compliance-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "refactor-specialist|customer-success": {
       "alpha": 2.0,
@@ -5357,8 +6223,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "code health \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "refactor-specialist|graph-topologist": {
       "alpha": 1.0,
@@ -5455,8 +6320,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "code health \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "refactor-specialist|skill-scout": {
       "alpha": 1.0,
@@ -5465,13 +6329,19 @@
       "source": "structural_prior"
     },
     "refactor-specialist|tdd": {
-      "alpha": 266.16,
-      "beta": 8.14,
-      "prior_mean": 0.9725,
+      "alpha": 465.0,
+      "beta": 7.5,
+      "prior_mean": 0.9841,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
     },
     "refactor-specialist|technical-writer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "refactor-specialist|threat-modeling-expert": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -5499,15 +6369,13 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "code health \u2192 design systems: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "refactor-specialist|ux-researcher-designer": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "code health \u2192 user experience: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "refactor-specialist|zoom-out": {
       "alpha": 1.0,
@@ -5515,6 +6383,12 @@
       "prior_mean": 0.1111,
       "source": "structural_prior",
       "validated_reverse": "supports"
+    },
+    "release-manager|ai-engineer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
     },
     "release-manager|api-designer": {
       "alpha": 1.0,
@@ -5546,6 +6420,13 @@
       "prior_mean": 0.2857,
       "source": "structural_prior"
     },
+    "release-manager|compliance-auditor": {
+      "alpha": 8.6,
+      "beta": 4.8,
+      "prior_mean": 0.6418,
+      "source": "producer_feedback",
+      "validated_reverse": "evaluates"
+    },
     "release-manager|customer-success": {
       "alpha": 1.0,
       "beta": 8.0,
@@ -5569,14 +6450,14 @@
       "beta": 15.0,
       "prior_mean": 0.0323,
       "source": "validated:evaluates",
-      "samples_used": 24
+      "samples_used": 43
     },
     "release-manager|devops-engineer": {
       "alpha": 0.5,
       "beta": 15.0,
       "prior_mean": 0.0323,
       "source": "validated:evaluates",
-      "samples_used": 24
+      "samples_used": 43
     },
     "release-manager|diagnose": {
       "alpha": 1.0,
@@ -5705,6 +6586,12 @@
       "source": "structural_prior",
       "validated_reverse": "supports"
     },
+    "release-manager|threat-modeling-expert": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
     "release-manager|to-issues": {
       "alpha": 0.5,
       "beta": 20.0,
@@ -5741,6 +6628,12 @@
       "prior_mean": 0.0244,
       "source": "structural_prior"
     },
+    "scope-prosecutor|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
     "scope-prosecutor|api-designer": {
       "alpha": 2.0,
       "beta": 5.0,
@@ -5751,15 +6644,14 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "product-scope \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "scope-prosecutor|architect": {
-      "alpha": 146.0,
-      "beta": 4.0,
-      "prior_mean": 0.9784,
+      "alpha": 274.0,
+      "beta": 3.2,
+      "prior_mean": 0.9885,
       "source": "validated:constrains",
-      "samples_used": 20
+      "samples_used": 39
     },
     "scope-prosecutor|caveman": {
       "alpha": 2.0,
@@ -5768,6 +6660,12 @@
       "source": "structural_prior"
     },
     "scope-prosecutor|code-reviewer": {
+      "alpha": 1.0,
+      "beta": 6.0,
+      "prior_mean": 0.1429,
+      "source": "structural_prior"
+    },
+    "scope-prosecutor|compliance-auditor": {
       "alpha": 1.0,
       "beta": 6.0,
       "prior_mean": 0.1429,
@@ -5813,8 +6711,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "product-scope \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "scope-prosecutor|graph-topologist": {
       "alpha": 1.0,
@@ -5871,11 +6768,11 @@
       "source": "structural_prior"
     },
     "scope-prosecutor|product-vision-anchor": {
-      "alpha": 155.0,
-      "beta": 4.0,
-      "prior_mean": 0.9821,
+      "alpha": 290.0,
+      "beta": 2.8,
+      "prior_mean": 0.9904,
       "source": "validated:constrains",
-      "samples_used": 20
+      "samples_used": 39
     },
     "scope-prosecutor|prototype": {
       "alpha": 2.0,
@@ -5902,18 +6799,17 @@
       "source": "structural_prior"
     },
     "scope-prosecutor|senior-engineer": {
-      "alpha": 136.4,
+      "alpha": 258.0,
       "beta": 3.6,
-      "prior_mean": 0.9743,
+      "prior_mean": 0.9862,
       "source": "validated:constrains",
-      "samples_used": 20
+      "samples_used": 39
     },
     "scope-prosecutor|senior-frontend": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "product-scope \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "scope-prosecutor|skill-scout": {
       "alpha": 1.0,
@@ -5928,6 +6824,12 @@
       "source": "structural_prior"
     },
     "scope-prosecutor|technical-writer": {
+      "alpha": 1.0,
+      "beta": 6.0,
+      "prior_mean": 0.1429,
+      "source": "structural_prior"
+    },
+    "scope-prosecutor|threat-modeling-expert": {
       "alpha": 1.0,
       "beta": 6.0,
       "prior_mean": 0.1429,
@@ -5956,17 +6858,21 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "product-scope \u2192 design systems: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "scope-prosecutor|ux-researcher-designer": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "product-scope \u2192 user experience: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "scope-prosecutor|zoom-out": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "security-engineer|ai-engineer": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -5983,8 +6889,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "security \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "security-engineer|architect": {
       "alpha": 2.0,
@@ -6000,12 +6905,19 @@
       "source": "structural_prior"
     },
     "security-engineer|code-reviewer": {
-      "alpha": 321.75,
+      "alpha": 564.0,
       "beta": 5.25,
-      "prior_mean": 0.9839,
+      "prior_mean": 0.9908,
       "source": "validated:triggers",
-      "samples_used": 24,
+      "samples_used": 43,
       "validated_reverse": "may_trigger"
+    },
+    "security-engineer|compliance-auditor": {
+      "alpha": 16.5,
+      "beta": 4.5,
+      "prior_mean": 0.7857,
+      "source": "validated:triggers",
+      "samples_used": 0
     },
     "security-engineer|customer-success": {
       "alpha": 2.0,
@@ -6049,8 +6961,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "security \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "security-engineer|graph-topologist": {
       "alpha": 1.0,
@@ -6141,14 +7052,13 @@
       "beta": 15.0,
       "prior_mean": 0.0323,
       "source": "validated:evaluates",
-      "samples_used": 24
+      "samples_used": 43
     },
     "security-engineer|senior-frontend": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "security \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "security-engineer|skill-scout": {
       "alpha": 1.0,
@@ -6167,6 +7077,13 @@
       "beta": 5.0,
       "prior_mean": 0.2857,
       "source": "structural_prior"
+    },
+    "security-engineer|threat-modeling-expert": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior",
+      "validated_reverse": "supports"
     },
     "security-engineer|to-issues": {
       "alpha": 1.0,
@@ -6190,21 +7107,26 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "security \u2192 design systems: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "security-engineer|ux-researcher-designer": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "security \u2192 user experience: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "security-engineer|zoom-out": {
       "alpha": 1.0,
       "beta": 8.0,
       "prior_mean": 0.1111,
       "source": "structural_prior"
+    },
+    "senior-engineer|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior",
+      "validated_reverse": "triggers"
     },
     "senior-engineer|api-designer": {
       "alpha": 2.0,
@@ -6217,8 +7139,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "implementation \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "senior-engineer|architect": {
       "alpha": 2.0,
@@ -6234,12 +7155,18 @@
       "source": "structural_prior"
     },
     "senior-engineer|code-reviewer": {
-      "alpha": 379.92,
-      "beta": 4.68,
-      "prior_mean": 0.9921,
+      "alpha": 663.0,
+      "beta": 3.0,
+      "prior_mean": 0.9955,
       "source": "validated:triggers",
-      "samples_used": 24,
+      "samples_used": 43,
       "validated_reverse": "may_trigger"
+    },
+    "senior-engineer|compliance-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "senior-engineer|customer-success": {
       "alpha": 2.0,
@@ -6255,11 +7182,11 @@
       "validated_reverse": "triggers"
     },
     "senior-engineer|delivery-prover": {
-      "alpha": 379.98,
-      "beta": 4.92,
-      "prior_mean": 0.9921,
+      "alpha": 663.0,
+      "beta": 3.0,
+      "prior_mean": 0.9955,
       "source": "validated:triggers",
-      "samples_used": 24,
+      "samples_used": 43,
       "validated_reverse": "may_trigger"
     },
     "senior-engineer|dependency-auditor": {
@@ -6284,8 +7211,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "implementation \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "senior-engineer|graph-topologist": {
       "alpha": 1.0,
@@ -6325,19 +7251,19 @@
       "source": "structural_prior"
     },
     "senior-engineer|observability-engineer": {
-      "alpha": 243.0,
+      "alpha": 425.4,
       "beta": 8.4,
-      "prior_mean": 0.9666,
+      "prior_mean": 0.9806,
       "source": "validated:triggers",
-      "samples_used": 24,
+      "samples_used": 43,
       "validated_reverse": "augments"
     },
     "senior-engineer|performance-engineer": {
-      "alpha": 143.0,
+      "alpha": 249.4,
       "beta": 4.8,
-      "prior_mean": 0.9675,
+      "prior_mean": 0.9811,
       "source": "producer_feedback",
-      "samples_used": 24,
+      "samples_used": 43,
       "validated_reverse": "evaluates"
     },
     "senior-engineer|product-critic": {
@@ -6378,19 +7304,18 @@
       "validated_reverse": "constrains"
     },
     "senior-engineer|security-engineer": {
-      "alpha": 183.0,
+      "alpha": 319.8,
       "beta": 3.6,
-      "prior_mean": 0.9807,
+      "prior_mean": 0.9889,
       "source": "producer_feedback",
-      "samples_used": 24,
+      "samples_used": 43,
       "validated_reverse": "evaluates"
     },
     "senior-engineer|senior-frontend": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "implementation \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "senior-engineer|skill-scout": {
       "alpha": 1.0,
@@ -6399,14 +7324,20 @@
       "source": "structural_prior"
     },
     "senior-engineer|tdd": {
-      "alpha": 173.66,
-      "beta": 4.54,
-      "prior_mean": 0.978,
-      "source": "learned",
-      "samples_used": 24,
+      "alpha": 302.2,
+      "beta": 3.9,
+      "prior_mean": 0.9873,
+      "source": "producer_feedback",
+      "samples_used": 43,
       "validated_reverse": "evaluates"
     },
     "senior-engineer|technical-writer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "senior-engineer|threat-modeling-expert": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -6435,15 +7366,13 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "implementation \u2192 design systems: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "senior-engineer|ux-researcher-designer": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "implementation \u2192 user experience: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "senior-engineer|zoom-out": {
       "alpha": 1.0,
@@ -6451,6 +7380,12 @@
       "prior_mean": 0.1111,
       "source": "structural_prior",
       "validated_reverse": "supports"
+    },
+    "senior-frontend|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "senior-frontend|api-designer": {
       "alpha": 2.0,
@@ -6466,11 +7401,11 @@
       "validated_reverse": "constrains"
     },
     "senior-frontend|architect": {
-      "alpha": 82.0,
+      "alpha": 142.8,
       "beta": 7.8,
-      "prior_mean": 0.9131,
+      "prior_mean": 0.9482,
       "source": "validated:supports",
-      "samples_used": 24
+      "samples_used": 43
     },
     "senior-frontend|caveman": {
       "alpha": 1.0,
@@ -6479,12 +7414,18 @@
       "source": "structural_prior"
     },
     "senior-frontend|code-reviewer": {
-      "alpha": 370.5,
+      "alpha": 649.8,
       "beta": 3.3,
-      "prior_mean": 0.9912,
+      "prior_mean": 0.9949,
       "source": "validated:triggers",
-      "samples_used": 24,
+      "samples_used": 43,
       "validated_reverse": "may_trigger"
+    },
+    "senior-frontend|compliance-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "senior-frontend|customer-success": {
       "alpha": 2.0,
@@ -6499,11 +7440,11 @@
       "source": "structural_prior"
     },
     "senior-frontend|delivery-prover": {
-      "alpha": 370.5,
+      "alpha": 649.8,
       "beta": 3.3,
-      "prior_mean": 0.9912,
+      "prior_mean": 0.9949,
       "source": "validated:triggers",
-      "samples_used": 24,
+      "samples_used": 43,
       "validated_reverse": "may_trigger"
     },
     "senior-frontend|dependency-auditor": {
@@ -6529,7 +7470,7 @@
       "beta": 4,
       "prior_mean": 0.6,
       "source": "validated:complements",
-      "samples_used": 24
+      "samples_used": 43
     },
     "senior-frontend|graph-topologist": {
       "alpha": 1.0,
@@ -6646,6 +7587,12 @@
       "prior_mean": 0.2857,
       "source": "structural_prior"
     },
+    "senior-frontend|threat-modeling-expert": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
     "senior-frontend|to-issues": {
       "alpha": 1.0,
       "beta": 8.0,
@@ -6683,6 +7630,12 @@
       "prior_mean": 0.1111,
       "source": "structural_prior"
     },
+    "skill-scout|ai-engineer": {
+      "alpha": 1.0,
+      "beta": 10.0,
+      "prior_mean": 0.0909,
+      "source": "structural_prior"
+    },
     "skill-scout|api-designer": {
       "alpha": 1.0,
       "beta": 10.0,
@@ -6708,6 +7661,12 @@
       "source": "structural_prior"
     },
     "skill-scout|code-reviewer": {
+      "alpha": 1.0,
+      "beta": 10.0,
+      "prior_mean": 0.0909,
+      "source": "structural_prior"
+    },
+    "skill-scout|compliance-auditor": {
       "alpha": 1.0,
       "beta": 10.0,
       "prior_mean": 0.0909,
@@ -6869,6 +7828,12 @@
       "prior_mean": 0.0909,
       "source": "structural_prior"
     },
+    "skill-scout|threat-modeling-expert": {
+      "alpha": 1.0,
+      "beta": 10.0,
+      "prior_mean": 0.0909,
+      "source": "structural_prior"
+    },
     "skill-scout|to-issues": {
       "alpha": 1.0,
       "beta": 8.0,
@@ -6905,6 +7870,13 @@
       "prior_mean": 0.1111,
       "source": "structural_prior"
     },
+    "tdd|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior",
+      "validated_reverse": "supports"
+    },
     "tdd|api-designer": {
       "alpha": 2.0,
       "beta": 5.0,
@@ -6916,8 +7888,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "testing \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "tdd|architect": {
       "alpha": 2.0,
@@ -6932,11 +7903,17 @@
       "source": "structural_prior"
     },
     "tdd|code-reviewer": {
-      "alpha": 340.5,
+      "alpha": 597.0,
       "beta": 4.5,
-      "prior_mean": 0.987,
+      "prior_mean": 0.9925,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
+    },
+    "tdd|compliance-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "tdd|customer-success": {
       "alpha": 2.0,
@@ -6979,8 +7956,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "testing \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "tdd|graph-topologist": {
       "alpha": 1.0,
@@ -7078,14 +8054,13 @@
       "beta": 15.0,
       "prior_mean": 0.0323,
       "source": "validated:evaluates",
-      "samples_used": 24
+      "samples_used": 43
     },
     "tdd|senior-frontend": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "testing \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "tdd|skill-scout": {
       "alpha": 1.0,
@@ -7094,6 +8069,12 @@
       "source": "structural_prior"
     },
     "tdd|technical-writer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "tdd|threat-modeling-expert": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -7122,17 +8103,21 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "testing \u2192 design systems: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "tdd|ux-researcher-designer": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "testing \u2192 user experience: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "tdd|zoom-out": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "technical-writer|ai-engineer": {
       "alpha": 1.0,
       "beta": 8.0,
       "prior_mean": 0.1111,
@@ -7143,7 +8128,7 @@
       "beta": 4,
       "prior_mean": 0.6,
       "source": "validated:augments",
-      "samples_used": 24
+      "samples_used": 43
     },
     "technical-writer|apple-hig-expert": {
       "alpha": 1.0,
@@ -7169,6 +8154,12 @@
       "prior_mean": 0.2857,
       "source": "structural_prior",
       "validated_reverse": "may_trigger"
+    },
+    "technical-writer|compliance-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "technical-writer|customer-success": {
       "alpha": 1.0,
@@ -7285,11 +8276,11 @@
       "source": "structural_prior"
     },
     "technical-writer|release-manager": {
-      "alpha": 122.0,
+      "alpha": 213.2,
       "beta": 6.2,
-      "prior_mean": 0.9516,
+      "prior_mean": 0.9717,
       "source": "validated:supports",
-      "samples_used": 24
+      "samples_used": 43
     },
     "technical-writer|scope-prosecutor": {
       "alpha": 0.5,
@@ -7325,6 +8316,12 @@
       "alpha": 1.0,
       "beta": 8.0,
       "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "technical-writer|threat-modeling-expert": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
       "source": "structural_prior"
     },
     "technical-writer|to-issues": {
@@ -7363,18 +8360,265 @@
       "prior_mean": 0.0244,
       "source": "structural_prior"
     },
-    "to-issues|api-designer": {
-      "alpha": 2.66,
-      "beta": 5.64,
+    "threat-modeling-expert|ai-engineer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|api-designer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|apple-hig-expert": {
+      "alpha": 0.5,
+      "beta": 12.0,
+      "prior_mean": 0.04,
+      "source": "suppressed_cross_domain"
+    },
+    "threat-modeling-expert|architect": {
+      "alpha": 0.5,
+      "beta": 15.0,
+      "prior_mean": 0.0323,
+      "source": "validated:evaluates",
+      "samples_used": 0
+    },
+    "threat-modeling-expert|caveman": {
+      "alpha": 0.5,
+      "beta": 20.0,
+      "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|code-reviewer": {
+      "alpha": 2.0,
+      "beta": 5.0,
       "prior_mean": 0.2857,
-      "source": "learned"
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|compliance-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|customer-success": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|database-engineer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|delivery-prover": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|dependency-auditor": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|devops-engineer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|diagnose": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|epic-design": {
+      "alpha": 0.5,
+      "beta": 12.0,
+      "prior_mean": 0.04,
+      "source": "suppressed_cross_domain"
+    },
+    "threat-modeling-expert|graph-topologist": {
+      "alpha": 1.0,
+      "beta": 10.0,
+      "prior_mean": 0.0909,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|grill-me": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|grill-with-docs": {
+      "alpha": 0.5,
+      "beta": 20.0,
+      "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|handoff": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|hrbp": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|improve-codebase-architecture": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|observability-engineer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|performance-engineer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|product-critic": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|product-vision-anchor": {
+      "alpha": 0.5,
+      "beta": 20.0,
+      "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|prototype": {
+      "alpha": 0.5,
+      "beta": 20.0,
+      "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|refactor-specialist": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|release-manager": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|scope-prosecutor": {
+      "alpha": 0.5,
+      "beta": 20.0,
+      "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|security-engineer": {
+      "alpha": 8.4,
+      "beta": 4.6,
+      "prior_mean": 0.6462,
+      "source": "validated:supports",
+      "samples_used": 0
+    },
+    "threat-modeling-expert|senior-engineer": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|senior-frontend": {
+      "alpha": 0.5,
+      "beta": 12.0,
+      "prior_mean": 0.04,
+      "source": "suppressed_cross_domain"
+    },
+    "threat-modeling-expert|skill-scout": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|tdd": {
+      "alpha": 1.0,
+      "beta": 8.0,
+      "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|technical-writer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|to-issues": {
+      "alpha": 0.5,
+      "beta": 20.0,
+      "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|to-prd": {
+      "alpha": 0.5,
+      "beta": 20.0,
+      "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|triage": {
+      "alpha": 0.5,
+      "beta": 20.0,
+      "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "threat-modeling-expert|ui-design-system": {
+      "alpha": 0.5,
+      "beta": 12.0,
+      "prior_mean": 0.04,
+      "source": "suppressed_cross_domain"
+    },
+    "threat-modeling-expert|ux-researcher-designer": {
+      "alpha": 0.5,
+      "beta": 12.0,
+      "prior_mean": 0.04,
+      "source": "suppressed_cross_domain"
+    },
+    "threat-modeling-expert|zoom-out": {
+      "alpha": 0.5,
+      "beta": 20.0,
+      "prior_mean": 0.0244,
+      "source": "structural_prior"
+    },
+    "to-issues|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "to-issues|api-designer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "to-issues|apple-hig-expert": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "planning \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "to-issues|architect": {
       "alpha": 2.0,
@@ -7389,6 +8633,12 @@
       "source": "structural_prior"
     },
     "to-issues|code-reviewer": {
+      "alpha": 1.0,
+      "beta": 6.0,
+      "prior_mean": 0.1429,
+      "source": "structural_prior"
+    },
+    "to-issues|compliance-auditor": {
       "alpha": 1.0,
       "beta": 6.0,
       "prior_mean": 0.1429,
@@ -7434,8 +8684,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "planning \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "to-issues|graph-topologist": {
       "alpha": 1.0,
@@ -7528,18 +8777,17 @@
       "source": "structural_prior"
     },
     "to-issues|senior-engineer": {
-      "alpha": 337.85,
-      "beta": 5.55,
-      "prior_mean": 0.9864,
+      "alpha": 590.4,
+      "beta": 4.65,
+      "prior_mean": 0.9922,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
     },
     "to-issues|senior-frontend": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "planning \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "to-issues|skill-scout": {
       "alpha": 1.0,
@@ -7554,6 +8802,12 @@
       "source": "structural_prior"
     },
     "to-issues|technical-writer": {
+      "alpha": 1.0,
+      "beta": 6.0,
+      "prior_mean": 0.1429,
+      "source": "structural_prior"
+    },
+    "to-issues|threat-modeling-expert": {
       "alpha": 1.0,
       "beta": 6.0,
       "prior_mean": 0.1429,
@@ -7576,15 +8830,13 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "planning \u2192 design systems: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "to-issues|ux-researcher-designer": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "planning \u2192 user experience: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "to-issues|zoom-out": {
       "alpha": 2.0,
@@ -7592,35 +8844,46 @@
       "prior_mean": 0.2857,
       "source": "structural_prior"
     },
+    "to-prd|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
     "to-prd|api-designer": {
-      "alpha": 122.0,
+      "alpha": 213.2,
       "beta": 6.2,
-      "prior_mean": 0.9516,
+      "prior_mean": 0.9717,
       "source": "validated:supports",
-      "samples_used": 24
+      "samples_used": 43
     },
     "to-prd|apple-hig-expert": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "product \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "to-prd|architect": {
-      "alpha": 246.75,
+      "alpha": 432.0,
       "beta": 8.25,
-      "prior_mean": 0.9676,
+      "prior_mean": 0.9813,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "to-prd|caveman": {
-      "alpha": 94.32,
-      "beta": 7.58,
-      "prior_mean": 0.9366,
-      "source": "learned",
+      "alpha": 161.4,
+      "beta": 6.3,
+      "prior_mean": 0.9624,
+      "source": "producer_feedback",
       "validated_reverse": "may_trigger"
     },
     "to-prd|code-reviewer": {
+      "alpha": 1.0,
+      "beta": 6.0,
+      "prior_mean": 0.1429,
+      "source": "structural_prior"
+    },
+    "to-prd|compliance-auditor": {
       "alpha": 1.0,
       "beta": 6.0,
       "prior_mean": 0.1429,
@@ -7666,8 +8929,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "product \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "to-prd|graph-topologist": {
       "alpha": 1.0,
@@ -7676,11 +8938,11 @@
       "source": "structural_prior"
     },
     "to-prd|grill-me": {
-      "alpha": 190.5,
+      "alpha": 333.0,
       "beta": 10.5,
-      "prior_mean": 0.9478,
+      "prior_mean": 0.9694,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "to-prd|grill-with-docs": {
       "alpha": 2.0,
@@ -7725,11 +8987,11 @@
       "source": "structural_prior"
     },
     "to-prd|product-vision-anchor": {
-      "alpha": 292.8,
+      "alpha": 555.0,
       "beta": 4.2,
-      "prior_mean": 0.9859,
+      "prior_mean": 0.9925,
       "source": "validated:triggers",
-      "samples_used": 20
+      "samples_used": 39
     },
     "to-prd|prototype": {
       "alpha": 2.0,
@@ -7750,10 +9012,10 @@
       "source": "structural_prior"
     },
     "to-prd|scope-prosecutor": {
-      "alpha": 9.92,
-      "beta": 6.08,
+      "alpha": 8.6,
+      "beta": 4.8,
       "prior_mean": 0.6418,
-      "source": "learned",
+      "source": "producer_feedback",
       "validated_reverse": "evaluates"
     },
     "to-prd|security-engineer": {
@@ -7772,8 +9034,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "product \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "to-prd|skill-scout": {
       "alpha": 1.0,
@@ -7782,11 +9043,11 @@
       "source": "structural_prior"
     },
     "to-prd|tdd": {
-      "alpha": 112.0,
+      "alpha": 195.6,
       "beta": 6.6,
-      "prior_mean": 0.9444,
+      "prior_mean": 0.9674,
       "source": "validated:supports",
-      "samples_used": 24
+      "samples_used": 43
     },
     "to-prd|technical-writer": {
       "alpha": 1.0,
@@ -7794,12 +9055,18 @@
       "prior_mean": 0.1429,
       "source": "structural_prior"
     },
+    "to-prd|threat-modeling-expert": {
+      "alpha": 1.0,
+      "beta": 6.0,
+      "prior_mean": 0.1429,
+      "source": "structural_prior"
+    },
     "to-prd|to-issues": {
-      "alpha": 367.95,
-      "beta": 4.25,
-      "prior_mean": 0.9907,
+      "alpha": 643.2,
+      "beta": 3.45,
+      "prior_mean": 0.9947,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
     },
     "to-prd|triage": {
       "alpha": 2.0,
@@ -7812,17 +9079,22 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "product \u2192 design systems: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "to-prd|ux-researcher-designer": {
-      "alpha": 190.5,
+      "alpha": 333.0,
       "beta": 10.5,
-      "prior_mean": 0.9478,
+      "prior_mean": 0.9694,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "to-prd|zoom-out": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "triage|ai-engineer": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -7838,8 +9110,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "intake \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "triage|architect": {
       "alpha": 2.0,
@@ -7854,6 +9125,12 @@
       "source": "structural_prior"
     },
     "triage|code-reviewer": {
+      "alpha": 1.0,
+      "beta": 6.0,
+      "prior_mean": 0.1429,
+      "source": "structural_prior"
+    },
+    "triage|compliance-auditor": {
       "alpha": 1.0,
       "beta": 6.0,
       "prior_mean": 0.1429,
@@ -7890,18 +9167,17 @@
       "source": "structural_prior"
     },
     "triage|diagnose": {
-      "alpha": 383.28,
-      "beta": 8.12,
-      "prior_mean": 0.9921,
+      "alpha": 663.0,
+      "beta": 3.0,
+      "prior_mean": 0.9955,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
     },
     "triage|epic-design": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "intake \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "triage|graph-topologist": {
       "alpha": 1.0,
@@ -7934,11 +9210,11 @@
       "source": "structural_prior"
     },
     "triage|improve-codebase-architecture": {
-      "alpha": 190.5,
+      "alpha": 333.0,
       "beta": 10.5,
-      "prior_mean": 0.9478,
+      "prior_mean": 0.9694,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "triage|observability-engineer": {
       "alpha": 2.0,
@@ -7965,11 +9241,11 @@
       "source": "structural_prior"
     },
     "triage|prototype": {
-      "alpha": 190.5,
+      "alpha": 333.0,
       "beta": 10.5,
-      "prior_mean": 0.9478,
+      "prior_mean": 0.9694,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "triage|refactor-specialist": {
       "alpha": 2.0,
@@ -8005,8 +9281,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "intake \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "triage|skill-scout": {
       "alpha": 1.0,
@@ -8026,6 +9301,12 @@
       "prior_mean": 0.1429,
       "source": "structural_prior"
     },
+    "triage|threat-modeling-expert": {
+      "alpha": 1.0,
+      "beta": 6.0,
+      "prior_mean": 0.1429,
+      "source": "structural_prior"
+    },
     "triage|to-issues": {
       "alpha": 2.0,
       "beta": 5.0,
@@ -8033,25 +9314,24 @@
       "source": "structural_prior"
     },
     "triage|to-prd": {
-      "alpha": 274.7,
-      "beta": 8.5,
-      "prior_mean": 0.9743,
+      "alpha": 491.4,
+      "beta": 6.9,
+      "prior_mean": 0.9862,
       "source": "validated:triggers",
-      "samples_used": 24
+      "samples_used": 43
     },
     "triage|ui-design-system": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "intake \u2192 design systems: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "triage|ux-researcher-designer": {
-      "alpha": 190.5,
+      "alpha": 333.0,
       "beta": 10.5,
-      "prior_mean": 0.9478,
+      "prior_mean": 0.9694,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "triage|zoom-out": {
       "alpha": 2.0,
@@ -8059,6 +9339,12 @@
       "prior_mean": 0.2857,
       "source": "structural_prior",
       "validated_reverse": "supports"
+    },
+    "ui-design-system|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
     },
     "ui-design-system|api-designer": {
       "alpha": 2.0,
@@ -8071,7 +9357,7 @@
       "beta": 4,
       "prior_mean": 0.6,
       "source": "validated:complements",
-      "samples_used": 24
+      "samples_used": 43
     },
     "ui-design-system|architect": {
       "alpha": 2.0,
@@ -8087,6 +9373,12 @@
       "source": "structural_prior"
     },
     "ui-design-system|code-reviewer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ui-design-system|compliance-auditor": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -8129,11 +9421,11 @@
       "source": "structural_prior"
     },
     "ui-design-system|epic-design": {
-      "alpha": 228.0,
+      "alpha": 399.0,
       "beta": 9.0,
-      "prior_mean": 0.962,
+      "prior_mean": 0.9779,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "ui-design-system|graph-topologist": {
       "alpha": 1.0,
@@ -8142,9 +9434,9 @@
       "source": "structural_prior"
     },
     "ui-design-system|grill-me": {
-      "alpha": 143.0,
+      "alpha": 249.4,
       "beta": 4.8,
-      "prior_mean": 0.9675,
+      "prior_mean": 0.9811,
       "source": "producer_feedback",
       "validated_reverse": "evaluates"
     },
@@ -8234,11 +9526,11 @@
       "source": "structural_prior"
     },
     "ui-design-system|senior-frontend": {
-      "alpha": 284.25,
+      "alpha": 498.0,
       "beta": 6.75,
-      "prior_mean": 0.9768,
+      "prior_mean": 0.9866,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "ui-design-system|skill-scout": {
       "alpha": 1.0,
@@ -8253,6 +9545,12 @@
       "source": "structural_prior"
     },
     "ui-design-system|technical-writer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ui-design-system|threat-modeling-expert": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -8289,6 +9587,12 @@
       "prior_mean": 0.1111,
       "source": "structural_prior"
     },
+    "ux-researcher-designer|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
     "ux-researcher-designer|api-designer": {
       "alpha": 2.0,
       "beta": 5.0,
@@ -8296,18 +9600,18 @@
       "source": "structural_prior"
     },
     "ux-researcher-designer|apple-hig-expert": {
-      "alpha": 102.0,
+      "alpha": 178.0,
       "beta": 7.0,
-      "prior_mean": 0.9358,
+      "prior_mean": 0.9622,
       "source": "validated:supports",
-      "samples_used": 24
+      "samples_used": 43
     },
     "ux-researcher-designer|architect": {
-      "alpha": 102.0,
+      "alpha": 178.0,
       "beta": 7.0,
-      "prior_mean": 0.9358,
+      "prior_mean": 0.9622,
       "source": "validated:supports",
-      "samples_used": 24
+      "samples_used": 43
     },
     "ux-researcher-designer|caveman": {
       "alpha": 1.0,
@@ -8317,6 +9621,12 @@
       "validated_reverse": "may_trigger"
     },
     "ux-researcher-designer|code-reviewer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
+    "ux-researcher-designer|compliance-auditor": {
       "alpha": 2.0,
       "beta": 5.0,
       "prior_mean": 0.2857,
@@ -8371,9 +9681,9 @@
       "source": "structural_prior"
     },
     "ux-researcher-designer|grill-me": {
-      "alpha": 133.0,
+      "alpha": 231.8,
       "beta": 5.1,
-      "prior_mean": 0.9631,
+      "prior_mean": 0.9785,
       "source": "producer_feedback",
       "validated_reverse": "evaluates"
     },
@@ -8418,7 +9728,7 @@
       "beta": 4.8,
       "prior_mean": 0.6418,
       "source": "producer_feedback",
-      "samples_used": 20,
+      "samples_used": 39,
       "validated_reverse": "evaluates"
     },
     "ux-researcher-designer|product-vision-anchor": {
@@ -8429,11 +9739,11 @@
       "validated_reverse": "may_trigger"
     },
     "ux-researcher-designer|prototype": {
-      "alpha": 284.25,
+      "alpha": 498.0,
       "beta": 6.75,
-      "prior_mean": 0.9768,
+      "prior_mean": 0.9866,
       "source": "validated:triggers",
-      "samples_used": 24,
+      "samples_used": 43,
       "validated_reverse": "complements"
     },
     "ux-researcher-designer|refactor-specialist": {
@@ -8490,6 +9800,12 @@
       "prior_mean": 0.2857,
       "source": "structural_prior"
     },
+    "ux-researcher-designer|threat-modeling-expert": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
+      "source": "structural_prior"
+    },
     "ux-researcher-designer|to-issues": {
       "alpha": 1.0,
       "beta": 8.0,
@@ -8511,16 +9827,22 @@
       "validated_reverse": "may_trigger"
     },
     "ux-researcher-designer|ui-design-system": {
-      "alpha": 246.75,
+      "alpha": 432.0,
       "beta": 8.25,
-      "prior_mean": 0.9676,
+      "prior_mean": 0.9813,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "ux-researcher-designer|zoom-out": {
       "alpha": 1.0,
       "beta": 8.0,
       "prior_mean": 0.1111,
+      "source": "structural_prior"
+    },
+    "zoom-out|ai-engineer": {
+      "alpha": 2.0,
+      "beta": 5.0,
+      "prior_mean": 0.2857,
       "source": "structural_prior"
     },
     "zoom-out|api-designer": {
@@ -8533,15 +9855,14 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "comprehension \u2192 platform design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "zoom-out|architect": {
-      "alpha": 281.1,
-      "beta": 7.3,
-      "prior_mean": 0.976,
+      "alpha": 491.4,
+      "beta": 6.9,
+      "prior_mean": 0.9862,
       "source": "validated:may_trigger",
-      "samples_used": 24
+      "samples_used": 43
     },
     "zoom-out|caveman": {
       "alpha": 2.0,
@@ -8550,6 +9871,12 @@
       "source": "structural_prior"
     },
     "zoom-out|code-reviewer": {
+      "alpha": 1.0,
+      "beta": 6.0,
+      "prior_mean": 0.1429,
+      "source": "structural_prior"
+    },
+    "zoom-out|compliance-auditor": {
       "alpha": 1.0,
       "beta": 6.0,
       "prior_mean": 0.1429,
@@ -8595,8 +9922,7 @@
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "comprehension \u2192 immersive design: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "zoom-out|graph-topologist": {
       "alpha": 1.0,
@@ -8629,11 +9955,11 @@
       "source": "structural_prior"
     },
     "zoom-out|improve-codebase-architecture": {
-      "alpha": 152.66,
-      "beta": 5.64,
-      "prior_mean": 0.9682,
+      "alpha": 266.0,
+      "beta": 5.0,
+      "prior_mean": 0.9815,
       "source": "validated:supports",
-      "samples_used": 24
+      "samples_used": 43
     },
     "zoom-out|observability-engineer": {
       "alpha": 2.0,
@@ -8666,11 +9992,11 @@
       "source": "structural_prior"
     },
     "zoom-out|refactor-specialist": {
-      "alpha": 122.6,
-      "beta": 6.6,
-      "prior_mean": 0.9516,
+      "alpha": 213.2,
+      "beta": 6.2,
+      "prior_mean": 0.9717,
       "source": "validated:supports",
-      "samples_used": 24
+      "samples_used": 43
     },
     "zoom-out|release-manager": {
       "alpha": 1.0,
@@ -8691,18 +10017,17 @@
       "source": "structural_prior"
     },
     "zoom-out|senior-engineer": {
-      "alpha": 82.0,
+      "alpha": 142.8,
       "beta": 7.8,
-      "prior_mean": 0.9131,
+      "prior_mean": 0.9482,
       "source": "validated:supports",
-      "samples_used": 24
+      "samples_used": 43
     },
     "zoom-out|senior-frontend": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "comprehension \u2192 frontend: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "zoom-out|skill-scout": {
       "alpha": 1.0,
@@ -8722,6 +10047,12 @@
       "prior_mean": 0.1429,
       "source": "structural_prior"
     },
+    "zoom-out|threat-modeling-expert": {
+      "alpha": 1.0,
+      "beta": 6.0,
+      "prior_mean": 0.1429,
+      "source": "structural_prior"
+    },
     "zoom-out|to-issues": {
       "alpha": 2.0,
       "beta": 5.0,
@@ -8735,25 +10066,23 @@
       "source": "structural_prior"
     },
     "zoom-out|triage": {
-      "alpha": 122.0,
+      "alpha": 213.2,
       "beta": 6.2,
-      "prior_mean": 0.9516,
+      "prior_mean": 0.9717,
       "source": "validated:supports",
-      "samples_used": 24
+      "samples_used": 43
     },
     "zoom-out|ui-design-system": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "comprehension \u2192 design systems: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     },
     "zoom-out|ux-researcher-designer": {
       "alpha": 0.5,
       "beta": 12.0,
       "prior_mean": 0.04,
-      "source": "suppressed_cross_domain",
-      "note": "comprehension \u2192 user experience: backend\u2192design suppressed for non-validated edges"
+      "source": "suppressed_cross_domain"
     }
   }
 }
