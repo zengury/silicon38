@@ -116,7 +116,7 @@ deliveries.
 
 ## Graph Shape
 
-Silicon Org currently has 30 nodes and 112 typed edges.
+Silicon Org currently has 41 nodes and 152 typed edges.
 
 ```mermaid
 flowchart LR

@@ -39,8 +39,8 @@ def main() -> int:
         )
 
     status = native_runtime_status()
-    assert status["ontology_nodes"] == 38, status["ontology_nodes"]
-    assert status["harness_profiles"] == 38, status["harness_profiles"]
+    assert status["ontology_nodes"] == 41, status["ontology_nodes"]
+    assert status["harness_profiles"] == 41, status["harness_profiles"]
     assert status["mapping_issues"] == [], status["mapping_issues"]
 
     triage_candidates = policy_candidates_for_completed_role("triage", {"learning_signal": {}})

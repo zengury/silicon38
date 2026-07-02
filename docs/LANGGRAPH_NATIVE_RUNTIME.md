@@ -2,7 +2,7 @@
 
 This document describes the target runtime contract and the first executable
 native kernel. The current release compiles and runs the LangGraph control
-plane, validates all 38 harness profiles, preserves Silicon weighted graph
+plane, validates all 41 harness profiles, preserves Silicon weighted graph
 propagation, executes Ledger-backed role transactions, and runs the mandatory
 post-delivery learning path. Real semantic subagent execution is still behind
 the pluggable `NodeRunner` boundary.
@@ -70,8 +70,8 @@ python3 tools/langgraph_native_smoke.py
 
 Expected properties:
 
-- `ontology_nodes == 38`
-- `harness_profiles == 38`
+- `ontology_nodes == 41`
+- `harness_profiles == 41`
 - `mapping_issues == []`
 - `triage_candidate_count > 0`
 - post-delivery `graph-topologist` and `learning-engine` complete

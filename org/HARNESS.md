@@ -77,7 +77,7 @@ completion_report:
   known_constraints:
     - string
   # Internal state signals — guard against group-induced drift (dissociation
-  # index, DI). See docs/ANALYSIS_AI_ORG_DISEASE.md for the underlying analysis.
+  # index, DI).
   confidence_differential: 0.0-1.0   # this node's confidence in its output vs.
                                       # what it would believe if it had faced the
                                       # same problem alone. 0.0 = identical to

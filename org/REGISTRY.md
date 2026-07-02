@@ -1,6 +1,6 @@
 # Role Registry
 
-The curated role library — 38 roles, each with a complete harness definition
+The curated role library — 41 roles, each with a complete harness definition
 in `registry/<role>.md`.
 
 This is the harnessed answer to Dynamic Workflow's per-task role
@@ -45,6 +45,7 @@ Stack-specific variants (python-pro, rust-pro…) are model/profile routing
 | `improve-codebase-architecture` | Architecture Improvement Specialist | Coupling problems, module boundary violations, structural debt |
 | `api-designer` | API Designer | New public API, service contract, typed interface definitions in any language |
 | `database-engineer` | Database Engineer | Schema changes, migrations, query design, data modeling |
+| `ai-engineer` | AI Engineer | LLM/RAG/agent features — context budgeting, retrieval design, hallucination mitigation, cost/latency tradeoffs |
 
 ## Implementation — Engineering
 
@@ -71,8 +72,9 @@ Stack-specific variants (python-pro, rust-pro…) are model/profile routing
 |------|-------|----------------|
 | `code-reviewer` | Code Reviewer | After any code is written — always |
 | `grill-me` | Critical Challenger | Design or plan needs adversarial stress-test before commitment |
-| `product-critic` | Product Critic | Blind product-quality evaluation — 5-test framework against vision statement |
 | `security-engineer` | Security Engineer | User input, auth, data persistence, external calls, releases |
+| `threat-modeling-expert` | Threat Modeling Expert | New system with auth/payments/PII — designs the threat surface (STRIDE, attack trees) before code exists |
+| `compliance-auditor` | Compliance Auditor | Products handling PII/health/financial data nearing launch — maps the system to GDPR/CCPA/HIPAA/SOC 2 |
 | `performance-engineer` | Performance Engineer | Performance regression, high-throughput paths, query optimization |
 | `dependency-auditor` | Dependency Auditor | New dependencies, updates, release preparation |
 

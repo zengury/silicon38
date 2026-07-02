@@ -4,7 +4,7 @@ Date: 2026-06-10. Supporting evidence for
 [`docs/DYNAMIC_WORKFLOW_HARNESS.md`](DYNAMIC_WORKFLOW_HARNESS.md) §5.
 
 **Claim under test**: the set of distinct subagent roles the Claude Code
-ecosystem actually uses is within 1–2 orders of magnitude of Silicon Org's 38
+ecosystem actually uses is within 1–2 orders of magnitude of Silicon Org's 41
 curated roles, and the recurring functional core is well under 100 — so a
 curated library plus modest extension covers effectively the whole observed
 vocabulary.
@@ -29,7 +29,7 @@ The biggest single collection is ~200 roles. Naively summing the top
 collections gives ~600–700 names **before** dedup; every one of them ships a
 code-reviewer, security-auditor, python-pro, etc. The deduplicated distinct
 named-role set across the public ecosystem plausibly lands in the high
-hundreds to low thousands — within 2 orders of magnitude of 38, arguably
+hundreds to low thousands — within 2 orders of magnitude of 41, arguably
 within 1 for the meaningful set.
 
 ## 2. The recurring functional core: ~25–40 archetypes
@@ -55,7 +55,7 @@ by technology stack** (python-pro, rust-engineer, typescript-pro… = one
 archetype × N stacks). Collapsing those, the genuinely distinct core is well
 under 100.
 
-Silicon Org's 38 nodes already cover the engineering-relevant majority of this
+Silicon Org's 41 nodes already cover the engineering-relevant majority of this
 core; the gaps are mostly stack-parameterized variants — which the harness
 treats as profile/model routing (`org/models.local.yaml`), not as new roles.
 
@@ -80,7 +80,7 @@ background runtime (up to 16 concurrent, 1,000 agents per run).
 ## 4. Implications for Silicon Org
 
 1. **The curated-library bet is sound.** The role vocabulary converges; a
-   38-node ontology with cheap extension (4 files/role) covers the observed
+   41-node ontology with cheap extension (4 files/role) covers the observed
    core. "Dynamic role creation" in the wild is overwhelmingly re-derivation
    of the same archetypes.
 2. **Our differentiation is exactly what DW lacks.** DW's own docs frame its

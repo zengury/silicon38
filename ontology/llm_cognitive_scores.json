@@ -1,6 +1,252 @@
 {
   "pairs": [
     {
+      "from": "ai-engineer",
+      "to": "api-designer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "apple-hig-expert",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "architect",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "caveman",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "code-reviewer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "compliance-auditor",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "customer-success",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "database-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "delivery-prover",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "dependency-auditor",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "devops-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "diagnose",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "epic-design",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "graph-topologist",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "grill-me",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "grill-with-docs",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "handoff",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "hrbp",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "improve-codebase-architecture",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "observability-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "performance-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "product-critic",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "product-vision-anchor",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "prototype",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "refactor-specialist",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "release-manager",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "scope-prosecutor",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "security-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "senior-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "senior-frontend",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "skill-scout",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "tdd",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "technical-writer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "to-issues",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "to-prd",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "triage",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "ui-design-system",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "ux-researcher-designer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ai-engineer",
+      "to": "zoom-out",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "api-designer",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
       "from": "api-designer",
       "to": "apple-hig-expert",
       "score": 15,
@@ -21,6 +267,12 @@
     {
       "from": "api-designer",
       "to": "code-reviewer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "api-designer",
+      "to": "compliance-auditor",
       "score": 20,
       "reasoning": "Standard forward information flow between layers"
     },
@@ -188,6 +440,12 @@
     },
     {
       "from": "api-designer",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "api-designer",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -224,6 +482,12 @@
     },
     {
       "from": "apple-hig-expert",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "apple-hig-expert",
       "to": "api-designer",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -243,6 +507,12 @@
     {
       "from": "apple-hig-expert",
       "to": "code-reviewer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "apple-hig-expert",
+      "to": "compliance-auditor",
       "score": 20,
       "reasoning": "Standard forward information flow between layers"
     },
@@ -410,6 +680,12 @@
     },
     {
       "from": "apple-hig-expert",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "apple-hig-expert",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -446,6 +722,12 @@
     },
     {
       "from": "architect",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "architect",
       "to": "api-designer",
       "score": 80,
       "reasoning": "Architecture shapes API and data design"
@@ -465,6 +747,12 @@
     {
       "from": "architect",
       "to": "code-reviewer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "architect",
+      "to": "compliance-auditor",
       "score": 20,
       "reasoning": "Standard forward information flow between layers"
     },
@@ -632,6 +920,12 @@
     },
     {
       "from": "architect",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "architect",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -668,6 +962,12 @@
     },
     {
       "from": "caveman",
+      "to": "ai-engineer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "caveman",
       "to": "api-designer",
       "score": 20,
       "reasoning": "Standard forward information flow between layers"
@@ -687,6 +987,12 @@
     {
       "from": "caveman",
       "to": "code-reviewer",
+      "score": 5,
+      "reasoning": "Quality nodes need analyzed context, not raw intake"
+    },
+    {
+      "from": "caveman",
+      "to": "compliance-auditor",
       "score": 5,
       "reasoning": "Quality nodes need analyzed context, not raw intake"
     },
@@ -854,6 +1160,12 @@
     },
     {
       "from": "caveman",
+      "to": "threat-modeling-expert",
+      "score": 5,
+      "reasoning": "Quality nodes need analyzed context, not raw intake"
+    },
+    {
+      "from": "caveman",
       "to": "to-issues",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -890,6 +1202,12 @@
     },
     {
       "from": "code-reviewer",
+      "to": "ai-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "code-reviewer",
       "to": "api-designer",
       "score": 40,
       "reasoning": "API issues found in review may require contract revision"
@@ -911,6 +1229,12 @@
       "to": "caveman",
       "score": 2,
       "reasoning": "Quality evaluation does not directly feed intake layer"
+    },
+    {
+      "from": "code-reviewer",
+      "to": "compliance-auditor",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
     },
     {
       "from": "code-reviewer",
@@ -1076,6 +1400,12 @@
     },
     {
       "from": "code-reviewer",
+      "to": "threat-modeling-expert",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "code-reviewer",
       "to": "to-issues",
       "score": 2,
       "reasoning": "Quality evaluation does not directly feed intake layer"
@@ -1111,6 +1441,252 @@
       "reasoning": "Quality evaluation does not directly feed intake layer"
     },
     {
+      "from": "compliance-auditor",
+      "to": "ai-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "api-designer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "apple-hig-expert",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "architect",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "caveman",
+      "score": 2,
+      "reasoning": "Quality evaluation does not directly feed intake layer"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "code-reviewer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "customer-success",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "database-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "delivery-prover",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "dependency-auditor",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "devops-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "diagnose",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "epic-design",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "graph-topologist",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "grill-me",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "grill-with-docs",
+      "score": 2,
+      "reasoning": "Quality evaluation does not directly feed intake layer"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "handoff",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "hrbp",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "improve-codebase-architecture",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "observability-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "performance-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "product-critic",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "product-vision-anchor",
+      "score": 2,
+      "reasoning": "Quality evaluation does not directly feed intake layer"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "prototype",
+      "score": 2,
+      "reasoning": "Quality evaluation does not directly feed intake layer"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "refactor-specialist",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "release-manager",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "scope-prosecutor",
+      "score": 2,
+      "reasoning": "Quality evaluation does not directly feed intake layer"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "security-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "senior-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "senior-frontend",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "skill-scout",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "tdd",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "technical-writer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "threat-modeling-expert",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "to-issues",
+      "score": 2,
+      "reasoning": "Quality evaluation does not directly feed intake layer"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "to-prd",
+      "score": 2,
+      "reasoning": "Quality evaluation does not directly feed intake layer"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "triage",
+      "score": 2,
+      "reasoning": "Quality evaluation does not directly feed intake layer"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "ui-design-system",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "ux-researcher-designer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "compliance-auditor",
+      "to": "zoom-out",
+      "score": 2,
+      "reasoning": "Quality evaluation does not directly feed intake layer"
+    },
+    {
+      "from": "customer-success",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
       "from": "customer-success",
       "to": "api-designer",
       "score": 15,
@@ -1137,6 +1713,12 @@
     {
       "from": "customer-success",
       "to": "code-reviewer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "customer-success",
+      "to": "compliance-auditor",
       "score": 20,
       "reasoning": "Standard forward information flow between layers"
     },
@@ -1298,6 +1880,12 @@
     },
     {
       "from": "customer-success",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "customer-success",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -1334,6 +1922,12 @@
     },
     {
       "from": "database-engineer",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "database-engineer",
       "to": "api-designer",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -1359,6 +1953,12 @@
     {
       "from": "database-engineer",
       "to": "code-reviewer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "database-engineer",
+      "to": "compliance-auditor",
       "score": 20,
       "reasoning": "Standard forward information flow between layers"
     },
@@ -1520,6 +2120,12 @@
     },
     {
       "from": "database-engineer",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "database-engineer",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -1556,6 +2162,12 @@
     },
     {
       "from": "delivery-prover",
+      "to": "ai-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "delivery-prover",
       "to": "api-designer",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -1583,6 +2195,12 @@
       "to": "code-reviewer",
       "score": 50,
       "reasoning": "Verification results supplement code review"
+    },
+    {
+      "from": "delivery-prover",
+      "to": "compliance-auditor",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
     },
     {
       "from": "delivery-prover",
@@ -1742,6 +2360,12 @@
     },
     {
       "from": "delivery-prover",
+      "to": "threat-modeling-expert",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "delivery-prover",
       "to": "to-issues",
       "score": 2,
       "reasoning": "Quality evaluation does not directly feed intake layer"
@@ -1778,6 +2402,12 @@
     },
     {
       "from": "dependency-auditor",
+      "to": "ai-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "dependency-auditor",
       "to": "api-designer",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -1803,6 +2433,12 @@
     {
       "from": "dependency-auditor",
       "to": "code-reviewer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "dependency-auditor",
+      "to": "compliance-auditor",
       "score": 15,
       "reasoning": "Generic weak correlation"
     },
@@ -1964,6 +2600,12 @@
     },
     {
       "from": "dependency-auditor",
+      "to": "threat-modeling-expert",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "dependency-auditor",
       "to": "to-issues",
       "score": 2,
       "reasoning": "Quality evaluation does not directly feed intake layer"
@@ -2000,6 +2642,12 @@
     },
     {
       "from": "devops-engineer",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "devops-engineer",
       "to": "api-designer",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -2027,6 +2675,12 @@
       "to": "code-reviewer",
       "score": 75,
       "reasoning": "Code output requires review"
+    },
+    {
+      "from": "devops-engineer",
+      "to": "compliance-auditor",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
     },
     {
       "from": "devops-engineer",
@@ -2186,6 +2840,12 @@
     },
     {
       "from": "devops-engineer",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "devops-engineer",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -2222,6 +2882,12 @@
     },
     {
       "from": "diagnose",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "diagnose",
       "to": "api-designer",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -2249,6 +2915,12 @@
       "to": "code-reviewer",
       "score": 75,
       "reasoning": "Code output requires review"
+    },
+    {
+      "from": "diagnose",
+      "to": "compliance-auditor",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
     },
     {
       "from": "diagnose",
@@ -2408,6 +3080,12 @@
     },
     {
       "from": "diagnose",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "diagnose",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -2444,6 +3122,12 @@
     },
     {
       "from": "epic-design",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "epic-design",
       "to": "api-designer",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -2471,6 +3155,12 @@
       "to": "code-reviewer",
       "score": 65,
       "reasoning": "Immersive code needs review for performance and accessibility"
+    },
+    {
+      "from": "epic-design",
+      "to": "compliance-auditor",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
     },
     {
       "from": "epic-design",
@@ -2630,6 +3320,12 @@
     },
     {
       "from": "epic-design",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "epic-design",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -2666,6 +3362,12 @@
     },
     {
       "from": "graph-topologist",
+      "to": "ai-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "graph-topologist",
       "to": "api-designer",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -2691,6 +3393,12 @@
     {
       "from": "graph-topologist",
       "to": "code-reviewer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "graph-topologist",
+      "to": "compliance-auditor",
       "score": 15,
       "reasoning": "Generic weak correlation"
     },
@@ -2852,6 +3560,12 @@
     },
     {
       "from": "graph-topologist",
+      "to": "threat-modeling-expert",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "graph-topologist",
       "to": "to-issues",
       "score": 2,
       "reasoning": "Quality evaluation does not directly feed intake layer"
@@ -2888,6 +3602,12 @@
     },
     {
       "from": "grill-me",
+      "to": "ai-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "grill-me",
       "to": "api-designer",
       "score": 40,
       "reasoning": "API design may be stress-tested"
@@ -2913,6 +3633,12 @@
     {
       "from": "grill-me",
       "to": "code-reviewer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "grill-me",
+      "to": "compliance-auditor",
       "score": 15,
       "reasoning": "Generic weak correlation"
     },
@@ -3074,6 +3800,12 @@
     },
     {
       "from": "grill-me",
+      "to": "threat-modeling-expert",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "grill-me",
       "to": "to-issues",
       "score": 2,
       "reasoning": "Quality evaluation does not directly feed intake layer"
@@ -3110,6 +3842,12 @@
     },
     {
       "from": "grill-with-docs",
+      "to": "ai-engineer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "grill-with-docs",
       "to": "api-designer",
       "score": 20,
       "reasoning": "Standard forward information flow between layers"
@@ -3135,6 +3873,12 @@
     {
       "from": "grill-with-docs",
       "to": "code-reviewer",
+      "score": 5,
+      "reasoning": "Quality nodes need analyzed context, not raw intake"
+    },
+    {
+      "from": "grill-with-docs",
+      "to": "compliance-auditor",
       "score": 5,
       "reasoning": "Quality nodes need analyzed context, not raw intake"
     },
@@ -3296,6 +4040,12 @@
     },
     {
       "from": "grill-with-docs",
+      "to": "threat-modeling-expert",
+      "score": 5,
+      "reasoning": "Quality nodes need analyzed context, not raw intake"
+    },
+    {
+      "from": "grill-with-docs",
       "to": "to-issues",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -3332,6 +4082,12 @@
     },
     {
       "from": "handoff",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Context transfer is terminal output, rarely activates nodes"
+    },
+    {
+      "from": "handoff",
       "to": "api-designer",
       "score": 15,
       "reasoning": "Context transfer is terminal output, rarely activates nodes"
@@ -3357,6 +4113,12 @@
     {
       "from": "handoff",
       "to": "code-reviewer",
+      "score": 15,
+      "reasoning": "Context transfer is terminal output, rarely activates nodes"
+    },
+    {
+      "from": "handoff",
+      "to": "compliance-auditor",
       "score": 15,
       "reasoning": "Context transfer is terminal output, rarely activates nodes"
     },
@@ -3518,6 +4280,12 @@
     },
     {
       "from": "handoff",
+      "to": "threat-modeling-expert",
+      "score": 15,
+      "reasoning": "Context transfer is terminal output, rarely activates nodes"
+    },
+    {
+      "from": "handoff",
       "to": "to-issues",
       "score": 2,
       "reasoning": "Quality evaluation does not directly feed intake layer"
@@ -3554,6 +4322,12 @@
     },
     {
       "from": "hrbp",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "hrbp",
       "to": "api-designer",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -3579,6 +4353,12 @@
     {
       "from": "hrbp",
       "to": "code-reviewer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "hrbp",
+      "to": "compliance-auditor",
       "score": 20,
       "reasoning": "Standard forward information flow between layers"
     },
@@ -3740,6 +4520,12 @@
     },
     {
       "from": "hrbp",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "hrbp",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -3776,6 +4562,12 @@
     },
     {
       "from": "improve-codebase-architecture",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "improve-codebase-architecture",
       "to": "api-designer",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -3801,6 +4593,12 @@
     {
       "from": "improve-codebase-architecture",
       "to": "code-reviewer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "improve-codebase-architecture",
+      "to": "compliance-auditor",
       "score": 20,
       "reasoning": "Standard forward information flow between layers"
     },
@@ -3962,6 +4760,12 @@
     },
     {
       "from": "improve-codebase-architecture",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "improve-codebase-architecture",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -3998,6 +4802,12 @@
     },
     {
       "from": "observability-engineer",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "observability-engineer",
       "to": "api-designer",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -4025,6 +4835,12 @@
       "to": "code-reviewer",
       "score": 35,
       "reasoning": "Observability gaps found in review"
+    },
+    {
+      "from": "observability-engineer",
+      "to": "compliance-auditor",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
     },
     {
       "from": "observability-engineer",
@@ -4184,6 +5000,12 @@
     },
     {
       "from": "observability-engineer",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "observability-engineer",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -4220,6 +5042,12 @@
     },
     {
       "from": "performance-engineer",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "performance-engineer",
       "to": "api-designer",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -4247,6 +5075,12 @@
       "to": "code-reviewer",
       "score": 55,
       "reasoning": "Performance bottlenecks inform review"
+    },
+    {
+      "from": "performance-engineer",
+      "to": "compliance-auditor",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
     },
     {
       "from": "performance-engineer",
@@ -4406,6 +5240,12 @@
     },
     {
       "from": "performance-engineer",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "performance-engineer",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -4442,6 +5282,12 @@
     },
     {
       "from": "product-critic",
+      "to": "ai-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "product-critic",
       "to": "api-designer",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -4467,6 +5313,12 @@
     {
       "from": "product-critic",
       "to": "code-reviewer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "product-critic",
+      "to": "compliance-auditor",
       "score": 15,
       "reasoning": "Generic weak correlation"
     },
@@ -4628,6 +5480,12 @@
     },
     {
       "from": "product-critic",
+      "to": "threat-modeling-expert",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "product-critic",
       "to": "to-issues",
       "score": 2,
       "reasoning": "Quality evaluation does not directly feed intake layer"
@@ -4664,6 +5522,12 @@
     },
     {
       "from": "product-vision-anchor",
+      "to": "ai-engineer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "product-vision-anchor",
       "to": "api-designer",
       "score": 20,
       "reasoning": "Standard forward information flow between layers"
@@ -4689,6 +5553,12 @@
     {
       "from": "product-vision-anchor",
       "to": "code-reviewer",
+      "score": 5,
+      "reasoning": "Quality nodes need analyzed context, not raw intake"
+    },
+    {
+      "from": "product-vision-anchor",
+      "to": "compliance-auditor",
       "score": 5,
       "reasoning": "Quality nodes need analyzed context, not raw intake"
     },
@@ -4850,6 +5720,12 @@
     },
     {
       "from": "product-vision-anchor",
+      "to": "threat-modeling-expert",
+      "score": 5,
+      "reasoning": "Quality nodes need analyzed context, not raw intake"
+    },
+    {
+      "from": "product-vision-anchor",
       "to": "to-issues",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -4886,6 +5762,12 @@
     },
     {
       "from": "prototype",
+      "to": "ai-engineer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "prototype",
       "to": "api-designer",
       "score": 20,
       "reasoning": "Standard forward information flow between layers"
@@ -4911,6 +5793,12 @@
     {
       "from": "prototype",
       "to": "code-reviewer",
+      "score": 5,
+      "reasoning": "Quality nodes need analyzed context, not raw intake"
+    },
+    {
+      "from": "prototype",
+      "to": "compliance-auditor",
       "score": 5,
       "reasoning": "Quality nodes need analyzed context, not raw intake"
     },
@@ -5072,6 +5960,12 @@
     },
     {
       "from": "prototype",
+      "to": "threat-modeling-expert",
+      "score": 5,
+      "reasoning": "Quality nodes need analyzed context, not raw intake"
+    },
+    {
+      "from": "prototype",
       "to": "to-issues",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -5108,6 +6002,12 @@
     },
     {
       "from": "refactor-specialist",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "refactor-specialist",
       "to": "api-designer",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -5135,6 +6035,12 @@
       "to": "code-reviewer",
       "score": 90,
       "reasoning": "Refactored code must be reviewed for behavior preservation"
+    },
+    {
+      "from": "refactor-specialist",
+      "to": "compliance-auditor",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
     },
     {
       "from": "refactor-specialist",
@@ -5294,6 +6200,12 @@
     },
     {
       "from": "refactor-specialist",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "refactor-specialist",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -5330,6 +6242,12 @@
     },
     {
       "from": "release-manager",
+      "to": "ai-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "release-manager",
       "to": "api-designer",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -5355,6 +6273,12 @@
     {
       "from": "release-manager",
       "to": "code-reviewer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "release-manager",
+      "to": "compliance-auditor",
       "score": 15,
       "reasoning": "Generic weak correlation"
     },
@@ -5516,6 +6440,12 @@
     },
     {
       "from": "release-manager",
+      "to": "threat-modeling-expert",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "release-manager",
       "to": "to-issues",
       "score": 2,
       "reasoning": "Quality evaluation does not directly feed intake layer"
@@ -5552,6 +6482,12 @@
     },
     {
       "from": "scope-prosecutor",
+      "to": "ai-engineer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "scope-prosecutor",
       "to": "api-designer",
       "score": 20,
       "reasoning": "Standard forward information flow between layers"
@@ -5577,6 +6513,12 @@
     {
       "from": "scope-prosecutor",
       "to": "code-reviewer",
+      "score": 5,
+      "reasoning": "Quality nodes need analyzed context, not raw intake"
+    },
+    {
+      "from": "scope-prosecutor",
+      "to": "compliance-auditor",
       "score": 5,
       "reasoning": "Quality nodes need analyzed context, not raw intake"
     },
@@ -5738,6 +6680,12 @@
     },
     {
       "from": "scope-prosecutor",
+      "to": "threat-modeling-expert",
+      "score": 5,
+      "reasoning": "Quality nodes need analyzed context, not raw intake"
+    },
+    {
+      "from": "scope-prosecutor",
       "to": "to-issues",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -5774,6 +6722,12 @@
     },
     {
       "from": "security-engineer",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "security-engineer",
       "to": "api-designer",
       "score": 50,
       "reasoning": "Security concerns constrain API design"
@@ -5801,6 +6755,12 @@
       "to": "code-reviewer",
       "score": 70,
       "reasoning": "Security evaluation supplements code review"
+    },
+    {
+      "from": "security-engineer",
+      "to": "compliance-auditor",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
     },
     {
       "from": "security-engineer",
@@ -5960,6 +6920,12 @@
     },
     {
       "from": "security-engineer",
+      "to": "threat-modeling-expert",
+      "score": 25,
+      "reasoning": "Weak domain overlap between roles"
+    },
+    {
+      "from": "security-engineer",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -5996,6 +6962,12 @@
     },
     {
       "from": "senior-engineer",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "senior-engineer",
       "to": "api-designer",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -6023,6 +6995,12 @@
       "to": "code-reviewer",
       "score": 95,
       "reasoning": "Senior engineer output is primary target for code review"
+    },
+    {
+      "from": "senior-engineer",
+      "to": "compliance-auditor",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
     },
     {
       "from": "senior-engineer",
@@ -6182,6 +7160,12 @@
     },
     {
       "from": "senior-engineer",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "senior-engineer",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -6218,6 +7202,12 @@
     },
     {
       "from": "senior-frontend",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "senior-frontend",
       "to": "api-designer",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -6245,6 +7235,12 @@
       "to": "code-reviewer",
       "score": 92,
       "reasoning": "Frontend implementation requires thorough code review"
+    },
+    {
+      "from": "senior-frontend",
+      "to": "compliance-auditor",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
     },
     {
       "from": "senior-frontend",
@@ -6404,6 +7400,12 @@
     },
     {
       "from": "senior-frontend",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "senior-frontend",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -6440,6 +7442,12 @@
     },
     {
       "from": "skill-scout",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "skill-scout",
       "to": "api-designer",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -6465,6 +7473,12 @@
     {
       "from": "skill-scout",
       "to": "code-reviewer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "skill-scout",
+      "to": "compliance-auditor",
       "score": 20,
       "reasoning": "Standard forward information flow between layers"
     },
@@ -6626,6 +7640,12 @@
     },
     {
       "from": "skill-scout",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "skill-scout",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -6662,6 +7682,12 @@
     },
     {
       "from": "tdd",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "tdd",
       "to": "api-designer",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -6689,6 +7715,12 @@
       "to": "code-reviewer",
       "score": 75,
       "reasoning": "Code output requires review"
+    },
+    {
+      "from": "tdd",
+      "to": "compliance-auditor",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
     },
     {
       "from": "tdd",
@@ -6848,6 +7880,12 @@
     },
     {
       "from": "tdd",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "tdd",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -6884,6 +7922,12 @@
     },
     {
       "from": "technical-writer",
+      "to": "ai-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "technical-writer",
       "to": "api-designer",
       "score": 40,
       "reasoning": "Documentation may reveal API clarity issues"
@@ -6909,6 +7953,12 @@
     {
       "from": "technical-writer",
       "to": "code-reviewer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "technical-writer",
+      "to": "compliance-auditor",
       "score": 15,
       "reasoning": "Generic weak correlation"
     },
@@ -7070,6 +8120,12 @@
     },
     {
       "from": "technical-writer",
+      "to": "threat-modeling-expert",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "technical-writer",
       "to": "to-issues",
       "score": 2,
       "reasoning": "Quality evaluation does not directly feed intake layer"
@@ -7105,6 +8161,252 @@
       "reasoning": "Quality evaluation does not directly feed intake layer"
     },
     {
+      "from": "threat-modeling-expert",
+      "to": "ai-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "api-designer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "apple-hig-expert",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "architect",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "caveman",
+      "score": 2,
+      "reasoning": "Quality evaluation does not directly feed intake layer"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "code-reviewer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "compliance-auditor",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "customer-success",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "database-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "delivery-prover",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "dependency-auditor",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "devops-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "diagnose",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "epic-design",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "graph-topologist",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "grill-me",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "grill-with-docs",
+      "score": 2,
+      "reasoning": "Quality evaluation does not directly feed intake layer"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "handoff",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "hrbp",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "improve-codebase-architecture",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "observability-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "performance-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "product-critic",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "product-vision-anchor",
+      "score": 2,
+      "reasoning": "Quality evaluation does not directly feed intake layer"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "prototype",
+      "score": 2,
+      "reasoning": "Quality evaluation does not directly feed intake layer"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "refactor-specialist",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "release-manager",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "scope-prosecutor",
+      "score": 2,
+      "reasoning": "Quality evaluation does not directly feed intake layer"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "security-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "senior-engineer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "senior-frontend",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "skill-scout",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "tdd",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "technical-writer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "to-issues",
+      "score": 2,
+      "reasoning": "Quality evaluation does not directly feed intake layer"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "to-prd",
+      "score": 2,
+      "reasoning": "Quality evaluation does not directly feed intake layer"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "triage",
+      "score": 2,
+      "reasoning": "Quality evaluation does not directly feed intake layer"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "ui-design-system",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "ux-researcher-designer",
+      "score": 10,
+      "reasoning": "Weak backward information flow"
+    },
+    {
+      "from": "threat-modeling-expert",
+      "to": "zoom-out",
+      "score": 2,
+      "reasoning": "Quality evaluation does not directly feed intake layer"
+    },
+    {
+      "from": "to-issues",
+      "to": "ai-engineer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
       "from": "to-issues",
       "to": "api-designer",
       "score": 20,
@@ -7131,6 +8433,12 @@
     {
       "from": "to-issues",
       "to": "code-reviewer",
+      "score": 5,
+      "reasoning": "Quality nodes need analyzed context, not raw intake"
+    },
+    {
+      "from": "to-issues",
+      "to": "compliance-auditor",
       "score": 5,
       "reasoning": "Quality nodes need analyzed context, not raw intake"
     },
@@ -7298,6 +8606,12 @@
     },
     {
       "from": "to-issues",
+      "to": "threat-modeling-expert",
+      "score": 5,
+      "reasoning": "Quality nodes need analyzed context, not raw intake"
+    },
+    {
+      "from": "to-issues",
       "to": "to-prd",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -7328,6 +8642,12 @@
     },
     {
       "from": "to-prd",
+      "to": "ai-engineer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "to-prd",
       "to": "api-designer",
       "score": 55,
       "reasoning": "Requirements scope informs API surface decisions"
@@ -7353,6 +8673,12 @@
     {
       "from": "to-prd",
       "to": "code-reviewer",
+      "score": 5,
+      "reasoning": "Quality nodes need analyzed context, not raw intake"
+    },
+    {
+      "from": "to-prd",
+      "to": "compliance-auditor",
       "score": 5,
       "reasoning": "Quality nodes need analyzed context, not raw intake"
     },
@@ -7520,6 +8846,12 @@
     },
     {
       "from": "to-prd",
+      "to": "threat-modeling-expert",
+      "score": 5,
+      "reasoning": "Quality nodes need analyzed context, not raw intake"
+    },
+    {
+      "from": "to-prd",
       "to": "to-issues",
       "score": 85,
       "reasoning": "Requirements must be decomposed into executable issues"
@@ -7550,6 +8882,12 @@
     },
     {
       "from": "triage",
+      "to": "ai-engineer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "triage",
       "to": "api-designer",
       "score": 20,
       "reasoning": "Standard forward information flow between layers"
@@ -7575,6 +8913,12 @@
     {
       "from": "triage",
       "to": "code-reviewer",
+      "score": 5,
+      "reasoning": "Quality nodes need analyzed context, not raw intake"
+    },
+    {
+      "from": "triage",
+      "to": "compliance-auditor",
       "score": 5,
       "reasoning": "Quality nodes need analyzed context, not raw intake"
     },
@@ -7742,6 +9086,12 @@
     },
     {
       "from": "triage",
+      "to": "threat-modeling-expert",
+      "score": 5,
+      "reasoning": "Quality nodes need analyzed context, not raw intake"
+    },
+    {
+      "from": "triage",
       "to": "to-issues",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -7772,6 +9122,12 @@
     },
     {
       "from": "ui-design-system",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ui-design-system",
       "to": "api-designer",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -7797,6 +9153,12 @@
     {
       "from": "ui-design-system",
       "to": "code-reviewer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "ui-design-system",
+      "to": "compliance-auditor",
       "score": 20,
       "reasoning": "Standard forward information flow between layers"
     },
@@ -7964,6 +9326,12 @@
     },
     {
       "from": "ui-design-system",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "ui-design-system",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -7994,6 +9362,12 @@
     },
     {
       "from": "ux-researcher-designer",
+      "to": "ai-engineer",
+      "score": 15,
+      "reasoning": "Generic weak correlation"
+    },
+    {
+      "from": "ux-researcher-designer",
       "to": "api-designer",
       "score": 15,
       "reasoning": "Generic weak correlation"
@@ -8019,6 +9393,12 @@
     {
       "from": "ux-researcher-designer",
       "to": "code-reviewer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "ux-researcher-designer",
+      "to": "compliance-auditor",
       "score": 20,
       "reasoning": "Standard forward information flow between layers"
     },
@@ -8186,6 +9566,12 @@
     },
     {
       "from": "ux-researcher-designer",
+      "to": "threat-modeling-expert",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "ux-researcher-designer",
       "to": "to-issues",
       "score": 10,
       "reasoning": "Weak backward information flow"
@@ -8216,6 +9602,12 @@
     },
     {
       "from": "zoom-out",
+      "to": "ai-engineer",
+      "score": 20,
+      "reasoning": "Standard forward information flow between layers"
+    },
+    {
+      "from": "zoom-out",
       "to": "api-designer",
       "score": 20,
       "reasoning": "Standard forward information flow between layers"
@@ -8241,6 +9633,12 @@
     {
       "from": "zoom-out",
       "to": "code-reviewer",
+      "score": 5,
+      "reasoning": "Quality nodes need analyzed context, not raw intake"
+    },
+    {
+      "from": "zoom-out",
+      "to": "compliance-auditor",
       "score": 5,
       "reasoning": "Quality nodes need analyzed context, not raw intake"
     },
@@ -8403,6 +9801,12 @@
     {
       "from": "zoom-out",
       "to": "technical-writer",
+      "score": 5,
+      "reasoning": "Quality nodes need analyzed context, not raw intake"
+    },
+    {
+      "from": "zoom-out",
+      "to": "threat-modeling-expert",
       "score": 5,
       "reasoning": "Quality nodes need analyzed context, not raw intake"
     },

@@ -50,7 +50,7 @@ auditable, and self-improving.**
 
 ## 2. Why a fixed role library is not a regression from "dynamic"
 
-The instinctive objection: "DW creates roles dynamically; a 38-node ontology
+The instinctive objection: "DW creates roles dynamically; a 41-node ontology
 is static." This conflates two different things being dynamic:
 
 - **Role *definitions*** — what a "code reviewer" is, what it must produce,
@@ -113,12 +113,12 @@ The five-concept core (Graph / Ledger / Policy / Runtime / Learning,
 `docs/HARNESS_ENGINEERING.md`) is unchanged — it *is* the harness. What
 changes is the framing layer above it:
 
-1. **README leads with the DW claim**, not with "38 agents". The agent count
+1. **README leads with the DW claim**, not with "41 agents". The agent count
    is evidence, not the headline.
 2. **Vocabulary bridge**: docs consistently translate DW terms ↔ harness
    terms (subagent ↔ node, fan-out ↔ parallel activation, handoff ↔ typed
    handoff with context block, todo list ↔ ledger + gates).
-3. **The 38 nodes are presented as a *coverage* result**: the curated library
+3. **The 41 nodes are presented as a *coverage* result**: the curated library
    covers the ecosystem's observed role vocabulary; extension is open and
    cheap (4 files per role).
 4. **Honest boundary**: the harness costs ceremony (ledger writes, context
@@ -134,7 +134,7 @@ Surveyed 2026-06-10 — full data and sources in
 - The largest public agent collection ([wshobson/agents](https://github.com/wshobson/agents))
   has **192** roles; the top collections sum to <700 names before dedup, with
   massive overlap. The deduplicated public vocabulary is high hundreds to low
-  thousands — within 1–2 orders of magnitude of our 38.
+  thousands — within 1–2 orders of magnitude of our 41.
 - The recurring functional core is **~25–40 archetypes** (reviewer, auditor,
   tester, debugger, architect, frontend/backend, devops, data/ML, docs,
   orchestrator…). Most apparent diversity is one archetype × technology stack
@@ -145,7 +145,7 @@ Surveyed 2026-06-10 — full data and sources in
   / verifier / judge / classifier / synthesizer / researcher).
 
 **Conclusion: the curated-library bet is sound.** Role definitions converge;
-re-inventing them per task adds variance, not capability. A 38-node ontology
+re-inventing them per task adds variance, not capability. A 41-node ontology
 with cheap extension covers the observed engineering core.
 
 ---
