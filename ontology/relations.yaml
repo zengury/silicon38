@@ -1797,6 +1797,131 @@ relations:
       samples: 0
     condition: passes design-time threat model and attack trees to inform code-level security audit
 
+# ── wayfinder edges ──────────────────────────────────────────────────────────
+- from: triage
+  to: wayfinder
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.4
+      confidence: 0.10
+      samples: 0
+    condition: task spans multiple sessions, requires coordinating investigation before execution, or prior session left incomplete state
+    activation_task_types:
+    - feature
+    - architecture
+    - research
+    - refactor
+- from: wayfinder
+  to: to-issues
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.7
+      confidence: 0.10
+      samples: 0
+    condition: wayfinder-map has frontier items ready to be tracked as discrete work items
+
+# ── penetration-tester edges ──────────────────────────────────────────────────
+- from: threat-modeling-expert
+  to: penetration-tester
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.6
+      confidence: 0.10
+      samples: 0
+    condition: system has been built and threat model HIGH/CRITICAL threats require runtime exploitability validation
+    activation_task_types:
+    - security
+    - launch
+    - release
+- from: security-engineer
+  to: penetration-tester
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.4
+      confidence: 0.10
+      samples: 0
+    condition: code audit finds HIGH/CRITICAL and runtime confirmation is needed before remediation priority is set
+    activation_task_types:
+    - security
+    - launch
+- from: penetration-tester
+  to: security-engineer
+  type: evaluates
+  weights:
+    strictness:
+      value: 0.9
+      confidence: 0.10
+      samples: 0
+    blocking:
+      value: advisory
+    condition: confirmed exploitable findings feed back as code-level fix requirements
+- from: penetration-tester
+  to: release-manager
+  type: evaluates
+  weights:
+    strictness:
+      value: 1.0
+      confidence: 0.10
+      samples: 0
+    blocking:
+      value: required
+    condition: verdict is LAUNCH_BLOCKER
+
+# ── data-analyst edges ────────────────────────────────────────────────────────
+- from: architect
+  to: data-analyst
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.35
+      confidence: 0.10
+      samples: 0
+    condition: task involves analytics product, metrics framework, or data product design
+    activation_task_types:
+    - feature
+    - design
+    - launch
+- from: database-engineer
+  to: data-analyst
+  type: supports
+  weights:
+    necessity:
+      value: 0.5
+      confidence: 0.10
+      samples: 0
+    substitutability:
+      value: 0.6
+      confidence: 0.05
+      samples: 0
+- from: data-analyst
+  to: senior-engineer
+  type: may_trigger
+  weights:
+    probability:
+      value: 0.5
+      confidence: 0.10
+      samples: 0
+    condition: analytical findings produce recommended actions requiring code implementation
+    activation_task_types:
+    - feature
+    - analytics
+- from: observability-engineer
+  to: data-analyst
+  type: supports
+  weights:
+    necessity:
+      value: 0.4
+      confidence: 0.10
+      samples: 0
+    substitutability:
+      value: 0.7
+      confidence: 0.05
+      samples: 0
+
 # ── compliance-auditor edges ──────────────────────────────────────────────────
 - from: security-engineer
   to: compliance-auditor

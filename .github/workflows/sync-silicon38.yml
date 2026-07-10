@@ -1,0 +1,55 @@
+name: Sync → silicon38
+
+# Publishes the development repo to zengury/silicon38 (external release).
+# Triggered on every push to main, and manually from the Actions tab.
+#
+# Required secret: SILICON38_PAT
+#   A GitHub Personal Access Token with repo write access to zengury/silicon38.
+#   Settings → Secrets and variables → Actions → New repository secret.
+#
+# What is synced: everything EXCEPT the directories listed in the rsync --exclude
+# block below (internal traces and session-specific Claude config).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Clone silicon38
+        env:
+          SILICON38_PAT: ${{ secrets.SILICON38_PAT }}
+        run: |
+          git clone \
+            https://x-access-token:${SILICON38_PAT}@github.com/zengury/silicon38.git \
+            /tmp/silicon38
+
+      - name: Sync files
+        run: |
+          rsync -av --delete \
+            --exclude='.git/' \
+            --exclude='traces/' \
+            --exclude='.claude/' \
+            --exclude='.github/workflows/weekly-hrbp-recruiting.yml' \
+            . /tmp/silicon38/
+
+      - name: Commit and push
+        env:
+          SILICON38_PAT: ${{ secrets.SILICON38_PAT }}
+        run: |
+          cd /tmp/silicon38
+          git config user.name "silicon-org-bot"
+          git config user.email "actions@github.com"
+          git add -A
+          git diff --staged --quiet && echo "silicon38 already up to date" && exit 0
+          SHA=$(git -C $GITHUB_WORKSPACE rev-parse --short HEAD)
+          git commit -m "sync: silicon_org@${SHA}"
+          git push

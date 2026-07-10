@@ -1,5 +1,101 @@
 # Changelog
 
+## v0.7.2 — 2026-07-10
+
+### Org Expansion: 41 → 44 nodes
+
+Second structured hiring batch. Sourced from mattpocock/skills (open-sourced
+June 2026), VoltAgent/awesome-claude-code-subagents (23.1k ⭐), sickn33/agentic-awesome-skills
+(42.7k ⭐), and Anthropic's official cookbook. HRBP framework applied identically
+to v0.7.1 batch: gap test + activation frequency + output uniqueness + absorb
+feasibility.
+
+**Result: 3 HIRE** — all passed all four criteria with clear boundary from
+existing nodes. +6 edges (+4.2% graph complexity).
+
+Also: 2 ABSORB executed this session (bdi-mental-states→triage,
+graph-of-skills→skill-scout). New `docs/DOMAIN_ONTOLOGIES.md` reference
+added (27 domain templates from neo4j-labs/create-context-graph, 667 ⭐).
+
+---
+
+#### Hired: `wayfinder` (Layer 1 — planning)
+
+**Gap**: triage classifies tasks and routes to an agent team. to-issues decomposes
+requirements into a backlog. Neither handles the structural problem of tasks that
+span multiple sessions: where am I, what have I decided, what's still unknown,
+and what's next. Without a persistent map, every new session re-discovers context
+from scratch — wasted activations, thrashing decisions, lost fog state.
+
+Wayfinder produces a `wayfinder-map` artifact: destination (falsifiable criterion),
+decisions-so-far (locked, not re-litigated), frontier (specific next actions,
+assigned), fog (unknowns with investigation tickets), and out-of-scope (explicit
+boundary). The map is the handoff object for multi-session tasks.
+
+**Activation**: tasks spanning multiple sessions, complex investigation tasks,
+or "where are we?" orientation requests on in-progress work.
+
+**New edges**: triage→wayfinder (may_trigger), wayfinder→to-issues (may_trigger)
+
+**Source**: mattpocock/skills — wayfinder skill (multi-session navigation pattern)
+
+---
+
+#### Hired: `penetration-tester` (Layer 3 — security)
+
+**Gap**: The current security cluster operates at two phases — design time
+(threat-modeling-expert: architecture documents, STRIDE, attack trees) and code
+time (security-engineer: source code, OWASP Top 10, code review). Neither
+operates at runtime: testing a deployed system to confirm what an attacker can
+actually exploit in the current configuration. A vulnerability that looks real in
+code review may not be reachable at runtime; one that passes review may be
+exploitable through runtime composition. Penetration testing closes this gap.
+
+Produces a pentest-report: scope document, findings with CVSS 3.1 scores and
+reproduction steps, test_coverage table, and a verdict (CLEAN |
+FINDINGS_REQUIRE_FIX | LAUNCH_BLOCKER). Cannot be absorbed into security-engineer
+— requires a running system, not source code, and outputs exploitability evidence
+rather than code-level findings.
+
+**Activation**: pre-launch validation of high-risk surfaces (auth, payments, PII);
+threat model has been validated and built system now needs active testing; bug
+bounty scope assessment.
+
+**New edges**: threat-modeling-expert→penetration-tester (may_trigger),
+security-engineer→penetration-tester (may_trigger),
+penetration-tester→security-engineer (evaluates), penetration-tester→release-manager (evaluates)
+
+**Source**: VoltAgent/awesome-claude-code-subagents (23.1k ⭐)
+
+---
+
+#### Hired: `data-analyst` (Layer 2 — analytics)
+
+**Gap**: Zero current coverage for analytics/BI work. database-engineer owns
+schema design and query correctness. observability-engineer instruments systems
+and defines operational SLOs. Neither answers business questions: why is retention
+falling, which cohort converts best, did the experiment move the needle, what does
+the KPI actually measure. This work requires a different posture — exploratory,
+narrative, hypothesis-driven — and produces a different artifact: an analytical
+report with a direct answer, supporting evidence, and actionable recommendations.
+
+Distinct from ai-engineer (builds ML-powered features) and observability-engineer
+(monitors production infrastructure). The data-analyst is the BI/cohort/A-B test
+analytics role — consumer of data that already exists, not builder of the
+infrastructure that produces it.
+
+**Activation**: business questions about usage, retention, conversion; A/B test
+evaluation; KPI definition; analytics spec for a data product.
+
+**New edges**: architect→data-analyst (may_trigger), database-engineer→data-analyst
+(supports), data-analyst→senior-engineer (may_trigger),
+observability-engineer→data-analyst (supports)
+
+**Source**: sickn33/agentic-awesome-skills (42.7k ⭐) + Anthropic cookbook
+(managed-agents-data-analyst-agent)
+
+---
+
 ## v0.7.1 — 2026-06-23
 
 ### Org Expansion: 38 → 41 nodes

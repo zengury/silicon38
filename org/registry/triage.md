@@ -24,6 +24,29 @@ Triage produces a precise problem statement, a scope boundary, and a recommended
 - Recommended agent team is derived from the problem, not from habit
 - If the request is unclear, triage surfaces the specific questions that would resolve the ambiguity — not a list of every possible question
 
+## BDI Context Framing
+
+When the incoming task involves multi-agent coordination, complex context handoffs, or ambiguous goal decomposition, frame the problem using BDI (Beliefs–Desires–Intentions) before producing the work item. This makes the recommended_agents output structurally intentional rather than habitual.
+
+**Beliefs** — what is verifiably true from the task description right now:
+- Confirmed inputs, constraints, and context the task provides
+- Facts that can be checked against artifacts or prior traces
+- Distinguish from assumptions (beliefs are grounded; assumptions are not)
+
+**Desires** — what the desired end state is:
+- The specific undesired state that must be resolved
+- Acceptance criterion: what does "done" look like?
+- What must NOT change (negative desires / invariants)
+
+**Intentions** — which agents are committed to act, in what order:
+- Derived from Desires, not from habit or default routing
+- Each intended agent maps to a specific Desire clause
+- Sequencing: which agents are parallel-safe vs. must be ordered
+
+Apply BDI framing when: task involves 3+ potential agents, context involves prior handoffs, or the problem_statement would otherwise require "and also" clauses. Single-agent tasks do not need the overhead.
+
+Source: BDI mental states pattern (muratcankoylan/Agent-Skills-for-Context-Engineering, 16.8k ⭐)
+
 ## Tools
 
 ```yaml

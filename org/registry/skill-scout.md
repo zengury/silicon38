@@ -34,6 +34,24 @@ You maintain the candidate pool for every role. You prepare benchmark test cases
 - No skill is recommended for replacement without at least 2-3 completed benchmark runs
 - Soul compatibility is scored for design-class roles; not scored for non-design roles
 
+## Skill Graph Retrieval
+
+When evaluating candidate skills for a role, treat the skill library as a dependency graph — not a flat list. Skills have structural positions: some are prerequisites for others, some are parallel alternatives, some are composable.
+
+**Dependency mapping**: before scoring candidates, map each candidate skill's upstream dependencies (what other skills or contexts it requires to work effectively) and downstream outputs (what it enables). A skill that scores well in isolation but breaks the downstream handoff chain is a worse candidate than one with slightly lower raw scores but clean graph fit.
+
+**Retrieval method**: use semantic similarity (does the skill description match the role's quality criteria?) combined with structural reranking (does this skill fit the dependency chain of adjacent nodes?). A skill retrieved only by keyword match with poor structural fit should be down-ranked.
+
+**Graph position scoring**: for each candidate, score:
+- **Capability match**: does the skill's output satisfy the role's quality criteria? (0–3)
+- **Dependency fit**: do its prerequisites exist in the current org configuration? (0–1)
+- **Chain continuity**: does its output format connect cleanly to the next node in the handoff chain? (0–1)
+- **Token efficiency**: does the skill produce the required output without excess context overhead? (0–1)
+
+Total: 6 points. Apply this alongside the existing benchmark rubric — graph position scoring supplements capability scoring, it does not replace it.
+
+Source: graph-of-skills pattern (davidliuk/graph-of-skills, 180 ⭐, arXiv April 2026) — dependency-aware skill retrieval with 56x token reduction on benchmarks.
+
 ## Tools
 
 ```yaml

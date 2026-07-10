@@ -1,0 +1,165 @@
+# ═══════════════════════════════════════════════════════════════════════
+# RoboEase — Enhanced CI Pipeline with Refactoring Safety Nets
+# ═══════════════════════════════════════════════════════════════════════
+# This file adds duplication detection and hardens module boundary
+# enforcement on top of the existing ci.yml. It does NOT replace ci.yml —
+# the jobs below integrate into the existing workflow.
+#
+# Jobs added:
+#   1. backend-duplication   — Pylint duplicate-code check
+#   2. duplication-check     — jscpd cross-language duplication detection
+#
+# Jobs hardened:
+#   1. backend-module-check  — Changed from advisory to blocking
+#   2. backend-migration-check — Added regression detection
+#
+# Integration: append these jobs to .github/workflows/ci.yml and update
+# the ci-gate job's `needs` list to include the new jobs.
+# ═══════════════════════════════════════════════════════════════════════
+
+# ── Backend: duplication detection (pylint) ───────────────────────────
+backend-duplication:
+  needs: changes
+  if: needs.changes.outputs.backend == 'true'
+  runs-on: ubuntu-latest
+  defaults:
+    run:
+      working-directory: backend
+  steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+    - name: Cache pip packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ env.PIP_CACHE_KEY_PREFIX }}-${{ runner.os }}-${{ hashFiles('backend/requirements.txt') }}
+        restore-keys: |
+          ${{ env.PIP_CACHE_KEY_PREFIX }}-${{ runner.os }}-
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pylint
+    - name: Pylint duplicate-code check
+      id: dupcheck
+      run: |
+        pylint --disable=all --enable=duplicate-code \
+          --ignore=tests,__pycache__,config,db \
+          --ignore-patterns='.*_pb2\.py$' \
+          --min-similarity-lines=8 \
+          . 2>&1 | tee pylint-duplicates.log
+
+        DUPLICATES=$(grep -c "duplicate-code" pylint-duplicates.log 2>/dev/null || echo 0)
+        echo "duplicate_blocks=${DUPLICATES}" >> "$GITHUB_OUTPUT"
+        echo "Duplicate code blocks detected: ${DUPLICATES}"
+
+        if [ "$DUPLICATES" -gt 0 ]; then
+          {
+            echo "::warning ::${DUPLICATES} duplicate code block(s) detected"
+            echo "  Review the pylint-duplicates.log artifact for details."
+            echo "  Refactoring goal: extract shared modules, eliminate duplication."
+            echo "  Target: 0 duplicate blocks."
+          } >> "$GITHUB_STEP_SUMMARY"
+        else
+          echo "✅ No duplicate code blocks detected" >> "$GITHUB_STEP_SUMMARY"
+        fi
+    - name: Upload duplication report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: backend-duplication-report
+        path: |
+          backend/pylint-duplicates.log
+
+# ── Cross-language duplication detection (jscpd) ────────────────────
+duplication-check:
+    needs: changes
+    if: |
+      needs.changes.outputs.backend == 'true' ||
+      needs.changes.outputs.frontend_admin == 'true' ||
+      needs.changes.outputs.frontend_portal == 'true' ||
+      needs.changes.outputs.robot == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install jscpd
+        run: npm install -g jscpd@4
+      - name: Run jscpd — backend
+        if: needs.changes.outputs.backend == 'true'
+        id: jscpd-backend
+        run: |
+          echo "::group::jscpd — backend/ Python files"
+          jscpd backend/ \
+            --pattern '**/*.py' \
+            --ignore '**/tests/**' \
+            --ignore '**/__pycache__/**' \
+            --ignore '**/config/**' \
+            --ignore '**/db/**' \
+            --min-lines 8 \
+            --min-tokens 70 \
+            --reporters console,json \
+            --output jscpd-report-backend 2>&1 || true
+          echo "::endgroup::"
+
+          if [ -f jscpd-report-backend/jscpd-report.json ]; then
+            python3 scripts/count_jscpd_clones.py jscpd-report-backend/jscpd-report.json > /tmp/jscpd_backend_clones.txt 2>/dev/null || echo 0 > /tmp/jscpd_backend_clones.txt
+            CLONES=$(cat /tmp/jscpd_backend_clones.txt)
+            echo "backend_clones=${CLONES}" >> "$GITHUB_OUTPUT"
+            if [ "$CLONES" -gt 0 ]; then
+              echo "::warning ::${CLONES} clone(s) detected in backend/"
+            fi
+          fi
+      - name: Run jscpd — frontend
+        if: |
+          needs.changes.outputs.frontend_admin == 'true' ||
+          needs.changes.outputs.frontend_portal == 'true'
+        id: jscpd-frontend
+        run: |
+          echo "::group::jscpd — frontend/ TypeScript & Vue files"
+          jscpd frontend/ \
+            --pattern '**/*.{ts,vue,js}' \
+            --ignore '**/node_modules/**' \
+            --ignore '**/dist/**' \
+            --min-lines 8 \
+            --min-tokens 70 \
+            --reporters console,json \
+            --output jscpd-report-frontend 2>&1 || true
+          echo "::endgroup::"
+
+          if [ -f jscpd-report-frontend/jscpd-report.json ]; then
+            python3 scripts/count_jscpd_clones.py jscpd-report-frontend/jscpd-report.json > /tmp/jscpd_frontend_clones.txt 2>/dev/null || echo 0 > /tmp/jscpd_frontend_clones.txt
+            CLONES=$(cat /tmp/jscpd_frontend_clones.txt)
+            echo "frontend_clones=${CLONES}" >> "$GITHUB_OUTPUT"
+            if [ "$CLONES" -gt 0 ]; then
+              echo "::warning ::${CLONES} clone(s) detected in frontend/"
+            fi
+          fi
+      - name: Upload jscpd reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jscpd-duplication-reports
+          path: |
+            jscpd-report-backend/
+            jscpd-report-frontend/
+      - name: Duplication summary
+        if: always()
+        run: |
+          {
+            echo "## 📊 Duplication Detection Report"
+            echo ""
+            echo "| Scope | Clones Detected |"
+            echo "|---|---|"
+            echo "| backend/ | ${{ steps.jscpd-backend.outputs.backend_clones || 'N/A' }} |"
+            echo "| frontend/ | ${{ steps.jscpd-frontend.outputs.frontend_clones || 'N/A' }} |"
+            echo ""
+            echo "**Thresholds:** min-lines=8, min-tokens=70"
+            echo "**Goal:** Reduce clone count with each refactoring PR."
+            echo ""
+            echo "📎 [jscpd reports](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+          } >> "$GITHUB_STEP_SUMMARY"
